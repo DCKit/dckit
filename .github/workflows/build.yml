@@ -10,11 +10,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: build monorepo
-        run: |
-          npm i -g lerna
-          lerna bootstrap --hoist --ci
-          npm run build
+      - name: bootstrap
+        run: npm i
+      - name: build
+        run: npm run build
       - name: upload coverage
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
