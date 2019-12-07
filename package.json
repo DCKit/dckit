@@ -1,0 +1,10 @@
+{
+  "name": "dckit",
+  "private": true,
+  "scripts": {
+    "build": "FORCE_COLOR=true lerna run build --stream"
+  },
+  "devDependencies": {
+    "lerna": "^3.19.0"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "name": "test-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@dckit/store": "*",
+    "@reduxjs/toolkit": "^1.0.4",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.14",
+    "@types/react": "16.9.13",
+    "@types/react-dom": "16.9.4",
+    "@types/react-redux": "^7.1.5",
+    "@types/redux-logger": "^3.0.7",
+    "prettier": "1.19.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-scripts": "3.2.0",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^1.1.3",
+    "ts-jest": "^24.2.0",
+    "typescript": "3.7.2"
+  },
+  "scripts": {
+    "dev": "BROWSER=none pm2 --name 'dck-test-app' start react-scripts -- start",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "prebuild": "npm run format:check && npm run test",
+    "test": "CI=true react-scripts test --color",
+    "format": "prettier --write \"src/*.ts*\" \"src/**/*.ts*\" \"**/*.md\"",
+    "format:check": "prettier --list-different \"src/*.ts*\" \"src/**/*.ts*\" \"**/*.md\""
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "transformIgnorePatterns": [
+      "!/node_modules/@dckit/store"
+    ]
+  }
+}

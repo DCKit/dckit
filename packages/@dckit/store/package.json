@@ -1,0 +1,86 @@
+{
+  "name": "@dckit/store",
+  "version": "0.1.0",
+  "description": "Redux-based framework to get rid of CRUD-related boilerplate",
+  "repository": "https://github.com/ambroseus/dckit",
+  "keywords": [
+    "typescript",
+    "redux",
+    "tsdx",
+    "redux-saga",
+    "immer",
+    "crud",
+    "toolkit",
+    "ducks-pattern",
+    "dck",
+    "react-redux",
+    "react-hooks-redux"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/dckit-store.esm.js",
+  "module": "dist/dckit-store.esm.js",
+  "types": "dist/index.d.ts",
+  "author": "Eugene Samonenko <esamonenko@agilevision.io>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.14",
+    "@types/react-redux": "^7.1.5",
+    "@types/redux-saga-tester": "1.0.1",
+    "@testing-library/react": "^9.3.2",
+    "eslint-config-react-app": "^5.0.2",
+    "prettier": "1.19.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "redux-saga-tester": "^1.0.614",
+    "tsdx": "^0.11.0",
+    "tslib": "^1.10.0",
+    "typescript": "3.7.2"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.0.4",
+    "react-redux": "^7.1.3",
+    "redux": "^4.0.4",
+    "redux-saga": "^1.1.3"
+  },
+  "peerDependencies": {
+    "@reduxjs/toolkit": "^1.0.4",
+    "react-redux": "^7.1.3",
+    "redux": "^4.0.4",
+    "redux-saga": "^1.1.3"
+  },
+  "scripts": {
+    "build": "tsdx build --format esm --name dckit-store",
+    "format": "prettier --write \"src/*.ts\" \"src/**/*.ts\" \"**/*.md\"",
+    "format:check": "prettier --list-different \"src/*.ts\" \"src/**/*.ts\" \"**/*.md\"",
+    "lint": "tsdx lint src && tsc --noEmit",
+    "prebuild": "npm run lint && npm run format:check && npm run test:coverage",
+    "test": "tsdx test",
+    "test:coverage": "tsdx test --coverage"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false,
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "diagnostics": {
+          "ignoreCodes": [
+            6133
+          ]
+        }
+      }
+    }
+  }
+}
