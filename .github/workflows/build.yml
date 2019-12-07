@@ -17,7 +17,7 @@ jobs:
       - name: upload coverage
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./reporter
-          chmod +x ./cc-test-reporter
+          chmod +x ./reporter
           export GIT_BRANCH="${GITHUB_REF/refs\/heads\//}"
           ./reporter format-coverage -t lcov -o cov/dckit-store.json ./packages/@dckit/store/coverage/lcov.info
           ./reporter format-coverage -t lcov -o cov/test-app.json ./packages/test-app/coverage/lcov.info
