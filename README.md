@@ -1,2 +1,3 @@
-# dckit
+# DCKit
+
 Dashboard Construction Kit
