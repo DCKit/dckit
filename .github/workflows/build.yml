@@ -11,6 +11,6 @@ jobs:
         with:
           node-version: 12
       - run: |
-          npm ci
+          npm i -g lerna
           lerna bootstrap --hoist
           npm run build
