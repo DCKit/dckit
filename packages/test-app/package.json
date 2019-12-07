@@ -26,8 +26,9 @@
     "dev": "BROWSER=none pm2 --name 'dck-test-app' start react-scripts -- start",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "prebuild": "npm run format:check && npm run test",
+    "prebuild": "npm run format:check && npm run test:coverage",
     "test": "CI=true react-scripts test --color",
+    "test:coverage": "CI=true react-scripts test --color --coverage",
     "format": "prettier --write \"src/*.ts*\" \"src/**/*.ts*\" \"**/*.md\"",
     "format:check": "prettier --list-different \"src/*.ts*\" \"src/**/*.ts*\" \"**/*.md\""
   },
@@ -57,6 +58,9 @@
     },
     "transformIgnorePatterns": [
       "!/node_modules/@dckit/store"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
     ]
   }
 }

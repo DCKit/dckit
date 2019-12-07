@@ -13,12 +13,12 @@ jobs:
       - name: build monorepo
         run: |
           npm i -g lerna
-          lerna bootstrap --hoist
+          lerna bootstrap --hoist --ci
           npm run build
       - name: upload coverage
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
           chmod +x ./cc-test-reporter
           export GIT_BRANCH="${GITHUB_REF/refs\/heads\//}"
-          ./cc-test-reporter format-coverage -t lcov packages/@dckit/store/coverage/lcov.info
+          ./cc-test-reporter format-coverage -t lcov ./packages/@dckit/store/coverage/lcov.info
           ./cc-test-reporter upload-coverage -r  ${{ secrets.test_reporter_id }}
