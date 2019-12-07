@@ -12,9 +12,5 @@ jobs:
           node-version: 12
       - run: |
           npm ci
+          lerna bootstrap --hoist
           npm run build
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.codecov_token }}
-          file: ./coverage/coverage-final.json
