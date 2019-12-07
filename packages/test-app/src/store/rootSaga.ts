@@ -14,8 +14,8 @@ function* loadItemsSaga(action: IAction) {
   yield proc.start()
   try {
     yield proc.fetch()
-    yield proc.setItems(proc.data)
-    yield proc.optItem(action.meta.options.optedItemId)
+    yield proc.setItems(proc?.data)
+    yield proc.optItem(action?.meta?.options?.optedItemId)
     yield proc.stop()
   } catch (e) {
     yield proc.fail(e)
