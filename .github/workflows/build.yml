@@ -16,8 +16,10 @@ jobs:
         run: npm run build
       - name: upload coverage
         run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./reporter
           chmod +x ./cc-test-reporter
           export GIT_BRANCH="${GITHUB_REF/refs\/heads\//}"
-          ./cc-test-reporter format-coverage -t lcov ./packages/@dckit/store/coverage/lcov.info
-          ./cc-test-reporter upload-coverage -r  ${{ secrets.test_reporter_id }}
+          ./reporter format-coverage -t lcov -o cov/dckit-store.json ./packages/@dckit/store/coverage/lcov.info
+          ./reporter format-coverage -t lcov -o cov/test-app.json ./packages/test-app/coverage/lcov.info
+          ./reporter sum-coverage -o cov/total.json cov/*.json
+          ./reporter upload-coverage -i cov/total.json -r ${{ secrets.test_reporter_id }}
