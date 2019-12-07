@@ -10,7 +10,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: |
+      - name: build monorepo
+        run: |
           npm i -g lerna
           lerna bootstrap --hoist
           npm run build
+      - name: upload coverage
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter format-coverage -t lcov packages/@dckit/store/coverage/lcov.info
+          ./cc-test-reporter upload-coverage -r  ${{ secrets.test_reporter_id }}
