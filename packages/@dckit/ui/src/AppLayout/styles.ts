@@ -1,8 +1,13 @@
-export const styles = (theme: any): any => {
-  const drawerWidth = theme.mixins.sideBar.width
-  const appBarHeight = theme.mixins.appBar.height
-  const pageBarHeight = theme.mixins.pageBar.height
+import { makeStyles, Theme } from '@material-ui/core'
+
+export const useStyles = makeStyles((theme: Theme) => {
+  const contentPadding = 0
+  const drawerWidth = 240
+  const drawerMinWidth = 56
+  const appBarHeight = 48
+  const pageBarHeight = 36
   const barsHeight = appBarHeight + pageBarHeight
+  const gray = '#f0f0f0'
 
   const transition = {
     easing: theme.transitions.easing.sharp,
@@ -49,8 +54,8 @@ export const styles = (theme: any): any => {
       position: 'absolute',
       top: appBarHeight,
       height: pageBarHeight,
-      width: `calc(100% - ${theme.spacing.unit * 7}px)`,
-      marginLeft: theme.spacing.unit * 7,
+      width: `calc(100% - ${drawerMinWidth}px)`,
+      marginLeft: drawerMinWidth,
       zIndex: theme.zIndex.drawer - 2,
       background: 'rgba(0,0,0,0.01)',
       boxShadow: '0px 0px 15px 0px rgba(0,0,0,0.2)',
@@ -76,30 +81,32 @@ export const styles = (theme: any): any => {
       transition: transitionBar,
     },
     content: {
-      background: theme.palette.srxGrey,
+      background: gray,
       position: 'fixed',
       top: barsHeight,
-      left: theme.spacing.unit * 7,
-      width: `calc(100% - ${theme.spacing.unit * 7}px)`,
+      left: drawerMinWidth,
+      width: `calc(100% - ${drawerMinWidth}px)`,
       height: `calc(100vh - ${barsHeight}px)`,
-      padding: theme.spacing.unit * 2,
+      padding: contentPadding,
       overflow: 'auto',
       transition: transitionContent,
     },
     contentMobile: {
-      background: theme.palette.srxGrey,
+      background: gray,
       position: 'fixed',
       top: barsHeight,
       left: 0,
       width: '100vw',
       height: `calc(100vh - ${barsHeight}px)`,
-      padding: theme.spacing.unit * 2,
+      padding: contentPadding,
       overflow: 'auto',
     },
+    contentOneBar: {},
+    contentTwoBars: {},
     contentShift: {
       left: `calc(${drawerWidth}px)`,
       width: `calc(100% - ${drawerWidth}px)`,
       transition: transitionContent,
     },
   }
-}
+})

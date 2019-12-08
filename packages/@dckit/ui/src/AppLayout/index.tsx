@@ -1,15 +1,11 @@
 import React, { useState } from 'react'
-import cn from 'clsx'
-
-import { AppBar, Toolbar, IconButton, makeStyles } from '@material-ui/core'
+import { AppBar, Toolbar, IconButton } from '@material-ui/core'
 import ExpandIcon from '@material-ui/icons/Menu'
 import CollapseIcon from '@material-ui/icons/ChevronLeft'
-
-import { renderEmpty, useMobile } from '../utils'
+import cn from 'clsx'
+import { renderEmpty, useIsMobile } from '../utils'
 import { TRenderProp } from '../types'
-import { styles } from './styles'
-
-const useStyles = makeStyles(styles)
+import { useStyles } from './styles'
 
 export interface IAppLayoutProps {
   renderAppBar?: TRenderProp
@@ -25,26 +21,39 @@ export const AppLayout: React.FC<IAppLayoutProps> = (
   },
   children
 ) => {
-  const classes: any = useStyles()
-  const isMobile = useMobile()
+  const classes = useStyles()
+  const isMobile = useIsMobile()
   const [sideBarOpen, showSideBar] = useState(!isMobile)
   const thisState = { sideBarOpen }
-
   const toggleSideBar = () => showSideBar(!sideBarOpen)
+
+  const {
+    appBarMobile,
+    appBar,
+    appBarShift,
+    toolBar,
+    menuButton,
+    pageBarMobile,
+    pageBar,
+    pageBarShift,
+    contentMobile,
+    content,
+    contentShift,
+  } = classes
 
   return (
     <>
       <AppBar
         className={cn(
-          isMobile ? classes.appBarMobile : classes.appBar,
-          sideBarOpen && classes.appBarShift
+          isMobile ? appBarMobile : appBar,
+          sideBarOpen && appBarShift
         )}
       >
-        <Toolbar disableGutters={true} className={classes.toolBar}>
+        <Toolbar disableGutters={true} className={toolBar}>
           <IconButton
             color="inherit"
             onClick={toggleSideBar}
-            className={classes.menuButton}
+            className={menuButton}
             data-testid="toggle-sidebar-button"
           >
             {sideBarOpen ? <CollapseIcon /> : <ExpandIcon />}
@@ -54,8 +63,8 @@ export const AppLayout: React.FC<IAppLayoutProps> = (
       </AppBar>
       <div
         className={cn(
-          isMobile ? classes.pageBarMobile : classes.pageBar,
-          sideBarOpen && classes.pageBarShift
+          isMobile ? pageBarMobile : pageBar,
+          sideBarOpen && pageBarShift
         )}
       >
         {renderPageBar(thisState)}
@@ -63,8 +72,8 @@ export const AppLayout: React.FC<IAppLayoutProps> = (
       {renderSideBar(thisState)}
       <main
         className={cn(
-          isMobile ? classes.contentMobile : classes.content,
-          sideBarOpen && classes.contentShift
+          isMobile ? contentMobile : content,
+          sideBarOpen && contentShift
         )}
       >
         {children}
