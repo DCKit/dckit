@@ -4,6 +4,7 @@ import ExpandIcon from '@material-ui/icons/Menu'
 import CollapseIcon from '@material-ui/icons/ChevronLeft'
 import cn from 'clsx'
 import { renderEmpty, useIsMobile } from '../utils'
+import { SideBar } from '../SideBar'
 import { TRenderProp } from '../types'
 import { useStyles } from './styles'
 
@@ -91,7 +92,11 @@ export const AppLayout = ({
           {renderPageBar(thisState)}
         </PageBarContainer>
       )}
-      {renderSideBar(thisState)}
+      <SideBar
+        sideBarOpen={sideBarOpen}
+        renderSideBar={renderSideBar}
+        onClose={() => showSideBar(false)}
+      />
       <ContentContainer
         className={cn(
           content,
