@@ -7,35 +7,35 @@ import { renderEmpty, useIsMobile } from '../utils'
 import { TRenderProp } from '../types'
 import { useStyles } from './styles'
 
-export interface IAppLayoutContainerProps {
+interface IContainerProps {
   className?: any
   sideBarOpen?: boolean
+  children?: any
 }
+type TContainer = (props: IContainerProps) => JSX.Element
 
-export type TAppLayoutContainer = React.FC<IAppLayoutContainerProps>
-
-const DefaultContainer: TAppLayoutContainer = ({ className }, children) => (
-  <div className={className}>{children}</div>
-)
+const DefaultContainer: TContainer = ({
+  className,
+  children,
+}: IContainerProps) => <div className={className}>{children}</div>
 
 export interface IAppLayoutProps {
   renderAppBar?: TRenderProp
   renderPageBar?: TRenderProp
   renderSideBar?: TRenderProp
-  PageBarContainer?: TAppLayoutContainer
-  ContentContainer?: TAppLayoutContainer
+  PageBarContainer?: TContainer
+  ContentContainer?: TContainer
+  children?: any
 }
 
-export const AppLayout: React.FC<IAppLayoutProps> = (
-  {
-    renderAppBar = renderEmpty,
-    renderPageBar,
-    renderSideBar = renderEmpty,
-    PageBarContainer = DefaultContainer,
-    ContentContainer = DefaultContainer,
-  },
-  children
-) => {
+export const AppLayout = ({
+  renderAppBar = renderEmpty,
+  renderPageBar,
+  renderSideBar = renderEmpty,
+  PageBarContainer = DefaultContainer,
+  ContentContainer = DefaultContainer,
+  children,
+}: IAppLayoutProps) => {
   const classes = useStyles()
   const isMobile = useIsMobile()
   const [sideBarOpen, showSideBar] = useState(!isMobile)
