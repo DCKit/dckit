@@ -1,11 +1,12 @@
-import { makeStyles, Theme } from '@material-ui/core'
+import { Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
 export const useStyles = makeStyles((theme: Theme) => {
   const contentPadding = 0
   const drawerWidth = 240
-  const drawerMinWidth = 56
+  const drawerMinWidth = 48
   const appBarHeight = 48
-  const pageBarHeight = 36
+  const pageBarHeight = 32
   const barsHeight = appBarHeight + pageBarHeight
   const gray = '#f0f0f0'
 
@@ -55,7 +56,7 @@ export const useStyles = makeStyles((theme: Theme) => {
       top: appBarHeight,
       height: pageBarHeight,
       width: `calc(100% - ${drawerMinWidth}px)`,
-      marginLeft: drawerMinWidth,
+      marginLeft: drawerMinWidth - 8,
       zIndex: theme.zIndex.drawer - 2,
       background: 'rgba(0,0,0,0.01)',
       boxShadow: '0px 0px 15px 0px rgba(0,0,0,0.2)',
@@ -76,7 +77,7 @@ export const useStyles = makeStyles((theme: Theme) => {
       alignItems: 'center',
     },
     pageBarShift: {
-      marginLeft: drawerWidth,
+      marginLeft: drawerWidth - 8,
       width: `calc(100% - ${drawerWidth}px)`,
       transition: transitionBar,
     },

@@ -19,7 +19,7 @@ const DefaultContainer: TContainer = ({
   children,
 }: IContainerProps) => <div className={className}>{children}</div>
 
-export interface IAppLayoutProps {
+interface IAppLayoutProps {
   renderAppBar?: TRenderProp
   renderPageBar?: TRenderProp
   renderSideBar?: TRenderProp
@@ -40,6 +40,7 @@ export const AppLayout = ({
   const isMobile = useIsMobile()
   const [sideBarOpen, showSideBar] = useState(!isMobile)
   const thisState = { sideBarOpen }
+
   const toggleSideBar = () => showSideBar(!sideBarOpen)
 
   const {
@@ -95,7 +96,7 @@ export const AppLayout = ({
         className={cn(
           content,
           isMobile ? contentMobile : contentDesktop,
-          renderAppBar ? contentTwoBars : contentOneBar,
+          renderPageBar ? contentTwoBars : contentOneBar,
           sideBarOpen && contentShift
         )}
         sideBarOpen={sideBarOpen}
