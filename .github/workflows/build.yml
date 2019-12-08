@@ -10,16 +10,18 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: bootstrap
-        run: npm i
-      - name: build
-        run: npm run build
+      - run: npm i
+      - run: npm run build
       - name: upload coverage
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./reporter
           chmod +x ./reporter
           export GIT_BRANCH="${GITHUB_REF/refs\/heads\//}"
-          ./reporter format-coverage -t lcov -o cov/dckit-store.json ./packages/@dckit/store/coverage/lcov.info
-          ./reporter format-coverage -t lcov -o cov/test-app.json ./packages/test-app/coverage/lcov.info
+          for f in packages/*; do
+            if [ -d $f ]; then
+              echo $f;
+              ./reporter format-coverage -t lcov -o cov/${f//\//-}.json $f/coverage/lcov.info;
+            fi
+          done;
           ./reporter sum-coverage -o cov/total.json cov/*.json
           ./reporter upload-coverage -i cov/total.json -r ${{ secrets.test_reporter_id }}
