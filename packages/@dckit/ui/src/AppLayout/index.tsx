@@ -7,17 +7,32 @@ import { renderEmpty, useIsMobile } from '../utils'
 import { TRenderProp } from '../types'
 import { useStyles } from './styles'
 
+export interface IAppLayoutContainerProps {
+  className?: any
+  sideBarOpen?: boolean
+}
+
+export type TAppLayoutContainer = React.FC<IAppLayoutContainerProps>
+
+const DefaultContainer: TAppLayoutContainer = ({ className }, children) => (
+  <div className={className}>{children}</div>
+)
+
 export interface IAppLayoutProps {
   renderAppBar?: TRenderProp
   renderPageBar?: TRenderProp
   renderSideBar?: TRenderProp
+  PageBarContainer?: TAppLayoutContainer
+  ContentContainer?: TAppLayoutContainer
 }
 
 export const AppLayout: React.FC<IAppLayoutProps> = (
   {
     renderAppBar = renderEmpty,
-    renderPageBar = renderEmpty,
+    renderPageBar,
     renderSideBar = renderEmpty,
+    PageBarContainer = DefaultContainer,
+    ContentContainer = DefaultContainer,
   },
   children
 ) => {
@@ -36,8 +51,11 @@ export const AppLayout: React.FC<IAppLayoutProps> = (
     pageBarMobile,
     pageBar,
     pageBarShift,
-    contentMobile,
     content,
+    contentMobile,
+    contentDesktop,
+    contentOneBar,
+    contentTwoBars,
     contentShift,
   } = classes
 
@@ -61,23 +79,29 @@ export const AppLayout: React.FC<IAppLayoutProps> = (
           {renderAppBar(thisState)}
         </Toolbar>
       </AppBar>
-      <div
-        className={cn(
-          isMobile ? pageBarMobile : pageBar,
-          sideBarOpen && pageBarShift
-        )}
-      >
-        {renderPageBar(thisState)}
-      </div>
+      {renderPageBar && (
+        <PageBarContainer
+          className={cn(
+            isMobile ? pageBarMobile : pageBar,
+            sideBarOpen && pageBarShift
+          )}
+          sideBarOpen={sideBarOpen}
+        >
+          {renderPageBar(thisState)}
+        </PageBarContainer>
+      )}
       {renderSideBar(thisState)}
-      <main
+      <ContentContainer
         className={cn(
-          isMobile ? contentMobile : content,
+          content,
+          isMobile ? contentMobile : contentDesktop,
+          renderAppBar ? contentTwoBars : contentOneBar,
           sideBarOpen && contentShift
         )}
+        sideBarOpen={sideBarOpen}
       >
         {children}
-      </main>
+      </ContentContainer>
     </>
   )
 }

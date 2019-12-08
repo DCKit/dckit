@@ -83,26 +83,26 @@ export const useStyles = makeStyles((theme: Theme) => {
     content: {
       background: gray,
       position: 'fixed',
-      top: barsHeight,
-      left: drawerMinWidth,
-      width: `calc(100% - ${drawerMinWidth}px)`,
-      height: `calc(100vh - ${barsHeight}px)`,
       padding: contentPadding,
       overflow: 'auto',
+    },
+    contentDesktop: {
+      left: drawerMinWidth,
+      width: `calc(100% - ${drawerMinWidth}px)`,
       transition: transitionContent,
     },
     contentMobile: {
-      background: gray,
-      position: 'fixed',
-      top: barsHeight,
       left: 0,
       width: '100vw',
-      height: `calc(100vh - ${barsHeight}px)`,
-      padding: contentPadding,
-      overflow: 'auto',
     },
-    contentOneBar: {},
-    contentTwoBars: {},
+    contentOneBar: {
+      top: appBarHeight,
+      height: `calc(100vh - ${appBarHeight}px)`,
+    },
+    contentTwoBars: {
+      top: barsHeight,
+      height: `calc(100vh - ${barsHeight}px)`,
+    },
     contentShift: {
       left: `calc(${drawerWidth}px)`,
       width: `calc(100% - ${drawerWidth}px)`,
