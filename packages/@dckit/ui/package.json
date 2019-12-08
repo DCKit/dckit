@@ -80,6 +80,10 @@
           ]
         }
       }
-    }
+    },
+    "coverageReporters": [
+      "lcov",
+      "text-summary"
+    ]
   }
 }

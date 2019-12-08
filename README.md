@@ -4,4 +4,4 @@
 
 Dashboard Construction Kit
 
-[`@dckit/store`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/store) [`@dckit/ui`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/ui)
+[`@dckit/store`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/store) [`@dckit/ui`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/ui) [`@dckit/auth`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/auth)
