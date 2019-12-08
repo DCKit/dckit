@@ -12,11 +12,12 @@ jobs:
           node-version: 12
       - run: npm install
       - run: npm run build
-      - name: upload coverage
+      - name: download reporter
+        run: curl -s -S -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./reporter
+      - name: collect coverage
         run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./reporter
-          chmod +x ./reporter
           export GIT_BRANCH="${GITHUB_REF/refs\/heads\//}"
+          chmod +x ./reporter
           for f in `find packages -maxdepth 2 -mindepth 1`
           do
             if [ -e $f/coverage/lcov.info ]; then
@@ -25,4 +26,5 @@ jobs:
             fi
           done;
           ./reporter sum-coverage -o cov/total.json cov/*.json
-          ./reporter upload-coverage -i cov/total.json -r ${{ secrets.test_reporter_id }}
+      - name: upload report
+        run: ./reporter upload-coverage -i cov/total.json -r ${{ secrets.test_reporter_id }}
