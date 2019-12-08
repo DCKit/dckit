@@ -14,6 +14,7 @@ jobs:
       - run: npm run build
       - name: upload coverage
         run: |
+          echo "download reporter"
           export GIT_BRANCH="${GITHUB_REF/refs\/heads\//}"
           curl -s -S -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./reporter
           chmod +x ./reporter
