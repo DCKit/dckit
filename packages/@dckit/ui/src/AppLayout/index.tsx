@@ -3,7 +3,7 @@ import { AppBar, Toolbar, IconButton } from '@material-ui/core'
 import ExpandIcon from '@material-ui/icons/Menu'
 import CollapseIcon from '@material-ui/icons/ChevronLeft'
 import cn from 'clsx'
-import { renderEmpty, useIsMobile } from '../utils'
+import { renderEmpty, useMediaType } from '../utils'
 import { SideBar } from '../SideBar'
 import { TRenderProp } from '../types'
 import { useStyles } from './styles'
@@ -38,7 +38,7 @@ export const AppLayout = ({
   children,
 }: IAppLayoutProps) => {
   const classes = useStyles()
-  const isMobile = useIsMobile()
+  const { isMobile } = useMediaType()
   const [sideBarOpen, showSideBar] = useState(!isMobile)
   const thisState = { sideBarOpen }
 
