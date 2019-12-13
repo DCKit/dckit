@@ -34,7 +34,7 @@ function* loadItemsSaga(action: IAction) {
 
   yield proc.fetch()
 
-  yield proc.setItems(proc.getData())
+  yield proc.setItems(proc.data())
   yield proc.optItem(action?.meta?.options?.optedItemId)
 
   yield proc.stop({ message: 'done' })
@@ -46,7 +46,7 @@ function* addItemSaga(action: IAction) {
   })
   yield proc.start()
   yield proc.fetch(action.payload)
-  yield proc.setItem(proc.getResponse().id, proc.getData())
+  yield proc.setItem(proc.response().id, proc.data())
   yield proc.stop()
 }
 
@@ -90,7 +90,7 @@ function* batchSaga() {
 }
 
 function* failSelectSaga(action: any) {
-  const proc = Process.create('__select__', '__internal__', {
+  const proc = Process.create('__select__')('__internal__', {
     fetcher: failFetcher,
   })
   yield proc.start()

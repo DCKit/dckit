@@ -23,11 +23,11 @@ with helper:
   takeLatest(isAction.Load(ItemType), loadItemsSaga)
 */
 
-const is = (actionType: ActionTypes) => (itemType: string) => (
+const is = (actionType: ActionTypes): any => (itemType: string) => (
   action: IAction
 ) => action.type === actionType && action.meta.itemType === itemType
 
-export const isAction: any = {
+export const isAction = Object.freeze({
   [Acts.Load]: is(ActionTypes.loadItems),
   [Acts.Add]: is(ActionTypes.addItem),
   [Acts.Update]: is(ActionTypes.updateItem),
@@ -36,4 +36,4 @@ export const isAction: any = {
   [Acts.Export]: is(ActionTypes.exportItems),
   [Acts.Opt]: is(ActionTypes.optItem),
   [Acts.Select]: is(ActionTypes.selectItem),
-}
+})
