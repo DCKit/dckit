@@ -1,3 +1,3 @@
 # dck-store
 
-**class** *free* & **this** *free*
+**class** _free_ & **this** _free_
