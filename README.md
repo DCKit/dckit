@@ -1,8 +1,6 @@
-# DCKit
+# Dashboard Construction Kit
 
 [![dck](https://user-images.githubusercontent.com/380645/70829644-e63ae080-1df6-11ea-9ca9-7327f8c81c3f.png)](https://github.com/DCKit)
-
-Dashboard Construction Kit
 
 [![build](https://github.com/DCKit/dckit/workflows/build/badge.svg)](https://github.com/DCKit/dckit/actions?query=workflow%3Abuild) [![Test Coverage](https://badgen.net/codeclimate/coverage/DCKit/dckit)](https://codeclimate.com/github/DCKit/dckit/test_coverage) [![Maintainability](https://badgen.net/codeclimate/maintainability/DCKit/dckit)](https://codeclimate.com/github/DCKit/dckit/maintainability)
 
