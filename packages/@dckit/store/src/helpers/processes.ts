@@ -46,19 +46,19 @@ function setExtendRequest(extendRequest: any) {
   processExtendRequest = extendRequest
 }
 
-// default static fetcher to fetch data, if there is no fetcher in options
+// default static fetcher to fetch data, if there is no fetcher in _options
 let processFetcher: TFetcher | undefined
 function setFetcher(fetcher: TFetcher) {
   processFetcher = fetcher
 }
 
-export function createProcess(procAct: TAct) {
-  return function(procItemType: string, procOptions?: any): TProcess {
-    let act = procAct
-    let itemType = procItemType
-    let options = procOptions || {}
-    let procResponse: any
-    let procData: any
+export function createProcess(act: TAct) {
+  return function(itemType: string, options?: any): TProcess {
+    let _act = act
+    let _itemType = itemType
+    let _options = options || {}
+    let _response: any
+    let _data: any
 
     return Object.freeze({
       fetch,
@@ -85,21 +85,21 @@ export function createProcess(procAct: TAct) {
       setTotalPages,
     })
 
-    //// methods
+    // methods
 
     function data() {
-      return procData
+      return _data
     }
     function response() {
-      return procResponse
+      return _response
     }
 
     function* createRequest(params?: any): any {
       let request: any = { params }
-      request.itemType = itemType
-      request.act = act
+      request.itemType = _itemType
+      request.act = _act
 
-      if (options.pageble) {
+      if (_options.pageble) {
         const pageble: any = {}
         pageble[ItemProps.currentPage] = yield currentPage()
         pageble[ItemProps.pageSize] = yield pageSize()
@@ -116,7 +116,7 @@ export function createProcess(procAct: TAct) {
 
     function* fetch(params?: any): any {
       const request = yield createRequest(params)
-      const fetcher = processFetcher || options.fetcher
+      const fetcher = processFetcher || _options.fetcher
       if (fetcher) {
         const response = yield call(fetcher, request)
         return yield postFetch(response)
@@ -131,99 +131,100 @@ export function createProcess(procAct: TAct) {
       const totalItems = fetcherResponse.totalItems
       const totalPages = fetcherResponse.totalPages
 
-      procResponse = fetcherResponse
-      if (responseData !== void 0) procData = responseData
+      _response = fetcherResponse
+      if (responseData !== void 0) _data = responseData
       if (totalItems !== void 0) yield setTotalItems(totalItems)
       if (totalPages !== void 0) yield setTotalPages(totalPages)
-      return yield procResponse
+      return yield _response
     }
 
     // selectors helpers
 
     function filters(): SelectEffect {
-      return select(state => dckSelectors.getFilters(state, itemType))
+      return select(state => dckSelectors.getFilters(state, _itemType))
     }
 
     function sorting(): SelectEffect {
-      return select(state => dckSelectors.getSortFields(state, itemType))
+      return select(state => dckSelectors.getSortFields(state, _itemType))
     }
 
     function currentPage(): SelectEffect {
-      return select(state => dckSelectors.getCurrentPage(state, itemType))
+      return select(state => dckSelectors.getCurrentPage(state, _itemType))
     }
 
     function pageSize(): SelectEffect {
-      return select(state => dckSelectors.getPageSize(state, itemType))
+      return select(state => dckSelectors.getPageSize(state, _itemType))
     }
 
     function totalItems(): SelectEffect {
-      return select(state => dckSelectors.getTotalItems(state, itemType))
+      return select(state => dckSelectors.getTotalItems(state, _itemType))
     }
 
     function totalPages(): SelectEffect {
-      return select(state => dckSelectors.getTotalPages(state, itemType))
+      return select(state => dckSelectors.getTotalPages(state, _itemType))
     }
 
     function itemProp(prop: any): SelectEffect {
-      return select(state => dckSelectors.getItemProp(state, itemType, prop))
+      return select(state => dckSelectors.getItemProp(state, _itemType, prop))
     }
 
     // actions helpers
+
     function start(): PutEffect<IAction> {
-      return put(dckActions.processStart(itemType, act))
+      return put(dckActions.processStart(_itemType, _act))
     }
 
     function reset(): PutEffect<IAction> {
-      return put(dckActions.processReset(itemType, act))
+      return put(dckActions.processReset(_itemType, _act))
     }
 
     function stop(response?: any): PutEffect<IAction> {
-      return put(dckActions.processStop(itemType, act, response))
+      return put(dckActions.processStop(_itemType, _act, response))
     }
 
     function fail(response?: any): PutEffect<IAction> {
       if (response instanceof Error) response = { message: response.message }
-      return put(dckActions.processFail(itemType, act, response))
+      return put(dckActions.processFail(_itemType, _act, response))
     }
 
     function optItem(id: string | number): PutEffect<IAction> {
-      return put(dckActions.optItem(itemType, id))
+      return put(dckActions.optItem(_itemType, id))
     }
 
     function setItemProp(prop: string, data: any): PutEffect<IAction> {
-      return put(dckActions.setItemProp(itemType, prop, data))
+      return put(dckActions.setItemProp(_itemType, prop, data))
     }
 
     function setCurrentPage(currentPage: number): PutEffect<IAction> {
-      return put(dckActions.setCurrentPage(itemType, currentPage))
+      return put(dckActions.setCurrentPage(_itemType, currentPage))
     }
 
     function setPageSize(pageSize: number): PutEffect<IAction> {
-      return put(dckActions.setPageSize(itemType, pageSize))
+      return put(dckActions.setPageSize(_itemType, pageSize))
     }
 
     function setItems(data?: any[]): PutEffect<IAction> {
       if (!data) data = []
-      return put(dckActions.setItems(itemType, data))
+      return put(dckActions.setItems(_itemType, data))
     }
 
     function setItem(id: string | number, data: any): PutEffect<IAction> {
-      return put(dckActions.setItem(itemType, id, data))
+      return put(dckActions.setItem(_itemType, id, data))
     }
 
     function setTotalItems(totalItems: number): PutEffect<IAction> {
-      return put(dckActions.setTotalItems(itemType, totalItems))
+      return put(dckActions.setTotalItems(_itemType, totalItems))
     }
 
+    // set current page to last page if current page is greater than total pages
     function* setTotalPages(totalPages: number): any {
-      // set current page to last page if current page is greater than total pages
       const curPage: number = (yield currentPage()) || 0
       let page: number = totalPages > 0 ? curPage : 0
       if (page >= totalPages) page = totalPages - 1
       if (page !== curPage) {
-        yield put(dckActions.setCurrentPage(itemType, page))
+        yield put(dckActions.setCurrentPage(_itemType, page))
       }
-      yield put(dckActions.setTotalPages(itemType, totalPages))
+      yield put(dckActions.setTotalPages(_itemType, totalPages))
     }
   }
 }
