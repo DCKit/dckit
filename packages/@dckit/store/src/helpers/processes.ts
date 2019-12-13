@@ -28,15 +28,29 @@ export interface TProcess {
   setTotalPages(totalPages: number): any
 }
 
+export const Process = Object.freeze({
+  create: createProcess,
+  setExtendRequest,
+  setFetcher,
+  [Acts.Load]: createProcessLoad,
+  [Acts.Add]: createProcessAdd,
+  [Acts.Update]: createProcessUpdate,
+  [Acts.Delete]: createProcessDelete,
+  [Acts.Import]: createProcessImport,
+  [Acts.Export]: createProcessExport,
+})
+
 // static hook to extend request params before fetch, for ex. session token
 let processExtendRequest: any
-export const setProcessExtendRequest = (extendRequest: any) =>
-  (processExtendRequest = extendRequest)
+function setExtendRequest(extendRequest: any) {
+  processExtendRequest = extendRequest
+}
 
 // default static fetcher to fetch data, if there is no fetcher in options
 let processFetcher: TFetcher | undefined
-export const setProcessFetcher = (fetcher: TFetcher) =>
-  (processFetcher = fetcher)
+function setFetcher(fetcher: TFetcher) {
+  processFetcher = fetcher
+}
 
 export function createProcess(
   procAct: TAct,

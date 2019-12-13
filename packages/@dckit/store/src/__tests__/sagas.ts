@@ -1,13 +1,5 @@
 import { all, takeLatest, put } from 'redux-saga/effects'
-import {
-  createProcess,
-  createProcessAdd,
-  createProcessLoad,
-  createProcessDelete,
-  createProcessUpdate,
-  createProcessImport,
-  createProcessExport,
-} from '../helpers/processes'
+import { Process } from '../helpers/processes'
 import { isAction } from '../helpers/actions'
 import {
   testLoadFetcher,
@@ -32,7 +24,7 @@ export function* testSaga() {
 }
 
 function* loadItemsSaga(action: IAction) {
-  const proc = createProcessLoad(TestItem, {
+  const proc = Process.Load(TestItem, {
     fetcher: testLoadFetcher,
     pageble: true,
   })
@@ -49,7 +41,7 @@ function* loadItemsSaga(action: IAction) {
 }
 
 function* addItemSaga(action: IAction) {
-  const proc = createProcessAdd(TestItem, {
+  const proc = Process.Add(TestItem, {
     fetcher: testAddFetcher,
   })
   yield proc.start()
@@ -59,7 +51,7 @@ function* addItemSaga(action: IAction) {
 }
 
 function* deleteItemSaga(action: IAction) {
-  const proc = createProcessDelete(TestItem, {
+  const proc = Process.Delete(TestItem, {
     fetcher: testDeleteFetcher,
   })
   yield proc.setItems(testItems)
@@ -70,11 +62,11 @@ function* deleteItemSaga(action: IAction) {
 }
 
 function* batchSaga() {
-  const procUpdate = createProcessUpdate(TestItem, {
+  const procUpdate = Process.Update(TestItem, {
     fetcher: () => ({ data: void 0 }),
   })
-  const procImport = createProcessImport(TestItem)
-  const procExport = createProcessExport(TestItem)
+  const procImport = Process.Import(TestItem)
+  const procExport = Process.Export(TestItem)
 
   yield procUpdate.setItems()
   const totalItems = (yield procUpdate.totalItems()) || 1
@@ -98,7 +90,7 @@ function* batchSaga() {
 }
 
 function* failSelectSaga(action: any) {
-  const proc = createProcess('__select__', '__internal__', {
+  const proc = Process.create('__select__', '__internal__', {
     fetcher: failFetcher,
   })
   yield proc.start()

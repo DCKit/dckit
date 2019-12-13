@@ -1,5 +1,5 @@
 import { all, takeLatest } from 'redux-saga/effects'
-import { createProcessLoad, isAction, IAction } from '@dckit/store'
+import { Process, isAction, IAction } from '@dckit/store'
 import { testLoadFetcher } from '../fetchers'
 import { TestItem } from '../items'
 
@@ -8,7 +8,7 @@ export function* rootSaga() {
 }
 
 function* loadItemsSaga(action: IAction) {
-  const proc = createProcessLoad(TestItem, {
+  const proc = Process.Load(TestItem, {
     fetcher: testLoadFetcher,
   })
   yield proc.start()
