@@ -4,28 +4,26 @@ import { IState, IAction } from '../types'
 // case reducers are implicitly wrapped with immer
 // so we have "mutative" immutable update logic
 
-class MutativeReducers {
+export const reducers = {
   setItems(state: IState, action: IAction) {
     state = setItemsWithIndex(state, action)
-  }
+  },
   setItem(state: IState, action: IAction) {
     state = updateOrAppendItemByKey(state, action)
-  }
+  },
   removeItem(state: IState, action: IAction) {
     state = removeItemByKey(state, action)
-  }
+  },
   setItemProp(state: IState, action: IAction) {
     state = updateItemByField(state, action, action.meta.field)
-  }
+  },
   optItem(state: IState, action: IAction) {
     state = updateItemByField(state, action, 'optedItemId')
-  }
+  },
   selectItem(state: IState, action: IAction) {
     state = selectOrUnselectItemByKey(state, action)
-  }
+  },
 }
-
-export const reducers = new MutativeReducers()
 
 function setItemsWithIndex(state: IState, action: IAction): IState {
   const { itemType, data, itemState } = getParams(state, action)
