@@ -1,5 +1,13 @@
 import { all, takeLatest, put } from 'redux-saga/effects'
-import { Process } from '../helpers/processes'
+import {
+  createProcess,
+  createProcessAdd,
+  createProcessLoad,
+  createProcessDelete,
+  createProcessUpdate,
+  createProcessImport,
+  createProcessExport,
+} from '../helpers/processes'
 import { isAction } from '../helpers/actions'
 import {
   testLoadFetcher,
@@ -24,7 +32,7 @@ export function* testSaga() {
 }
 
 function* loadItemsSaga(action: IAction) {
-  const proc = new Process.Load(TestItem, {
+  const proc = createProcessLoad(TestItem, {
     fetcher: testLoadFetcher,
     pageble: true,
   })
@@ -33,39 +41,40 @@ function* loadItemsSaga(action: IAction) {
   yield proc.start()
 
   yield proc.fetch()
-  yield proc.setItems(proc.data)
-  yield proc.optItem(action.meta.options.optedItemId)
+
+  yield proc.setItems(proc.getData())
+  yield proc.optItem(action?.meta?.options?.optedItemId)
 
   yield proc.stop({ message: 'done' })
 }
 
 function* addItemSaga(action: IAction) {
-  const proc = new Process.Add(TestItem, {
+  const proc = createProcessAdd(TestItem, {
     fetcher: testAddFetcher,
   })
   yield proc.start()
   yield proc.fetch(action.payload)
-  yield proc.setItem(proc.response.id, proc.data)
+  yield proc.setItem(proc.getResponse().id, proc.getData())
   yield proc.stop()
 }
 
 function* deleteItemSaga(action: IAction) {
-  const proc = new Process.Delete(TestItem, {
+  const proc = createProcessDelete(TestItem, {
     fetcher: testDeleteFetcher,
   })
   yield proc.setItems(testItems)
   yield proc.start()
-  yield proc.fetch({ id: action.meta.id })
+  yield proc.fetch({ id: action?.meta?.id })
   yield put(dckActions.removeItem(TestItem, 1))
   yield proc.stop()
 }
 
 function* batchSaga() {
-  const procUpdate = new Process.Update(TestItem, {
+  const procUpdate = createProcessUpdate(TestItem, {
     fetcher: () => ({ data: void 0 }),
   })
-  const procImport = new Process.Import(TestItem)
-  const procExport = new Process.Export(TestItem)
+  const procImport = createProcessImport(TestItem)
+  const procExport = createProcessExport(TestItem)
 
   yield procUpdate.setItems()
   const totalItems = (yield procUpdate.totalItems()) || 1
@@ -89,12 +98,12 @@ function* batchSaga() {
 }
 
 function* failSelectSaga(action: any) {
-  const proc = new Process('__select__', undefined, {
+  const proc = createProcess('__select__', '__internal__', {
     fetcher: failFetcher,
   })
   yield proc.start()
   try {
-    yield proc.fetch({ id: action.meta.id })
+    yield proc.fetch({ id: action?.meta?.id })
   } catch (e) {
     yield proc.fail(e)
   }

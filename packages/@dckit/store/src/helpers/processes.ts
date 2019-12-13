@@ -3,196 +3,257 @@ import { Acts, TAct, TFetcher, IAction, ItemProps } from '../types'
 import * as dckActions from '../dck/actions'
 import * as dckSelectors from '../dck/selectors'
 
-export type TProcess = typeof Process
-export type TProcessLoad = typeof ProcessLoad
-export type TProcessAdd = typeof ProcessAdd
-export type TProcessUpdate = typeof ProcessUpdate
-export type TProcessDelete = typeof ProcessDelete
-export type TProcessImport = typeof ProcessImport
-export type TProcessExport = typeof ProcessExport
+export interface TProcess {
+  fetch(params?: any): any
+  getData(): any
+  getResponse(): any
+  filters(): SelectEffect
+  sorting(): SelectEffect
+  currentPage(): SelectEffect
+  pageSize(): SelectEffect
+  totalItems(): SelectEffect
+  totalPages(): SelectEffect
+  itemProp(prop: any): SelectEffect
+  start(): PutEffect<IAction>
+  reset(): PutEffect<IAction>
+  stop(response?: any): PutEffect<IAction>
+  fail(response?: any): PutEffect<IAction>
+  optItem(id: string | number): PutEffect<IAction>
+  setItemProp(prop: string, data: any): PutEffect<IAction>
+  setCurrentPage(currentPage: number): PutEffect<IAction>
+  setPageSize(pageSize: number): PutEffect<IAction>
+  setItems(data?: any[]): PutEffect<IAction>
+  setItem(id: string | number, data: any): PutEffect<IAction>
+  setTotalItems(totalItems: number): PutEffect<IAction>
+  setTotalPages(totalPages: number): any
+}
 
-export class Process {
-  public static [Acts.Load]: TProcessLoad
-  public static [Acts.Add]: TProcessAdd
-  public static [Acts.Update]: TProcessUpdate
-  public static [Acts.Delete]: TProcessDelete
-  public static [Acts.Import]: TProcessImport
-  public static [Acts.Export]: TProcessExport
+// static hook to extend request params before fetch, for ex. session token
+let processExtendRequest: any
+export const setProcessExtendRequest = (extendRequest: any) =>
+  (processExtendRequest = extendRequest)
 
-  // static hook to extend request params before fetch, for ex. session token
-  public static extendRequest: any
+// default static fetcher to fetch data, if there is no fetcher in options
+let processFetcher: TFetcher | undefined
+export const setProcessFetcher = (fetcher: TFetcher) =>
+  (processFetcher = fetcher)
 
-  // default static fetcher to fetch data, if there is no fetcher in options
-  public static fetcher: TFetcher | undefined
+export function createProcess(
+  procAct: TAct,
+  procItemType: string,
+  procOptions?: any
+): TProcess {
+  let act = procAct
+  let itemType = procItemType
+  let options = procOptions || {}
+  let procResponse: any
+  let procData: any
 
-  public act: TAct
-  public itemType: string
-  public options: any
-  public response: any
-  public data: any
+  return Object.freeze({
+    fetch,
+    getData,
+    getResponse,
+    filters,
+    sorting,
+    currentPage,
+    pageSize,
+    totalItems,
+    totalPages,
+    itemProp,
+    start,
+    reset,
+    stop,
+    fail,
+    optItem,
+    setItemProp,
+    setCurrentPage,
+    setPageSize,
+    setItems,
+    setItem,
+    setTotalItems,
+    setTotalPages,
+  })
 
-  constructor(act: TAct, itemType?: string, options?: any) {
-    this.act = act
-    this.itemType = itemType || '__internal__'
-    this.options = options || {}
+  //// methods
+
+  function getData() {
+    return procData
+  }
+  function getResponse() {
+    return procResponse
   }
 
-  *createRequest(params?: any): any {
+  function* createRequest(params?: any): any {
     let request: any = { params }
-    request.itemType = this.itemType
-    request.act = this.act
+    request.itemType = itemType
+    request.act = act
 
-    if (this.options.pageble) {
+    if (options.pageble) {
       const pageble: any = {}
-      pageble[ItemProps.currentPage] = yield this.currentPage()
-      pageble[ItemProps.pageSize] = yield this.pageSize()
-      pageble.filters = yield this.filters()
-      pageble.sorting = yield this.sorting()
+      pageble[ItemProps.currentPage] = yield currentPage()
+      pageble[ItemProps.pageSize] = yield pageSize()
+      pageble.filters = yield filters()
+      pageble.sorting = yield sorting()
       request.pageble = pageble
     }
 
-    if (Process.extendRequest && typeof Process.extendRequest === 'function') {
-      request = yield Process.extendRequest(request)
+    if (processExtendRequest && typeof processExtendRequest === 'function') {
+      request = yield processExtendRequest(request)
     }
     return request
   }
 
-  *fetch(params?: any): any {
-    const request = yield this.createRequest(params)
-    const fetcher = Process.fetcher || this.options.fetcher
+  function* fetch(params?: any): any {
+    const request = yield createRequest(params)
+    const fetcher = processFetcher || options.fetcher
     if (fetcher) {
       const response = yield call(fetcher, request)
-      return yield this.postFetch(response)
+      return yield postFetch(response)
     }
     return yield void 0
   }
 
-  *postFetch(response: any): any {
-    if (!response) return yield void 0
+  function* postFetch(fetcherResponse: any): any {
+    if (!fetcherResponse) return yield void 0
 
-    const data = response.data
-    const totalItems = response.totalItems
-    const totalPages = response.totalPages
+    const responseData = fetcherResponse.data
+    const totalItems = fetcherResponse.totalItems
+    const totalPages = fetcherResponse.totalPages
 
-    this.response = response
-    if (data !== void 0) this.data = data
-    if (totalItems !== void 0) yield this.setTotalItems(totalItems)
-    if (totalPages !== void 0) yield this.setTotalPages(totalPages)
-    return yield response
+    procResponse = fetcherResponse
+    if (responseData !== void 0) procData = responseData
+    if (totalItems !== void 0) yield setTotalItems(totalItems)
+    if (totalPages !== void 0) yield setTotalPages(totalPages)
+    return yield procResponse
   }
 
   // selectors helpers
-  filters = (): SelectEffect =>
-    select(state => dckSelectors.getFilters(state, this.itemType))
 
-  sorting = (): SelectEffect =>
-    select(state => dckSelectors.getSortFields(state, this.itemType))
+  function filters(): SelectEffect {
+    return select(state => dckSelectors.getFilters(state, itemType))
+  }
 
-  currentPage = (): SelectEffect =>
-    select(state => dckSelectors.getCurrentPage(state, this.itemType))
+  function sorting(): SelectEffect {
+    return select(state => dckSelectors.getSortFields(state, itemType))
+  }
 
-  pageSize = (): SelectEffect =>
-    select(state => dckSelectors.getPageSize(state, this.itemType))
+  function currentPage(): SelectEffect {
+    return select(state => dckSelectors.getCurrentPage(state, itemType))
+  }
 
-  totalItems = (): SelectEffect =>
-    select(state => dckSelectors.getTotalItems(state, this.itemType))
+  function pageSize(): SelectEffect {
+    return select(state => dckSelectors.getPageSize(state, itemType))
+  }
 
-  totalPages = (): SelectEffect =>
-    select(state => dckSelectors.getTotalPages(state, this.itemType))
+  function totalItems(): SelectEffect {
+    return select(state => dckSelectors.getTotalItems(state, itemType))
+  }
 
-  itemProp = (prop: any): SelectEffect =>
-    select(state => dckSelectors.getItemProp(state, this.itemType, prop))
+  function totalPages(): SelectEffect {
+    return select(state => dckSelectors.getTotalPages(state, itemType))
+  }
+
+  function itemProp(prop: any): SelectEffect {
+    return select(state => dckSelectors.getItemProp(state, itemType, prop))
+  }
 
   // actions helpers
-  start = (): PutEffect<IAction> =>
-    put(dckActions.processStart(this.itemType, this.act))
+  function start(): PutEffect<IAction> {
+    return put(dckActions.processStart(itemType, act))
+  }
 
-  reset = (): PutEffect<IAction> =>
-    put(dckActions.processReset(this.itemType, this.act))
+  function reset(): PutEffect<IAction> {
+    return put(dckActions.processReset(itemType, act))
+  }
 
-  stop = (response?: any): PutEffect<IAction> =>
-    put(dckActions.processStop(this.itemType, this.act, response))
+  function stop(response?: any): PutEffect<IAction> {
+    return put(dckActions.processStop(itemType, act, response))
+  }
 
-  fail = (response?: any): PutEffect<IAction> => {
+  function fail(response?: any): PutEffect<IAction> {
     if (response instanceof Error) response = { message: response.message }
-    return put(dckActions.processFail(this.itemType, this.act, response))
+    return put(dckActions.processFail(itemType, act, response))
   }
 
-  optItem = (id: string | number): PutEffect<IAction> =>
-    put(dckActions.optItem(this.itemType, id))
+  function optItem(id: string | number): PutEffect<IAction> {
+    return put(dckActions.optItem(itemType, id))
+  }
 
-  setItemProp = (prop: string, data: any): PutEffect<IAction> =>
-    put(dckActions.setItemProp(this.itemType, prop, data))
+  function setItemProp(prop: string, data: any): PutEffect<IAction> {
+    return put(dckActions.setItemProp(itemType, prop, data))
+  }
 
-  setCurrentPage = (currentPage: number): PutEffect<IAction> =>
-    put(dckActions.setCurrentPage(this.itemType, currentPage))
+  function setCurrentPage(currentPage: number): PutEffect<IAction> {
+    return put(dckActions.setCurrentPage(itemType, currentPage))
+  }
 
-  setPageSize = (pageSize: number): PutEffect<IAction> =>
-    put(dckActions.setPageSize(this.itemType, pageSize))
+  function setPageSize(pageSize: number): PutEffect<IAction> {
+    return put(dckActions.setPageSize(itemType, pageSize))
+  }
 
-  setItems = (data?: any[]): PutEffect<IAction> => {
+  function setItems(data?: any[]): PutEffect<IAction> {
     if (!data) data = []
-    return put(dckActions.setItems(this.itemType, data))
+    return put(dckActions.setItems(itemType, data))
   }
 
-  setItem = (id: string | number, data: any): PutEffect<IAction> => {
-    return put(dckActions.setItem(this.itemType, id, data))
+  function setItem(id: string | number, data: any): PutEffect<IAction> {
+    return put(dckActions.setItem(itemType, id, data))
   }
 
-  setTotalItems = (totalItems: number): PutEffect<IAction> =>
-    put(dckActions.setTotalItems(this.itemType, totalItems));
+  function setTotalItems(totalItems: number): PutEffect<IAction> {
+    return put(dckActions.setTotalItems(itemType, totalItems))
+  }
 
-  *setTotalPages(totalPages: number) {
+  function* setTotalPages(totalPages: number): any {
     // set current page to last page if current page is greater than total pages
-    const currentPage: number = (yield this.currentPage()) || 0
-    let page: number = totalPages > 0 ? currentPage : 0
+    const curPage: number = (yield currentPage()) || 0
+    let page: number = totalPages > 0 ? curPage : 0
     if (page >= totalPages) page = totalPages - 1
-    if (page !== currentPage) {
-      yield put(dckActions.setCurrentPage(this.itemType, page))
+    if (page !== curPage) {
+      yield put(dckActions.setCurrentPage(itemType, page))
     }
-    yield put(dckActions.setTotalPages(this.itemType, totalPages))
+    yield put(dckActions.setTotalPages(itemType, totalPages))
   }
 }
 
-class ProcessLoad extends Process {
-  constructor(itemType: string, options?: any) {
-    super(Acts.Load, itemType, options)
-  }
+export function createProcessLoad(
+  procItemType: string,
+  procOptions?: any
+): TProcess {
+  return createProcess(Acts.Load, procItemType, procOptions)
 }
 
-class ProcessAdd extends Process {
-  constructor(itemType: string, options?: any) {
-    super(Acts.Add, itemType, options)
-  }
+export function createProcessAdd(
+  procItemType: string,
+  procOptions?: any
+): TProcess {
+  return createProcess(Acts.Add, procItemType, procOptions)
 }
 
-class ProcessUpdate extends Process {
-  constructor(itemType: string, options?: any) {
-    super(Acts.Update, itemType, options)
-  }
+export function createProcessUpdate(
+  procItemType: string,
+  procOptions?: any
+): TProcess {
+  return createProcess(Acts.Update, procItemType, procOptions)
 }
 
-class ProcessDelete extends Process {
-  constructor(itemType: string, options?: any) {
-    super(Acts.Delete, itemType, options)
-  }
+export function createProcessDelete(
+  procItemType: string,
+  procOptions?: any
+): TProcess {
+  return createProcess(Acts.Delete, procItemType, procOptions)
 }
 
-class ProcessImport extends Process {
-  constructor(itemType: string, options?: any) {
-    super(Acts.Import, itemType, options)
-  }
+export function createProcessImport(
+  procItemType: string,
+  procOptions?: any
+): TProcess {
+  return createProcess(Acts.Import, procItemType, procOptions)
 }
 
-class ProcessExport extends Process {
-  constructor(itemType: string, options?: any) {
-    super(Acts.Export, itemType, options)
-  }
+export function createProcessExport(
+  procItemType: string,
+  procOptions?: any
+): TProcess {
+  return createProcess(Acts.Export, procItemType, procOptions)
 }
-
-Process.Load = ProcessLoad
-Process.Add = ProcessAdd
-Process.Update = ProcessUpdate
-Process.Delete = ProcessDelete
-Process.Import = ProcessImport
-Process.Export = ProcessExport

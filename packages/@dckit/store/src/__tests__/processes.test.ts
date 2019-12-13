@@ -13,7 +13,7 @@ import {
   stateAfterDeleteSaga,
   stateAfterSelectSaga,
 } from './testData'
-import { Process } from '../helpers/processes'
+import { setProcessExtendRequest } from '../helpers/processes'
 
 const reducers: Reducer = combineReducers({
   dck: dckReducer,
@@ -49,7 +49,7 @@ describe('process helpers', () => {
     expect(state).toEqual(stateAfterBatchSagas)
   })
 
-  Process.extendRequest = getSession
+  setProcessExtendRequest(getSession)
 
   it('should successfully execute loadItemsSaga', async () => {
     const sagaTester = new SagaTester({
