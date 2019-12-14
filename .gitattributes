@@ -1,6 +1,3 @@
-.theme/* linguist-documentation
 .theme/**/* linguist-documentation
-packages/@dckit/store/docs/* linguist-documentation
 packages/@dckit/store/docs/**/* linguist-documentation
-packages/test-app/public/* linguist-generated=true
 packages/test-app/public/**/* linguist-generated=true
