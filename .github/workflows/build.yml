@@ -12,6 +12,11 @@ jobs:
           node-version: 12
       - run: npm install
       - run: npm run build
+      - name: deploy test-app
+        uses: amondnet/now-deployment@v1
+        with:
+          zeit-token: ${{ secrets.zeit_token }}
+          now-args: "-n dckit-test-app packages/test-app/build"
       - name: upload coverage
         run: |
           # collect coverage
