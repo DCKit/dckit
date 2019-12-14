@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "build": "FORCE_COLOR=true lerna run build --stream",
-    "postinstall": "lerna bootstrap --hoist --ci"
+    "bootstrap": "lerna bootstrap --hoist --ci",
+    "docs": "FORCE_COLOR=true lerna run docs --stream"
   },
   "devDependencies": {
     "lerna": "^3.19.0"

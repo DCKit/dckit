@@ -39,6 +39,7 @@
     "redux-saga-tester": "^1.0.629",
     "tsdx": "^0.11.0",
     "tslib": "^1.10.0",
+    "typedoc": "^0.15.4",
     "typescript": "3.7.3"
   },
   "dependencies": {
@@ -62,7 +63,8 @@
     "lint": "tsdx lint src && tsc --noEmit",
     "prebuild": "npm run lint && npm run format:check && npm run test:coverage",
     "test": "tsdx test",
-    "test:coverage": "tsdx test --coverage"
+    "test:coverage": "tsdx test --coverage",
+    "docs": "typedoc --exclude '**/*+(index|.test).ts' --excludeExternals --excludePrivate --excludeProtected --out docs src"
   },
   "prettier": {
     "semi": false,
