@@ -1,2 +1,2 @@
 packages/@dckit/store/docs/**/* linguist-documentation
-packages/@dckit/test-app/public/**/* linguist-generated=true
+packages/@dckit/test-app/public/* linguist-generated=true
