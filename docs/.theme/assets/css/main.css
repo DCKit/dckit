@@ -1625,10 +1625,10 @@ h2 {
 .tsd-breadcrumb {
   margin: 0;
   padding: 0;
-  color: #fdfdfd;
+  color: #aaa;
   font-weight: 300; }
   .tsd-breadcrumb a {
-    color: #fdfdfd;
+    color: #aaa;
     text-decoration: none; }
     .tsd-breadcrumb a:hover {
       text-decoration: underline; }
@@ -1840,28 +1840,28 @@ footer {
 
 .tsd-index-panel a,
 .tsd-index-panel .tsd-parent-kind-module a {
-  color: #fdfdfd; }
+  color: #aaa; }
 
 .tsd-index-panel .tsd-parent-kind-interface a {
-  color: #fdfdfd; }
+  color: #aaa; }
 
 .tsd-index-panel .tsd-parent-kind-enum a {
-  color: #fdfdfd; }
+  color: #aaa; }
 
 .tsd-index-panel .tsd-parent-kind-class a {
-  color: #fdfdfd; }
+  color: #aaa; }
 
 .tsd-index-panel .tsd-kind-module a {
-  color: #fdfdfd; }
+  color: #aaa; }
 
 .tsd-index-panel .tsd-kind-interface a {
-  color: #fdfdfd; }
+  color: #aaa; }
 
 .tsd-index-panel .tsd-kind-enum a {
-  color: #fdfdfd; }
+  color: #aaa; }
 
 .tsd-index-panel .tsd-kind-class a {
-  color: #fdfdfd; }
+  color: #aaa; }
 
 .tsd-index-panel .tsd-is-private a {
   color: #aaaaaa; }
@@ -1894,7 +1894,7 @@ footer {
     padding-top: 2px;
     padding-bottom: 2px;
     border-left: 2px solid transparent;
-    color: #fdfdfd;
+    color: #aaa;
     text-decoration: none;
     transition: border-left-color 0.1s; }
     .tsd-navigation a:hover {
@@ -1951,7 +1951,7 @@ footer {
 
 .tsd-navigation.secondary li.focus > a,
 .tsd-navigation.secondary ul.current li.focus > a {
-  border-left-color: #fdfdfd; }
+  border-left-color: #aaa; }
 
 .tsd-navigation.secondary li.current {
   margin-top: 20px;
@@ -2078,7 +2078,7 @@ footer {
       #tsd-search .results a:before {
         top: 10px; }
     #tsd-search .results span.parent {
-      color: #fdfdfd;
+      color: #aaa;
       font-weight: normal; }
   #tsd-search.has-focus {
     background-color: #121212; }
@@ -2116,7 +2116,7 @@ footer {
         left: 20px; }
 
 .tsd-signature-symbol {
-  color: #fdfdfd;
+  color: #aaa;
   font-weight: normal; }
 
 .tsd-signature-type {
@@ -2194,10 +2194,10 @@ ul.tsd-type-parameters {
 
 .tsd-sources {
   font-size: 14px;
-  color: #fdfdfd;
+  color: #aaa;
   margin: 0 0 1em 0; }
   .tsd-sources a {
-    color: #fdfdfd;
+    color: #aaa;
     text-decoration: underline; }
   .tsd-sources ul, .tsd-sources p {
     margin: 0 !important; }
