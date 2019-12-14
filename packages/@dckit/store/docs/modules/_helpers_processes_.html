@@ -38,6 +38,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -72,6 +74,13 @@
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_helpers_processes_.tprocess.html" class="tsd-kind-icon">TProcess</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_helpers_processes_.tprocessfacade.html" class="tsd-kind-icon">TProcess<wbr>Facade</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_helpers_processes_.html#tprocesscreator" class="tsd-kind-icon">TProcess<wbr>Creator</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -94,21 +103,53 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
-					<a name="process" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> Process</h3>
-					<div class="tsd-signature tsd-kind-icon">Process<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;Object.freeze({create: createProcess,setExtendRequest,setFetcher,[Acts.Load]: createProcess(Acts.Load),[Acts.Add]: createProcess(Acts.Add),[Acts.Update]: createProcess(Acts.Update),[Acts.Delete]: createProcess(Acts.Delete),[Acts.Import]: createProcess(Acts.Import),[Acts.Export]: createProcess(Acts.Export),})</span></div>
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+					<a name="tprocesscreator" class="tsd-anchor"></a>
+					<h3>TProcess<wbr>Creator</h3>
+					<div class="tsd-signature tsd-kind-icon">TProcess<wbr>Creator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DCKit/dckit/blob/2068f52/packages/@dckit/store/src/helpers/processes.ts#L31">packages/@dckit/store/src/helpers/processes.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/DCKit/dckit/blob/f87930f/packages/@dckit/store/src/helpers/processes.ts#L67">packages/@dckit/store/src/helpers/processes.ts:67</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>itemType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_helpers_processes_.tprocess.html" class="tsd-signature-type">TProcess</a></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>itemType: <span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">any</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <a href="../interfaces/_helpers_processes_.tprocess.html" class="tsd-signature-type">TProcess</a></h4>
+									</li>
+								</ul>
+							</li>
 						</ul>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="process" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Process</h3>
+					<div class="tsd-signature tsd-kind-icon">Process<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_helpers_processes_.tprocessfacade.html" class="tsd-signature-type">TProcessFacade</a><span class="tsd-signature-symbol"> =&nbsp;Object.freeze({create: createProcess,setExtendRequest,setFetcher,[Acts.Load]: createProcess(Acts.Load),[Acts.Add]: createProcess(Acts.Add),[Acts.Update]: createProcess(Acts.Update),[Acts.Delete]: createProcess(Acts.Delete),[Acts.Import]: createProcess(Acts.Import),[Acts.Export]: createProcess(Acts.Export),})</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/DCKit/dckit/blob/f87930f/packages/@dckit/store/src/helpers/processes.ts#L43">packages/@dckit/store/src/helpers/processes.ts:43</a></li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 					<a name="processextendrequest" class="tsd-anchor"></a>
@@ -116,7 +157,7 @@
 					<div class="tsd-signature tsd-kind-icon">process<wbr>Extend<wbr>Request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DCKit/dckit/blob/2068f52/packages/@dckit/store/src/helpers/processes.ts#L44">packages/@dckit/store/src/helpers/processes.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/DCKit/dckit/blob/f87930f/packages/@dckit/store/src/helpers/processes.ts#L56">packages/@dckit/store/src/helpers/processes.ts:56</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -126,7 +167,7 @@
 					<div class="tsd-signature tsd-kind-icon">process<wbr>Fetcher<span class="tsd-signature-symbol">:</span> <a href="_types_.html#tfetcher" class="tsd-signature-type">TFetcher</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DCKit/dckit/blob/2068f52/packages/@dckit/store/src/helpers/processes.ts#L50">packages/@dckit/store/src/helpers/processes.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/DCKit/dckit/blob/f87930f/packages/@dckit/store/src/helpers/processes.ts#L62">packages/@dckit/store/src/helpers/processes.ts:62</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -137,13 +178,13 @@
 					<a name="createprocess" class="tsd-anchor"></a>
 					<h3>create<wbr>Process</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Process<span class="tsd-signature-symbol">(</span>act<span class="tsd-signature-symbol">: </span><a href="_types_.html#tact" class="tsd-signature-type">TAct</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Process<span class="tsd-signature-symbol">(</span>act<span class="tsd-signature-symbol">: </span><a href="_types_.html#tact" class="tsd-signature-type">TAct</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_helpers_processes_.html#tprocesscreator" class="tsd-signature-type">TProcessCreator</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DCKit/dckit/blob/2068f52/packages/@dckit/store/src/helpers/processes.ts#L55">packages/@dckit/store/src/helpers/processes.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/DCKit/dckit/blob/f87930f/packages/@dckit/store/src/helpers/processes.ts#L69">packages/@dckit/store/src/helpers/processes.ts:69</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -152,7 +193,7 @@
 									<h5>act: <a href="_types_.html#tact" class="tsd-signature-type">TAct</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_helpers_processes_.html#tprocesscreator" class="tsd-signature-type">TProcessCreator</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -166,7 +207,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DCKit/dckit/blob/2068f52/packages/@dckit/store/src/helpers/processes.ts#L45">packages/@dckit/store/src/helpers/processes.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/DCKit/dckit/blob/f87930f/packages/@dckit/store/src/helpers/processes.ts#L57">packages/@dckit/store/src/helpers/processes.ts:57</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -189,7 +230,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DCKit/dckit/blob/2068f52/packages/@dckit/store/src/helpers/processes.ts#L51">packages/@dckit/store/src/helpers/processes.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/DCKit/dckit/blob/f87930f/packages/@dckit/store/src/helpers/processes.ts#L63">packages/@dckit/store/src/helpers/processes.ts:63</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -219,6 +260,12 @@
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/_helpers_processes_.tprocess.html" class="tsd-kind-icon">TProcess</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_helpers_processes_.tprocessfacade.html" class="tsd-kind-icon">TProcess<wbr>Facade</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="_helpers_processes_.html#tprocesscreator" class="tsd-kind-icon">TProcess<wbr>Creator</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
 						<a href="_helpers_processes_.html#process" class="tsd-kind-icon">Process</a>

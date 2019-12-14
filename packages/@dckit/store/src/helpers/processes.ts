@@ -28,7 +28,19 @@ export interface TProcess {
   setTotalPages(totalPages: number): any
 }
 
-export const Process = Object.freeze({
+export interface TProcessFacade {
+  create: typeof createProcess
+  setExtendRequest: typeof setExtendRequest
+  setFetcher: typeof setFetcher
+  [Acts.Load]: TProcessCreator
+  [Acts.Add]: TProcessCreator
+  [Acts.Update]: TProcessCreator
+  [Acts.Delete]: TProcessCreator
+  [Acts.Import]: TProcessCreator
+  [Acts.Export]: TProcessCreator
+}
+
+export const Process: TProcessFacade = Object.freeze({
   create: createProcess,
   setExtendRequest,
   setFetcher,
@@ -52,7 +64,9 @@ function setFetcher(fetcher: TFetcher) {
   processFetcher = fetcher
 }
 
-export function createProcess(act: TAct) {
+export type TProcessCreator = (itemType: string, options?: any) => TProcess
+
+export function createProcess(act: TAct): TProcessCreator {
   return function(itemType: string, options?: any): TProcess {
     let _act = act
     let _itemType = itemType
