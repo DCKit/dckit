@@ -13,8 +13,8 @@ jobs:
       - run: npm install
       - run: npm run bootstrap
       - run: npm run build
-      - name: deploy test-app
-        run: now -t ${{ secrets.zeit_token }} -C -f --prod -n dckit-test-app packages/test-app/build
+      #      - name: deploy test-app
+      #        run: now -t ${{ secrets.zeit_token }} -C -f --prod -n dckit-test-app packages/test-app/build
       - name: upload coverage
         run: |
           # collect coverage

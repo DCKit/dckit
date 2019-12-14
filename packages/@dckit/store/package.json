@@ -65,7 +65,7 @@
     "test": "tsdx test",
     "test:coverage": "tsdx test --coverage",
     "docs": "typedoc --exclude '**/*+(index|.test).ts' --theme ../../../docs/.theme --out ../../../docs/dckit-store src",
-    "postdocs": "touch ../../../docs/dckit-store/.nojekill"
+    "postdocs": "touch ../../../docs/dckit-store/.nojekyll"
   },
   "prettier": {
     "semi": false,
