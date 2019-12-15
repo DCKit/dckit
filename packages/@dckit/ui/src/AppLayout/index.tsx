@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AppBar, Toolbar, IconButton } from '@material-ui/core'
+import { CssBaseline, AppBar, Toolbar, IconButton } from '@material-ui/core'
 import ExpandIcon from '@material-ui/icons/Menu'
 import CollapseIcon from '@material-ui/icons/ChevronLeft'
 import cn from 'clsx'
@@ -40,6 +40,7 @@ export const AppLayout = ({
   const classes = useStyles()
   const { isMobile } = useMediaType()
   const [sideBarOpen, showSideBar] = useState(!isMobile)
+  const isShifted = !isMobile && sideBarOpen
   const thisState = { sideBarOpen }
 
   const toggleSideBar = () => showSideBar(!sideBarOpen)
@@ -63,13 +64,14 @@ export const AppLayout = ({
 
   return (
     <>
+      <CssBaseline />
       <AppBar
         className={cn(
           isMobile ? appBarMobile : appBar,
-          sideBarOpen && appBarShift
+          isShifted && appBarShift
         )}
       >
-        <Toolbar disableGutters={true} className={toolBar}>
+        <Toolbar className={toolBar}>
           <IconButton
             color="inherit"
             onClick={toggleSideBar}
@@ -85,7 +87,7 @@ export const AppLayout = ({
         <PageBarContainer
           className={cn(
             isMobile ? pageBarMobile : pageBar,
-            sideBarOpen && pageBarShift
+            isShifted && pageBarShift
           )}
           sideBarOpen={sideBarOpen}
         >
@@ -102,7 +104,7 @@ export const AppLayout = ({
           content,
           isMobile ? contentMobile : contentDesktop,
           renderPageBar ? contentTwoBars : contentOneBar,
-          sideBarOpen && contentShift
+          isShifted && contentShift
         )}
         sideBarOpen={sideBarOpen}
       >

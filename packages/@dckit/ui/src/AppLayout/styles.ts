@@ -25,13 +25,13 @@ export const useStyles = makeStyles((theme: Theme) => {
 
   return {
     appBar: {
-      position: 'absolute',
+      position: 'fixed',
       height: appBarHeight,
       zIndex: theme.zIndex.drawer + 1,
       transition: transitionBar,
     },
     appBarMobile: {
-      position: 'absolute',
+      position: 'fixed',
       height: appBarHeight,
       zIndex: theme.zIndex.drawer - 1,
     },
@@ -48,11 +48,11 @@ export const useStyles = makeStyles((theme: Theme) => {
       minHeight: appBarHeight,
     },
     menuButton: {
-      marginLeft: 8,
-      marginRight: 8,
+      marginLeft: 4,
+      marginRight: 4,
     },
     pageBar: {
-      position: 'absolute',
+      position: 'fixed',
       left: 0,
       top: appBarHeight,
       height: pageBarHeight,
@@ -66,7 +66,7 @@ export const useStyles = makeStyles((theme: Theme) => {
       alignItems: 'center',
     },
     pageBarMobile: {
-      position: 'absolute',
+      position: 'fixed',
       top: appBarHeight,
       height: pageBarHeight,
       width: '100%',
@@ -96,15 +96,15 @@ export const useStyles = makeStyles((theme: Theme) => {
     },
     contentMobile: {
       left: 0,
-      width: '100vw',
+      width: '100%',
     },
     contentOneBar: {
       top: appBarHeight,
-      height: `calc(100vh - ${appBarHeight}px)`,
+      height: `calc(100% - ${appBarHeight}px)`,
     },
     contentTwoBars: {
       top: barsHeight,
-      height: `calc(100vh - ${barsHeight}px)`,
+      height: `calc(100% - ${barsHeight}px)`,
     },
     contentShift: {
       left: `calc(${drawerWidth}px)`,
