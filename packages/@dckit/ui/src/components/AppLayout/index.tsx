@@ -3,9 +3,9 @@ import { CssBaseline, AppBar, Toolbar, IconButton } from '@material-ui/core'
 import ExpandIcon from '@material-ui/icons/Menu'
 import CollapseIcon from '@material-ui/icons/ChevronLeft'
 import cn from 'clsx'
-import { renderEmpty, useMediaType } from '../utils'
-import { SideBar } from '../SideBar'
-import { TRenderProp } from '../types'
+import { renderEmpty, useMediaType } from 'utils'
+import { SideBar } from 'components/SideBar'
+import { TRenderProp } from 'types'
 import { useStyles } from './styles'
 
 interface IContainerProps {
