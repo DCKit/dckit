@@ -1,6 +1,68 @@
-export * from '../crud/actions'
-export * from '../items/actions'
-export * from '../itemProps/actions'
-export * from '../filters/actions'
-export * from '../sorting/actions'
-export * from '../processes/actions'
+import {
+  setItems,
+  setItem,
+  removeItem,
+  optItem,
+  selectItem,
+} from '../items/actions'
+
+import {
+  loadItems,
+  addItem,
+  updateItem,
+  deleteItem,
+  importItems,
+  exportItems,
+} from '../crud/actions'
+
+import {
+  setItemProp,
+  setTotalItems,
+  setTotalPages,
+  setCurrentPage,
+  setPageSize,
+} from '../itemProps/actions'
+
+import { setFilters, setFilter, removeFilter } from '../filters/actions'
+
+import {
+  setSortFields,
+  setSortField,
+  removeSortField,
+} from '../sorting/actions'
+
+import {
+  processStart,
+  processStop,
+  processFail,
+  processReset,
+} from '../processes/actions'
+
+export const dckActions = {
+  setItems,
+  setItem,
+  removeItem,
+  optItem,
+  selectItem,
+  loadItems,
+  addItem,
+  updateItem,
+  deleteItem,
+  importItems,
+  exportItems,
+  setItemProp,
+  setTotalItems,
+  setTotalPages,
+  setCurrentPage,
+  setPageSize,
+  setFilters,
+  setFilter,
+  removeFilter,
+  setSortFields,
+  setSortField,
+  removeSortField,
+  processStart,
+  processStop,
+  processFail,
+  processReset,
+}

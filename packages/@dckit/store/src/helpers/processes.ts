@@ -1,7 +1,7 @@
 import { call, put, select, PutEffect, SelectEffect } from 'redux-saga/effects'
 import { Acts, TAct, TFetcher, IAction, ItemProps } from '../types'
-import * as dckActions from '../dck/actions'
-import * as dckSelectors from '../dck/selectors'
+import { dckActions } from '../dck/actions'
+import { dckSelectors } from '../dck/selectors'
 
 export interface TProcess {
   fetch(params?: any): any
