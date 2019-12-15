@@ -61,7 +61,7 @@
       "!/node_modules/@dckit/store"
     ],
     "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}"
+      "<rootDir>/src/**/*.{ts,tsx}"
     ],
     "coverageReporters": [
       "lcov",

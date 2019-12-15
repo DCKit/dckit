@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "components/*": ["components/*"],
+      "utils/*": ["utils/*"],
+      "*": ["*"]
+    },
     "lib": ["es6", "dom"],
     "noImplicitAny": true,
     "noImplicitThis": true,
