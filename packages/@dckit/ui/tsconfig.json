@@ -2,8 +2,9 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "components/*": ["components/*"],
-      "utils/*": ["utils/*"],
+      "@comp/*": ["components/*"],
+      "@utils/*": ["utils/*"],
+      "@utils": ["utils/index"],
       "*": ["*"]
     },
     "lib": ["es6", "dom"],

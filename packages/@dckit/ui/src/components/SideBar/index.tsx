@@ -1,7 +1,7 @@
 import React from 'react'
 import cn from 'clsx'
 import { Drawer } from '@material-ui/core'
-import { useMediaType, renderEmpty } from 'utils'
+import { useMediaType, renderEmpty } from '@utils'
 import { TRenderProp, TCallback } from 'types'
 import { useStyles } from './styles'
 
