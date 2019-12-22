@@ -6,6 +6,7 @@ import {
   useLoadItems,
   useSetItems,
 } from '@dckit/store'
+import { PageBarSource } from '@dckit/ui'
 
 export const Items: React.FC<{ itemType: string; optedItemId?: number }> = ({
   itemType,
@@ -19,6 +20,7 @@ export const Items: React.FC<{ itemType: string; optedItemId?: number }> = ({
 
   return (
     <>
+      <PageBarSource>page: items</PageBarSource>
       <button onClick={() => load({ optedItemId })} disabled={loading}>
         {loading ? 'loading...' : 'load items'}
       </button>{' '}

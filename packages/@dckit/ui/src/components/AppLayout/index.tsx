@@ -3,9 +3,9 @@ import { CssBaseline, AppBar, Toolbar, IconButton } from '@material-ui/core'
 import ExpandIcon from '@material-ui/icons/Menu'
 import CollapseIcon from '@material-ui/icons/ChevronLeft'
 import cn from 'clsx'
-import { renderEmpty, useMediaType } from '@utils'
-import { SideBar } from '@comp/SideBar'
-import { TRenderProp } from 'types'
+import { useMediaType } from '@utils'
+import { AppBarTarget, PageBarTarget } from '@ports'
+import { SideBar, SideBarContext } from '@comp/SideBar'
 import { useStyles } from './styles'
 
 interface IContainerProps {
@@ -21,18 +21,12 @@ const DefaultContainer: TContainer = ({
 }: IContainerProps) => <div className={className}>{children}</div>
 
 interface IAppLayoutProps {
-  renderAppBar?: TRenderProp
-  renderPageBar?: TRenderProp
-  renderSideBar?: TRenderProp
   PageBarContainer?: TContainer
   ContentContainer?: TContainer
   children?: any
 }
 
 export const AppLayout = ({
-  renderAppBar = renderEmpty,
-  renderPageBar,
-  renderSideBar = renderEmpty,
   PageBarContainer = DefaultContainer,
   ContentContainer = DefaultContainer,
   children,
@@ -41,8 +35,6 @@ export const AppLayout = ({
   const { isMobile } = useMediaType()
   const [sideBarOpen, showSideBar] = useState(!isMobile)
   const isShifted = !isMobile && sideBarOpen
-  const thisState = { sideBarOpen }
-
   const toggleSideBar = () => showSideBar(!sideBarOpen)
 
   const {
@@ -57,13 +49,17 @@ export const AppLayout = ({
     content,
     contentMobile,
     contentDesktop,
-    contentOneBar,
     contentTwoBars,
     contentShift,
   } = classes
 
   return (
-    <>
+    <SideBarContext.Provider
+      value={{
+        sideBarOpen,
+        showSideBar,
+      }}
+    >
       <CssBaseline />
       <AppBar
         className={cn(
@@ -80,36 +76,31 @@ export const AppLayout = ({
           >
             {sideBarOpen ? <CollapseIcon /> : <ExpandIcon />}
           </IconButton>
-          {renderAppBar(thisState)}
+          <AppBarTarget as="ins" />
         </Toolbar>
       </AppBar>
-      {renderPageBar && (
-        <PageBarContainer
-          className={cn(
-            isMobile ? pageBarMobile : pageBar,
-            isShifted && pageBarShift
-          )}
-          sideBarOpen={sideBarOpen}
-        >
-          {renderPageBar(thisState)}
-        </PageBarContainer>
-      )}
-      <SideBar
+      <PageBarContainer
+        className={cn(
+          isMobile ? pageBarMobile : pageBar,
+          isShifted && pageBarShift
+        )}
         sideBarOpen={sideBarOpen}
-        renderSideBar={renderSideBar}
-        onClose={() => showSideBar(false)}
-      />
+      >
+        <PageBarTarget as="ins" />
+      </PageBarContainer>
+      )}
+      <SideBar />
       <ContentContainer
         className={cn(
           content,
+          contentTwoBars,
           isMobile ? contentMobile : contentDesktop,
-          renderPageBar ? contentTwoBars : contentOneBar,
           isShifted && contentShift
         )}
         sideBarOpen={sideBarOpen}
       >
         {children}
       </ContentContainer>
-    </>
+    </SideBarContext.Provider>
   )
 }

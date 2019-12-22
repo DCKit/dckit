@@ -1,22 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import cn from 'clsx'
 import { Drawer } from '@material-ui/core'
-import { useMediaType, renderEmpty } from '@utils'
-import { TRenderProp, TCallback } from 'types'
+import { useMediaType } from '@utils'
+import { SideBarTarget } from '@ports'
+import { TCallback } from 'types'
 import { useStyles } from './styles'
 
-interface ISideBarProps {
+interface ISideBarContext {
   sideBarOpen: boolean
-  onClose: TCallback
-  renderSideBar?: TRenderProp
+  showSideBar: TCallback
 }
 
-const SideBarMobile = ({
-  sideBarOpen,
-  onClose,
-  renderSideBar = renderEmpty,
-}: ISideBarProps) => {
+const defaultSideBarContext: ISideBarContext = {
+  sideBarOpen: false,
+  showSideBar: () => {},
+}
+
+export const SideBarContext = React.createContext(defaultSideBarContext)
+
+const SideBarMobile = () => {
   const classes = useStyles()
+  const { sideBarOpen, showSideBar } = useContext(SideBarContext)
   return (
     <Drawer
       PaperProps={{ elevation: 8 }}
@@ -24,18 +28,16 @@ const SideBarMobile = ({
         paper: classes.drawerPaperMobile,
       }}
       open={sideBarOpen}
-      onBackdropClick={onClose}
+      onBackdropClick={() => showSideBar(false)}
     >
-      {renderSideBar({ sideBarOpen })}
+      <SideBarTarget as="ins" />
     </Drawer>
   )
 }
 
-const SideBarDesktop = ({
-  sideBarOpen,
-  renderSideBar = renderEmpty,
-}: ISideBarProps) => {
+const SideBarDesktop = () => {
   const classes = useStyles()
+  const { sideBarOpen } = useContext(SideBarContext)
   return (
     <div className={classes.sideBarContainer}>
       <Drawer
@@ -49,13 +51,13 @@ const SideBarDesktop = ({
         }}
         open={sideBarOpen}
       >
-        {renderSideBar({ sideBarOpen })}
+        <SideBarTarget as="ins" />
       </Drawer>
     </div>
   )
 }
 
-export const SideBar = (props: ISideBarProps) => {
+export const SideBar = () => {
   const { isMobile } = useMediaType()
-  return isMobile ? <SideBarMobile {...props} /> : <SideBarDesktop {...props} />
+  return isMobile ? <SideBarMobile /> : <SideBarDesktop />
 }
