@@ -25,6 +25,7 @@
   "author": "Eugene Samonenko <esamonenko@agilevision.io>",
   "license": "MIT",
   "devDependencies": {
+    "@ambroseus/tsdx": "^0.12.1",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.7.4",
     "@babel/plugin-proposal-optional-chaining": "^7.7.5",
     "babel-plugin-transform-imports": "^2.0.0",
@@ -37,7 +38,6 @@
     "prettier": "1.19.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "@ambroseus/tsdx": "^0.11.0",
     "tslib": "^1.10.0",
     "typescript": "3.7.3"
   },
@@ -58,7 +58,7 @@
   "scripts": {
     "build": "tsdx build --format esm --name dckit-ui",
     "start": "tsdx watch --format esm --name dckit-ui",
-    "dev": "pm2 --name @dckit/ui start tsdx -- watch --format esm --name dckit-ui",
+    "dev": "pm2 --name @dckit/ui start tsdx -- watch --transpileOnly --format esm --name dckit-ui",
     "format": "prettier --write \"src/*.ts\" \"src/**/*.ts\" \"**/*.md\"",
     "format:check": "prettier --list-different \"src/*.ts\" \"src/**/*.ts\" \"**/*.md\"",
     "lint": "tsdx lint src && tsc --noEmit",
@@ -75,23 +75,5 @@
     "dist",
     "src"
   ],
-  "sideEffects": false,
-  "jest": {
-    "globals": {
-      "ts-jest": {
-        "diagnostics": {
-          "ignoreCodes": [
-            6133
-          ]
-        }
-      }
-    },
-    "collectCoverageFrom": [
-      "<rootDir>/src/**/*.{ts,tsx}"
-    ],
-    "coverageReporters": [
-      "lcov",
-      "text-summary"
-    ]
-  }
+  "sideEffects": false
 }
