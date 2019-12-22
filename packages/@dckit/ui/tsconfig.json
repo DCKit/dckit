@@ -3,6 +3,7 @@
     "baseUrl": "./src",
     "paths": {
       "@comp/*": ["components/*"],
+      "@ports": ["ports/index"],
       "@utils/*": ["utils/*"],
       "@utils": ["utils/index"],
       "*": ["*"]
