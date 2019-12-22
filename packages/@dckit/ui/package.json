@@ -58,7 +58,7 @@
   "scripts": {
     "build": "tsdx build --format esm --name dckit-ui",
     "start": "tsdx watch --format esm --name dckit-ui",
-    "dev": "pm2 --name @dckit/ui start tsdx -- watch --transpileOnly --format esm --name dckit-ui",
+    "dev": "pm2 --name @dckit/ui start tsdx --wait-ready --listen-timeout 5000 -- watch --transpileOnly --format esm --name dckit-ui",
     "format": "prettier --write \"src/*.ts\" \"src/**/*.ts\" \"**/*.md\"",
     "format:check": "prettier --list-different \"src/*.ts\" \"src/**/*.ts\" \"**/*.md\"",
     "lint": "tsdx lint src && tsc --noEmit",

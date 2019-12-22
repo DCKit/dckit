@@ -52,7 +52,7 @@
   "scripts": {
     "build": "tsdx build --format esm --name dckit-auth",
     "start": "tsdx watch --format esm --name dckit-auth",
-    "dev": "pm2 --name @dckit/auth start tsdx -- watch --transpileOnly --format esm --name dckit-auth",
+    "dev": "pm2 --name @dckit/auth start tsdx --wait-ready --listen-timeout 5000 -- watch --transpileOnly --format esm --name dckit-auth",
     "format": "prettier --write \"src/*.ts\" \"src/**/*.ts\" \"**/*.md\"",
     "format:check": "prettier --list-different \"src/*.ts\" \"src/**/*.ts\" \"**/*.md\"",
     "lint": "tsdx lint src && tsc --noEmit",

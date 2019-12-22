@@ -24,7 +24,7 @@
     "typescript": "3.7.3"
   },
   "scripts": {
-    "dev": "BROWSER=none pm2 --name test-app start react-scripts -- start",
+    "dev": "BROWSER=none pm2 --name test-app start react-scripts --wait-ready --listen-timeout 5000 -- start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "prebuild": "npm run format:check && npm run test:coverage",
