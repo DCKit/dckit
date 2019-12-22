@@ -20,7 +20,7 @@ export const Items: React.FC<{ itemType: string; optedItemId?: number }> = ({
 
   return (
     <>
-      <PageBarSource>page: items</PageBarSource>
+      <PageBarSource>page: {items ? items.length : 0} items</PageBarSource>
       <button onClick={() => load({ optedItemId })} disabled={loading}>
         {loading ? 'loading...' : 'load items'}
       </button>{' '}
