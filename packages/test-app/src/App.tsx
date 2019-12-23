@@ -5,23 +5,23 @@ import { Items } from './components/Items'
 import { TestItem } from './items'
 import {
   AppLayout,
-  AppBarSource,
-  SideBarSource,
+  PageTitleProvider,
+  SideBarProvider,
   SideBarContext,
 } from '@dckit/ui'
 
 const SideBar = () => {
   const { sideBarOpen } = useContext(SideBarContext)
   return (
-    <SideBarSource>
+    <SideBarProvider>
       <div style={{ paddingTop: 56 }}>{sideBarOpen ? 'opened' : 'closed'}</div>
-    </SideBarSource>
+    </SideBarProvider>
   )
 }
 export const App: React.FC = () => (
   <Provider store={store}>
     <AppLayout>
-      <AppBarSource>app bar</AppBarSource>
+      <PageTitleProvider>App</PageTitleProvider>
       <SideBar />
       <div style={{ padding: 16 }}>
         <Items itemType={TestItem} optedItemId={3} />

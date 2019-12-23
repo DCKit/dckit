@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import cn from 'clsx'
 import { Drawer } from '@material-ui/core'
 import { useMediaType } from '@utils'
-import { SideBarTarget } from '@ports'
+import { SideBarConsumer } from '@ports'
 import { TCallback } from 'types'
 import { useStyles } from './styles'
 
@@ -30,7 +30,7 @@ const SideBarMobile = () => {
       open={sideBarOpen}
       onBackdropClick={() => showSideBar(false)}
     >
-      <SideBarTarget as="ins" />
+      <SideBarConsumer />
     </Drawer>
   )
 }
@@ -51,7 +51,7 @@ const SideBarDesktop = () => {
         }}
         open={sideBarOpen}
       >
-        <SideBarTarget as="ins" />
+        <SideBarConsumer />
       </Drawer>
     </div>
   )
