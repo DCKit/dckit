@@ -5,7 +5,8 @@ import CollapseIcon from '@material-ui/icons/ChevronLeft'
 import cn from 'clsx'
 import { useMediaType } from '@utils'
 import { PageTitleConsumer, AppBarConsumer, PageBarConsumer } from '@ports'
-import { SideBar, SideBarContext } from '@comp/SideBar'
+import { SideBar } from '@comp/SideBar'
+import { SideBarContext } from '@comp/SideBar/context'
 import { useStyles } from './styles'
 
 interface IContainerProps {
