@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
+import cn from 'clsx'
 import { CssBaseline, AppBar, Toolbar, IconButton } from '@material-ui/core'
 import ExpandIcon from '@material-ui/icons/Menu'
 import CollapseIcon from '@material-ui/icons/ChevronLeft'
-import cn from 'clsx'
-import { useMediaType } from '@utils'
 import {
   AppBarHead,
   AppBarNav,
@@ -14,6 +13,7 @@ import {
 } from '@ports'
 import { SideBar } from '@comp/SideBar'
 import { SideBarContext } from '@comp/SideBar/context'
+import { useMediaType } from '@utils'
 import { useStyles } from './styles'
 
 interface IContainerProps {
