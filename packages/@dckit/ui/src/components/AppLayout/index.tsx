@@ -4,8 +4,9 @@ import ExpandIcon from '@material-ui/icons/Menu'
 import CollapseIcon from '@material-ui/icons/ChevronLeft'
 import cn from 'clsx'
 import { useMediaType } from '@utils'
-import { AppBarTarget, PageBarTarget } from '@ports'
-import { SideBar, SideBarContext } from '@comp/SideBar'
+import { PageTitleConsumer, AppBarConsumer, PageBarConsumer } from '@ports'
+import { SideBar } from '@comp/SideBar'
+import { SideBarContext } from '@comp/SideBar/context'
 import { useStyles } from './styles'
 
 interface IContainerProps {
@@ -76,7 +77,8 @@ export const AppLayout = ({
           >
             {sideBarOpen ? <CollapseIcon /> : <ExpandIcon />}
           </IconButton>
-          <AppBarTarget as="ins" />
+          <PageTitleConsumer />
+          <AppBarConsumer />
         </Toolbar>
       </AppBar>
       <PageBarContainer
@@ -86,7 +88,7 @@ export const AppLayout = ({
         )}
         sideBarOpen={sideBarOpen}
       >
-        <PageBarTarget as="ins" />
+        <PageBarConsumer />
       </PageBarContainer>
       )}
       <SideBar />

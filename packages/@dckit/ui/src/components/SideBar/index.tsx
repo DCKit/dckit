@@ -2,25 +2,14 @@ import React, { useContext } from 'react'
 import cn from 'clsx'
 import { Drawer } from '@material-ui/core'
 import { useMediaType } from '@utils'
-import { SideBarTarget } from '@ports'
-import { TCallback } from 'types'
+import { SideBarConsumer } from '@ports'
 import { useStyles } from './styles'
-
-interface ISideBarContext {
-  sideBarOpen: boolean
-  showSideBar: TCallback
-}
-
-const defaultSideBarContext: ISideBarContext = {
-  sideBarOpen: false,
-  showSideBar: () => {},
-}
-
-export const SideBarContext = React.createContext(defaultSideBarContext)
+import { SideBarContext } from './context'
 
 const SideBarMobile = () => {
   const classes = useStyles()
   const { sideBarOpen, showSideBar } = useContext(SideBarContext)
+  const closeSideBar = () => showSideBar(false)
   return (
     <Drawer
       PaperProps={{ elevation: 8 }}
@@ -28,9 +17,9 @@ const SideBarMobile = () => {
         paper: classes.drawerPaperMobile,
       }}
       open={sideBarOpen}
-      onBackdropClick={() => showSideBar(false)}
+      onBackdropClick={closeSideBar}
     >
-      <SideBarTarget as="ins" />
+      <SideBarConsumer />
     </Drawer>
   )
 }
@@ -51,7 +40,7 @@ const SideBarDesktop = () => {
         }}
         open={sideBarOpen}
       >
-        <SideBarTarget as="ins" />
+        <SideBarConsumer />
       </Drawer>
     </div>
   )
