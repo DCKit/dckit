@@ -47,6 +47,7 @@
     "@material-ui/icons": "^4.5.1",
     "@reduxjs/toolkit": "^1.1.0",
     "clsx": "^1.0.4",
+    "react-content-loader": "^4.3.3",
     "react-redux": "^7.1.3",
     "react-teleporter": "^2.0.1",
     "redux": "^4.0.4"

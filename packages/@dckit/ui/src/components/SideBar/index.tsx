@@ -2,7 +2,11 @@ import React, { useContext } from 'react'
 import cn from 'clsx'
 import { Drawer } from '@material-ui/core'
 import { useMediaType } from '@utils'
-import { SideBarConsumer } from '@ports'
+import {
+  SideBarHeaderConsumer,
+  SideBarNavigationConsumer,
+  SideBarFooterConsumer,
+} from '@ports'
 import { useStyles } from './styles'
 import { SideBarContext } from './context'
 
@@ -19,7 +23,9 @@ const SideBarMobile = () => {
       open={sideBarOpen}
       onBackdropClick={closeSideBar}
     >
-      <SideBarConsumer />
+      <SideBarHeaderConsumer />
+      <SideBarNavigationConsumer />
+      <SideBarFooterConsumer />
     </Drawer>
   )
 }
@@ -40,7 +46,9 @@ const SideBarDesktop = () => {
         }}
         open={sideBarOpen}
       >
-        <SideBarConsumer />
+        <SideBarHeaderConsumer />
+        <SideBarNavigationConsumer />
+        <SideBarFooterConsumer />
       </Drawer>
     </div>
   )

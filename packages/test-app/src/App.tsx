@@ -6,16 +6,16 @@ import { TestItem } from './items'
 import {
   AppLayout,
   PageTitleProvider,
-  SideBarProvider,
+  SideBarHeaderProvider,
   SideBarContext,
 } from '@dckit/ui'
 
 const SideBar = () => {
   const { sideBarOpen } = useContext(SideBarContext)
   return (
-    <SideBarProvider>
+    <SideBarHeaderProvider>
       <div style={{ paddingTop: 56 }}>{sideBarOpen ? 'opened' : 'closed'}</div>
-    </SideBarProvider>
+    </SideBarHeaderProvider>
   )
 }
 export const App: React.FC = () => (

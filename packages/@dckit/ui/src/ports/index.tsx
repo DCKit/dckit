@@ -19,8 +19,18 @@ export const PageBarProvider = ({ children }: { children: any }) => (
   <PageBar.Source>{children}</PageBar.Source>
 )
 
-const SideBar = createTeleporter()
-export const SideBarConsumer = SideBar.Target
-export const SideBarProvider = ({ children }: { children: any }) => (
-  <SideBar.Source>{children}</SideBar.Source>
+const SideBarHeader = createTeleporter()
+export const SideBarHeaderConsumer = SideBarHeader.Target
+export const SideBarHeaderProvider = ({ children }: { children: any }) => (
+  <SideBarHeader.Source>{children}</SideBarHeader.Source>
+)
+const SideBarNavigation = createTeleporter()
+export const SideBarNavigationConsumer = SideBarNavigation.Target
+export const SideBarNavigationProvider = ({ children }: { children: any }) => (
+  <SideBarNavigation.Source>{children}</SideBarNavigation.Source>
+)
+const SideBarFooter = createTeleporter()
+export const SideBarFooterConsumer = SideBarFooter.Target
+export const SideBarFooterProvider = ({ children }: { children: any }) => (
+  <SideBarFooter.Source>{children}</SideBarFooter.Source>
 )
