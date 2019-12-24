@@ -33,6 +33,8 @@
     "@types/node": "^12.12.17",
     "@types/material-ui": "^0.21.7",
     "@types/react-redux": "^7.1.5",
+    "@types/react-router": "^5.1.3",
+    "@types/react-router-dom": "^5.1.3",
     "@testing-library/react": "^9.3.3",
     "eslint-config-react-app": "5.1.0",
     "prettier": "1.19.1",
@@ -49,6 +51,8 @@
     "clsx": "^1.0.4",
     "react-content-loader": "^4.3.3",
     "react-redux": "^7.1.3",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
     "react-teleporter": "^2.0.1",
     "redux": "^4.0.4"
   },

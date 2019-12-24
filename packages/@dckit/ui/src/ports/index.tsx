@@ -1,7 +1,7 @@
 import React from 'react'
 import { createTeleporter } from 'react-teleporter'
 
-const createPort = () => {
+export const createPort = () => {
   const Port = createTeleporter()
   const Consumer = Port.Target
   const Provider = ({ children }: { children: any }) => (

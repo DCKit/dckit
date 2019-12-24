@@ -1,76 +1,62 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import cn from 'clsx'
-import { withRouter } from 'react-router'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import Divider from '@material-ui/core/Divider'
-import { withAcl } from '../../../acl'
-import { withStyles } from '@material-ui/core/styles'
-import { styles } from './styles'
+import { useRouteMatch } from 'react-router'
+import { useHistory } from 'react-router-dom'
+import { ListItem, ListItemIcon, Divider } from '@material-ui/core'
+import { Loader } from './Loader'
+import { useStyles } from './styles'
+import { identity } from '@utils'
+import { TCallback } from 'types'
 
-const propTypes = {
-  classes: PropTypes.object.isRequired,
-  onClick: PropTypes.func,
-  divider: PropTypes.bool,
-  open: PropTypes.bool,
-  router: PropTypes.object,
-  icon: PropTypes.node,
-  title: PropTypes.string,
-  acl: PropTypes.string,
-  path: PropTypes.string,
-  id: PropTypes.string,
+interface ISideBarItemProps {
+  label: string
+  onClick?: TCallback
+  loading?: boolean
+  divider?: boolean
+  icon?: any
+  acl?: string
+  to?: string
+  id?: string
 }
 
-class SideBarItemComponent extends React.PureComponent {
-  static propTypes = propTypes
-  onClick = () => {
-    const { router, path, onClick } = this.props
-    onClick && onClick()
-    path && router.push(path)
-  }
-  render() {
-    const { divider, router, classes, path, icon, title, id, open } = this.props
-    const selected = !divider && path && router && router.isActive(path)
-    return divider ? (
-      <Divider className={classes.divider} />
-    ) : (
-      <ListItem
-        id={`sidebar-${id}`}
-        data-testid="sidebar-item"
-        button
-        dense
-        disableRipple
-        selected={selected}
-        className={cn(
-          classes.root,
-          selected && '-selected',
-          !open && classes.collapsed
-        )}
-        onClick={this.onClick}
-      >
-        <ListItemIcon className={cn(classes.icon, selected && '-selected')}>
-          {icon}
-        </ListItemIcon>
-        <span className={cn(classes.listItemText, selected && '-selected')}>
-          {title}
-        </span>
-      </ListItem>
-    )
-  }
+export const SideBarItem = ({
+  label,
+  onClick = identity,
+  divider,
+  loading,
+  icon,
+  acl,
+  to,
+  id,
+}: ISideBarItemProps) => {
+  const classes = useStyles()
+  const history = useHistory()
+  const match = useRouteMatch({ path: to })
+  const selected = Boolean(!loading && to && match)
+  const sideBarItemId = `sidebar-item-${id || acl}`
+  const handleClick = () => (to ? history.push(to) : onClick)
+
+  return (
+    <>
+      {divider && <Divider className={classes.divider} />}
+      {!divider && loading && <Loader />}
+      {!divider && !loading && (
+        <ListItem
+          id={sideBarItemId}
+          data-testid={sideBarItemId}
+          button={true}
+          dense={true}
+          disableRipple={true}
+          selected={selected}
+          className={cn(classes.root, selected && '-selected')}
+          onClick={handleClick}
+        >
+          <ListItemIcon className={cn(classes.icon, selected && '-selected')}>
+            {icon}
+          </ListItemIcon>
+          {label}
+        </ListItem>
+      )}
+    </>
+  )
 }
-
-const AclSideBarItemComponent = withAcl(SideBarItemComponent)
-
-class Item extends React.PureComponent {
-  static propTypes = propTypes
-  render() {
-    return this.props.acl ? (
-      <AclSideBarItemComponent {...this.props} />
-    ) : (
-      <SideBarItemComponent {...this.props} />
-    )
-  }
-}
-
-export const SideBarItem = withRouter(withStyles(styles)(Item))
