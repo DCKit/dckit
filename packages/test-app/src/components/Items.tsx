@@ -6,7 +6,7 @@ import {
   useLoadItems,
   useSetItems,
 } from '@dckit/store'
-import { PageTitleProvider, PageBarProvider } from '@dckit/ui'
+import { AppBarHead, PageBarHead } from '@dckit/ui'
 
 export const Items: React.FC<{ itemType: string; optedItemId?: number }> = ({
   itemType,
@@ -21,9 +21,11 @@ export const Items: React.FC<{ itemType: string; optedItemId?: number }> = ({
   return (
     <>
       {optedItem && (
-        <PageTitleProvider>Opted item: {optedItem.field}</PageTitleProvider>
+        <AppBarHead.Provider>Opted item: {optedItem.field}</AppBarHead.Provider>
       )}
-      <PageBarProvider>{items ? items.length : 0} items</PageBarProvider>
+      <PageBarHead.Provider>
+        {items ? items.length : 0} items
+      </PageBarHead.Provider>
       <button onClick={() => load({ optedItemId })} disabled={loading}>
         {loading ? 'loading...' : 'load items'}
       </button>{' '}

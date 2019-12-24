@@ -3,25 +3,20 @@ import { Provider } from 'react-redux'
 import { store } from './store'
 import { Items } from './components/Items'
 import { TestItem } from './items'
-import {
-  AppLayout,
-  PageTitleProvider,
-  SideBarHeaderProvider,
-  SideBarContext,
-} from '@dckit/ui'
+import { AppLayout, AppBarHead, SideBarHead, SideBarContext } from '@dckit/ui'
 
 const SideBar = () => {
   const { sideBarOpen } = useContext(SideBarContext)
   return (
-    <SideBarHeaderProvider>
+    <SideBarHead.Provider>
       <div style={{ paddingTop: 56 }}>{sideBarOpen ? 'opened' : 'closed'}</div>
-    </SideBarHeaderProvider>
+    </SideBarHead.Provider>
   )
 }
 export const App: React.FC = () => (
   <Provider store={store}>
     <AppLayout>
-      <PageTitleProvider>App</PageTitleProvider>
+      <AppBarHead.Provider>App</AppBarHead.Provider>
       <SideBar />
       <div style={{ padding: 16 }}>
         <Items itemType={TestItem} optedItemId={3} />
