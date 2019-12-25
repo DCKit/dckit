@@ -1,0 +1,47 @@
+import React from 'react'
+import cn from 'clsx'
+import { ListItem, ListItemIcon } from '@material-ui/core'
+import { ItemLoader } from '@comp/SideBar/ItemLoader'
+import { useStyles } from './styles'
+import { TCallback } from 'types'
+
+interface ISideBarItemProps {
+  label: string
+  icon: any
+  onClick?: TCallback
+  selected?: boolean
+  loading?: boolean
+  id?: string
+}
+
+export const SideBarItem = ({
+  label,
+  icon,
+  onClick,
+  selected,
+  loading,
+  id,
+}: ISideBarItemProps) => {
+  const classes = useStyles()
+  const sideBarItemId = `sidebar-item-${id || ''}`
+
+  return loading ? (
+    <ItemLoader />
+  ) : (
+    <ListItem
+      id={sideBarItemId}
+      data-testid={sideBarItemId}
+      button={true}
+      dense={true}
+      disableRipple={true}
+      selected={selected}
+      className={cn(classes.root, selected && '-selected')}
+      onClick={onClick}
+    >
+      <ListItemIcon className={cn(classes.icon, selected && '-selected')}>
+        {icon}
+      </ListItemIcon>
+      {label}
+    </ListItem>
+  )
+}

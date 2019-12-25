@@ -1,5 +1,6 @@
 export { AppLayout } from '@comp/AppLayout'
 export { SideBarContext } from '@comp/SideBar/context'
-export { SideBarItem } from '@comp/SideBarItem'
+export { SideBarItem } from '@comp/SideBar/Item'
+export { SideBarNavItem } from '@comp/SideBar/NavItem'
 export * from '@ports'
 export * from './types'

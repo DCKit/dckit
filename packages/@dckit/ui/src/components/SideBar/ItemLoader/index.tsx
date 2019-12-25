@@ -1,7 +1,7 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
 
-export const Loader = () => (
+export const ItemLoader = () => (
   <ContentLoader
     height={56}
     width={240}
