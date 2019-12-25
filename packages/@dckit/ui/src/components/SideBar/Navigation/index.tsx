@@ -8,7 +8,9 @@ interface ISideBarItem {
   icon: any
   to?: string
   id?: string
-  divider: boolean
+  divider?: boolean
+  isHidden?: () => boolean
+  isDisabled?: () => boolean
 }
 
 interface ISideBarNavigationProps {
@@ -23,14 +25,27 @@ export const SideBarNavigation = ({
   return (
     <List>
       {items.map((item, index) => {
-        const { label, icon, to, id: itemId, divider } = item
+        const {
+          label,
+          icon,
+          to,
+          id: itemId,
+          divider,
+          isHidden,
+          isDisabled,
+        } = item
+
         const id = `sidebar-item-${itemId || index}`
+
         const itemProps = {
           id,
           label,
           icon,
           loading,
+          isHidden,
+          isDisabled,
         }
+
         if (divider) return <Divider key={id} />
         if (to) return <SideBarNavItem key={id} {...itemProps} to={to} />
         return <SideBarItem key={id} {...itemProps} />

@@ -12,6 +12,8 @@ interface ISideBarItemProps {
   selected?: boolean
   loading?: boolean
   id?: string
+  isHidden?: () => boolean
+  isDisabled?: () => boolean
 }
 
 export const SideBarItem = ({
@@ -21,8 +23,13 @@ export const SideBarItem = ({
   selected,
   loading,
   id,
+  isHidden,
+  isDisabled,
 }: ISideBarItemProps) => {
   const classes = useStyles()
+
+  if (isHidden && isHidden()) return null
+  const disabled = isDisabled && isDisabled()
 
   return loading ? (
     <ItemLoader />
@@ -36,6 +43,7 @@ export const SideBarItem = ({
       selected={selected}
       className={cn(classes.root, selected && '-selected')}
       onClick={onClick}
+      disabled={disabled}
     >
       <ListItemIcon className={cn(classes.icon, selected && '-selected')}>
         {icon}
