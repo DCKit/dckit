@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom'
 import { SideBarItem } from '@comp/SideBar/Item'
 
 interface ISideBarNavItemProps {
-  label: string
-  icon: any
   to: string
+  label: string
+  icon?: any
   loading?: boolean
   id?: string
   hidden?: boolean

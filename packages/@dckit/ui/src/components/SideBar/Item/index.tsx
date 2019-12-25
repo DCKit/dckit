@@ -7,7 +7,7 @@ import { TCallback } from 'types'
 
 interface ISideBarItemProps {
   label: string
-  icon: any
+  icon?: any
   onClick?: TCallback
   selected?: boolean
   loading?: boolean
@@ -44,9 +44,11 @@ export const SideBarItem = ({
       onClick={onClick}
       disabled={disabled}
     >
-      <ListItemIcon className={cn(classes.icon, selected && '-selected')}>
-        {icon}
-      </ListItemIcon>
+      {icon && (
+        <ListItemIcon className={cn(classes.icon, selected && '-selected')}>
+          {icon}
+        </ListItemIcon>
+      )}
       {label}
     </ListItem>
   )

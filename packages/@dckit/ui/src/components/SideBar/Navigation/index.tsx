@@ -3,7 +3,7 @@ import { List, Divider } from '@material-ui/core'
 import { SideBarItem } from '@comp/SideBar/Item'
 import { SideBarNavItem } from '@comp/SideBar/NavItem'
 
-interface ISideBarItem {
+export interface ISideBarItem {
   label: string
   icon?: any
   to?: string
@@ -21,36 +21,33 @@ interface ISideBarNavigationProps {
 export const SideBarNavigation = ({
   items,
   loading,
-}: ISideBarNavigationProps) => {
-  return (
-    <List>
-      {items.map((item, index) => {
-        const {
-          label,
-          icon,
-          to,
-          id: itemId,
-          hidden,
-          disabled,
-          Component,
-        } = item
+}: ISideBarNavigationProps) => (
+  <List>
+    {items.map((item, index) => {
+      const { label, icon, to, id: itemId, hidden, disabled } = item
+      const { Component, ...itemProps } = item
+      const id = `sidebar-item-${itemId || index}`
 
-        const id = `sidebar-item-${itemId || index}`
+      if (Component) {
+        return <Component key={id} {...itemProps} loading={loading} />
+      }
+      if (label === '---') {
+        return <Divider key={id} />
+      }
 
-        const itemProps = {
-          id,
-          label,
-          icon,
-          loading,
-          hidden,
-          disabled,
-        }
+      const sideBarItemProps = {
+        id,
+        label,
+        icon,
+        loading,
+        hidden,
+        disabled,
+      }
 
-        if (Component) return <Component key={id} {...itemProps} to={to} />
-        if (label === '---') return <Divider key={id} />
-        if (to) return <SideBarNavItem key={id} {...itemProps} to={to} />
-        return <SideBarItem key={id} {...itemProps} />
-      })}
-    </List>
-  )
-}
+      if (to) {
+        return <SideBarNavItem key={id} {...sideBarItemProps} to={to} />
+      }
+      return <SideBarItem key={id} {...sideBarItemProps} />
+    })}
+  </List>
+)
