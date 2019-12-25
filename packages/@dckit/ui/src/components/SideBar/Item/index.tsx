@@ -12,8 +12,8 @@ interface ISideBarItemProps {
   selected?: boolean
   loading?: boolean
   id?: string
-  isHidden?: () => boolean
-  isDisabled?: () => boolean
+  hidden?: boolean
+  disabled?: boolean
 }
 
 export const SideBarItem = ({
@@ -23,13 +23,12 @@ export const SideBarItem = ({
   selected,
   loading,
   id,
-  isHidden,
-  isDisabled,
+  hidden,
+  disabled,
 }: ISideBarItemProps) => {
   const classes = useStyles()
 
-  if (isHidden && isHidden()) return null
-  const disabled = isDisabled && isDisabled()
+  if (hidden) return null
 
   return loading ? (
     <ItemLoader />

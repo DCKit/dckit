@@ -9,6 +9,8 @@ interface ISideBarNavItemProps {
   to: string
   loading?: boolean
   id?: string
+  hidden?: boolean
+  disabled?: boolean
 }
 
 export const SideBarNavItem = (props: ISideBarNavItemProps) => {

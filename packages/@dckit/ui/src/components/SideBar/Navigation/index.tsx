@@ -5,12 +5,12 @@ import { SideBarNavItem } from '@comp/SideBar/NavItem'
 
 interface ISideBarItem {
   label: string
-  icon: any
+  icon?: any
   to?: string
   id?: string
-  divider?: boolean
-  isHidden?: () => boolean
-  isDisabled?: () => boolean
+  hidden?: boolean
+  disabled?: boolean
+  Component?: any
 }
 
 interface ISideBarNavigationProps {
@@ -30,9 +30,9 @@ export const SideBarNavigation = ({
           icon,
           to,
           id: itemId,
-          divider,
-          isHidden,
-          isDisabled,
+          hidden,
+          disabled,
+          Component,
         } = item
 
         const id = `sidebar-item-${itemId || index}`
@@ -42,11 +42,12 @@ export const SideBarNavigation = ({
           label,
           icon,
           loading,
-          isHidden,
-          isDisabled,
+          hidden,
+          disabled,
         }
 
-        if (divider) return <Divider key={id} />
+        if (Component) return <Component key={id} {...itemProps} to={to} />
+        if (label === '---') return <Divider key={id} />
         if (to) return <SideBarNavItem key={id} {...itemProps} to={to} />
         return <SideBarItem key={id} {...itemProps} />
       })}
