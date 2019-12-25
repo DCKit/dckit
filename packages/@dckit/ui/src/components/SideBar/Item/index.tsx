@@ -23,14 +23,13 @@ export const SideBarItem = ({
   id,
 }: ISideBarItemProps) => {
   const classes = useStyles()
-  const sideBarItemId = `sidebar-item-${id || ''}`
 
   return loading ? (
     <ItemLoader />
   ) : (
     <ListItem
-      id={sideBarItemId}
-      data-testid={sideBarItemId}
+      id={id}
+      data-testid={id}
       button={true}
       dense={true}
       disableRipple={true}
