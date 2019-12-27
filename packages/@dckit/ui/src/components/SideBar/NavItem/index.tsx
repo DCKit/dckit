@@ -3,13 +3,12 @@ import { useRouteMatch } from 'react-router'
 import { useHistory } from 'react-router-dom'
 import { SideBarItem } from '@comp/SideBar/Item'
 
-interface ISideBarNavItemProps {
+export interface ISideBarNavItemProps {
   to: string
   label: string
   icon?: any
   loading?: boolean
   id?: string
-  hidden?: boolean
   disabled?: boolean
 }
 
