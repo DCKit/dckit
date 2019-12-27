@@ -1,10 +1,10 @@
 import React from 'react'
-import { List } from '@material-ui/core'
+import { List, Divider } from '@material-ui/core'
+import { SideBarItem, ISideBarItemProps } from '@comp/SideBar/Item'
 import { SideBarNavItem } from '@comp/SideBar/NavItem'
-import { TSideBarItem } from 'types'
 
 interface ISideBarNavigationProps {
-  items: TSideBarItem[]
+  items: ISideBarItemProps[]
   ListComponent?: any
   listProps?: any
 }
@@ -16,8 +16,16 @@ export const SideBarNavigation = ({
 }: ISideBarNavigationProps) => (
   <ListComponent {...listProps}>
     {items.map((item, index) => {
-      const { Component: Item = SideBarNavItem, id, ...itemProps } = item
+      const { Component, id, ...itemProps } = item
       const itemId = `sidebar-item-${id || index}`
+      const Item = Component
+        ? Component
+        : item.divider
+        ? Divider
+        : item.to
+        ? SideBarNavItem
+        : SideBarItem
+
       return <Item key={itemId} {...itemProps} id={itemId} />
     })}
   </ListComponent>

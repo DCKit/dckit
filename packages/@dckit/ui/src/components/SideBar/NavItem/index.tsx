@@ -1,23 +1,14 @@
 import React from 'react'
 import { useRouteMatch } from 'react-router'
 import { useHistory } from 'react-router-dom'
-import { SideBarItem } from '@comp/SideBar/Item'
+import { SideBarItem, ISideBarItemProps } from '@comp/SideBar/Item'
 
-export interface ISideBarNavItemProps {
-  to: string
-  label: string
-  icon?: any
-  loading?: boolean
-  id?: string
-  disabled?: boolean
-}
-
-export const SideBarNavItem = (props: ISideBarNavItemProps) => {
+export const SideBarNavItem = (props: ISideBarItemProps) => {
   const { to, loading, ...itemProps } = props
   const history = useHistory()
   const match = useRouteMatch({ path: to })
   const selected = Boolean(!loading && match)
-  const handleClick = () => history.push(to)
+  const handleClick = () => to && history.push(to)
 
   return (
     <SideBarItem

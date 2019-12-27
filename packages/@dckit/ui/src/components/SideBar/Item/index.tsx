@@ -6,23 +6,30 @@ import { useStyles } from './styles'
 import { TCallback } from 'types'
 
 export interface ISideBarItemProps {
+  id?: string
   label?: string
   icon?: any
+  to?: string
+  divider?: boolean
   onClick?: TCallback
   selected?: boolean
   loading?: boolean
-  id?: string
   disabled?: boolean
   Component?: React.FC<any>
-  children?: any
+  [propName: string]: any
 }
 
-export const SideBarItem = (props: ISideBarItemProps) => {
+export const SideBarItem = ({
+  id,
+  label,
+  icon,
+  onClick,
+  selected,
+  loading,
+  disabled,
+}: ISideBarItemProps) => {
   const classes = useStyles()
-  const { Component, children, ...itemProps } = props
-  const { label, icon, onClick, selected, loading, id, disabled } = itemProps
 
-  if (Component) return <Component {...itemProps}>{children}</Component>
   if (loading) return <ItemLoader />
   return (
     <ListItem
@@ -41,7 +48,7 @@ export const SideBarItem = (props: ISideBarItemProps) => {
           {icon}
         </ListItemIcon>
       )}
-      {label || children}
+      {label}
     </ListItem>
   )
 }

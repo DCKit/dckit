@@ -1,7 +1,6 @@
-import { TSideBarItem } from '@dckit/ui'
-import { Divider } from '@material-ui/core'
+import { ISideBarItemProps } from '@dckit/ui'
 
-export const sideBarItems: TSideBarItem[] = [
+export const sideBarItems: ISideBarItemProps[] = [
   {
     label: 'page1',
     to: '/',
@@ -13,7 +12,7 @@ export const sideBarItems: TSideBarItem[] = [
     label: 'page3',
   },
   {
-    Component: Divider,
+    divider: true,
   },
   {
     label: 'page4',
