@@ -34,7 +34,6 @@ export const SideBarItem = ({
   return (
     <ListItem
       id={id}
-      data-testid={id}
       button={true}
       dense={true}
       disableRipple={true}

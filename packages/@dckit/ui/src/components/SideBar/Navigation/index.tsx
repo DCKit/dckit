@@ -18,6 +18,7 @@ export const SideBarNavigation = ({
     {items.map((item, index) => {
       const { Component, id, ...itemProps } = item
       const itemId = `sidebar-item-${id || index}`
+
       const Item = Component
         ? Component
         : item.divider
