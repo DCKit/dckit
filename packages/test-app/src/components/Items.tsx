@@ -6,7 +6,7 @@ import {
   useLoadItems,
   useSetItems,
 } from '@dckit/store'
-import { AppBarHead, PageBarHead } from '@dckit/ui'
+import { AppBarHead, AppBarNav, AppTabs, PageBarHead } from '@dckit/ui'
 
 export const Items: React.FC<{ itemType: string; optedItemId?: number }> = ({
   itemType,
@@ -18,8 +18,13 @@ export const Items: React.FC<{ itemType: string; optedItemId?: number }> = ({
   const setItems = useSetItems(itemType)
   const optedItem = useOptedItem(itemType)
 
+  const tabs = [{ id: 'tab1', label: 'tab1' }]
+
   return (
     <>
+      <AppBarNav.Provider>
+        <AppTabs tabs={tabs} path="" />
+      </AppBarNav.Provider>
       {optedItem && (
         <AppBarHead.Provider>Opted item: {optedItem.field}</AppBarHead.Provider>
       )}

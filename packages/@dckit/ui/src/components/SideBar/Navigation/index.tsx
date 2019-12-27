@@ -19,10 +19,10 @@ export const SideBarNavigation = ({
       const { Component, id, ...itemProps } = item
       const itemId = `sidebar-item-${id || index}`
 
+      if (item.divider) return <Divider key={itemId} />
+
       const Item = Component
         ? Component
-        : item.divider
-        ? Divider
         : item.to
         ? SideBarNavItem
         : SideBarItem

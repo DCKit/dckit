@@ -1,4 +1,5 @@
 export { AppLayout } from '@comp/AppLayout'
+export * from '@comp/AppTabs'
 export * from '@comp/SideBar/context'
 export * from '@comp/SideBar/Item'
 export * from '@comp/SideBar/NavItem'
