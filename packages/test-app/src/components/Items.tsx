@@ -18,7 +18,11 @@ export const Items: React.FC<{ itemType: string; optedItemId?: number }> = ({
   const setItems = useSetItems(itemType)
   const optedItem = useOptedItem(itemType)
 
-  const tabs = [{ id: 'tab1', label: 'tab1' }]
+  const tabs = [
+    { id: 'tab1', label: 'tab1' },
+    { id: 'tab2', label: 'tab2' },
+    { id: 'tab3', label: 'tab3' },
+  ]
 
   return (
     <>

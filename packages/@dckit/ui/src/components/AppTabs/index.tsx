@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import { Tabs, Tab } from '@material-ui/core'
+import { useTabs, useTabItem } from './styles'
 
 interface IAppTabsProps {
   tabs: any[]
@@ -8,6 +9,8 @@ interface IAppTabsProps {
 }
 
 export const AppTabs = ({ tabs, path }: IAppTabsProps) => {
+  const classesTabs = useTabs()
+  const classesTabItem = useTabItem()
   const location = useLocation().pathname
   const history = useHistory()
   const match = location.match(/\/([a-z0-9-]+)\/?$/)
@@ -29,13 +32,20 @@ export const AppTabs = ({ tabs, path }: IAppTabsProps) => {
     <Tabs
       value={tabIndex}
       onChange={handleChange}
-      indicatorColor="secondary"
-      textColor="primary"
       variant="scrollable"
       scrollButtons="auto"
+      classes={classesTabs}
     >
       {tabs.map((tab, index) => {
-        return <Tab key={index} label={tab.label} id={`app-tab-${tab.id}`} />
+        return (
+          <Tab
+            key={index}
+            value={index}
+            label={tab.label}
+            id={`app-tab-${tab.id}`}
+            classes={classesTabItem}
+          />
+        )
       })}
     </Tabs>
   )
