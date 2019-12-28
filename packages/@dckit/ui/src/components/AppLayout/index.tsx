@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
+import cn from 'clsx'
 import { CssBaseline, AppBar, Toolbar, IconButton } from '@material-ui/core'
 import ExpandIcon from '@material-ui/icons/Menu'
 import CollapseIcon from '@material-ui/icons/ChevronLeft'
-import cn from 'clsx'
-import { useMediaType } from '@utils'
-import { PageTitleConsumer, AppBarConsumer, PageBarConsumer } from '@ports'
+import {
+  AppBarHead,
+  AppBarNav,
+  AppBarTail,
+  PageBarHead,
+  PageBarNav,
+  PageBarTail,
+} from '@ports'
 import { SideBar } from '@comp/SideBar'
 import { SideBarContext } from '@comp/SideBar/context'
+import { useMediaType } from '@utils'
 import { useStyles } from './styles'
 
 interface IContainerProps {
@@ -63,6 +70,7 @@ export const AppLayout = ({
     >
       <CssBaseline />
       <AppBar
+        position="static"
         className={cn(
           isMobile ? appBarMobile : appBar,
           isShifted && appBarShift
@@ -73,12 +81,13 @@ export const AppLayout = ({
             color="inherit"
             onClick={toggleSideBar}
             className={menuButton}
-            data-testid="toggle-sidebar-button"
+            id="toggle-sidebar-button"
           >
             {sideBarOpen ? <CollapseIcon /> : <ExpandIcon />}
           </IconButton>
-          <PageTitleConsumer />
-          <AppBarConsumer />
+          <AppBarHead.Consumer />
+          <AppBarNav.Consumer />
+          <AppBarTail.Consumer />
         </Toolbar>
       </AppBar>
       <PageBarContainer
@@ -88,7 +97,9 @@ export const AppLayout = ({
         )}
         sideBarOpen={sideBarOpen}
       >
-        <PageBarConsumer />
+        <PageBarHead.Consumer />
+        <PageBarNav.Consumer />
+        <PageBarTail.Consumer />
       </PageBarContainer>
       )}
       <SideBar />

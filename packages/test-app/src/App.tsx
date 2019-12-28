@@ -1,31 +1,22 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Provider } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { store } from './store'
 import { Items } from './components/Items'
+import { SideBar } from './components/SideBar'
 import { TestItem } from './items'
-import {
-  AppLayout,
-  PageTitleProvider,
-  SideBarProvider,
-  SideBarContext,
-} from '@dckit/ui'
+import { AppLayout, AppBarHead } from '@dckit/ui'
 
-const SideBar = () => {
-  const { sideBarOpen } = useContext(SideBarContext)
-  return (
-    <SideBarProvider>
-      <div style={{ paddingTop: 56 }}>{sideBarOpen ? 'opened' : 'closed'}</div>
-    </SideBarProvider>
-  )
-}
 export const App: React.FC = () => (
   <Provider store={store}>
-    <AppLayout>
-      <PageTitleProvider>App</PageTitleProvider>
-      <SideBar />
-      <div style={{ padding: 16 }}>
-        <Items itemType={TestItem} optedItemId={3} />
-      </div>
-    </AppLayout>
+    <Router>
+      <AppLayout>
+        <AppBarHead.Provider>App</AppBarHead.Provider>
+        <SideBar />
+        <div style={{ padding: 16 }}>
+          <Items itemType={TestItem} optedItemId={3} />
+        </div>
+      </AppLayout>
+    </Router>
   </Provider>
 )

@@ -1,26 +1,23 @@
 import React from 'react'
 import { createTeleporter } from 'react-teleporter'
 
-const PageTitle = createTeleporter()
-export const PageTitleConsumer = PageTitle.Target
-export const PageTitleProvider = ({ children }: { children: any }) => (
-  <PageTitle.Source>{children}</PageTitle.Source>
-)
+export const createPort = () => {
+  const Port = createTeleporter()
+  const Consumer = Port.Target
+  const Provider = ({ children }: { children: any }) => (
+    <Port.Source>{children}</Port.Source>
+  )
+  return { Provider, Consumer }
+}
 
-const AppBar = createTeleporter()
-export const AppBarConsumer = AppBar.Target
-export const AppBarProvider = ({ children }: { children: any }) => (
-  <AppBar.Source>{children}</AppBar.Source>
-)
+export const AppBarHead = createPort()
+export const AppBarNav = createPort()
+export const AppBarTail = createPort()
 
-const PageBar = createTeleporter()
-export const PageBarConsumer = PageBar.Target
-export const PageBarProvider = ({ children }: { children: any }) => (
-  <PageBar.Source>{children}</PageBar.Source>
-)
+export const PageBarHead = createPort()
+export const PageBarNav = createPort()
+export const PageBarTail = createPort()
 
-const SideBar = createTeleporter()
-export const SideBarConsumer = SideBar.Target
-export const SideBarProvider = ({ children }: { children: any }) => (
-  <SideBar.Source>{children}</SideBar.Source>
-)
+export const SideBarHead = createPort()
+export const SideBarNav = createPort()
+export const SideBarTail = createPort()
