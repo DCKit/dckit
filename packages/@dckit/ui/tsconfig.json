@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@comp/*": ["components/*"],
+      "@comp/*": ["comp/*"],
       "@ports": ["ports/index"],
       "@utils/*": ["utils/*"],
       "@utils": ["utils/index"],
@@ -19,7 +19,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "outDir": "dist",
     "strict": true,
     "target": "es2018"

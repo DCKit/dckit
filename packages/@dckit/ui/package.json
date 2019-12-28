@@ -72,6 +72,11 @@
     "test": "CI=true tsdx test --color",
     "test:coverage": "CI=true tsdx test --color --coverage"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "@(comp|utils|ports)(.*)$": "<rootDir>/src/$1$2"
+    }
+  },
   "prettier": {
     "semi": false,
     "singleQuote": true,

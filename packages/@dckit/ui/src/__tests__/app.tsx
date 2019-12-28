@@ -15,7 +15,7 @@ import {
 } from '../index'
 
 const Custom: React.FC<any> = (props: any) => {
-  return props
+  return null
 }
 
 export const pages: ISideBarItemProps[] = [
