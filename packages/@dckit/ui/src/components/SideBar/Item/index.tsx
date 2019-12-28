@@ -36,7 +36,6 @@ export const SideBarItem = ({
       id={id}
       button={true}
       dense={true}
-      disableRipple={true}
       selected={selected}
       className={cn(classes.root, selected && '-selected')}
       onClick={onClick}

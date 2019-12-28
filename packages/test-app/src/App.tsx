@@ -12,7 +12,9 @@ export const App: React.FC = () => (
     <Router>
       <AppLayout>
         <AppBarHead.Provider>App</AppBarHead.Provider>
-        <AppBarNav.Provider> </AppBarNav.Provider>
+        <AppBarNav.Provider>
+          <></>
+        </AppBarNav.Provider>
         <SideBar />
         <div style={{ padding: 16 }}>
           <Items itemType={TestItem} optedItemId={3} />

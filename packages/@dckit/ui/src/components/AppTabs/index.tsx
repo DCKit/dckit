@@ -20,8 +20,6 @@ export const AppTabs = ({ tabs, path }: IAppTabsProps) => {
     locationTabIndex === -1 ? false : locationTabIndex
   )
 
-  console.log(location, tabIndex)
-
   const handleChange = (event: React.ChangeEvent<{}>, newTabIndex: number) => {
     if (!event) return
     selectTab(newTabIndex)
