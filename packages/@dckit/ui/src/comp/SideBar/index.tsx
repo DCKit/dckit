@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import cn from 'clsx'
 import { Drawer } from '@material-ui/core'
-import { useMediaType } from '@utils'
-import { SideBarHead, SideBarNav, SideBarTail } from '@ports'
+import { useMediaType } from '@/utils'
+import { SideBarHead, SideBarNav, SideBarTail } from '@/ports'
 import { useStyles } from './styles'
 import { SideBarContext } from './context'
 

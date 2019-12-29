@@ -1,6 +1,6 @@
 import React from 'react'
-import { identity } from '@utils'
-import { TCallback } from 'types'
+import { stub } from '@/utils'
+import { TCallback } from '@/types'
 
 interface IAppTabsContext {
   currentTab: string
@@ -9,7 +9,7 @@ interface IAppTabsContext {
 
 const defaultAppTabsContext: IAppTabsContext = {
   currentTab: '',
-  selectTab: identity,
+  selectTab: stub,
 }
 
 export const AppTabsContext = React.createContext(defaultAppTabsContext)

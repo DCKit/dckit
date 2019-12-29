@@ -1,7 +1,7 @@
 import React from 'react'
 import { List, Divider } from '@material-ui/core'
-import { SideBarItem, ISideBarItemProps } from '@comp/SideBar/Item'
-import { SideBarNavItem } from '@comp/SideBar/NavItem'
+import { SideBarItem, ISideBarItemProps } from '@/comp/SideBar/Item'
+import { SideBarNavItem } from '@/comp/SideBar/NavItem'
 
 interface ISideBarNavigationProps {
   items: ISideBarItemProps[]

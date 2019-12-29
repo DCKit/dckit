@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRouteMatch } from 'react-router'
 import { useHistory } from 'react-router-dom'
-import { SideBarItem, ISideBarItemProps } from '@comp/SideBar/Item'
+import { SideBarItem, ISideBarItemProps } from '@/comp/SideBar/Item'
 
 export const SideBarNavItem = (props: ISideBarItemProps) => {
   const { to, loading, ...itemProps } = props

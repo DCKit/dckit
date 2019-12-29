@@ -3,8 +3,14 @@ import { useHistory, useLocation } from 'react-router-dom'
 import { Tabs, Tab } from '@material-ui/core'
 import { useTabs, useTabItem } from './styles'
 
+export interface IAppTabProps {
+  id?: string
+  label?: string
+  disabled?: boolean
+}
+
 interface IAppTabsProps {
-  tabs: any[]
+  tabs: IAppTabProps[]
   path: string
 }
 
@@ -21,7 +27,6 @@ export const AppTabs = ({ tabs, path }: IAppTabsProps) => {
   )
 
   const handleChange = (event: React.ChangeEvent<{}>, newTabIndex: number) => {
-    if (!event) return
     selectTab(newTabIndex)
     history.push(`${path}/${tabs[newTabIndex].id}`)
   }
@@ -35,12 +40,13 @@ export const AppTabs = ({ tabs, path }: IAppTabsProps) => {
       classes={classesTabs}
     >
       {tabs.map((tab, index) => {
+        const { id, label, disabled } = tab
         return (
           <Tab
             key={index}
-            value={index}
-            label={tab.label}
-            id={`app-tab-${tab.id}`}
+            label={label}
+            id={`app-tab-${id}`}
+            disabled={disabled}
             classes={classesTabItem}
           />
         )

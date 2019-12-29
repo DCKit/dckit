@@ -1,9 +1,9 @@
 import React from 'react'
 import cn from 'clsx'
 import { ListItem, ListItemIcon } from '@material-ui/core'
-import { ItemLoader } from '@comp/SideBar/ItemLoader'
+import { ItemLoader } from '@/comp/SideBar/ItemLoader'
 import { useStyles } from './styles'
-import { TCallback } from 'types'
+import { TCallback } from '@/types'
 
 export interface ISideBarItemProps {
   id?: string

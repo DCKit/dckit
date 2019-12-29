@@ -1,12 +1,8 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "@comp/*": ["comp/*"],
-      "@ports": ["ports/index"],
-      "@utils/*": ["utils/*"],
-      "@utils": ["utils/index"],
-      "*": ["*"]
+      "@/*": ["src/*"]
     },
     "lib": ["es6", "dom"],
     "noImplicitAny": true,

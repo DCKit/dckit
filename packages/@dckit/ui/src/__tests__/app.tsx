@@ -12,7 +12,7 @@ import {
   SideBarNav,
   SideBarContext,
   SideBarNavigation,
-} from '../index'
+} from '@/index'
 
 const Custom: React.FC<any> = (props: any) => {
   return null
