@@ -4,11 +4,11 @@ import { useHistory } from 'react-router-dom'
 import { SideBarItem, ISideBarItemProps } from '@/comp/SideBar/Item'
 
 export const SideBarNavItem = (props: ISideBarItemProps) => {
-  const { to, loading, ...itemProps } = props
+  const { path, loading, ...itemProps } = props
   const history = useHistory()
-  const match = useRouteMatch({ path: to })
+  const match = useRouteMatch({ path })
   const selected = Boolean(!loading && match)
-  const handleClick = () => to && history.push(to)
+  const handleClick = () => path && history.push(path)
 
   return (
     <SideBarItem

@@ -16,14 +16,14 @@ export const SideBarNavigation = ({
 }: ISideBarNavigationProps) => (
   <ListComponent {...listProps}>
     {items.map((item, index) => {
-      const { Component, id, ...itemProps } = item
+      const { component, id, ...itemProps } = item
       const itemId = `sidebar-item-${id || index}`
 
       if (item.divider) return <Divider key={itemId} />
 
-      const Item = Component
-        ? Component
-        : item.to
+      const Item = component
+        ? component
+        : item.path
         ? SideBarNavItem
         : SideBarItem
 

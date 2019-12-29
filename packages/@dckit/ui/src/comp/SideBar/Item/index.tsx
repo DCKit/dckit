@@ -9,13 +9,13 @@ export interface ISideBarItemProps {
   id?: string
   label?: string
   icon?: any
-  to?: string
+  path?: string
   divider?: boolean
   onClick?: TCallback
   selected?: boolean
   loading?: boolean
   disabled?: boolean
-  Component?: React.FC<any>
+  component?: React.FC<any>
   [propName: string]: any
 }
 

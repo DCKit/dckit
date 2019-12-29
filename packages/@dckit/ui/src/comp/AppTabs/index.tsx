@@ -5,19 +5,20 @@ import { useLocationTail } from '@/routes'
 import { useTabsStyles, useTabItemStyles } from './styles'
 
 export interface IAppTab {
-  id: string
   label: string
+  path: string
+  id?: string
   disabled?: boolean
 }
 
 interface IAppTabsProps {
   tabs: IAppTab[]
-  path?: string
+  path: string
 }
 
 export const useLocationTab = (tabs: IAppTab[]) => {
   const locationTail = useLocationTail()
-  const tabIndex = tabs.findIndex(tab => tab.id === locationTail)
+  const tabIndex = tabs.findIndex(tab => tab.path === locationTail)
   const locationTab = tabIndex === -1 ? false : tabIndex
   return locationTab
 }
@@ -31,7 +32,7 @@ export const AppTabs = ({ tabs, path }: IAppTabsProps) => {
 
   const handleChange = (event: React.ChangeEvent<{}>, tabIndex: number) => {
     selectTab(tabIndex)
-    history.push(`${path || ''}/${tabs[tabIndex].id}`)
+    history.push(`${path}${tabs[tabIndex].path}`)
   }
 
   return (
@@ -44,7 +45,7 @@ export const AppTabs = ({ tabs, path }: IAppTabsProps) => {
     >
       {tabs.map((tab, index) => {
         const { id, label, disabled } = tab
-        const tabId = `app-tab-${id}`
+        const tabId = `app-tab-${id || index}`
         return (
           <Tab
             key={tabId}

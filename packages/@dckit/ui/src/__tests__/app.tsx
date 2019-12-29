@@ -21,7 +21,7 @@ const Custom: React.FC<any> = (props: any) => {
 export const pages: ISideBarItemProps[] = [
   {
     label: 'page1',
-    to: '/',
+    path: '/',
   },
   {
     label: 'page2',
@@ -30,7 +30,7 @@ export const pages: ISideBarItemProps[] = [
     divider: true,
   },
   {
-    Component: Custom,
+    component: Custom,
   },
 ]
 
@@ -49,9 +49,9 @@ const SideBar = () => {
 }
 
 const tabs = [
-  { id: 'tab1', label: 'tab1' },
-  { id: 'tab2', label: 'tab2' },
-  { id: 'tab3', label: 'tab3' },
+  { id: 'tab1', path: '/tab1', label: 'tab1' },
+  { id: 'tab2', path: '/tab2', label: 'tab2' },
+  { id: 'tab3', path: '/tab3', label: 'tab3' },
 ]
 
 const App: React.FC = () => (
