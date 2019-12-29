@@ -22,17 +22,17 @@ export const Items: React.FC<{ itemType: string; optedItemId?: number }> = ({
     {
       id: 'tab1',
       label: 'Tab 1',
-      route: { path: '/tab1', component: () => 'Tab 1' },
+      route: { path: '/tab1', component: () => <>Tab 1</> },
     },
     {
       id: 'tab2',
       label: 'Tab 2',
-      route: { path: '/tab2', component: () => 'Tab 2' },
+      route: { path: '/tab2', component: () => <>Tab 2</> },
     },
     {
       id: 'tab3',
       label: 'Tab 3',
-      route: { path: '/tab3', component: () => 'Tab 3' },
+      route: { path: '/tab3', component: () => <>Tab 3</> },
     },
   ]
 

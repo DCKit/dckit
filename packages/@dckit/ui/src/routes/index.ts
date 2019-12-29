@@ -1,10 +1,10 @@
-import React from 'react'
+import { ComponentType } from 'react'
 import { useLocation } from 'react-router-dom'
 
 export interface IRoute {
   path: string
   exact?: boolean
-  component: React.ReactNode
+  component: ComponentType
 }
 
 export const useLocationTail = () => {
