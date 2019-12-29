@@ -1,39 +1,42 @@
 import React, { useState } from 'react'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Tabs, Tab } from '@material-ui/core'
-import { useTabs, useTabItem } from './styles'
+import { useLocationTail } from '@/routes'
+import { useTabsStyles, useTabItemStyles } from './styles'
 
-export interface IAppTabProps {
-  id?: string
-  label?: string
+export interface IAppTab {
+  id: string
+  label: string
   disabled?: boolean
 }
 
 interface IAppTabsProps {
-  tabs: IAppTabProps[]
-  path: string
+  tabs: IAppTab[]
+  path?: string
+}
+
+export const useLocationTab = (tabs: IAppTab[]) => {
+  const locationTail = useLocationTail()
+  const tabIndex = tabs.findIndex(tab => tab.id === locationTail)
+  const locationTab = tabIndex === -1 ? false : tabIndex
+  return locationTab
 }
 
 export const AppTabs = ({ tabs, path }: IAppTabsProps) => {
-  const classesTabs = useTabs()
-  const classesTabItem = useTabItem()
-  const location = useLocation().pathname
+  const classesTabs = useTabsStyles()
+  const classesTabItem = useTabItemStyles()
+  const locationTab = useLocationTab(tabs)
+  const [currentTab, selectTab] = useState(locationTab)
   const history = useHistory()
-  const match = location.match(/\/([a-z0-9-]+)\/?$/)
-  const locationTab = match && match[1]
-  const locationTabIndex = tabs.findIndex(tab => tab.id === locationTab)
-  const [tabIndex, selectTab] = useState(
-    locationTabIndex === -1 ? false : locationTabIndex
-  )
 
-  const handleChange = (event: React.ChangeEvent<{}>, newTabIndex: number) => {
-    selectTab(newTabIndex)
-    history.push(`${path}/${tabs[newTabIndex].id}`)
+  const handleChange = (event: React.ChangeEvent<{}>, tabIndex: number) => {
+    selectTab(tabIndex)
+    history.push(`${path || ''}/${tabs[tabIndex].id}`)
   }
 
   return (
     <Tabs
-      value={tabIndex}
+      value={currentTab}
       onChange={handleChange}
       variant="scrollable"
       scrollButtons="auto"
@@ -41,11 +44,12 @@ export const AppTabs = ({ tabs, path }: IAppTabsProps) => {
     >
       {tabs.map((tab, index) => {
         const { id, label, disabled } = tab
+        const tabId = `app-tab-${id}`
         return (
           <Tab
-            key={index}
+            key={tabId}
+            id={tabId}
             label={label}
-            id={`app-tab-${id}`}
             disabled={disabled}
             classes={classesTabItem}
           />
