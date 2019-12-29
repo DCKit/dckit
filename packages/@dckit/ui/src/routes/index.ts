@@ -1,4 +1,11 @@
+import React from 'react'
 import { useLocation } from 'react-router-dom'
+
+export interface IRoute {
+  path: string
+  exact?: boolean
+  component: React.ReactNode
+}
 
 export const useLocationTail = () => {
   const location = useLocation().pathname

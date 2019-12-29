@@ -7,21 +7,18 @@ import {
   AppBarTail,
   AppTabs,
   PageBarHead,
-  ISideBarItemProps,
   SideBarHead,
   SideBarNav,
   SideBarContext,
   SideBarNavigation,
 } from '@/index'
 
-const Custom: React.FC<any> = (props: any) => {
-  return null
-}
+import { stub } from '@/utils'
 
-export const pages: ISideBarItemProps[] = [
+export const pages = [
   {
     label: 'page1',
-    path: '/',
+    route: { path: '/tab1', component: stub },
   },
   {
     label: 'page2',
@@ -30,7 +27,7 @@ export const pages: ISideBarItemProps[] = [
     divider: true,
   },
   {
-    component: Custom,
+    component: stub,
   },
 ]
 
@@ -49,9 +46,21 @@ const SideBar = () => {
 }
 
 const tabs = [
-  { id: 'tab1', path: '/tab1', label: 'tab1' },
-  { id: 'tab2', path: '/tab2', label: 'tab2' },
-  { id: 'tab3', path: '/tab3', label: 'tab3' },
+  {
+    id: 'tab1',
+    label: 'Tab 1',
+    route: { path: '/tab1', component: stub },
+  },
+  {
+    id: 'tab2',
+    label: 'Tab 2',
+    route: { path: '/tab2', component: stub },
+  },
+  {
+    id: 'tab3',
+    label: 'Tab 3',
+    route: { path: '/tab3', component: stub },
+  },
 ]
 
 const App: React.FC = () => (
@@ -60,7 +69,7 @@ const App: React.FC = () => (
       <AppBarHead.Provider>App</AppBarHead.Provider>
       <SideBar />
       <AppBarNav.Provider>
-        <AppTabs tabs={tabs} path="" />
+        <AppTabs tabs={tabs} />
       </AppBarNav.Provider>
       <AppBarTail.Provider>test app</AppBarTail.Provider>
       )}

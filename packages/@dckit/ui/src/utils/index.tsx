@@ -1,9 +1,6 @@
-import React from 'react'
 import { useMediaQuery } from '@material-ui/core'
-import { TRenderProp } from '@/types'
 
-export const renderEmpty: TRenderProp = (): JSX.Element => <></>
-export const stub = () => {}
+export const stub = () => null
 
 export interface IMediaType {
   isDesktop: boolean

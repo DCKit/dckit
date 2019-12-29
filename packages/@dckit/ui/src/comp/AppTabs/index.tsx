@@ -1,24 +1,24 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Tabs, Tab } from '@material-ui/core'
-import { useLocationTail } from '@/routes'
+import { useLocationTail, IRoute } from '@/routes'
 import { useTabsStyles, useTabItemStyles } from './styles'
 
-export interface IAppTab {
+export interface IAppTabItem {
   label: string
-  path: string
+  route: IRoute
   id?: string
   disabled?: boolean
 }
 
 interface IAppTabsProps {
-  tabs: IAppTab[]
-  path: string
+  tabs: IAppTabItem[]
+  path?: string
 }
 
-export const useLocationTab = (tabs: IAppTab[]) => {
+export const useLocationTab = (tabs: IAppTabItem[]) => {
   const locationTail = useLocationTail()
-  const tabIndex = tabs.findIndex(tab => tab.path === locationTail)
+  const tabIndex = tabs.findIndex(tab => tab.route.path === locationTail)
   const locationTab = tabIndex === -1 ? false : tabIndex
   return locationTab
 }
@@ -32,7 +32,8 @@ export const AppTabs = ({ tabs, path }: IAppTabsProps) => {
 
   const handleChange = (event: React.ChangeEvent<{}>, tabIndex: number) => {
     selectTab(tabIndex)
-    history.push(`${path}${tabs[tabIndex].path}`)
+    const basePath = !path || path === '/' ? '' : path
+    history.push(`${basePath}${tabs[tabIndex].route.path}`)
   }
 
   return (

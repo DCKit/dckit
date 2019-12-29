@@ -1,33 +1,51 @@
-import React from 'react'
+import React, { ComponentType, ComponentProps } from 'react'
 import { List, Divider } from '@material-ui/core'
-import { SideBarItem, ISideBarItemProps } from '@/comp/SideBar/Item'
-import { SideBarNavItem } from '@/comp/SideBar/NavItem'
+import {
+  SideBarItem,
+  ISideBarItem,
+  ISideBarDivider,
+  ISideBarCustomItem,
+} from '@/comp/SideBar/Item'
+import { SideBarRouteItem, ISideBarRouteItem } from '@/comp/SideBar/RouteItem'
 
-interface ISideBarNavigationProps {
-  items: ISideBarItemProps[]
-  ListComponent?: any
-  listProps?: any
+export type TNavigationItem =
+  | ISideBarItem
+  | ISideBarRouteItem
+  | ISideBarDivider
+  | ISideBarCustomItem
+
+interface ISideBarNavigation {
+  items: TNavigationItem[]
+  ListComponent?: ComponentType
+  listProps?: ComponentProps<any>
 }
 
 export const SideBarNavigation = ({
   items,
   ListComponent = List,
   listProps = {},
-}: ISideBarNavigationProps) => (
+}: ISideBarNavigation) => (
   <ListComponent {...listProps}>
     {items.map((item, index) => {
-      const { component, id, ...itemProps } = item
-      const itemId = `sidebar-item-${id || index}`
+      const itemId = `sidebar-item-${('id' in item && item.id) || index}`
 
-      if (item.divider) return <Divider key={itemId} />
-
-      const Item = component
-        ? component
-        : item.path
-        ? SideBarNavItem
-        : SideBarItem
-
-      return <Item key={itemId} {...itemProps} id={itemId} />
+      if ('divider' in item && item.divider) {
+        return <Divider key={itemId} />
+      }
+      if ('component' in item && item.component) {
+        return <item.component key={itemId} {...item} />
+      }
+      if ('route' in item && item.route) {
+        return (
+          <SideBarRouteItem
+            key={itemId}
+            {...item}
+            route={item.route}
+            id={itemId}
+          />
+        )
+      }
+      return <SideBarItem key={itemId} {...item} id={itemId} />
     })}
   </ListComponent>
 )
