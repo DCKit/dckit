@@ -1,12 +1,13 @@
-import { ISideBarItemProps } from '@dckit/ui'
+import { TNavigationItem } from '@dckit/ui'
 
-export const sideBarItems: ISideBarItemProps[] = [
+export const sideBarItems: TNavigationItem[] = [
   {
     label: 'page1',
-    to: '/',
+    route: { path: '/page1', component: () => null },
   },
   {
     label: 'page2',
+    route: { path: '/page2', component: () => null },
   },
   {
     label: 'page3',

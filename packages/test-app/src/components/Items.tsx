@@ -19,15 +19,27 @@ export const Items: React.FC<{ itemType: string; optedItemId?: number }> = ({
   const optedItem = useOptedItem(itemType)
 
   const tabs = [
-    { id: 'tab1', label: 'tab1' },
-    { id: 'tab2', label: 'tab2' },
-    { id: 'tab3', label: 'tab3' },
+    {
+      id: 'tab1',
+      label: 'Tab 1',
+      route: { path: '/tab1', component: () => 'Tab 1' },
+    },
+    {
+      id: 'tab2',
+      label: 'Tab 2',
+      route: { path: '/tab2', component: () => 'Tab 2' },
+    },
+    {
+      id: 'tab3',
+      label: 'Tab 3',
+      route: { path: '/tab3', component: () => 'Tab 3' },
+    },
   ]
 
   return (
     <>
       <AppBarNav.Provider>
-        <AppTabs tabs={tabs} path="" />
+        <AppTabs tabs={tabs} path="/page1" />
       </AppBarNav.Provider>
       {optedItem && (
         <AppBarHead.Provider>Opted item: {optedItem.field}</AppBarHead.Provider>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { Tabs, Tab } from '@material-ui/core'
 import { useLocationTail, IRoute } from '@/routes'
@@ -27,18 +27,16 @@ export const AppTabs = ({ tabs, path }: IAppTabsProps) => {
   const classesTabs = useTabsStyles()
   const classesTabItem = useTabItemStyles()
   const locationTab = useLocationTab(tabs)
-  const [currentTab, selectTab] = useState(locationTab)
   const history = useHistory()
 
   const handleChange = (event: React.ChangeEvent<{}>, tabIndex: number) => {
-    selectTab(tabIndex)
     const basePath = !path || path === '/' ? '' : path
     history.push(`${basePath}${tabs[tabIndex].route.path}`)
   }
 
   return (
     <Tabs
-      value={currentTab}
+      value={locationTab}
       onChange={handleChange}
       variant="scrollable"
       scrollButtons="auto"
