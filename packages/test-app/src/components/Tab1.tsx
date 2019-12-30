@@ -1,14 +1,14 @@
 import React from 'react'
 import { AppBarNav, AppTabs } from '@dckit/ui'
-import { page1tabs } from '../pages'
+import { tab1subtabs } from '../pages'
 
-export const Page1: React.FC<any> = props => {
+export const Tab1: React.FC<any> = props => {
   return (
     <>
       <AppBarNav.Provider>
-        <AppTabs tabs={page1tabs} path={props.match.url} />
+        <AppTabs tabs={tab1subtabs} path={props.match.url} />
       </AppBarNav.Provider>
-      <h2>Page 1</h2>
+      <h4>Tab 1</h4>
       {props.children}
     </>
   )
