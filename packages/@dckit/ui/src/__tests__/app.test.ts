@@ -11,7 +11,10 @@ describe('test app', () => {
     fireEvent.click(getByText('page1'))
     expect(getByText('Page 1')).toBeDefined()
 
-    fireEvent.click(getByText('Tab 1'))
+    fireEvent.click(getByText('tab1'))
     expect(getByText('Tab 1')).toBeDefined()
+
+    fireEvent.click(getByText('subTab1'))
+    expect(getByText('Sub Tab 1')).toBeDefined()
   })
 })
