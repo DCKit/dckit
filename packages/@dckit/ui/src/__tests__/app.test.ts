@@ -1,5 +1,5 @@
 import { cleanup, render } from '@testing-library/react'
-import { app } from './app'
+import { app } from './App'
 
 afterEach(cleanup)
 
