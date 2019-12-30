@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { MemoryRouter as Router } from 'react-router-dom'
 import { renderRoutes } from '@/index'
 import { routes } from './pages'
 

@@ -10,7 +10,7 @@ export const Layout: React.FC<{ children?: any }> = ({ children }) => {
         <Link to="/">App</Link>
       </AppBarHead.Provider>
       <SideBar />
-      {children || 'Welcome !'}
+      {children}
     </AppLayout>
   )
 }
