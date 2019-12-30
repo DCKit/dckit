@@ -1,10 +1,8 @@
 import React from 'react'
-import { mapRoutes } from '@dckit/ui'
-import { TestItem } from '../items'
-import { Layout } from '../components/Layout'
-import { Page1 } from '../components/Page1'
-import { Tab1 } from '../components/Tab1'
-import { Items } from '../components/Items'
+import { mapRoutes } from '@/routes'
+import { Layout } from './Layout'
+import { Page1 } from './Page1'
+import { Tab1 } from './Tab1'
 
 export const tab1subtabs = [
   {
@@ -55,11 +53,7 @@ export const sideBarItems = [
     label: 'page2',
     route: {
       path: '/page2',
-      component: () => (
-        <div style={{ padding: 16 }}>
-          <Items itemType={TestItem} optedItemId={3} />
-        </div>
-      ),
+      component: () => <>Page 2</>,
     },
   },
   {

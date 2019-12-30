@@ -1,7 +1,7 @@
 import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
-export const useTabs = makeStyles((theme: Theme) => {
+export const useTabsStyles = makeStyles((theme: Theme) => {
   const { spacing, palette } = theme
   return {
     root: {
@@ -16,7 +16,7 @@ export const useTabs = makeStyles((theme: Theme) => {
   }
 })
 
-export const useTabItem = makeStyles((theme: Theme) => {
+export const useTabItemStyles = makeStyles((theme: Theme) => {
   const { breakpoints, spacing } = theme
   return {
     root: {

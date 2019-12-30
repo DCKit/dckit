@@ -1,21 +1,26 @@
-import React from 'react'
+import React, { ReactElement, ComponentType } from 'react'
 import cn from 'clsx'
 import { ListItem, ListItemIcon } from '@material-ui/core'
-import { ItemLoader } from '@comp/SideBar/ItemLoader'
+import { ItemLoader } from '@/comp/SideBar/ItemLoader'
 import { useStyles } from './styles'
-import { TCallback } from 'types'
+import { TCallback } from '@/types'
 
-export interface ISideBarItemProps {
+export interface ISideBarItem {
   id?: string
   label?: string
-  icon?: any
-  to?: string
-  divider?: boolean
+  icon?: ReactElement<any>
   onClick?: TCallback
   selected?: boolean
   loading?: boolean
   disabled?: boolean
-  Component?: React.FC<any>
+}
+
+export interface ISideBarDivider {
+  divider: boolean
+}
+
+export interface ISideBarCustomItem {
+  component: ComponentType
   [propName: string]: any
 }
 
@@ -27,10 +32,11 @@ export const SideBarItem = ({
   selected,
   loading,
   disabled,
-}: ISideBarItemProps) => {
+}: ISideBarItem) => {
   const classes = useStyles()
 
   if (loading) return <ItemLoader />
+
   return (
     <ListItem
       id={id}

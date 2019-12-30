@@ -1,6 +1,6 @@
 import React from 'react'
-import { identity } from '@utils'
-import { TCallback } from 'types'
+import { stub } from '@/utils'
+import { TCallback } from '@/types'
 
 interface ISideBarContext {
   sideBarOpen: boolean
@@ -9,7 +9,7 @@ interface ISideBarContext {
 
 const defaultSideBarContext: ISideBarContext = {
   sideBarOpen: false,
-  showSideBar: identity,
+  showSideBar: stub,
 }
 
 export const SideBarContext = React.createContext(defaultSideBarContext)
