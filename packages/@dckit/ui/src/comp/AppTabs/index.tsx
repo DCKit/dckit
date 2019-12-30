@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { Tabs, Tab } from '@material-ui/core'
 import { useLocationTail, IRoute } from '@/routes'
 import { useTabsStyles, useTabItemStyles } from './styles'
+import { normalizePath } from '@/utils'
 
 export interface IAppTabItem {
   label: string
@@ -30,7 +31,7 @@ export const AppTabs = ({ tabs, path }: IAppTabsProps) => {
   const history = useHistory()
 
   const handleChange = (event: React.ChangeEvent<{}>, tabIndex: number) => {
-    const basePath = !path || path === '/' ? '' : path
+    const basePath = normalizePath(path)
     history.push(`${basePath}${tabs[tabIndex].route.path}`)
   }
 

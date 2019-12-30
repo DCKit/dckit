@@ -8,14 +8,14 @@ import {
 } from '@/comp/SideBar/Item'
 import { SideBarRouteItem, ISideBarRouteItem } from '@/comp/SideBar/RouteItem'
 
-export type TNavigationItem =
+export type INavigationItem =
   | ISideBarItem
   | ISideBarRouteItem
   | ISideBarDivider
   | ISideBarCustomItem
 
 interface ISideBarNavigation {
-  items: TNavigationItem[]
+  items: INavigationItem[]
   ListComponent?: ComponentType
   listProps?: ComponentProps<any>
 }

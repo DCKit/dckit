@@ -2,6 +2,9 @@ import { useMediaQuery } from '@material-ui/core'
 
 export const stub = () => null
 
+export const normalizePath = (path?: string) =>
+  !path || path === '/' ? '' : path
+
 export interface IMediaType {
   isDesktop: boolean
   isTablet: boolean
