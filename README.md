@@ -6,4 +6,4 @@
 
 [`@dckit/store`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/store) [`@dckit/ui`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/ui) [`@dckit/auth`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/auth) [`test-app`](https://github.com/DCKit/dckit/tree/master/packages/test-app)
 
-**similar projects:** [`<ReactAdmin />`](https://marmelab.com/react-admin) [`strapi`](https://strapi.io)
+**similar projects:** [`<ReactAdmin />`](https://marmelab.com/react-admin) [`Hammer`](https://github.com/hammerframework/hammer)
