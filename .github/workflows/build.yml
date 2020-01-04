@@ -10,8 +10,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm install
-      - run: npm run bootstrap
+      - run: npm run prepare
       #      - name: deploy test-app
       #        run: now -t ${{ secrets.zeit_token }} -C -f --prod -n dckit-test-app packages/test-app/build
       - name: upload coverage

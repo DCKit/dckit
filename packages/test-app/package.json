@@ -45,6 +45,18 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
+  "babel": {
+    "plugins": [
+      [
+        "@babel/plugin-transform-regenerator",
+        {
+          "asyncGenerators": false,
+          "generators": false,
+          "async": false
+        }
+      ]
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
