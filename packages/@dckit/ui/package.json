@@ -75,7 +75,7 @@
     "format": "prettier --write \"src/*.ts\" \"src/**/*.ts\" \"**/*.md\"",
     "format:check": "prettier --list-different \"src/*.ts\" \"src/**/*.ts\" \"**/*.md\"",
     "lint": "tsdx lint src && tsc --noEmit",
-    "prepare": "npm run lint && npm run format:check && npm run test:coverage && npm run build",
+    "prepare": "npm run test:coverage && npm run build",
     "test": "CI=true tsdx test --color",
     "test:coverage": "CI=true tsdx test --color --coverage"
   },
