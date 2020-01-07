@@ -5,21 +5,13 @@ export const stub = () => null
 export const normalizePath = (path?: string) =>
   !path || path === '/' ? '' : path
 
-export interface IMediaType {
-  isDesktop: boolean
-  isTablet: boolean
-  isMobile: boolean
-}
-
 const query = (max: number): string => `@media (max-width: ${max}px)`
 
-export const useMediaType = (): IMediaType => {
-  const isDesktop = useMediaQuery(query(922))
-  const isTablet = useMediaQuery(query(768))
-  const isMobile = useMediaQuery(query(576))
-  return {
-    isDesktop,
-    isTablet,
-    isMobile,
-  }
-}
+export const useMediaMobile = (): boolean =>
+  useMediaQuery(query(576), { noSsr: true })
+
+export const useMediaTablet = (): boolean =>
+  useMediaQuery(query(768), { noSsr: true })
+
+export const useMediaDesktop = (): boolean =>
+  useMediaQuery(query(922), { noSsr: true })
