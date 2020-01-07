@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import cn from 'clsx'
 import { Drawer } from '@material-ui/core'
-import { useMediaType } from '@/utils'
+import { useMediaMobile } from '@/utils'
 import { SideBarHead, SideBarNav, SideBarTail } from '@/ports'
 import { useStyles } from './styles'
 import { SideBarContext } from './context'
@@ -51,6 +51,6 @@ const SideBarDesktop = () => {
 }
 
 export const SideBar = () => {
-  const { isMobile } = useMediaType()
+  const isMobile = useMediaMobile()
   return isMobile ? <SideBarMobile /> : <SideBarDesktop />
 }
