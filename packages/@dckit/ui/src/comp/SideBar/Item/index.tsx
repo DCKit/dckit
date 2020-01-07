@@ -1,7 +1,6 @@
 import React, { ReactElement, ComponentType } from 'react'
 import cn from 'clsx'
 import { ListItem, ListItemIcon } from '@material-ui/core'
-import { ItemLoader } from '@/comp/SideBar/ItemLoader'
 import { useStyles } from './styles'
 import { TCallback } from '@/types'
 
@@ -11,7 +10,6 @@ export interface ISideBarItem {
   icon?: ReactElement<any>
   onClick?: TCallback
   selected?: boolean
-  loading?: boolean
   disabled?: boolean
 }
 
@@ -30,12 +28,9 @@ export const SideBarItem = ({
   icon,
   onClick,
   selected,
-  loading,
   disabled,
 }: ISideBarItem) => {
   const classes = useStyles()
-
-  if (loading) return <ItemLoader />
 
   return (
     <ListItem

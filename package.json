@@ -4,10 +4,10 @@
   "scripts": {
     "build": "FORCE_COLOR=true lerna run build --stream",
     "dev": "FORCE_COLOR=true lerna run dev",
-    "prepare": "lerna bootstrap --hoist --ci",
+    "bootstrap": "lerna bootstrap --hoist --ci",
     "docs": "FORCE_COLOR=true lerna run docs --stream"
   },
   "devDependencies": {
-    "lerna": "^3.19.0"
+    "lerna": "^3.20.2"
   }
 }
