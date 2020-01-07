@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useRouteMatch } from 'react-router'
 import { useHistory } from 'react-router-dom'
 import { SideBarItem, ISideBarItem } from '@/comp/SideBar/Item'
+import { SideBarContext } from '@/comp/SideBar/context'
+import { useMediaMobile } from '@/utils'
 import { IRoute } from '@/routes'
 
 export interface ISideBarRouteItem extends ISideBarItem {
@@ -11,15 +13,17 @@ export interface ISideBarRouteItem extends ISideBarItem {
 export const SideBarRouteItem = (props: ISideBarRouteItem) => {
   const { route, ...itemProps } = props
   const { path } = route
+  const { showSideBar } = useContext(SideBarContext)
+  const selected = Boolean(useRouteMatch({ path }))
+  const isMobile = useMediaMobile()
   const history = useHistory()
-  const match = useRouteMatch({ path })
-  const handleClick = () => path && history.push(path)
+
+  const handleClick = () => {
+    path && history.push(path)
+    isMobile && showSideBar(false)
+  }
 
   return (
-    <SideBarItem
-      {...itemProps}
-      selected={Boolean(match)}
-      onClick={handleClick}
-    />
+    <SideBarItem {...itemProps} selected={selected} onClick={handleClick} />
   )
 }

@@ -40,7 +40,7 @@ export const AppTabs = ({ tabs, path }: IAppTabsProps) => {
       value={locationTab}
       onChange={handleChange}
       variant="scrollable"
-      scrollButtons="auto"
+      scrollButtons="desktop"
       classes={classesTabs}
     >
       {tabs.map((tab, index) => {
