@@ -5,8 +5,8 @@ import {
   ISideBarItem,
   ISideBarDivider,
   ISideBarCustomItem,
-} from '@/comp/SideBar/Item'
-import { SideBarRouteItem, ISideBarRouteItem } from '@/comp/SideBar/RouteItem'
+} from '../Item'
+import { SideBarRouteItem, ISideBarRouteItem } from '../RouteItem'
 
 export type INavigationItem =
   | ISideBarItem

@@ -3,7 +3,6 @@
   "private": true,
   "scripts": {
     "build": "FORCE_COLOR=true lerna run build --stream",
-    "dev": "FORCE_COLOR=true lerna run dev",
     "bootstrap": "lerna bootstrap --hoist --ci",
     "docs": "FORCE_COLOR=true lerna run docs --stream"
   },

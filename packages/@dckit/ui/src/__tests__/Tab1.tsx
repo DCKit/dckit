@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBarNav, AppTabs } from '@/index'
+import { AppBarNav, AppTabs } from '../index'
 import { tab1subtabs } from './pages'
 
 export const Tab1: React.FC<any> = props => {

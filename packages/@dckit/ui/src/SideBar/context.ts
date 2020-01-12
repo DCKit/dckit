@@ -1,6 +1,6 @@
 import React from 'react'
-import { stub } from '@/utils'
-import { TCallback } from '@/types'
+import { stub } from '../utils'
+import { TCallback } from '../types'
 
 interface ISideBarContext {
   sideBarOpen: boolean

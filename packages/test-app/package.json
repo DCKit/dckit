@@ -28,14 +28,14 @@
     "typescript": "3.7.4"
   },
   "scripts": {
-    "dev": "BROWSER=none pm2 --name test-app start react-scripts --wait-ready --listen-timeout 5000 -- start",
+    "dev": "pm2 --name test-app start react-scripts -- start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "CI=true react-scripts test --color",
     "test:coverage": "CI=true react-scripts test --color --coverage",
     "prepare": "npm run test:coverage && npm run build",
-    "format": "prettier --write \"src/*.ts*\" \"src/**/*.ts*\" \"**/*.md\"",
-    "format:check": "prettier --list-different \"src/*.ts*\" \"src/**/*.ts*\" \"**/*.md\""
+    "format": "prettier --write 'src/**/*.ts*'",
+    "format:check": "prettier -l 'src/**/*.ts*'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -73,9 +73,6 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
-    "transformIgnorePatterns": [
-      "!/node_modules/@dckit/store"
-    ],
     "collectCoverageFrom": [
       "<rootDir>/src/**/*.{ts,tsx}"
     ],

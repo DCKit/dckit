@@ -10,10 +10,10 @@ import {
   PageBarHead,
   PageBarNav,
   PageBarTail,
-} from '@/ports'
-import { SideBar } from '@/comp/SideBar'
-import { SideBarContext } from '@/comp/SideBar/context'
-import { useMediaMobile } from '@/utils'
+} from '../ports'
+import { SideBar } from '../SideBar'
+import { SideBarContext } from '../SideBar/context'
+import { useMediaMobile } from '../utils'
 import { useStyles } from './styles'
 
 interface IContainerProps {
