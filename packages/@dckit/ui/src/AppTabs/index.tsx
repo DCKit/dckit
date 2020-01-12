@@ -1,9 +1,9 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { Tabs, Tab } from '@material-ui/core'
-import { useLocationTail, IRoute } from '@/routes'
+import { useLocationTail, IRoute } from '../routes'
+import { normalizePath } from '../utils'
 import { useTabsStyles, useTabItemStyles } from './styles'
-import { normalizePath } from '@/utils'
 
 export interface IAppTabItem {
   label: string

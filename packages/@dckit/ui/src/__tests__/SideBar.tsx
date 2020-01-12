@@ -4,7 +4,7 @@ import {
   SideBarNav,
   SideBarContext,
   SideBarNavigation,
-} from '@/index'
+} from '../index'
 
 import { sideBarItems } from './pages'
 

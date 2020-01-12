@@ -25,21 +25,21 @@
   "module": "dist/dckit-store.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsdx build --format esm --name dckit-store",
-    "start": "tsdx watch --format esm --name dckit-store",
-    "dev": "pm2 --name @dckit/store start tsdx --wait-ready --listen-timeout 5000 -- watch --format esm --name dckit-store",
-    "format": "prettier --write \"src/*.ts\" \"src/**/*.ts\" \"*.md\"",
-    "format:check": "prettier --list-different \"src/*.ts\" \"src/**/*.ts\" \"*.md\"",
+    "build": "tsdx build --transpileOnly --format esm --name dckit-store",
+    "start": "pm2 --name @dckit/store start tsdx -- watch --transpileOnly --format esm --name dckit-store",
+    "dev": "pm2 --name @dckit/store start tsdx -- watch --transpileOnly --format esm --name dckit-store --onFirstSuccess 'npm run dev:next'",
+    "dev:next": "cd ../auth && npm run dev",
     "lint": "tsdx lint src && tsc --noEmit",
     "test": "CI=true tsdx test --color",
     "test:coverage": "CI=true tsdx test --color --coverage",
     "prepare": "npm run test:coverage && npm run build",
     "apiex": "api-extractor run",
     "apiex:local": "api-extractor run --local --verbose",
-    "docs": "typedoc --exclude '**/*+(index|.test).ts' --theme ../../../docs/.theme --out ../../../docs/dckit-store src"
+    "docs": "typedoc --exclude '**/*+(index|.test).ts' --theme ../../../docs/.theme --out ../../../docs/dckit-store src",
+    "format": "prettier --write 'src/**/*.ts*'",
+    "format:check": "prettier -l 'src/**/*.ts*'"
   },
   "devDependencies": {
-    "@ambroseus/tsdx": "^0.12.3",
     "@types/jest": "^24.0.25",
     "@types/node": "^13.1.4",
     "@types/react-redux": "^7.1.5",
@@ -52,6 +52,7 @@
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "redux-saga-tester": "^1.0.651",
+    "tsdx": "^0.12.1",
     "tslib": "^1.10.0",
     "typedoc": "^0.15.6",
     "typescript": "3.7.4"

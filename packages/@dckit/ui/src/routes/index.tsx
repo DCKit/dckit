@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch, useLocation } from 'react-router-dom'
-import { normalizePath } from '@/utils'
+import { normalizePath } from '../utils'
 
 export interface IRoute {
   path: string

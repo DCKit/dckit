@@ -1,5 +1,5 @@
 import React from 'react'
-import { mapRoutes } from '@/routes'
+import { mapRoutes } from '../routes'
 import { Layout } from './Layout'
 import { Page1 } from './Page1'
 import { Tab1 } from './Tab1'

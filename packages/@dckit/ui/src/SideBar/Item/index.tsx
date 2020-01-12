@@ -2,7 +2,7 @@ import React, { ReactElement, ComponentType } from 'react'
 import cn from 'clsx'
 import { ListItem, ListItemIcon } from '@material-ui/core'
 import { useStyles } from './styles'
-import { TCallback } from '@/types'
+import { TCallback } from '../../types'
 
 export interface ISideBarItem {
   id?: string
