@@ -40,8 +40,8 @@
     "format:check": "prettier -l 'src/**/*.ts*'"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.25",
-    "@types/node": "^13.1.6",
+    "@types/jest": "^24.9.0",
+    "@types/node": "^13.1.7",
     "@types/react-redux": "^7.1.5",
     "@types/redux-saga-tester": "1.0.1",
     "@testing-library/react": "^9.4.0",
@@ -51,10 +51,10 @@
     "prettier": "1.19.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "redux-saga-tester": "^1.0.657",
+    "redux-saga-tester": "^1.0.658",
     "tsdx": "^0.12.3",
     "tslib": "^1.10.0",
-    "typedoc": "^0.16.2",
+    "typedoc": "^0.16.4",
     "typescript": "3.7.4"
   },
   "dependencies": {
