@@ -1,9 +1,14 @@
 {
   "extends": [
+    "unobtrusive",
+    "unobtrusive/react",
     "react-app",
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
   ],
+  "env": {
+    "browser": true
+  },
   "parser": "@typescript-eslint/parser",
   "rules": {
     "jsx-a11y/href-no-hash": "off",
