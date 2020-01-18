@@ -1,23 +1,16 @@
-import { all, takeLatest } from 'redux-saga/effects'
-import { Process, isAction, IAction } from '@dckit/store'
+import { all } from 'redux-saga/effects'
+import { Flow, Process, TProcess, IAction } from '@dckit/store'
 import { testLoadFetcher } from '../fetchers'
 import { TestItem } from '../items'
 
-export function* rootSaga() {
-  yield all([takeLatest(isAction.Load(TestItem), loadItemsSaga)])
+Process.setFetcher(testLoadFetcher)
+
+function* loadItemsSaga(proc: TProcess, action: IAction) {
+  yield proc.fetch()
+  yield proc.setItems(proc.data())
+  yield proc.optItem(action?.meta?.options?.optedItemId)
 }
 
-function* loadItemsSaga(action: IAction) {
-  const proc = Process.Load(TestItem, {
-    fetcher: testLoadFetcher,
-  })
-  yield proc.start()
-  try {
-    yield proc.fetch()
-    yield proc.setItems(proc.data())
-    yield proc.optItem(action?.meta?.options?.optedItemId)
-    yield proc.stop()
-  } catch (e) {
-    yield proc.fail(e)
-  }
+export function* rootSaga() {
+  yield all([Flow.Load(TestItem, loadItemsSaga)])
 }
