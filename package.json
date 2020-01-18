@@ -2,6 +2,8 @@
   "name": "dckit",
   "private": true,
   "scripts": {
+    "lint": "FORCE_COLOR=true lerna run lint --stream",
+    "test": "FORCE_COLOR=true lerna run test --stream",
     "build": "FORCE_COLOR=true lerna run build --stream",
     "bootstrap": "lerna bootstrap --hoist --ci",
     "docs": "FORCE_COLOR=true lerna run docs --stream"
