@@ -20,7 +20,16 @@ export const FormField = ({
   size = 12,
   fullWidth = true,
   defaultValue,
-  ...fieldProps
+  form,
+  checkDisabled,
+  checkChange,
+  ...restProps
 }: IFormField) => {
-  return <TextField fullWidth {...fieldProps} />
+  const disabled = checkDisabled ? checkDisabled(form) : false
+  const fieldProps = {
+    fullWidth,
+    disabled,
+    ...restProps,
+  }
+  return <TextField {...fieldProps} />
 }

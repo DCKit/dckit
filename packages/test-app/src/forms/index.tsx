@@ -5,36 +5,52 @@ import { FormField, IFormField } from './FormField'
 
 const fields: IFormField[] = [
   { field: 'login', label: 'Login', size: 6, defaultValue: '111' },
-  { field: 'password', label: 'Password', size: 6, defaultValue: '222' },
+  {
+    field: 'password',
+    label: 'Password',
+    size: 6,
+    defaultValue: '222',
+    checkDisabled: (form: any) => !form.getValues().notes,
+  },
   { field: 'notes', label: 'Notes' },
 ]
 
 export const Form = () => {
-  const { handleSubmit, control } = useForm({})
+  const form = useForm({})
   const [data, setData] = useState(null)
 
-  const onSubmit1 = handleSubmit((data: any) => {
+  const onSubmit1 = form.handleSubmit((data: any) => {
     console.log('Submit 1')
     setData(data)
   })
-  const onSubmit2 = handleSubmit((data: any) => {
+  const onSubmit2 = form.handleSubmit((data: any) => {
     console.log('Submit 2')
     setData(data)
   })
 
+  console.log('render')
+
   return (
     <>
-      <Paper style={{ margin: 50, padding: 16, width: 500 }}>
+      <Paper style={{ margin: 50, padding: 32, width: '70%' }}>
         <form>
           <Grid container spacing={4}>
             {fields.map((fieldConfig: IFormField) => {
-              const { field, size = 12, defaultValue = '' } = fieldConfig
+              const {
+                field,
+                size = 12,
+                defaultValue = '',
+                checkDisabled,
+              } = fieldConfig
+
+              if (checkDisabled) form.watch(field)
+
               return (
-                <Grid key={field} item xs={size}>
+                <Grid key={field} item xs={12} sm={size}>
                   <Controller
-                    as={<FormField {...fieldConfig} />}
+                    as={<FormField form={form} {...fieldConfig} />}
                     name={field}
-                    control={control}
+                    control={form.control}
                     defaultValue={defaultValue}
                   />
                 </Grid>
