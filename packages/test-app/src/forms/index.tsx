@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import { Grid, Paper, TextField, Button } from '@material-ui/core'
-const defaultValues = {
-  login: '111',
-  password: '222',
-  notes: '333',
-}
+import { Grid, Paper, Button } from '@material-ui/core'
+import { FormField, IFormField } from './FormField'
+
+const fields: IFormField[] = [
+  { field: 'login', label: 'Login', size: 6, defaultValue: '111' },
+  { field: 'password', label: 'Password', size: 6, defaultValue: '222' },
+  { field: 'notes', label: 'Notes' },
+]
+
 export const Form = () => {
-  const { handleSubmit, reset, control } = useForm({ defaultValues })
+  const { handleSubmit, control } = useForm({})
   const [data, setData] = useState(null)
 
   const onSubmit1 = handleSubmit((data: any) => {
@@ -21,57 +24,49 @@ export const Form = () => {
 
   return (
     <>
-      <Paper
-        style={{ margin: 50, padding: 32, width: 500, background: '#f7f7f7' }}
-      >
+      <Paper style={{ margin: 50, padding: 16, width: 500 }}>
         <form>
-          <Grid container spacing={4} style={{ background: '#fff' }}>
-            <Grid item xs={6}>
-              <Controller
-                as={<TextField fullWidth />}
-                name="login"
-                control={control}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Controller
-                as={<TextField fullWidth />}
-                name="password"
-                control={control}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Controller
-                as={<TextField fullWidth />}
-                name="notes"
-                control={control}
-              />
-            </Grid>
+          <Grid container spacing={4}>
+            {fields.map((fieldConfig: IFormField) => {
+              const { field, size = 12, defaultValue = '' } = fieldConfig
+              return (
+                <Grid key={field} item xs={size}>
+                  <Controller
+                    as={<FormField {...fieldConfig} />}
+                    name={field}
+                    control={control}
+                    defaultValue={defaultValue}
+                  />
+                </Grid>
+              )
+            })}
           </Grid>
           <Grid
             container
             justify="flex-end"
-            style={{
-              margin: -16,
-              background: '#f0f0f0',
-            }}
+            spacing={4}
+            style={{ paddingTop: 16 }}
           >
-            <Button
-              style={{ margin: 8 }}
-              color="secondary"
-              variant="contained"
-              onClick={onSubmit1}
-            >
-              submit1
-            </Button>
-            <Button
-              style={{ margin: 8 }}
-              color="primary"
-              variant="contained"
-              onClick={onSubmit2}
-            >
-              submit2
-            </Button>
+            <Grid item>
+              <Button
+                color="secondary"
+                variant="contained"
+                style={{ marginLeft: -16 }}
+                onClick={onSubmit1}
+              >
+                submit1
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                color="primary"
+                variant="contained"
+                style={{ marginLeft: -16 }}
+                onClick={onSubmit2}
+              >
+                submit2
+              </Button>
+            </Grid>
           </Grid>
         </form>
       </Paper>
