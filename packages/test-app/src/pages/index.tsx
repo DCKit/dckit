@@ -5,6 +5,7 @@ import { Layout } from '../components/Layout'
 import { Page1 } from '../components/Page1'
 import { Tab1 } from '../components/Tab1'
 import { Items } from '../components/Items'
+import { Form } from '../forms'
 
 export const tab1subtabs = [
   {
@@ -52,9 +53,9 @@ export const sideBarItems = [
     },
   },
   {
-    label: 'page2',
+    label: 'items',
     route: {
-      path: '/page2',
+      path: '/items',
       component: () => (
         <div style={{ padding: 16 }}>
           <Items itemType={TestItem} optedItemId={3} />
@@ -63,7 +64,11 @@ export const sideBarItems = [
     },
   },
   {
-    label: 'page3',
+    label: 'forms',
+    route: {
+      path: '/forms',
+      component: Form,
+    },
   },
   {
     divider: true,

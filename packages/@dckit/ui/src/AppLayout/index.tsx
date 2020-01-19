@@ -51,8 +51,9 @@ export const AppLayout = ({
     appBarShift,
     toolBar,
     menuButton,
-    pageBarMobile,
     pageBar,
+    pageBarMobile,
+    pageBarDesktop,
     pageBarShift,
     content,
     contentMobile,
@@ -70,7 +71,6 @@ export const AppLayout = ({
     >
       <CssBaseline />
       <AppBar
-        position="static"
         className={cn(
           isMobile ? appBarMobile : appBar,
           isShifted && appBarShift
@@ -92,7 +92,8 @@ export const AppLayout = ({
       </AppBar>
       <PageBarContainer
         className={cn(
-          isMobile ? pageBarMobile : pageBar,
+          pageBar,
+          isMobile ? pageBarMobile : pageBarDesktop,
           isShifted && pageBarShift
         )}
         sideBarOpen={sideBarOpen}

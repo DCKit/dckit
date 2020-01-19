@@ -8,35 +8,31 @@ export const useStyles = makeStyles((theme: Theme) => {
   const appBarHeight = 48
   const pageBarHeight = 32
   const barsHeight = appBarHeight + pageBarHeight
-  const gray = '#f0f0f0'
+  const { palette, zIndex, transitions } = theme
+  const { common, background, primary } = palette
 
   const transition = {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
+    easing: transitions.easing.sharp,
+    duration: transitions.duration.enteringScreen,
   }
-  const transitionBar = theme.transitions.create(
-    ['width', 'margin'],
-    transition
-  )
-  const transitionContent = theme.transitions.create(
-    ['width', 'left'],
-    transition
-  )
+  const transitionBar = transitions.create(['width', 'margin'], transition)
+  const transitionContent = transitions.create(['width', 'left'], transition)
 
   return {
     appBar: {
       position: 'fixed',
       height: appBarHeight,
-      zIndex: theme.zIndex.drawer + 1,
+      zIndex: zIndex.drawer + 1,
+      backgroundColor: primary.dark,
       transition: transitionBar,
     },
     appBarMobile: {
       position: 'fixed',
       height: appBarHeight,
-      zIndex: theme.zIndex.drawer - 1,
+      zIndex: zIndex.drawer - 1,
     },
     appBarShift: {
-      zIndex: theme.zIndex.drawer - 1,
+      zIndex: zIndex.drawer - 1,
       marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
       transition: transitionBar,
@@ -56,35 +52,28 @@ export const useStyles = makeStyles((theme: Theme) => {
       left: 0,
       top: appBarHeight,
       height: pageBarHeight,
-      width: `calc(100% - ${drawerMinWidth}px)`,
-      marginLeft: drawerMinWidth,
-      zIndex: theme.zIndex.drawer - 2,
-      background: '#fff',
-      boxShadow: '0px 0px 15px 0px rgba(0,0,0,0.2)',
-      transition: transitionBar,
-      display: 'flex',
-      alignItems: 'center',
-    },
-    pageBarMobile: {
-      position: 'fixed',
-      top: appBarHeight,
-      height: pageBarHeight,
-      width: '100%',
-      marginLeft: 0,
-      zIndex: theme.zIndex.drawer - 2,
-      background: '#fff',
+      zIndex: zIndex.drawer - 2,
+      background: common.white,
       boxShadow: '0px 0px 15px 0px rgba(0,0,0,0.15)',
       display: 'flex',
       alignItems: 'center',
     },
+    pageBarDesktop: {
+      width: `calc(100% - ${drawerMinWidth}px)`,
+      marginLeft: drawerMinWidth,
+      transition: transitionBar,
+    },
+    pageBarMobile: {
+      width: '100%',
+      marginLeft: 0,
+    },
     pageBarShift: {
-      left: 0,
       marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
       transition: transitionBar,
     },
     content: {
-      background: gray,
+      background: background.default,
       position: 'fixed',
       padding: contentPadding,
       overflow: 'auto',
