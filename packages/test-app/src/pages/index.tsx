@@ -5,7 +5,7 @@ import { Layout } from '../components/Layout'
 import { Page1 } from '../components/Page1'
 import { Tab1 } from '../components/Tab1'
 import { Items } from '../components/Items'
-import { Form } from '../forms'
+import { DemoForm } from '../forms'
 
 export const tab1subtabs = [
   {
@@ -67,7 +67,7 @@ export const sideBarItems = [
     label: 'forms',
     route: {
       path: '/forms',
-      component: Form,
+      component: DemoForm,
     },
   },
   {
