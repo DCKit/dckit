@@ -1,7 +1,14 @@
 import { IFormField } from './FormField'
 
 export const fieldsConfig: IFormField[] = [
-  { field: 'login', label: 'Login', size: 6, defaultValue: '111' },
+  {
+    field: 'login',
+    label: 'Login',
+    size: 6,
+    defaultValue: '111',
+    checkChange: (form: any, value: any) =>
+      value === '-' && form.setValue('notes', '---', true),
+  },
   {
     field: 'password',
     label: 'Password',
@@ -9,5 +16,8 @@ export const fieldsConfig: IFormField[] = [
     defaultValue: '222',
     checkDisabled: (form: any) => !form.getValues().notes,
   },
-  { field: 'notes', label: 'Notes' },
+  {
+    field: 'notes',
+    label: 'Notes',
+  },
 ]

@@ -10,26 +10,40 @@ export interface IFormField {
   type?: FormFieldType
   size?: GridSize
   fullWidth?: boolean
+  disabled?: boolean
   defaultValue?: any
   [propName: string]: any
 }
 
-export const FormField = ({
-  field,
-  type = FormFieldType.text,
-  size = 12,
-  fullWidth = true,
-  defaultValue,
-  form,
-  checkDisabled,
-  checkChange,
-  ...restProps
-}: IFormField) => {
-  const disabled = checkDisabled ? checkDisabled(form) : false
+export const FormField = (props: IFormField) => {
+  const {
+    form,
+    field,
+    type = FormFieldType.text,
+    size,
+    fullWidth = true,
+    defaultValue,
+    disabled: propDisabled,
+    checkDisabled,
+    onChange,
+    checkChange,
+    ...restProps
+  } = props
+
+  const disabled = Boolean(checkDisabled ? checkDisabled(form) : propDisabled)
+
   const fieldProps = {
     fullWidth,
     disabled,
     ...restProps,
   }
-  return <TextField {...fieldProps} />
+
+  const handleChange = (e: any) => {
+    checkChange && checkChange(form, e.target.value)
+    onChange && onChange(e)
+  }
+
+  return type === FormFieldType.text ? (
+    <TextField {...fieldProps} onChange={handleChange} />
+  ) : null
 }
