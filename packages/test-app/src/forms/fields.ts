@@ -1,11 +1,14 @@
-import { IFormField } from './FormField'
+import { IFormField } from '@dckit/ui'
+import * as V from 'yup'
 
 export const fieldsConfig: IFormField[] = [
   {
     field: 'login',
     label: 'Login',
+    required: true,
     size: 6,
-    defaultValue: '111',
+    initialValue: '111',
+    suffix: 'abc',
     checkChange: (form: any, value: any) =>
       value === '-' && form.setValue('notes', '---', true),
   },
@@ -13,7 +16,7 @@ export const fieldsConfig: IFormField[] = [
     field: 'password',
     label: 'Password',
     size: 6,
-    defaultValue: '222',
+    initialValue: '222',
     checkDisabled: (form: any) => !form.getValues().notes,
   },
   {
@@ -21,3 +24,9 @@ export const fieldsConfig: IFormField[] = [
     label: 'Notes',
   },
 ]
+
+export const validationSchema = V.object().shape({
+  login: V.string()
+    .label('Login')
+    .required(),
+})

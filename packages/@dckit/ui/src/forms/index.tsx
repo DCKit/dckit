@@ -1,15 +1,21 @@
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { Grid } from '@material-ui/core'
-import { FormField, IFormField } from './FormField'
+import { FormField } from './FormField'
+import { IFormField } from './types'
 
 export interface IFormProps {
   fieldsConfig: any
   renderActions: any
+  validationSchema?: any
 }
 
-export const Form = ({ fieldsConfig, renderActions }: IFormProps) => {
-  const form = useForm({})
+export const Form = ({
+  fieldsConfig,
+  renderActions,
+  validationSchema,
+}: IFormProps) => {
+  const form = useForm({ mode: 'onBlur', validationSchema })
   return (
     <form>
       <Grid container spacing={4}>
@@ -17,7 +23,7 @@ export const Form = ({ fieldsConfig, renderActions }: IFormProps) => {
           const {
             field,
             size = 12,
-            defaultValue = '',
+            initialValue = '',
             checkDisabled,
           } = fieldConfig
 
@@ -29,7 +35,7 @@ export const Form = ({ fieldsConfig, renderActions }: IFormProps) => {
                 as={<FormField form={form} {...fieldConfig} />}
                 name={field}
                 control={form.control}
-                defaultValue={defaultValue}
+                defaultValue={initialValue}
               />
             </Grid>
           )

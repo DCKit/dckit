@@ -1,5 +1,7 @@
 import { takeLatest } from 'redux-saga/effects'
-import { Acts, Process, isAction, IAction } from '../'
+import { Acts, IAction } from '../types'
+import { Process } from './processes'
+import { isAction } from './actions'
 
 function createFlow(act: Acts) {
   function flow(itemType: string, saga: any, options?: any) {
