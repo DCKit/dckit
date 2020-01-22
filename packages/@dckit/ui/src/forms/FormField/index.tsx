@@ -1,7 +1,7 @@
 import React from 'react'
 import { _get } from '@dckit/store'
-import { FormFieldType, IFormField } from './types'
-import { TextField } from './TextField'
+import { TextField } from '../TextField'
+import { IFormField, FormFieldType } from '../types'
 
 export const FormField = (props: IFormField) => {
   const {

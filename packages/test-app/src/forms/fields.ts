@@ -1,4 +1,4 @@
-import { IFormField } from './types'
+import { IFormField } from '@dckit/ui'
 import * as V from 'yup'
 
 export const fieldsConfig: IFormField[] = [
@@ -26,5 +26,7 @@ export const fieldsConfig: IFormField[] = [
 ]
 
 export const validationSchema = V.object().shape({
-  login: V.string().required(),
+  login: V.string()
+    .label('Login')
+    .required(),
 })

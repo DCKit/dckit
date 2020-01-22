@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Paper, Button } from '@material-ui/core'
 import { fieldsConfig, validationSchema } from './fields'
-import { Form } from './Form'
+import { Form } from '@dckit/ui'
 
 export const DemoForm = () => {
   const renderActions = (form: any) => {
