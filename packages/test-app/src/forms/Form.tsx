@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
+import * as V from 'yup'
 import { Grid } from '@material-ui/core'
 import { FormField, IFormField } from './FormField'
 
@@ -8,8 +9,12 @@ export interface IFormProps {
   renderActions: any
 }
 
+const validationSchema = V.object().shape({
+  login: V.string().required(),
+})
+
 export const Form = ({ fieldsConfig, renderActions }: IFormProps) => {
-  const form = useForm({})
+  const form = useForm({ mode: 'onBlur', validationSchema })
   return (
     <form>
       <Grid container spacing={4}>

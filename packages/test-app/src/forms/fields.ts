@@ -4,8 +4,10 @@ export const fieldsConfig: IFormField[] = [
   {
     field: 'login',
     label: 'Login',
+    required: true,
     size: 6,
     defaultValue: '111',
+    suffix: 'abc',
     checkChange: (form: any, value: any) =>
       value === '-' && form.setValue('notes', '---', true),
   },
