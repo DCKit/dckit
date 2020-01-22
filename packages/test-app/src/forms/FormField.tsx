@@ -1,20 +1,7 @@
 import React from 'react'
-import { GridSize, TextField } from '@material-ui/core'
 import { _get } from '@dckit/store'
-
-export enum FormFieldType {
-  text = 'text',
-}
-
-export interface IFormField {
-  field: string
-  type?: FormFieldType
-  size?: GridSize
-  fullWidth?: boolean
-  disabled?: boolean
-  defaultValue?: any
-  [propName: string]: any
-}
+import { FormFieldType, IFormField } from './types'
+import { TextField } from './TextField'
 
 export const FormField = (props: IFormField) => {
   const {
@@ -22,8 +9,8 @@ export const FormField = (props: IFormField) => {
     field,
     type = FormFieldType.text,
     size,
-    fullWidth = true,
     defaultValue,
+    fullWidth = true,
     disabled: propDisabled,
     checkDisabled,
     onChange,
@@ -32,46 +19,21 @@ export const FormField = (props: IFormField) => {
   } = props
 
   const disabled = Boolean(checkDisabled ? checkDisabled(form) : propDisabled)
+  const errorObj = _get(form.errors, field, {})
+  const helperText = errorObj ? errorObj.message : undefined
+  const error = Boolean(errorObj)
 
   const handleChange = (e: any) => {
     checkChange && checkChange(form, e.target.value)
     onChange && onChange(e)
   }
 
-  /*
-  const trimSpaces = (e: any) => {
-    const value = String(e.target.value || '')
-    const trimValue = value.trim()
-
-    if (value !== trimValue) {
-      e.target.value = trimValue
-      onChange && onChange(e)
-    }
-  }
-  FormHelperTextProps={{
-    classes: {
-      root: classes.helperText,
-      error: classes.helperTextError,
-    },
-  }}
-  InputProps={{
-    endAdornment: (
-      <InputAdornment position="start" className={classes.inputSuffix}>
-        {inputSuffix}
-      </InputAdornment>
-    ),
-  }}
-*/
-
-  const errorObj = _get(form.errors, field, {})
-  const helperText = errorObj ? errorObj.message : undefined
-  const error = Boolean(errorObj)
-
   const fieldProps = {
+    ...restProps,
+    name: field,
+    onChange: handleChange,
     fullWidth,
     disabled,
-    ...restProps,
-    onChange: handleChange,
     error,
     helperText,
   }

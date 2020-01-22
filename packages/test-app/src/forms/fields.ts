@@ -1,4 +1,5 @@
-import { IFormField } from './FormField'
+import { IFormField } from './types'
+import * as V from 'yup'
 
 export const fieldsConfig: IFormField[] = [
   {
@@ -23,3 +24,7 @@ export const fieldsConfig: IFormField[] = [
     label: 'Notes',
   },
 ]
+
+export const validationSchema = V.object().shape({
+  login: V.string().required(),
+})

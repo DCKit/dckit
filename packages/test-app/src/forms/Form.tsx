@@ -1,19 +1,20 @@
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import * as V from 'yup'
 import { Grid } from '@material-ui/core'
-import { FormField, IFormField } from './FormField'
+import { FormField } from './FormField'
+import { IFormField } from './types'
 
 export interface IFormProps {
   fieldsConfig: any
   renderActions: any
+  validationSchema?: any
 }
 
-const validationSchema = V.object().shape({
-  login: V.string().required(),
-})
-
-export const Form = ({ fieldsConfig, renderActions }: IFormProps) => {
+export const Form = ({
+  fieldsConfig,
+  renderActions,
+  validationSchema,
+}: IFormProps) => {
   const form = useForm({ mode: 'onBlur', validationSchema })
   return (
     <form>
