@@ -23,7 +23,7 @@ export const Form = ({
           const {
             field,
             size = 12,
-            defaultValue = '',
+            initialValue = '',
             checkDisabled,
           } = fieldConfig
 
@@ -35,7 +35,7 @@ export const Form = ({
                 as={<FormField form={form} {...fieldConfig} />}
                 name={field}
                 control={form.control}
-                defaultValue={defaultValue}
+                defaultValue={initialValue}
               />
             </Grid>
           )

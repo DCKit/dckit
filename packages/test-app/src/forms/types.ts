@@ -10,6 +10,7 @@ export interface IFormField {
   size?: GridSize
   fullWidth?: boolean
   disabled?: boolean
-  defaultValue?: any
+  initialValue?: any
+  suffix?: any
   [propName: string]: any
 }

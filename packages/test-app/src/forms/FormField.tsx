@@ -9,7 +9,7 @@ export const FormField = (props: IFormField) => {
     field,
     type = FormFieldType.text,
     size,
-    defaultValue,
+    initialValue,
     fullWidth = true,
     disabled: propDisabled,
     checkDisabled,
@@ -30,7 +30,7 @@ export const FormField = (props: IFormField) => {
 
   const fieldProps = {
     ...restProps,
-    name: field,
+    field,
     onChange: handleChange,
     fullWidth,
     disabled,

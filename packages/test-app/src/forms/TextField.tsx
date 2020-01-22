@@ -1,16 +1,11 @@
 import React from 'react'
-import { TextField as MuiTextField, TextFieldProps } from '@material-ui/core'
-
+import {
+  TextField as MuiTextField,
+  InputAdornment,
+  StandardTextFieldProps,
+} from '@material-ui/core'
+import { IFormField } from './types'
 /*
-  const trimSpaces = (e: any) => {
-    const value = String(e.target.value || '')
-    const trimValue = value.trim()
-
-    if (value !== trimValue) {
-      e.target.value = trimValue
-      onChange && onChange(e)
-    }
-  }
   FormHelperTextProps={{
     classes: {
       root: classes.helperText,
@@ -26,7 +21,7 @@ import { TextField as MuiTextField, TextFieldProps } from '@material-ui/core'
   }}
 */
 
-export const TextField = (props: TextFieldProps) => {
+export const TextField = (props: IFormField) => {
   const handleBlur = (e: any) => {
     const { onBlur, onChange } = props
     const value = String(e.target.value || '')
@@ -39,5 +34,16 @@ export const TextField = (props: TextFieldProps) => {
     onBlur && onBlur(e)
   }
 
-  return <MuiTextField {...props} onBlur={handleBlur} />
+  const { initialValue, suffix, size, field, ...restProps } = props
+  const fieldProps: StandardTextFieldProps = {
+    ...restProps,
+    name: field,
+    onBlur: handleBlur,
+  }
+  if (suffix) {
+    fieldProps.InputProps = {
+      endAdornment: <InputAdornment position="end">{suffix}</InputAdornment>,
+    }
+  }
+  return <MuiTextField {...fieldProps} />
 }
