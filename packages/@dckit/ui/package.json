@@ -19,15 +19,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/dckit-ui.esm.js",
-  "module": "dist/dckit-ui.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/ui.esm.js",
   "types": "dist/index.d.ts",
   "author": "Eugene Samonenko <esamonenko@agilevision.io>",
   "license": "MIT",
   "scripts": {
-    "build": "tsdx build -transpileOnly --format esm --name dckit-ui",
-    "start": "pm2 --name @dckit/ui start tsdx -- watch --transpileOnly --format esm --name dckit-ui",
-    "dev": "pm2 --name @dckit/ui start tsdx -- watch --transpileOnly --format esm --name dckit-ui --onFirstSuccess 'npm run dev:next'",
+    "build": "tsdx build -transpileOnly",
+    "start": "pm2 --name @dckit/ui start tsdx -- watch --transpileOnly",
+    "dev": "pm2 --name @dckit/ui start tsdx -- watch --transpileOnly --onFirstSuccess 'npm run dev:next'",
     "dev:next": "cd ../../test-app && npm run dev",
     "lint": "tsdx lint src && tsc --noEmit",
     "prepare": "npm run test:coverage && npm run build",

@@ -21,13 +21,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/dckit-store.esm.js",
-  "module": "dist/dckit-store.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/store.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsdx build --transpileOnly --format esm --name dckit-store",
-    "start": "pm2 --name @dckit/store start tsdx -- watch --transpileOnly --format esm --name dckit-store",
-    "dev": "pm2 --name @dckit/store start tsdx -- watch --transpileOnly --format esm --name dckit-store --onFirstSuccess 'npm run dev:next'",
+    "build": "tsdx build --transpileOnly",
+    "start": "pm2 --name @dckit/store start tsdx -- watch --transpileOnly",
+    "dev": "pm2 --name @dckit/store start tsdx -- watch --transpileOnly --onFirstSuccess 'npm run dev:next'",
     "dev:next": "cd ../auth && npm run dev",
     "lint": "tsdx lint src && tsc --noEmit",
     "test": "CI=true tsdx test --color",
