@@ -11,29 +11,29 @@ export const FormField = (props: IFormField) => {
     size,
     initialValue,
     fullWidth = true,
-    disabled: propDisabled,
-    checkDisabled,
+    controlProps,
+    controlChange,
     onChange,
-    checkChange,
     ...restProps
   } = props
 
-  const disabled = Boolean(checkDisabled ? checkDisabled(form) : propDisabled)
   const errorObj = _get(form.errors, field, {})
   const helperText = errorObj ? errorObj.message : undefined
   const error = Boolean(errorObj)
 
   const handleChange = (e: any) => {
-    checkChange && checkChange(form, e.target.value)
+    controlChange && controlChange(form, e.target.value)
     onChange && onChange(e)
   }
 
+  const injectedProps = controlProps ? controlProps(form) : {}
+
   const fieldProps = {
     ...restProps,
+    ...injectedProps,
     field,
     onChange: handleChange,
     fullWidth,
-    disabled,
     error,
     helperText,
   }

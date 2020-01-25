@@ -24,10 +24,10 @@ export const Form = ({
             field,
             size = 12,
             initialValue = '',
-            checkDisabled,
+            controlProps,
           } = fieldConfig
 
-          if (checkDisabled) form.watch(field)
+          if (controlProps) form.watch(field)
 
           return (
             <Grid key={field} item xs={12} sm={size}>
