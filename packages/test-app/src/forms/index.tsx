@@ -38,8 +38,6 @@ export const DemoForm = () => {
     )
   }
 
-  console.log('render')
-
   return (
     <Paper style={{ margin: 50, padding: 32, width: '70%' }}>
       <Form

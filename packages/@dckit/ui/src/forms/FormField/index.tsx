@@ -26,11 +26,11 @@ export const FormField = (props: IFormField) => {
     onChange && onChange(e)
   }
 
-  const dynamicProps = controlProps ? controlProps(form) : {}
+  const injectedProps = controlProps ? controlProps(form) : {}
 
   const fieldProps = {
     ...restProps,
-    ...dynamicProps,
+    ...injectedProps,
     field,
     onChange: handleChange,
     fullWidth,
