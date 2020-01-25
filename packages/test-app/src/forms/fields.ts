@@ -9,7 +9,7 @@ export const fieldsConfig: IFormField[] = [
     size: 6,
     initialValue: '111',
     suffix: 'abc',
-    checkChange: (form: any, value: any) =>
+    controlChange: (form: any, value: any) =>
       value === '-' && form.setValue('notes', '---', true),
   },
   {
@@ -17,7 +17,10 @@ export const fieldsConfig: IFormField[] = [
     label: 'Password',
     size: 6,
     initialValue: '222',
-    checkDisabled: (form: any) => !form.getValues().notes,
+    controlProps: (form: any) => ({
+      disabled: !form.getValues().notes,
+      required: Boolean(form.getValues().login),
+    }),
   },
   {
     field: 'notes',
