@@ -25,9 +25,9 @@
   "module": "dist/store.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsdx build --transpileOnly",
-    "start": "pm2 --name @dckit/store start tsdx -- watch --transpileOnly",
-    "dev": "pm2 --name @dckit/store start tsdx -- watch --transpileOnly --onFirstSuccess 'npm run dev:next'",
+    "build": "tsdx build",
+    "start": "pm2 --name @dckit/store start tsdx -- watch",
+    "dev": "pm2 --name @dckit/store start tsdx -- watch --onFirstSuccess 'npm run dev:next'",
     "dev:next": "cd ../auth && npm run dev",
     "lint": "tsdx lint src && tsc --noEmit",
     "test": "CI=true tsdx test --color",

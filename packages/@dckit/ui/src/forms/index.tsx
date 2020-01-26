@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { Grid } from '@material-ui/core'
 import { FormField } from './FormField'
@@ -7,16 +7,24 @@ export interface IFormProps {
   fields: string[]
   fieldsConfig: any
   renderActions: any
+  initialValues?: any
   validationSchema?: any
 }
 
 export const Form = ({
   fields,
   fieldsConfig,
+  initialValues,
   renderActions,
   validationSchema,
 }: IFormProps) => {
   const form = useForm({ validationSchema, mode: 'onBlur' })
+  const { reset } = form
+
+  useEffect(() => {
+    reset(initialValues)
+  }, [initialValues, reset])
+
   return (
     <form>
       <Grid container spacing={4}>

@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Grid, Paper, Button } from '@material-ui/core'
 import { fields, fieldsConfig, validationSchema } from './fields'
 import { Form } from '@dckit/ui'
 
 export const DemoForm = () => {
+  const [initialValues, setInitialValues] = useState({})
+  useEffect(() => {
+    setTimeout(() => {
+      setInitialValues({
+        notes: '######',
+      })
+    }, 2000)
+  }, [setInitialValues])
+
   const renderActions = (form: any) => {
     const onSubmit1 = form.handleSubmit((data: any) => {
       console.log('Submit 1', data)
@@ -43,6 +52,7 @@ export const DemoForm = () => {
       <Form
         fields={fields}
         fieldsConfig={fieldsConfig}
+        initialValues={initialValues}
         validationSchema={validationSchema}
         renderActions={renderActions}
       />
