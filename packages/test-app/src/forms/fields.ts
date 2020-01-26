@@ -16,6 +16,7 @@ export const fieldsConfig = {
     label: 'Password',
     size: 6,
     defaultValue: '222',
+    hint: 'use at least 6 symbols',
     controlProps: (form: any) => {
       const hasValue = Boolean(form.getValues().login)
       return {

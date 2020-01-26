@@ -46,7 +46,6 @@ export const TextField = (props: IFormField) => {
     FormHelperTextProps: {
       classes: {
         root: classes.helperText,
-        error: classes.helperTextError,
       },
     },
   }

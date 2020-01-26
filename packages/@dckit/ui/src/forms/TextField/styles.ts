@@ -8,8 +8,5 @@ export const useStyles = makeStyles((theme: Theme) => {
       position: 'absolute',
       bottom: -16,
     },
-    helperTextError: {
-      color: theme.palette.error.main,
-    },
   }
 })
