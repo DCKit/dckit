@@ -23,8 +23,12 @@ export const FormField = (props: IFormField) => {
   const helperText = errorObj ? errorObj.message : hint
   const error = Boolean(errorObj)
 
-  const handleChange = (e: any) => {
-    controlChange && controlChange(form, e.target.value)
+  const handleChange = (e: any, value: any) => {
+    const newValue =
+      type === FormFieldType.switch || type === FormFieldType.checkbox
+        ? value
+        : e.target.value
+    controlChange && controlChange(form, newValue)
     onChange && onChange(e)
   }
 

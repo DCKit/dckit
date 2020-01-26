@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
-import { Grid, Switch, FormControlLabel } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import { FormField } from './FormField'
 import { FormFieldType } from './types'
 
@@ -27,14 +27,15 @@ export const Form = ({
   withDefaults = false,
   validationSchema,
 }: IFormProps) => {
+  const [useDefaults, setUseDefaults] = useState(
+    initialValues?.useDefaults || false
+  )
   const form = useForm({ validationSchema, mode: 'onBlur' })
   const { reset } = form
 
   useEffect(() => {
-    const values =
-      withDefaults && initialValues
-        ? initialValues.defaultValues
-        : initialValues
+    const values = withDefaults ? initialValues?.defaultValues : initialValues
+    withDefaults && setUseDefaults(initialValues?.useDefaults || false)
     reset(values)
   }, [reset, initialValues, withDefaults])
 
@@ -73,9 +74,22 @@ export const Form = ({
       {withDefaults && (
         <Grid container>
           <Grid item>
-            <FormControlLabel
-              control={<Switch color="primary" />}
-              label="use defaults"
+            <Controller
+              as={
+                <FormField
+                  form={form}
+                  type={FormFieldType.switch}
+                  field="useDefaults"
+                  label="use defaults"
+                  controlChange={(form: any, value: boolean) => {
+                    value && form.reset(initialValues?.defaultValues)
+                    setUseDefaults(value)
+                  }}
+                />
+              }
+              name="useDefaults"
+              control={form.control}
+              defaultValue={false}
             />
           </Grid>
           <Grid item container>

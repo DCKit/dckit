@@ -12,6 +12,7 @@ export const DemoForm = () => {
         defaultValues: {
           notes: 'default',
         },
+        useDefaults: true,
       })
     }, 2000)
   }, [setInitialValues])
