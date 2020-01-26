@@ -1,6 +1,7 @@
 import React from 'react'
 import { _get } from '@dckit/store'
 import { TextField } from '../TextField'
+import { SwitchField } from '../SwitchField'
 import { IFormField, FormFieldType } from '../types'
 
 export const FormField = (props: IFormField) => {
@@ -38,5 +39,9 @@ export const FormField = (props: IFormField) => {
     helperText,
   }
 
-  return type === FormFieldType.text ? <TextField {...fieldProps} /> : null
+  return type === FormFieldType.text ? (
+    <TextField {...fieldProps} />
+  ) : type === FormFieldType.switch ? (
+    <SwitchField {...fieldProps} />
+  ) : null
 }

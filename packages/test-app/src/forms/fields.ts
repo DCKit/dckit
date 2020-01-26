@@ -1,6 +1,6 @@
 import * as V from 'yup'
 
-export const fields = ['login', 'password', 'notes']
+export const fields = ['login', 'password', 'notes', 'switch']
 
 export const fieldsConfig = {
   login: {
@@ -27,6 +27,13 @@ export const fieldsConfig = {
   },
   notes: {
     label: 'Notes',
+    size: 8,
+  },
+  switch: {
+    label: 'Switch',
+    type: 'switch',
+    defaultValue: false,
+    size: 4,
   },
 }
 

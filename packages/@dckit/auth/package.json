@@ -27,7 +27,7 @@
   "scripts": {
     "build": "tsdx build",
     "start": "pm2 --name @dckit/auth start tsdx -- watch",
-    "dev": "pm2 --name @dckit/auth start tsdx -- watch --onFirstSuccess 'npm run dev:next'",
+    "dev": "pm2 --name @dckit/auth start tsdx -- watch --transpileOnly --onFirstSuccess 'npm run dev:next'",
     "dev:next": "cd ../ui && npm run dev",
     "lint": "tsdx lint src && tsc --noEmit",
     "prepare": "npm run test:coverage && npm run build",

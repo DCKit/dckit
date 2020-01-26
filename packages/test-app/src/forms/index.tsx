@@ -9,6 +9,9 @@ export const DemoForm = () => {
     setTimeout(() => {
       setInitialValues({
         notes: '######',
+        defaultValues: {
+          notes: 'default',
+        },
       })
     }, 2000)
   }, [setInitialValues])
@@ -22,24 +25,14 @@ export const DemoForm = () => {
     })
 
     return (
-      <Grid container justify="flex-end" spacing={4} style={{ paddingTop: 16 }}>
+      <Grid item container justify="flex-end">
         <Grid item>
-          <Button
-            color="secondary"
-            variant="contained"
-            style={{ marginLeft: -16 }}
-            onClick={onSubmit1}
-          >
+          <Button color="secondary" variant="contained" onClick={onSubmit1}>
             submit1
           </Button>
         </Grid>
         <Grid item>
-          <Button
-            color="primary"
-            variant="contained"
-            style={{ marginLeft: -16 }}
-            onClick={onSubmit2}
-          >
+          <Button color="primary" variant="contained" onClick={onSubmit2}>
             submit2
           </Button>
         </Grid>
@@ -50,6 +43,7 @@ export const DemoForm = () => {
   return (
     <Paper style={{ margin: 50, padding: 32, width: '70%' }}>
       <Form
+        withDefaults
         fields={fields}
         fieldsConfig={fieldsConfig}
         initialValues={initialValues}
