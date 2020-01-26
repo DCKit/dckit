@@ -16,10 +16,13 @@ export const fieldsConfig = {
     label: 'Password',
     size: 6,
     defaultValue: '222',
-    controlProps: (form: any) => ({
-      disabled: !form.getValues().notes,
-      required: Boolean(form.getValues().login),
-    }),
+    controlProps: (form: any) => {
+      const hasValue = Boolean(form.getValues().login)
+      return {
+        disabled: !hasValue,
+        required: hasValue,
+      }
+    },
   },
   notes: {
     label: 'Notes',
@@ -28,9 +31,11 @@ export const fieldsConfig = {
 
 export const validationSchema = V.object({
   login: V.string()
-    .label('Login')
+    .label(fieldsConfig.login.label)
     .required(),
-  password: V.string().when('login', (login: string, schema: any) =>
-    login ? schema.required() : schema
-  ),
+  password: V.string()
+    .label(fieldsConfig.password.label)
+    .when('login', (value: string, schema: any) =>
+      value ? schema.required() : schema
+    ),
 })
