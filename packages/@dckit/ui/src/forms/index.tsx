@@ -34,9 +34,14 @@ export const Form = ({
   const { reset } = form
 
   useEffect(() => {
-    const values = withDefaults ? initialValues?.defaultValues : initialValues
-    withDefaults && setUseDefaults(initialValues?.useDefaults || false)
-    reset(values)
+    if (withDefaults) {
+      const values = initialValues?.defaultValues || {}
+      values.useDefaults = initialValues?.useDefaults || false
+      setUseDefaults(values.useDefaults)
+      reset(values)
+    } else {
+      reset(initialValues)
+    }
   }, [reset, initialValues, withDefaults])
 
   return (
@@ -57,6 +62,7 @@ export const Form = ({
             ...config,
             form,
             field,
+            useDefaults,
           }
 
           return (

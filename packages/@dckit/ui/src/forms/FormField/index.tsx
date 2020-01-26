@@ -11,6 +11,7 @@ export const FormField = (props: IFormField) => {
     type = FormFieldType.text,
     size,
     defaultValue,
+    useDefaults,
     hint,
     fullWidth = true,
     controlProps,
@@ -33,6 +34,7 @@ export const FormField = (props: IFormField) => {
   }
 
   const injectedProps = controlProps ? controlProps(form) : {}
+  if (useDefaults) injectedProps.disabled = true
 
   const fieldProps = {
     ...restProps,
