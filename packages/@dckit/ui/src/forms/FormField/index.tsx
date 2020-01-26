@@ -9,7 +9,8 @@ export const FormField = (props: IFormField) => {
     field,
     type = FormFieldType.text,
     size,
-    initialValue,
+    defaultValue,
+    hint,
     fullWidth = true,
     controlProps,
     controlChange,
@@ -18,7 +19,7 @@ export const FormField = (props: IFormField) => {
   } = props
 
   const errorObj = _get(form.errors, field, {})
-  const helperText = errorObj ? errorObj.message : undefined
+  const helperText = errorObj ? errorObj.message : hint
   const error = Boolean(errorObj)
 
   const handleChange = (e: any) => {
@@ -31,7 +32,6 @@ export const FormField = (props: IFormField) => {
   const fieldProps = {
     ...restProps,
     ...injectedProps,
-    field,
     onChange: handleChange,
     fullWidth,
     error,

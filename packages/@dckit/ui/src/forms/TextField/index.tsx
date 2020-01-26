@@ -38,16 +38,14 @@ export const TextField = (props: IFormField) => {
     onBlur && onBlur(e)
   }
 
-  const { initialValue, suffix, size, field, ...restProps } = props
+  const { initialValue, suffix, size, ...restProps } = props
 
   const fieldProps: StandardTextFieldProps = {
     ...restProps,
-    name: field,
     onBlur: handleBlur,
     FormHelperTextProps: {
       classes: {
         root: classes.helperText,
-        error: classes.helperTextError,
       },
     },
   }

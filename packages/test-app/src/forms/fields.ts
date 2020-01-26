@@ -1,35 +1,42 @@
-import { IFormField } from '@dckit/ui'
 import * as V from 'yup'
 
-export const fieldsConfig: IFormField[] = [
-  {
-    field: 'login',
+export const fields = ['login', 'password', 'notes']
+
+export const fieldsConfig = {
+  login: {
     label: 'Login',
     required: true,
     size: 6,
-    initialValue: '111',
+    defaultValue: '111',
     suffix: 'abc',
     controlChange: (form: any, value: any) =>
       value === '-' && form.setValue('notes', '---', true),
   },
-  {
-    field: 'password',
+  password: {
     label: 'Password',
     size: 6,
-    initialValue: '222',
-    controlProps: (form: any) => ({
-      disabled: !form.getValues().notes,
-      required: Boolean(form.getValues().login),
-    }),
+    defaultValue: '222',
+    hint: 'use at least 6 symbols',
+    controlProps: (form: any) => {
+      const hasValue = Boolean(form.getValues().login)
+      return {
+        disabled: !hasValue,
+        required: hasValue,
+      }
+    },
   },
-  {
-    field: 'notes',
+  notes: {
     label: 'Notes',
   },
-]
+}
 
-export const validationSchema = V.object().shape({
+export const validationSchema = V.object({
   login: V.string()
-    .label('Login')
+    .label(fieldsConfig.login.label)
     .required(),
+  password: V.string()
+    .label(fieldsConfig.password.label)
+    .when('login', (value: string, schema: any) =>
+      value ? schema.required() : schema
+    ),
 })
