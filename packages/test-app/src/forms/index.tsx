@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Paper, Button } from '@material-ui/core'
-import { fieldsConfig, validationSchema } from './fields'
+import { fields, fieldsConfig, validationSchema } from './fields'
 import { Form } from '@dckit/ui'
 
 export const DemoForm = () => {
@@ -41,6 +41,7 @@ export const DemoForm = () => {
   return (
     <Paper style={{ margin: 50, padding: 32, width: '70%' }}>
       <Form
+        fields={fields}
         fieldsConfig={fieldsConfig}
         validationSchema={validationSchema}
         renderActions={renderActions}
