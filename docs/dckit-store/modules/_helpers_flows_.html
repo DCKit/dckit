@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ItemProps | @dckit/store</title>
+	<title>&quot;helpers/flows&quot; | @dckit/store</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,400,400i,700" rel="stylesheet">
@@ -59,13 +59,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_types_.html">&quot;types&quot;</a>
-				</li>
-				<li>
-					<a href="_types_.itemprops.html">ItemProps</a>
+					<a href="_helpers_flows_.html">&quot;helpers/flows&quot;</a>
 				</li>
 			</ul>
-			<h1>Enumeration ItemProps</h1>
+			<h1>External module &quot;helpers/flows&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -77,58 +74,62 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Enumeration members</h3>
+							<h3>Variables</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_types_.itemprops.html#currentpage" class="tsd-kind-icon">current<wbr>Page</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_types_.itemprops.html#pagesize" class="tsd-kind-icon">page<wbr>Size</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_types_.itemprops.html#totalitems" class="tsd-kind-icon">total<wbr>Items</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_types_.itemprops.html#totalpages" class="tsd-kind-icon">total<wbr>Pages</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_helpers_flows_.html#flow" class="tsd-kind-icon">Flow</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_helpers_flows_.html#createflow" class="tsd-kind-icon">create<wbr>Flow</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Enumeration members</h2>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="currentpage" class="tsd-anchor"></a>
-					<h3>current<wbr>Page</h3>
-					<div class="tsd-signature tsd-kind-icon">current<wbr>Page<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;currentPage&quot;</span></div>
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="flow" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Flow</h3>
+					<div class="tsd-signature tsd-kind-icon">Flow<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> = Object.freeze({[Acts.Load]: createFlow(Acts.Load),[Acts.Add]: createFlow(Acts.Add),[Acts.Update]: createFlow(Acts.Update),[Acts.Delete]: createFlow(Acts.Delete),[Acts.Import]: createFlow(Acts.Import),[Acts.Export]: createFlow(Acts.Export),})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DCKit/dckit/blob/a450504/packages/@dckit/store/src/types.ts#L59">packages/@dckit/store/src/types.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/DCKit/dckit/blob/a450504/packages/@dckit/store/src/helpers/flows.ts#L23">packages/@dckit/store/src/helpers/flows.ts:23</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="pagesize" class="tsd-anchor"></a>
-					<h3>page<wbr>Size</h3>
-					<div class="tsd-signature tsd-kind-icon">page<wbr>Size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;pageSize&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/DCKit/dckit/blob/a450504/packages/@dckit/store/src/types.ts#L60">packages/@dckit/store/src/types.ts:60</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="totalitems" class="tsd-anchor"></a>
-					<h3>total<wbr>Items</h3>
-					<div class="tsd-signature tsd-kind-icon">total<wbr>Items<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;totalItems&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/DCKit/dckit/blob/a450504/packages/@dckit/store/src/types.ts#L57">packages/@dckit/store/src/types.ts:57</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="totalpages" class="tsd-anchor"></a>
-					<h3>total<wbr>Pages</h3>
-					<div class="tsd-signature tsd-kind-icon">total<wbr>Pages<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;totalPages&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/DCKit/dckit/blob/a450504/packages/@dckit/store/src/types.ts#L58">packages/@dckit/store/src/types.ts:58</a></li>
-						</ul>
-					</aside>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="createflow" class="tsd-anchor"></a>
+					<h3>create<wbr>Flow</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Flow<span class="tsd-signature-symbol">(</span>act<span class="tsd-signature-symbol">: </span><a href="../enums/_types_.acts.html" class="tsd-signature-type">Acts</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">flow</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/DCKit/dckit/blob/a450504/packages/@dckit/store/src/helpers/flows.ts#L6">packages/@dckit/store/src/helpers/flows.ts:6</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>act: <a href="../enums/_types_.acts.html" class="tsd-signature-type">Acts</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">flow</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -139,53 +140,17 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_types_.html">&quot;types&quot;</a>
+						<a href="_helpers_flows_.html">&quot;helpers/flows&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
-						<a href="_types_.actiontypes.html" class="tsd-kind-icon">Action<wbr>Types</a>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="_helpers_flows_.html#flow" class="tsd-kind-icon">Flow</a>
 					</li>
-					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
-						<a href="_types_.acts.html" class="tsd-kind-icon">Acts</a>
-					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-enum tsd-parent-kind-external-module">
-						<a href="_types_.itemprops.html" class="tsd-kind-icon">Item<wbr>Props</a>
-						<ul>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="_types_.itemprops.html#currentpage" class="tsd-kind-icon">current<wbr>Page</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="_types_.itemprops.html#pagesize" class="tsd-kind-icon">page<wbr>Size</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="_types_.itemprops.html#totalitems" class="tsd-kind-icon">total<wbr>Items</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="_types_.itemprops.html#totalpages" class="tsd-kind-icon">total<wbr>Pages</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_types_.iaction.html" class="tsd-kind-icon">IAction</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_types_.iprocess.html" class="tsd-kind-icon">IProcess</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/_types_.istate.html" class="tsd-kind-icon">IState</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_types_.html#tact" class="tsd-kind-icon">TAct</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/_types_.html#tfetcher" class="tsd-kind-icon">TFetcher</a>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_helpers_flows_.html#createflow" class="tsd-kind-icon">create<wbr>Flow</a>
 					</li>
 				</ul>
 			</nav>
