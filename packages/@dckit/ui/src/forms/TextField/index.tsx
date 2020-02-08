@@ -7,22 +7,6 @@ import {
 import { IFormField } from '../types'
 import { useStyles } from './styles'
 
-/*
-  FormHelperTextProps={{
-    classes: {
-      root: classes.helperText,
-      error: classes.helperTextError,
-    },
-  }}
-  InputProps={{
-    endAdornment: (
-      <InputAdornment position="start" className={classes.inputSuffix}>
-        {inputSuffix}
-      </InputAdornment>
-    ),
-  }}
-*/
-
 export const TextField = (props: IFormField) => {
   const classes = useStyles()
 
@@ -38,7 +22,7 @@ export const TextField = (props: IFormField) => {
     onBlur && onBlur(e)
   }
 
-  const { initialValue, suffix, size, ...restProps } = props
+  const { initialValue, suffix, size, variant, ...restProps } = props
 
   const fieldProps: StandardTextFieldProps = {
     ...restProps,
@@ -56,5 +40,5 @@ export const TextField = (props: IFormField) => {
     }
   }
 
-  return <MuiTextField {...fieldProps} />
+  return <MuiTextField {...fieldProps} fullWidth={true} />
 }

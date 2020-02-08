@@ -1,50 +1,48 @@
 import React from 'react'
 import { Formik, Form as FormWrapper } from 'formik'
-import { Grid } from '@material-ui/core'
 import { FormField } from './FormField'
 import { FormFieldType } from './types'
-
-const defaultByType = {
-  [FormFieldType.text]: '',
-  [FormFieldType.checkbox]: false,
-  [FormFieldType.switch]: false,
-}
+import { DefaultFormContainer, DefaultFieldContainer } from './containers'
 
 export interface IFormProps {
-  fields: string[]
+  fields: any
   fieldsConfig: any
   renderActions: any
-  initialValues?: any
   onSubmit?: any
-  withDefaults?: boolean
+  initialValues?: any
   validationSchema?: any
+  FormContainer?: any
+  FieldContainer?: any
 }
 
-export const Form = ({
-  fields,
-  fieldsConfig,
-  renderActions,
-  initialValues,
-  onSubmit,
-  validationSchema,
-}: IFormProps) => {
+export const Form = (props: IFormProps) => {
+  const {
+    fields,
+    fieldsConfig,
+    renderActions,
+    initialValues,
+    validationSchema,
+    onSubmit,
+    FormContainer = DefaultFormContainer,
+    FieldContainer = DefaultFieldContainer,
+  } = props
+
   function renderField(field: string, form: any) {
     const config = fieldsConfig[field]
     const { type = FormFieldType.text }: { type: FormFieldType } = config
-    const { size = 12, defaultValue = defaultByType[type] } = config
+    const { size = 12 } = config
 
     const fieldProps = {
       ...config,
-      type,
-      defaultValue,
       name: field,
+      type,
       form,
     }
 
     return (
-      <Grid key={field} container item xs={12} sm={size}>
+      <FieldContainer key={field} size={size}>
         <FormField {...fieldProps} />
-      </Grid>
+      </FieldContainer>
     )
   }
 
@@ -57,9 +55,9 @@ export const Form = ({
     >
       {form => (
         <FormWrapper>
-          <Grid container spacing={4}>
-            {fields.map(field => renderField(field, form))}
-          </Grid>
+          <FormContainer>
+            {fields.map((field: string) => renderField(field, form))}
+          </FormContainer>
           {renderActions(form)}
         </FormWrapper>
       )}

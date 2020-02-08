@@ -1,8 +1,15 @@
 import React from 'react'
 import { _get } from '@dckit/store'
 import { TextField } from '../TextField'
+import { CheckField } from '../CheckField'
 import { SwitchField } from '../SwitchField'
-import { IFormField, FormFieldType } from '../types'
+import { IFormField, FormFieldType, FieldTypeDict } from '../types'
+
+const components: FieldTypeDict = {
+  [FormFieldType.text]: TextField,
+  [FormFieldType.check]: CheckField,
+  [FormFieldType.switch]: SwitchField,
+}
 
 export const FormField = (props: IFormField) => {
   const {
@@ -12,42 +19,41 @@ export const FormField = (props: IFormField) => {
     size,
     defaultValue,
     useDefaults,
+    formDisabled,
     hint,
-    fullWidth = true,
     controlProps,
     controlChange,
     onChange,
     ...restProps
   } = props
 
-  const errorObj = _get(form.errors, field, {})
-  const helperText = errorObj ? errorObj.message : hint
-  const error = Boolean(errorObj)
-
-  const handleChange = (e: any, value: any) => {
+  function handleChange(e: any, value?: boolean) {
     const newValue =
-      type === FormFieldType.switch || type === FormFieldType.checkbox
+      type === FormFieldType.check || type === FormFieldType.switch
         ? value
         : e.target.value
     controlChange && controlChange(form, newValue)
     onChange && onChange(e)
   }
 
+  const errorObj = _get(form.errors, field, {})
+  const helperText = errorObj ? errorObj.message : hint
+  const error = Boolean(errorObj)
+
   const injectedProps = controlProps ? controlProps(form) : {}
-  if (useDefaults) injectedProps.disabled = true
+  if (formDisabled || useDefaults) {
+    injectedProps.disabled = true
+  }
 
   const fieldProps = {
     ...restProps,
     ...injectedProps,
     onChange: handleChange,
-    fullWidth,
     error,
     helperText,
   }
 
-  return type === FormFieldType.text ? (
-    <TextField {...fieldProps} />
-  ) : type === FormFieldType.switch ? (
-    <SwitchField {...fieldProps} />
-  ) : null
+  const Field = components[type]
+
+  return Field ? <Field {...fieldProps} /> : null
 }
