@@ -1,28 +1,11 @@
 import React from 'react'
-import { Checkbox, Switch, FormControlLabel } from '@material-ui/core'
-import { IFormField, FormFieldType, FieldTypeDict } from '../types'
+import { Checkbox, FormControlLabel } from '@material-ui/core'
+import { FormFieldProps } from '../types'
 import { useStyles } from './styles'
 
-const components: FieldTypeDict = {
-  [FormFieldType.check]: Checkbox,
-  [FormFieldType.switch]: Switch,
-}
-
-export const CheckField = (props: IFormField) => {
+export const CheckField = (props: FormFieldProps) => {
   const classes = useStyles()
-  const {
-    label,
-    type = FormFieldType.check,
-    disabled,
-    size,
-    helperText,
-    error,
-    LabelProps,
-    ...restProps
-  } = props
-
-  const Field = components[type]
-  if (!Field) return null
+  const { label, disabled, type, form, ...restProps } = props
 
   return (
     <FormControlLabel
@@ -30,8 +13,7 @@ export const CheckField = (props: IFormField) => {
         root: classes.noselect,
       }}
       label={label}
-      {...LabelProps}
-      control={<Field color="primary" {...restProps} disabled={disabled} />}
+      control={<Checkbox color="primary" {...restProps} disabled={disabled} />}
       disabled={disabled}
     />
   )

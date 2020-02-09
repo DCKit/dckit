@@ -1,58 +1,39 @@
 import React from 'react'
-import { _get } from '@dckit/store'
+import { useField } from 'formik'
 import { TextField } from '../TextField'
 import { CheckField } from '../CheckField'
 import { SwitchField } from '../SwitchField'
-import { IFormField, FormFieldType, FieldTypeDict } from '../types'
+import { FormFieldProps, FormFieldTypes, FieldTypeDict } from '../types'
 
 const components: FieldTypeDict = {
-  [FormFieldType.text]: TextField,
-  [FormFieldType.check]: CheckField,
-  [FormFieldType.switch]: SwitchField,
+  [FormFieldTypes.text]: TextField,
+  [FormFieldTypes.check]: CheckField,
+  [FormFieldTypes.switch]: SwitchField,
 }
 
-export const FormField = (props: IFormField) => {
-  const {
-    form,
-    field,
-    type = FormFieldType.text,
-    size,
-    defaultValue,
-    useDefaults,
-    formDisabled,
-    hint,
-    controlProps,
-    controlChange,
-    onChange,
-    ...restProps
-  } = props
+const initialValues: FieldTypeDict = {
+  [FormFieldTypes.text]: '',
+  [FormFieldTypes.check]: false,
+  [FormFieldTypes.switch]: false,
+}
 
-  function handleChange(e: any, value?: boolean) {
-    const newValue =
-      type === FormFieldType.check || type === FormFieldType.switch
-        ? value
-        : e.target.value
-    controlChange && controlChange(form, newValue)
-    onChange && onChange(e)
-  }
+export const FormField = (props: FormFieldProps) => {
+  const { form, name, disabled, hint, type, initialValue, ...restProps } = props
+  const { isSubmitting } = form
+  const [field, meta] = useField(name)
 
-  const errorObj = _get(form.errors, field, {})
-  const helperText = errorObj ? errorObj.message : hint
-  const error = Boolean(errorObj)
-
-  const injectedProps = controlProps ? controlProps(form) : {}
-  if (formDisabled || useDefaults) {
-    injectedProps.disabled = true
-  }
+  const fieldError = meta.error
+  const error = meta.touched && !!fieldError
+  const value = field.value ?? initialValue ?? initialValues[type]
 
   const fieldProps = {
     ...restProps,
-    ...injectedProps,
-    onChange: handleChange,
+    ...field,
+    value,
     error,
-    helperText,
+    helperText: error ? fieldError : hint,
+    disabled: disabled ?? isSubmitting,
   }
-
   const Field = components[type]
 
   return Field ? <Field {...fieldProps} /> : null

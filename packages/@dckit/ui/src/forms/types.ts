@@ -1,27 +1,33 @@
 import { GridSize } from '@material-ui/core'
+import { FormikProps } from 'formik'
 
-export const enum FormFieldType {
+export const enum FormFieldTypes {
   text = 'text',
   check = 'check',
   switch = 'switch',
   component = 'component',
 }
 
-type FieldType = keyof typeof FormFieldType
+export type FormFieldType = keyof typeof FormFieldTypes
 
 export type FieldTypeDict = {
-  [key in FieldType]?: any
+  [key in FormFieldType]?: any
 }
 
-export interface IFormField {
-  field: string
+export type FormFieldConfig = {
+  name?: string
   label: string
   type?: FormFieldType
   size?: GridSize
+  required?: boolean
   disabled?: boolean
-  formDisabled?: boolean
+  hint?: string
   initialValue?: any
   suffix?: any
-  useDefaults?: boolean
-  [propName: string]: any
+}
+
+export type FormFieldProps = Omit<FormFieldConfig, 'size' | 'type'> & {
+  form: FormikProps<unknown>
+  name: string
+  type: FormFieldType
 }
