@@ -1,53 +1,40 @@
 import React from 'react'
-import { _get } from '@dckit/store'
+import { useField } from 'formik'
 import { TextField } from '../TextField'
+import { CheckField } from '../CheckField'
 import { SwitchField } from '../SwitchField'
-import { IFormField, FormFieldType } from '../types'
+import { FormFieldProps, FormFieldTypes, FieldTypeDict } from '../types'
 
-export const FormField = (props: IFormField) => {
-  const {
-    form,
-    field,
-    type = FormFieldType.text,
-    size,
-    defaultValue,
-    useDefaults,
-    hint,
-    fullWidth = true,
-    controlProps,
-    controlChange,
-    onChange,
-    ...restProps
-  } = props
+const components: FieldTypeDict = {
+  [FormFieldTypes.text]: TextField,
+  [FormFieldTypes.check]: CheckField,
+  [FormFieldTypes.switch]: SwitchField,
+}
 
-  const errorObj = _get(form.errors, field, {})
-  const helperText = errorObj ? errorObj.message : hint
-  const error = Boolean(errorObj)
+const initialValues: FieldTypeDict = {
+  [FormFieldTypes.text]: '',
+  [FormFieldTypes.check]: false,
+  [FormFieldTypes.switch]: false,
+}
 
-  const handleChange = (e: any, value: any) => {
-    const newValue =
-      type === FormFieldType.switch || type === FormFieldType.checkbox
-        ? value
-        : e.target.value
-    controlChange && controlChange(form, newValue)
-    onChange && onChange(e)
-  }
+export const FormField = (props: FormFieldProps) => {
+  const { form, name, disabled, hint, type, initialValue, ...restProps } = props
+  const { isSubmitting } = form
+  const [field, meta] = useField(name)
 
-  const injectedProps = controlProps ? controlProps(form) : {}
-  if (useDefaults) injectedProps.disabled = true
+  const fieldError = meta.error
+  const error = meta.touched && !!fieldError
+  const value = field.value ?? initialValue ?? initialValues[type]
 
   const fieldProps = {
     ...restProps,
-    ...injectedProps,
-    onChange: handleChange,
-    fullWidth,
+    ...field,
+    value,
     error,
-    helperText,
+    helperText: error ? fieldError : hint,
+    disabled: disabled ?? isSubmitting,
   }
+  const Field = components[type]
 
-  return type === FormFieldType.text ? (
-    <TextField {...fieldProps} />
-  ) : type === FormFieldType.switch ? (
-    <SwitchField {...fieldProps} />
-  ) : null
+  return Field ? <Field {...fieldProps} /> : null
 }

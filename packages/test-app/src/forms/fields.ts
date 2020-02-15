@@ -1,38 +1,29 @@
 import * as V from 'yup'
 
-export const fields = ['login', 'password', 'notes', 'switch']
+export const fields = ['login', 'password', 'notes']
 
 export const fieldsConfig = {
   login: {
     label: 'Login',
     required: true,
     size: 6,
-    defaultValue: '111',
+    initialValue: '111',
     suffix: 'abc',
-    controlChange: (form: any, value: any) =>
-      value === '-' && form.setValue('notes', '---', true),
   },
   password: {
     label: 'Password',
     size: 6,
-    defaultValue: '222',
+    initialValue: '222',
     hint: 'use at least 6 symbols',
-    controlProps: (form: any) => {
-      const hasValue = Boolean(form.getValues().login)
-      return {
-        disabled: !hasValue,
-        required: hasValue,
-      }
-    },
   },
   notes: {
     label: 'Notes',
     size: 8,
   },
-  switch: {
-    label: 'Switch',
-    type: 'switch',
-    defaultValue: false,
+  check: {
+    label: 'Check',
+    type: 'check',
+    initialValue: false,
     size: 4,
   },
 }

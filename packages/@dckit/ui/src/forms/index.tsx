@@ -1,125 +1,72 @@
-import React, { useState, useEffect } from 'react'
-import { useForm, Controller } from 'react-hook-form'
-import { Grid } from '@material-ui/core'
+import React from 'react'
+import { Formik, Form as FormikFormWrapper, FormikProps } from 'formik'
 import { FormField } from './FormField'
-import { FormFieldType } from './types'
+import { FormFieldTypes, FormFieldConfig } from './types'
+import { DefaultFormContainer, DefaultFieldContainer } from './containers'
 
-const defaultByType = {
-  [FormFieldType.text]: '',
-  [FormFieldType.checkbox]: false,
-  [FormFieldType.switch]: false,
-}
-
-export interface IFormProps {
+export interface FormProps {
   fields: string[]
   fieldsConfig: any
   renderActions: any
+  onSubmit?: any
   initialValues?: any
-  withDefaults?: boolean
   validationSchema?: any
+  FormContainer?: any
+  FormWrapper?: any
+  FieldContainer?: any
 }
 
-export const Form = ({
-  fields,
-  fieldsConfig,
-  renderActions,
-  initialValues,
-  withDefaults = false,
-  validationSchema,
-}: IFormProps) => {
-  const [useDefaults, setUseDefaults] = useState(getUseDefaults())
-  const form = useForm({ validationSchema, mode: 'onBlur' })
+export const Form = (props: FormProps) => {
+  const {
+    fields,
+    fieldsConfig,
+    renderActions,
+    initialValues,
+    validationSchema,
+    onSubmit,
+    FormContainer = DefaultFormContainer,
+    FieldContainer = DefaultFieldContainer,
+    FormWrapper = FormikFormWrapper,
+  } = props
 
-  useEffect(updateValues, [initialValues])
-
-  function getDefaultValues() {
-    return initialValues?.defaultValues || {}
-  }
-
-  function getUseDefaults() {
-    return initialValues?.useDefaults || false
-  }
-
-  function updateValues() {
-    const { reset } = form
-    if (withDefaults) {
-      const values = getDefaultValues()
-      values.useDefaults = getUseDefaults()
-      setUseDefaults(values.useDefaults)
-      reset(values)
-    } else {
-      reset(initialValues)
-    }
-  }
-
-  function resetDefaults(form: any, value: boolean) {
-    value && form.reset(getDefaultValues())
-    setUseDefaults(value)
-  }
-
-  function renderField(field: string) {
-    const config = fieldsConfig[field]
-    const { type = FormFieldType.text }: { type: FormFieldType } = config
+  function renderField(field: string, form: FormikProps<unknown>) {
+    const config: FormFieldConfig = fieldsConfig[field]
     const {
+      name = field,
+      type = FormFieldTypes.text,
       size = 12,
-      defaultValue = defaultByType[type],
-      controlProps,
+      ...restProps
     } = config
 
-    const fieldProps = {
-      ...config,
+    const formFieldProps = {
+      ...restProps,
       form,
-      field,
-      useDefaults,
+      name,
+      type,
     }
 
-    if (controlProps) form.watch(field, defaultValue)
-
     return (
-      <Grid key={field} container item xs={12} sm={size}>
-        <Controller
-          as={<FormField {...fieldProps} />}
-          name={field}
-          control={form.control}
-          defaultValue={defaultValue}
-        />
-      </Grid>
-    )
-  }
-
-  function renderUseDefaults() {
-    return (
-      <Grid container>
-        <Grid item>
-          <Controller
-            as={
-              <FormField
-                form={form}
-                type={FormFieldType.switch}
-                field="useDefaults"
-                label="use defaults"
-                controlChange={resetDefaults}
-              />
-            }
-            name="useDefaults"
-            control={form.control}
-            defaultValue={false}
-          />
-        </Grid>
-        <Grid item container>
-          {renderActions(form)}
-        </Grid>
-      </Grid>
+      <FieldContainer key={field} size={size}>
+        <FormField {...formFieldProps} />
+      </FieldContainer>
     )
   }
 
   return (
-    <form>
-      <Grid container spacing={4}>
-        {fields.map(renderField)}
-      </Grid>
-      {withDefaults && renderUseDefaults()}
-      {!withDefaults && renderActions(form)}
-    </form>
+    <Formik
+      initialValues={initialValues}
+      enableReinitialize={true}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {(form: FormikProps<unknown>) => (
+        <FormWrapper>
+          <FormContainer>
+            {fields.map(field => renderField(field, form))}
+          </FormContainer>
+          {renderActions(form)}
+        </FormWrapper>
+      )}
+    </Formik>
   )
 }

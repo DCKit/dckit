@@ -4,9 +4,8 @@ import { makeStyles } from '@material-ui/core/styles'
 export const useStyles = makeStyles((theme: Theme) => {
   return {
     helperText: {
-      margin: 0,
       position: 'absolute',
-      bottom: -16,
+      bottom: -18,
     },
   }
 })

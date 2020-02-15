@@ -6,24 +6,23 @@ import { Form } from '@dckit/ui'
 export const DemoForm = () => {
   const [initialValues, setInitialValues] = useState({})
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setInitialValues({
+        login: 'login',
         notes: '######',
-        defaultValues: {
-          notes: 'default',
-        },
-        useDefaults: true,
+        password: '',
       })
     }, 2000)
+    return () => clearTimeout(timeout)
   }, [setInitialValues])
 
   const renderActions = (form: any) => {
-    const onSubmit1 = form.handleSubmit((data: any) => {
-      console.log('Submit 1', data)
-    })
-    const onSubmit2 = form.handleSubmit((data: any) => {
-      console.log('Submit 2', data)
-    })
+    const onSubmit1 = () => {
+      form.submitForm()
+    }
+    const onSubmit2 = () => {
+      form.submitForm()
+    }
 
     return (
       <Grid item container justify="flex-end">
@@ -41,15 +40,17 @@ export const DemoForm = () => {
     )
   }
 
+  const handleSubmit = (data: any) => console.log(data)
+
   return (
     <Paper style={{ margin: 50, padding: 32, width: '70%' }}>
       <Form
-        withDefaults
         fields={fields}
         fieldsConfig={fieldsConfig}
         initialValues={initialValues}
         validationSchema={validationSchema}
         renderActions={renderActions}
+        onSubmit={handleSubmit}
       />
     </Paper>
   )
