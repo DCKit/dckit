@@ -1,5 +1,5 @@
 import React from 'react'
-import { useField } from 'formik'
+import { useField, useFormikContext } from 'formik'
 import { TextField } from '../TextField'
 import { CheckField } from '../CheckField'
 import { SwitchField } from '../SwitchField'
@@ -12,9 +12,24 @@ const components: FieldTypeDict = {
 }
 
 export const FormField = (props: FormFieldProps) => {
-  const { form, name, disabled, hint, type, initialValue, ...restProps } = props
-  const { isSubmitting } = form
+  const {
+    name,
+    disabled,
+    fieldsDisabled,
+    hint,
+    type,
+    initialValue,
+    onChange,
+    ...restProps
+  } = props
+
+  const { isSubmitting } = useFormikContext()
   const [field, meta] = useField(name)
+
+  const handleChange = (e: React.ChangeEvent<any>) => {
+    onChange && onChange(e)
+    field.onChange(e)
+  }
 
   const fieldError = meta.error
   const error = meta.touched && !!fieldError
@@ -22,9 +37,10 @@ export const FormField = (props: FormFieldProps) => {
   const fieldProps = {
     ...restProps,
     ...field,
+    onChange: handleChange,
     error,
     helperText: error ? fieldError : hint,
-    disabled: disabled ?? isSubmitting,
+    disabled: fieldsDisabled ?? disabled ?? isSubmitting,
   }
   const Field = components[type]
 

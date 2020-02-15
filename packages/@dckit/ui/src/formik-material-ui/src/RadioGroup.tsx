@@ -1,17 +1,17 @@
-import * as React from 'react';
+import * as React from 'react'
 import MuiRadioGroup, {
   RadioGroupProps as MuiRadioGroupProps,
-} from '@material-ui/core/RadioGroup';
+} from '@material-ui/core/RadioGroup'
 import {
   FieldInputProps,
   FieldMetaProps,
   FieldHelperProps,
   useField,
-} from 'formik';
+} from 'formik'
 
 export interface RadioGroupProps
   extends Omit<MuiRadioGroupProps, 'name' | 'value'> {
-  name: string;
+  name: string
 }
 
 export function useFieldToRadioGroup<Val = unknown>(
@@ -20,19 +20,19 @@ export function useFieldToRadioGroup<Val = unknown>(
     props: [FieldInputProps<Val>, FieldMetaProps<Val>, FieldHelperProps<Val>]
   ) => Partial<Omit<RadioGroupProps, 'name'>>
 ): MuiRadioGroupProps {
-  const fieldProps = useField(name);
+  const fieldProps = useField(name)
 
-  const [field] = fieldProps;
+  const [field] = fieldProps
 
   return {
     ...props,
     ...field,
     ...customize?.(fieldProps),
-  };
+  }
 }
 
 export function RadioGroup(props: RadioGroupProps) {
-  return <MuiRadioGroup {...useFieldToRadioGroup(props)} />;
+  return <MuiRadioGroup {...useFieldToRadioGroup(props)} />
 }
 
-RadioGroup.displayName = 'FormikMaterialUIRadioGroup';
+RadioGroup.displayName = 'FormikMaterialUIRadioGroup'

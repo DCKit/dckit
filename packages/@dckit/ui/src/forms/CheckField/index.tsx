@@ -5,7 +5,7 @@ import { useStyles } from './styles'
 
 export const CheckField = (props: FormFieldProps) => {
   const classes = useStyles()
-  const { label, disabled, type, form, ...restProps } = props
+  const { label, disabled, type, ...restProps } = props
 
   return (
     <FormControlLabel

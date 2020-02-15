@@ -1,5 +1,4 @@
 import { GridSize } from '@material-ui/core'
-import { FormikProps } from 'formik'
 
 export const enum FormFieldTypes {
   text = 'text',
@@ -27,7 +26,10 @@ export type FormFieldConfig = {
 }
 
 export type FormFieldProps = Omit<FormFieldConfig, 'size' | 'type'> & {
-  form: FormikProps<unknown>
+  fieldsDisabled?: boolean
   name: string
   type: FormFieldType
+  onChange?: any
+  error?: any
+  helperText?: any
 }

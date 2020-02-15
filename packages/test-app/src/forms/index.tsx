@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { Grid, Paper, Button } from '@material-ui/core'
 import { fields, fieldsConfig, validationSchema } from './fields'
-import { Form } from '@dckit/ui'
+import { FormWithDefaults } from '@dckit/ui'
 
 export const DemoForm = () => {
   const [initialValues, setInitialValues] = useState({})
   useEffect(() => {
     const timeout = setTimeout(() => {
       setInitialValues({
-        login: 'login',
+        defaultValues: {
+          login: 'default login',
+          password: 'default password',
+        },
       })
     }, 2000)
     return () => clearTimeout(timeout)
@@ -42,7 +45,7 @@ export const DemoForm = () => {
 
   return (
     <Paper style={{ margin: 50, padding: 32, width: '70%' }}>
-      <Form
+      <FormWithDefaults
         fields={fields}
         fieldsConfig={fieldsConfig}
         initialValues={initialValues}
