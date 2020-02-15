@@ -6,12 +6,14 @@ import { Form } from '@dckit/ui'
 export const DemoForm = () => {
   const [initialValues, setInitialValues] = useState({})
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setInitialValues({
         login: 'login',
         notes: '######',
+        password: '',
       })
     }, 2000)
+    return () => clearTimeout(timeout)
   }, [setInitialValues])
 
   const renderActions = (form: any) => {
