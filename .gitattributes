@@ -1,3 +1,2 @@
 docs/**/* linguist-documentation
-packages/@dckit/store/etc/**/* linguist-documentation
-packages/test-app/public/**/* linguist-generated=true
+packages/**/public/**/* linguist-generated=true
