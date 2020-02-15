@@ -1,8 +1,14 @@
-import React from 'react'
-import { Formik, Form as FormikFormWrapper, FormikProps } from 'formik'
+import React, { useMemo } from 'react'
+import { Formik, Form as FormWrapper, FormikProps } from 'formik'
 import { FormField } from './FormField'
-import { FormFieldTypes, FormFieldConfig } from './types'
+import { FormFieldTypes, FormFieldConfig, FieldTypeDict } from './types'
 import { DefaultFormContainer, DefaultFieldContainer } from './containers'
+
+const defaultValues: FieldTypeDict = {
+  [FormFieldTypes.text]: '',
+  [FormFieldTypes.check]: false,
+  [FormFieldTypes.switch]: false,
+}
 
 export interface FormProps {
   fields: string[]
@@ -12,7 +18,6 @@ export interface FormProps {
   initialValues?: any
   validationSchema?: any
   FormContainer?: any
-  FormWrapper?: any
   FieldContainer?: any
 }
 
@@ -26,8 +31,18 @@ export const Form = (props: FormProps) => {
     onSubmit,
     FormContainer = DefaultFormContainer,
     FieldContainer = DefaultFieldContainer,
-    FormWrapper = FormikFormWrapper,
   } = props
+
+  const normalizedValues = useMemo(() => {
+    const values: any = {}
+    fields.forEach((field: string) => {
+      const config: FormFieldConfig = fieldsConfig[field]
+      const { type = FormFieldTypes.text, initialValue } = config
+      values[field] =
+        initialValues[field] ?? initialValue ?? defaultValues[type]
+    })
+    return values
+  }, [fields, fieldsConfig, initialValues])
 
   function renderField(field: string, form: FormikProps<unknown>) {
     const config: FormFieldConfig = fieldsConfig[field]
@@ -54,7 +69,7 @@ export const Form = (props: FormProps) => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={normalizedValues}
       enableReinitialize={true}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
