@@ -7,13 +7,11 @@ export const fieldsConfig = {
     label: 'Login',
     required: true,
     size: 6,
-    initialValue: '111',
     suffix: 'abc',
   },
   password: {
     label: 'Password',
     size: 6,
-    initialValue: '222',
     hint: 'use at least 6 symbols',
   },
   notes: {
@@ -23,7 +21,6 @@ export const fieldsConfig = {
   check: {
     label: 'Check',
     type: 'check',
-    initialValue: false,
     size: 4,
   },
 }

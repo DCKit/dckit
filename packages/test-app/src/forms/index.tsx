@@ -9,8 +9,6 @@ export const DemoForm = () => {
     const timeout = setTimeout(() => {
       setInitialValues({
         login: 'login',
-        notes: '######',
-        password: '',
       })
     }, 2000)
     return () => clearTimeout(timeout)

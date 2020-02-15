@@ -11,12 +11,6 @@ const components: FieldTypeDict = {
   [FormFieldTypes.switch]: SwitchField,
 }
 
-const initialValues: FieldTypeDict = {
-  [FormFieldTypes.text]: '',
-  [FormFieldTypes.check]: false,
-  [FormFieldTypes.switch]: false,
-}
-
 export const FormField = (props: FormFieldProps) => {
   const { form, name, disabled, hint, type, initialValue, ...restProps } = props
   const { isSubmitting } = form
@@ -24,12 +18,10 @@ export const FormField = (props: FormFieldProps) => {
 
   const fieldError = meta.error
   const error = meta.touched && !!fieldError
-  const value = field.value ?? initialValue ?? initialValues[type]
 
   const fieldProps = {
     ...restProps,
     ...field,
-    value,
     error,
     helperText: error ? fieldError : hint,
     disabled: disabled ?? isSubmitting,
