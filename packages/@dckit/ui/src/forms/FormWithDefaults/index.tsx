@@ -27,7 +27,11 @@ export const FormWithDefaults = (props: FormWithDefaultsProps) => {
 
   const defaultValues = useMemo(() => {
     const values = useDefaults ? initialValues?.defaultValues : initialValues
-    return { ...values, defaultValues: values?.defaultValues, useDefaults }
+    return {
+      ...values,
+      defaultValues: initialValues?.defaultValues,
+      useDefaults,
+    }
   }, [useDefaults, initialValues])
 
   const handleUseDefaultsChange = (e: React.ChangeEvent<any>) => {

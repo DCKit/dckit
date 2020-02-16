@@ -1,6 +1,6 @@
 import * as V from 'yup'
 
-export const fields = ['login', 'password', 'notes', 'check']
+export const fields = ['login', 'password', 'nested.notes', 'nested.check']
 
 export const fieldsConfig = {
   login: {
@@ -11,14 +11,15 @@ export const fieldsConfig = {
   },
   password: {
     label: 'Password',
+    required: true,
     size: 6,
     hint: 'use at least 6 symbols',
   },
-  notes: {
+  'nested.notes': {
     label: 'Notes',
     size: 8,
   },
-  check: {
+  'nested.check': {
     label: 'Check',
     type: 'check',
     size: 4,

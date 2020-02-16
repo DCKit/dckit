@@ -3,8 +3,15 @@ import { Grid, Paper, Button } from '@material-ui/core'
 import { fields, fieldsConfig, validationSchema } from './fields'
 import { FormWithDefaults } from '@dckit/ui'
 
+type InitialValues = {
+  [key: string]: any
+}
+
 export const DemoForm = () => {
-  const [initialValues, setInitialValues] = useState({})
+  const [initialValues, setInitialValues] = useState({
+    login: '@@@',
+    nested: { notes: '###' },
+  } as InitialValues)
   useEffect(() => {
     const timeout = setTimeout(() => {
       setInitialValues({
@@ -12,7 +19,10 @@ export const DemoForm = () => {
         defaultValues: {
           login: 'default login',
           password: 'default password',
-          check: true,
+          nested: {
+            notes: 'default notes',
+            check: true,
+          },
         },
       })
     }, 5000)
