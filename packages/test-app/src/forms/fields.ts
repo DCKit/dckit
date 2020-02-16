@@ -1,6 +1,6 @@
 import * as V from 'yup'
 
-export const fields = ['login', 'password', 'notes']
+export const fields = ['login', 'password', 'notes', 'check']
 
 export const fieldsConfig = {
   login: {

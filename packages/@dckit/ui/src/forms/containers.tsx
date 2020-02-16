@@ -19,5 +19,6 @@ export const DefaultFieldContainer = ({
   </Grid>
 )
 
-export const DefaultGroupContainer = ({ children }: { children: any }) =>
-  children
+export const DefaultActionsContainer = ({ children }: { children: any }) => (
+  <Grid container>{children}</Grid>
+)

@@ -1,8 +1,12 @@
 import React, { useMemo } from 'react'
 import { Formik, Form as FormWrapper, FormikProps } from 'formik'
-import { FormField } from './FormField'
-import { FormFieldTypes, FormFieldConfig, FieldTypeDict } from './types'
-import { DefaultFormContainer, DefaultFieldContainer } from './containers'
+import { FormField } from '../FormField'
+import { FormFieldTypes, FormFieldConfig, FieldTypeDict } from '../types'
+import {
+  DefaultFormContainer,
+  DefaultFieldContainer,
+  DefaultActionsContainer,
+} from '../containers'
 
 const defaultValues: FieldTypeDict = {
   [FormFieldTypes.text]: '',
@@ -10,15 +14,17 @@ const defaultValues: FieldTypeDict = {
   [FormFieldTypes.switch]: false,
 }
 
-export interface FormProps {
+export type FormProps = {
   fields: string[]
   fieldsConfig: any
   renderActions: any
   onSubmit?: any
   initialValues?: any
   validationSchema?: any
+  fieldsDisabled?: boolean
   FormContainer?: any
   FieldContainer?: any
+  ActionsContainer?: any
 }
 
 export const Form = (props: FormProps) => {
@@ -29,22 +35,24 @@ export const Form = (props: FormProps) => {
     initialValues,
     validationSchema,
     onSubmit,
+    fieldsDisabled = false,
     FormContainer = DefaultFormContainer,
     FieldContainer = DefaultFieldContainer,
+    ActionsContainer = DefaultActionsContainer,
   } = props
 
   const normalizedValues = useMemo(() => {
-    const values: any = {}
+    const values = initialValues
     fields.forEach((field: string) => {
       const config: FormFieldConfig = fieldsConfig[field]
       const { type = FormFieldTypes.text, initialValue } = config
       values[field] =
-        initialValues[field] ?? initialValue ?? defaultValues[type]
+        initialValues?.[field] ?? initialValue ?? defaultValues[type]
     })
     return values
-  }, [fields, fieldsConfig, initialValues])
+  }, [initialValues, fields, fieldsConfig])
 
-  function renderField(field: string, form: FormikProps<unknown>) {
+  function renderField(field: string) {
     const config: FormFieldConfig = fieldsConfig[field]
     const {
       name = field,
@@ -55,7 +63,7 @@ export const Form = (props: FormProps) => {
 
     const formFieldProps = {
       ...restProps,
-      form,
+      fieldsDisabled,
       name,
       type,
     }
@@ -76,10 +84,8 @@ export const Form = (props: FormProps) => {
     >
       {(form: FormikProps<unknown>) => (
         <FormWrapper>
-          <FormContainer>
-            {fields.map(field => renderField(field, form))}
-          </FormContainer>
-          {renderActions(form)}
+          <FormContainer>{fields.map(renderField)}</FormContainer>
+          <ActionsContainer>{renderActions(form, props)}</ActionsContainer>
         </FormWrapper>
       )}
     </Formik>
