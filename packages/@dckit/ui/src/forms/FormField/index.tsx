@@ -40,7 +40,7 @@ export const FormField = (props: FormFieldProps) => {
     onChange: handleChange,
     error,
     helperText: error ? fieldError : hint,
-    disabled: disabled ?? fieldsDisabled ?? isSubmitting,
+    disabled: (isSubmitting || disabled) ?? fieldsDisabled,
   }
   const Field = components[type]
 
