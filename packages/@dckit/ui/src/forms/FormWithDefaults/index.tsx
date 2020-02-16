@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { FormikProps } from 'formik'
 import { Form, FormProps } from '../Form'
 import { FormField } from '../FormField'
@@ -20,10 +20,15 @@ export type FormWithDefaultsProps = {
 
 export const FormWithDefaults = (props: FormWithDefaultsProps) => {
   const { renderActions, initialValues, ...restProps } = props
+  const initialUseDefaults = initialValues?.useDefaults ?? false
+  const [useDefaults, setUseDefaults] = useState(initialUseDefaults)
 
-  const [useDefaults, setUseDefaults] = useState(
-    initialValues?.useDefaults ?? false
-  )
+  useEffect(() => setUseDefaults(initialUseDefaults), [initialUseDefaults])
+
+  const defaultValues = useMemo(() => {
+    const values = useDefaults ? initialValues?.defaultValues : initialValues
+    return { ...values, defaultValues: values?.defaultValues, useDefaults }
+  }, [useDefaults, initialValues])
 
   const handleUseDefaultsChange = (e: React.ChangeEvent<any>) => {
     setUseDefaults(e.target.checked)
@@ -36,6 +41,7 @@ export const FormWithDefaults = (props: FormWithDefaultsProps) => {
           type={FormFieldTypes.switch}
           label="Use defaults"
           name="useDefaults"
+          disabled={false}
           onChange={handleUseDefaultsChange}
         />
       </Grid>
@@ -46,7 +52,7 @@ export const FormWithDefaults = (props: FormWithDefaultsProps) => {
   return (
     <Form
       {...restProps}
-      initialValues={useDefaults ? initialValues?.defaultValues : initialValues}
+      initialValues={defaultValues}
       renderActions={renderUseDefaults}
       fieldsDisabled={useDefaults}
     />

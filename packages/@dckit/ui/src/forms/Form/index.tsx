@@ -42,7 +42,7 @@ export const Form = (props: FormProps) => {
   } = props
 
   const normalizedValues = useMemo(() => {
-    const values: any = {}
+    const values = initialValues
     fields.forEach((field: string) => {
       const config: FormFieldConfig = fieldsConfig[field]
       const { type = FormFieldTypes.text, initialValue } = config

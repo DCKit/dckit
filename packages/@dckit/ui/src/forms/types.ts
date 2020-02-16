@@ -29,6 +29,7 @@ export type FormFieldProps = Omit<FormFieldConfig, 'size' | 'type'> & {
   fieldsDisabled?: boolean
   name: string
   type: FormFieldType
+  value?: any
   onChange?: any
   error?: any
   helperText?: any

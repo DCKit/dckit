@@ -5,7 +5,15 @@ import { useStyles } from './styles'
 
 export const CheckField = (props: FormFieldProps) => {
   const classes = useStyles()
-  const { label, disabled, type, ...restProps } = props
+  const {
+    label,
+    disabled,
+    type,
+    error,
+    helperText,
+    value,
+    ...restProps
+  } = props
 
   return (
     <FormControlLabel
@@ -13,7 +21,15 @@ export const CheckField = (props: FormFieldProps) => {
         root: classes.noselect,
       }}
       label={label}
-      control={<Checkbox color="primary" {...restProps} disabled={disabled} />}
+      control={
+        <Checkbox
+          color="primary"
+          {...restProps}
+          checked={value ?? false}
+          value={value ?? false}
+          disabled={disabled}
+        />
+      }
       disabled={disabled}
     />
   )

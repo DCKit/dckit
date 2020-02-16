@@ -8,12 +8,14 @@ export const DemoForm = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setInitialValues({
+        useDefaults: true,
         defaultValues: {
           login: 'default login',
           password: 'default password',
+          check: true,
         },
       })
-    }, 2000)
+    }, 5000)
     return () => clearTimeout(timeout)
   }, [setInitialValues])
 

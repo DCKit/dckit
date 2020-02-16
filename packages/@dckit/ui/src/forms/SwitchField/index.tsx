@@ -5,7 +5,15 @@ import { useStyles } from './styles'
 
 export const SwitchField = (props: FormFieldProps) => {
   const classes = useStyles()
-  const { label, disabled, type, error, helperText, ...restProps } = props
+  const {
+    label,
+    disabled,
+    type,
+    error,
+    helperText,
+    value,
+    ...restProps
+  } = props
 
   return (
     <FormControlLabel
@@ -13,7 +21,14 @@ export const SwitchField = (props: FormFieldProps) => {
         root: classes.noselect,
       }}
       label={label}
-      control={<Switch color="primary" {...restProps} disabled={disabled} />}
+      control={
+        <Switch
+          color="primary"
+          {...restProps}
+          checked={value ?? false}
+          disabled={disabled}
+        />
+      }
       disabled={disabled}
     />
   )
