@@ -42,6 +42,11 @@ export type FormFieldProps = Omit<FormFieldConfig, 'size' | 'type'> & {
   helperText?: any
 }
 
+export type MuiFieldProps = Omit<FormFieldProps, 'disabled' | 'required'> & {
+  disabled?: boolean
+  required?: boolean
+}
+
 export type FormProps = FormikConfig<FormikValues> & {
   fields: string[]
   fieldsConfig: any
