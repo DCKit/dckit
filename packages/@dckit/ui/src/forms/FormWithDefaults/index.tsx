@@ -5,20 +5,7 @@ import { FormField } from '../FormField'
 import { FormFieldTypes } from '../types'
 import { Grid } from '@material-ui/core'
 
-export type FormWithDefaultsProps = {
-  fields: string[]
-  fieldsConfig: any
-  renderActions: any
-  onSubmit?: any
-  initialValues?: any
-  validationSchema?: any
-  disabled?: boolean
-  FormContainer?: any
-  FieldContainer?: any
-  ActionsContainer?: any
-}
-
-export const FormWithDefaults = (props: FormWithDefaultsProps) => {
+export const FormWithDefaults = (props: FormProps) => {
   const { renderActions, initialValues, ...restProps } = props
   const initialUseDefaults = initialValues?.useDefaults ?? false
   const [useDefaults, setUseDefaults] = useState(initialUseDefaults)

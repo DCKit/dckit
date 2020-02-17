@@ -1,5 +1,13 @@
 import React, { useMemo } from 'react'
-import { Formik, Form as FormWrapper, FormikProps, getIn, setIn } from 'formik'
+import {
+  Formik,
+  Form as FormWrapper,
+  FormikConfig,
+  FormikValues,
+  FormikProps,
+  getIn,
+  setIn,
+} from 'formik'
 import { FormField } from '../FormField'
 import { FormFieldTypes, FormFieldConfig, FieldTypeDict } from '../types'
 import {
@@ -14,13 +22,10 @@ const defaultValues: FieldTypeDict = {
   [FormFieldTypes.switch]: false,
 }
 
-export type FormProps = {
+export type FormProps = FormikConfig<FormikValues> & {
   fields: string[]
   fieldsConfig: any
   renderActions: any
-  onSubmit?: any
-  initialValues?: any
-  validationSchema?: any
   fieldsDisabled?: boolean
   FormContainer?: any
   FieldContainer?: any
@@ -33,12 +38,12 @@ export const Form = (props: FormProps) => {
     fieldsConfig,
     renderActions,
     initialValues,
-    validationSchema,
-    onSubmit,
     fieldsDisabled = false,
+    validateOnChange = false,
     FormContainer = DefaultFormContainer,
     FieldContainer = DefaultFieldContainer,
     ActionsContainer = DefaultActionsContainer,
+    ...formConfigProps
   } = props
 
   const normalizedInitialValues = useMemo(() => {
@@ -80,10 +85,10 @@ export const Form = (props: FormProps) => {
 
   return (
     <Formik
+      {...formConfigProps}
+      validateOnChange={validateOnChange}
       initialValues={normalizedInitialValues}
       enableReinitialize={true}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
     >
       {(form: FormikProps<unknown>) => (
         <FormWrapper>

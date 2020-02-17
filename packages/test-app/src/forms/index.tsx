@@ -8,13 +8,13 @@ type InitialValues = {
 }
 
 export const DemoForm = () => {
-  const [initialValues, setInitialValues] = useState({
-    login: '@@@',
-    nested: { notes: '###' },
-  } as InitialValues)
+  const [initialValues, setInitialValues] = useState({} as InitialValues)
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setInitialValues({
+        login: '@@@',
+        nested: { notes: '###' },
         useDefaults: true,
         defaultValues: {
           login: 'default login',

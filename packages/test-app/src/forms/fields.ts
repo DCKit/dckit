@@ -32,7 +32,5 @@ export const validationSchema = V.object({
     .required(),
   password: V.string()
     .label(fieldsConfig.password.label)
-    .when('login', (value: string, schema: any) =>
-      value ? schema.required() : schema
-    ),
+    .required(),
 })
