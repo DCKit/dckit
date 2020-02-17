@@ -1,25 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { FormikProps } from 'formik'
-import { Form, FormProps } from '../Form'
-import { FormField } from '../FormField'
-import { FormFieldTypes } from '../types'
 import { Grid } from '@material-ui/core'
+import { Form } from '../Form'
+import { FormField } from '../FormField'
+import { FormFieldTypes, FormProps, FormContext } from '../types'
 
-export type FormWithDefaultsProps = {
-  fields: string[]
-  fieldsConfig: any
-  renderActions: any
-  onSubmit?: any
-  initialValues?: any
-  validationSchema?: any
-  disabled?: boolean
-  FormContainer?: any
-  FieldContainer?: any
-  ActionsContainer?: any
-}
-
-export const FormWithDefaults = (props: FormWithDefaultsProps) => {
-  const { renderActions, initialValues, ...restProps } = props
+export const FormWithDefaults = (props: FormProps) => {
+  const { renderActions, initialValues, ...formConfigProps } = props
   const initialUseDefaults = initialValues?.useDefaults ?? false
   const [useDefaults, setUseDefaults] = useState(initialUseDefaults)
 
@@ -27,14 +13,18 @@ export const FormWithDefaults = (props: FormWithDefaultsProps) => {
 
   const defaultValues = useMemo(() => {
     const values = useDefaults ? initialValues?.defaultValues : initialValues
-    return { ...values, defaultValues: values?.defaultValues, useDefaults }
+    return {
+      ...values,
+      defaultValues: initialValues?.defaultValues,
+      useDefaults,
+    }
   }, [useDefaults, initialValues])
 
   const handleUseDefaultsChange = (e: React.ChangeEvent<any>) => {
     setUseDefaults(e.target.checked)
   }
 
-  const renderUseDefaults = (form: FormikProps<unknown>, props: FormProps) => (
+  const renderUseDefaults = (form: FormContext, props: FormProps) => (
     <Grid container>
       <Grid item>
         <FormField
@@ -51,7 +41,7 @@ export const FormWithDefaults = (props: FormWithDefaultsProps) => {
 
   return (
     <Form
-      {...restProps}
+      {...formConfigProps}
       initialValues={defaultValues}
       renderActions={renderUseDefaults}
       fieldsDisabled={useDefaults}

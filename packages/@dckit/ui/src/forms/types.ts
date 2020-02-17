@@ -1,4 +1,5 @@
 import { GridSize } from '@material-ui/core'
+import { FormikConfig, FormikValues, FormikProps } from 'formik'
 
 export const enum FormFieldTypes {
   text = 'text',
@@ -13,13 +14,19 @@ export type FieldTypeDict = {
   [key in FormFieldType]?: any
 }
 
+export type FormContext = FormikProps<any>
+
+declare function checkProps(form: FormContext): boolean
+
+export type DynamicProp = boolean | typeof checkProps | undefined
+
 export type FormFieldConfig = {
   name?: string
   label: string
   type?: FormFieldType
   size?: GridSize
-  required?: boolean
-  disabled?: boolean
+  required?: DynamicProp
+  disabled?: DynamicProp
   hint?: string
   initialValue?: any
   suffix?: any
@@ -33,4 +40,19 @@ export type FormFieldProps = Omit<FormFieldConfig, 'size' | 'type'> & {
   onChange?: any
   error?: any
   helperText?: any
+}
+
+export type MuiFieldProps = Omit<FormFieldProps, 'disabled' | 'required'> & {
+  disabled?: boolean
+  required?: boolean
+}
+
+export type FormProps = FormikConfig<FormikValues> & {
+  fields: string[]
+  fieldsConfig: any
+  renderActions: any
+  fieldsDisabled?: boolean
+  FormContainer?: any
+  FieldContainer?: any
+  ActionsContainer?: any
 }

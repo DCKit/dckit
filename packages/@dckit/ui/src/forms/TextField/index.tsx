@@ -4,10 +4,10 @@ import {
   InputAdornment,
   StandardTextFieldProps,
 } from '@material-ui/core'
-import { FormFieldProps } from '../types'
+import { MuiFieldProps } from '../types'
 import { useStyles } from './styles'
 
-export const TextField = (props: FormFieldProps) => {
+export const TextField = (props: MuiFieldProps) => {
   const classes = useStyles()
 
   const { suffix, ...restProps } = props

@@ -3,16 +3,26 @@ import { Grid, Paper, Button } from '@material-ui/core'
 import { fields, fieldsConfig, validationSchema } from './fields'
 import { FormWithDefaults } from '@dckit/ui'
 
+type InitialValues = {
+  [key: string]: any
+}
+
 export const DemoForm = () => {
-  const [initialValues, setInitialValues] = useState({})
+  const [initialValues, setInitialValues] = useState({} as InitialValues)
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setInitialValues({
+        login: '@@@',
+        nested: { notes: '###' },
         useDefaults: true,
         defaultValues: {
           login: 'default login',
           password: 'default password',
-          check: true,
+          nested: {
+            notes: 'default notes',
+            check: true,
+          },
         },
       })
     }, 5000)
@@ -30,12 +40,22 @@ export const DemoForm = () => {
     return (
       <Grid item container justify="flex-end">
         <Grid item>
-          <Button color="secondary" variant="contained" onClick={onSubmit1}>
+          <Button
+            color="secondary"
+            variant="contained"
+            disabled={form.isSubmitting}
+            onClick={onSubmit1}
+          >
             submit1
           </Button>
         </Grid>
         <Grid item>
-          <Button color="primary" variant="contained" onClick={onSubmit2}>
+          <Button
+            color="primary"
+            variant="contained"
+            disabled={form.isSubmitting}
+            onClick={onSubmit2}
+          >
             submit2
           </Button>
         </Grid>
