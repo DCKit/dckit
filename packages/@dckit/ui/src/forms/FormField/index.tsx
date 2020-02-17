@@ -3,7 +3,12 @@ import { useField, useFormikContext } from 'formik'
 import { TextField } from '../TextField'
 import { CheckField } from '../CheckField'
 import { SwitchField } from '../SwitchField'
-import { FormFieldProps, FormFieldTypes, FieldTypeDict } from '../types'
+import {
+  FormFieldProps,
+  FormFieldTypes,
+  FieldTypeDict,
+  DynamicProp,
+} from '../types'
 
 const components: FieldTypeDict = {
   [FormFieldTypes.text]: TextField,
@@ -14,6 +19,7 @@ const components: FieldTypeDict = {
 export const FormField = (props: FormFieldProps) => {
   const {
     name,
+    required,
     disabled,
     fieldsDisabled,
     hint,
@@ -23,16 +29,19 @@ export const FormField = (props: FormFieldProps) => {
     ...restProps
   } = props
 
-  const { isSubmitting } = useFormikContext()
+  const form = useFormikContext()
   const [field, meta] = useField(name)
-
-  const handleChange = (e: React.ChangeEvent<any>) => {
-    onChange && onChange(e)
-    field.onChange(e)
-  }
-
   const fieldError = meta.error
   const error = meta.touched && !!fieldError
+
+  const checkProp = (prop: DynamicProp) => {
+    return typeof prop === 'function' ? prop(form) : prop
+  }
+
+  const handleChange = (e: React.ChangeEvent<any>) => {
+    onChange && onChange(e, form)
+    field.onChange(e)
+  }
 
   const fieldProps = {
     ...restProps,
@@ -40,7 +49,8 @@ export const FormField = (props: FormFieldProps) => {
     onChange: handleChange,
     error,
     helperText: error ? fieldError : hint,
-    disabled: (isSubmitting || disabled) ?? fieldsDisabled,
+    required: checkProp(required),
+    disabled: (form.isSubmitting || checkProp(disabled)) ?? fieldsDisabled,
   }
   const Field = components[type]
 

@@ -1,4 +1,5 @@
 import * as V from 'yup'
+import { FormContext } from '@dckit/ui'
 
 export const fields = ['login', 'password', 'nested.notes', 'nested.check']
 
@@ -11,7 +12,7 @@ export const fieldsConfig = {
   },
   password: {
     label: 'Password',
-    required: true,
+    required: (form: FormContext) => Boolean(form.values.login),
     size: 6,
     hint: 'use at least 6 symbols',
   },
@@ -32,5 +33,7 @@ export const validationSchema = V.object({
     .required(),
   password: V.string()
     .label(fieldsConfig.password.label)
-    .required(),
+    .when('login', (value: string, schema: any) =>
+      value ? schema.required() : schema
+    ),
 })
