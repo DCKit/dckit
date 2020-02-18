@@ -22,7 +22,7 @@ export type DynamicProp = boolean | typeof checkProps | undefined
 
 export type FormFieldConfig = {
   name?: string
-  label: string
+  label?: string
   type?: FormFieldType
   size?: GridSize
   required?: DynamicProp
@@ -30,6 +30,7 @@ export type FormFieldConfig = {
   hint?: string
   initialValue?: any
   suffix?: any
+  component?: any
 }
 
 export type FormFieldProps = Omit<FormFieldConfig, 'size' | 'type'> & {
