@@ -10,7 +10,7 @@ import { useStyles } from './styles'
 export const TextField = (props: MuiFieldProps) => {
   const classes = useStyles()
 
-  const { suffix, ...restProps } = props
+  const { startAdornment, endAdornment, ...restProps } = props
 
   const fieldProps: StandardTextFieldProps = {
     ...restProps,
@@ -21,11 +21,19 @@ export const TextField = (props: MuiFieldProps) => {
     },
   }
 
-  if (suffix) {
-    fieldProps.InputProps = {
-      endAdornment: <InputAdornment position="end">{suffix}</InputAdornment>,
-    }
+  const inputProps = fieldProps.InputProps || {}
+
+  if (startAdornment) {
+    inputProps.startAdornment = (
+      <InputAdornment position="start">{startAdornment}</InputAdornment>
+    )
   }
+  if (endAdornment) {
+    inputProps.endAdornment = (
+      <InputAdornment position="end">{endAdornment}</InputAdornment>
+    )
+  }
+  fieldProps.InputProps = inputProps
 
   return <MuiTextField {...fieldProps} fullWidth={true} />
 }

@@ -27,9 +27,10 @@ export type FormFieldConfig = {
   size?: GridSize
   required?: DynamicProp
   disabled?: DynamicProp
-  hint?: string
+  helperText?: string
   initialValue?: any
-  suffix?: any
+  startAdornment?: any
+  endAdornment?: any
   component?: any
 }
 
@@ -40,7 +41,6 @@ export type FormFieldProps = Omit<FormFieldConfig, 'size' | 'type'> & {
   value?: any
   onChange?: any
   error?: any
-  helperText?: any
 }
 
 export type MuiFieldProps = Omit<FormFieldProps, 'disabled' | 'required'> & {

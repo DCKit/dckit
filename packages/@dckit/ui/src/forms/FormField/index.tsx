@@ -22,7 +22,7 @@ export const FormField = (props: FormFieldProps) => {
     required,
     disabled,
     fieldsDisabled,
-    hint,
+    helperText,
     type,
     initialValue,
     onChange,
@@ -48,7 +48,7 @@ export const FormField = (props: FormFieldProps) => {
     ...field,
     onChange: handleChange,
     error,
-    helperText: error ? fieldError : hint,
+    helperText: error ? fieldError : helperText,
     required: checkProp(required),
     disabled: (form.isSubmitting || checkProp(disabled)) ?? fieldsDisabled,
   }
