@@ -3,7 +3,7 @@ import {
   TextField as MuiTextField,
   InputAdornment,
   InputProps,
-  StandardTextFieldProps,
+  TextFieldProps,
 } from '@material-ui/core'
 import { MuiFieldProps } from '../types'
 import { useStyles } from './styles'
@@ -17,15 +17,24 @@ const Adornment = React.memo(
 export const TextField = (props: MuiFieldProps) => {
   const classes = useStyles()
 
-  const { startAdornment, endAdornment, ...restProps } = props
+  const { startAdornment, endAdornment, variant, ...restProps } = props
 
-  const fieldProps: StandardTextFieldProps = {
+  const fieldProps: TextFieldProps = {
     ...restProps,
+    variant,
+    fullWidth: true,
     FormHelperTextProps: {
       classes: {
-        root: classes.helperText,
+        root:
+          variant === 'outlined'
+            ? classes.helperTextOutlined
+            : classes.helperText,
       },
     },
+  }
+
+  if (variant === 'outlined' || variant === 'filled') {
+    fieldProps.size = 'small'
   }
 
   const inputProps: Partial<InputProps> = { ...fieldProps.InputProps }
@@ -42,5 +51,5 @@ export const TextField = (props: MuiFieldProps) => {
   }
   fieldProps.InputProps = inputProps
 
-  return <MuiTextField {...fieldProps} fullWidth={true} />
+  return <MuiTextField {...fieldProps} />
 }

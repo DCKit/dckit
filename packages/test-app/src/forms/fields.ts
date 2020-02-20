@@ -8,12 +8,15 @@ export const fieldsConfig = {
     label: 'Login',
     required: true,
     size: 6,
+    variant: 'outlined',
     endAdornment: 'abc',
+    helperText: 'Login helper text',
   },
   password: {
     label: 'Password',
     required: (form: FormContext) => Boolean(form.values.login),
     size: 6,
+    variant: 'filled',
     helperText: 'use at least 6 symbols',
   },
   'nested.notes': {

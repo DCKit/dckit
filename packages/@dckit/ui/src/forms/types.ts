@@ -27,6 +27,7 @@ export type FormFieldConfig = {
   size?: GridSize
   required?: DynamicProp
   disabled?: DynamicProp
+  variant?: 'standard' | 'outlined' | 'filled'
   helperText?: string
   initialValue?: any
   startAdornment?: any
