@@ -2,6 +2,7 @@ import React from 'react'
 import {
   TextField as MuiTextField,
   InputAdornment,
+  InputProps,
   StandardTextFieldProps,
 } from '@material-ui/core'
 import { MuiFieldProps } from '../types'
@@ -27,7 +28,7 @@ export const TextField = (props: MuiFieldProps) => {
     },
   }
 
-  const inputProps = fieldProps.InputProps || {}
+  const inputProps: Partial<InputProps> = { ...fieldProps.InputProps }
 
   if (startAdornment) {
     inputProps.startAdornment = (
