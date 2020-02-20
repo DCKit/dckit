@@ -5,7 +5,13 @@ import { FormField } from '../FormField'
 import { FormFieldTypes, FormProps, FormContext } from '../types'
 
 export const FormWithDefaults = (props: FormProps) => {
-  const { renderActions, initialValues, ...formConfigProps } = props
+  const {
+    renderActions,
+    initialValues,
+    fieldsDisabled = false,
+    ...formConfigProps
+  } = props
+
   const initialUseDefaults = initialValues?.useDefaults ?? false
   const [useDefaults, setUseDefaults] = useState(initialUseDefaults)
 
@@ -31,7 +37,7 @@ export const FormWithDefaults = (props: FormProps) => {
           type={FormFieldTypes.switch}
           label="Use defaults"
           name="useDefaults"
-          disabled={false}
+          disabled={fieldsDisabled}
           onChange={handleUseDefaultsChange}
         />
       </Grid>
@@ -44,7 +50,7 @@ export const FormWithDefaults = (props: FormProps) => {
       {...formConfigProps}
       initialValues={defaultValues}
       renderActions={renderUseDefaults}
-      fieldsDisabled={useDefaults}
+      fieldsDisabled={fieldsDisabled || useDefaults}
     />
   )
 }
