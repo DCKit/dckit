@@ -7,6 +7,12 @@ import {
 import { MuiFieldProps } from '../types'
 import { useStyles } from './styles'
 
+const Adornment = React.memo(
+  ({ position, adornment }: { position: 'start' | 'end'; adornment: any }) => (
+    <InputAdornment position={position}>{adornment}</InputAdornment>
+  )
+)
+
 export const TextField = (props: MuiFieldProps) => {
   const classes = useStyles()
 
@@ -25,12 +31,12 @@ export const TextField = (props: MuiFieldProps) => {
 
   if (startAdornment) {
     inputProps.startAdornment = (
-      <InputAdornment position="start">{startAdornment}</InputAdornment>
+      <Adornment position="start" adornment={startAdornment} />
     )
   }
   if (endAdornment) {
     inputProps.endAdornment = (
-      <InputAdornment position="end">{endAdornment}</InputAdornment>
+      <Adornment position="end" adornment={endAdornment} />
     )
   }
   fieldProps.InputProps = inputProps
