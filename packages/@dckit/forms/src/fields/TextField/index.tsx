@@ -5,7 +5,7 @@ import {
   InputProps,
   TextFieldProps,
 } from '@material-ui/core'
-import { MuiFieldProps } from '../types'
+import { MuiFieldProps } from '../../types'
 import { useStyles } from './styles'
 
 const Adornment = React.memo(

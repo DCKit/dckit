@@ -1,5 +1,5 @@
 import * as V from 'yup'
-import { FormContext } from '@dckit/ui'
+import { FormContext } from '@dckit/forms'
 
 export const fields = ['login', 'password', 'nested.notes', 'nested.check']
 

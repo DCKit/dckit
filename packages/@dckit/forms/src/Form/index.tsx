@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { Formik, Form as FormWrapper, getIn, setIn } from 'formik'
-import { FormField } from '../FormField'
+import { FormField } from '../fields/FormField'
 import {
   FormProps,
   FormContext,

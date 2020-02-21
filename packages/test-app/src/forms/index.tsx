@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Grid, Paper, Button } from '@material-ui/core'
 import { fields, fieldsConfig, validationSchema } from './fields'
-import { FormWithDefaults } from '@dckit/ui'
+import { FormWithDefaults } from '@dckit/forms'
 
 type InitialValues = {
   [key: string]: any

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { Grid } from '@material-ui/core'
 import { Form } from '../Form'
-import { FormField } from '../FormField'
+import { FormField } from '../fields/FormField'
 import { FormFieldTypes, FormProps, FormContext } from '../types'
 
 export const FormWithDefaults = (props: FormProps) => {

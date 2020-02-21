@@ -13,6 +13,7 @@
     "format:check": "prettier -l 'src/**/*.ts*'"
   },
   "dependencies": {
+    "@dckit/forms": "*",
     "@dckit/store": "*",
     "@dckit/ui": "*",
     "@reduxjs/toolkit": "^1.2.5",

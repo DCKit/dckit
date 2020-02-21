@@ -8,7 +8,7 @@ import {
   FormFieldTypes,
   FieldTypeDict,
   DynamicProp,
-} from '../types'
+} from '../../types'
 
 const components: FieldTypeDict = {
   [FormFieldTypes.text]: TextField,
