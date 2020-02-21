@@ -72,6 +72,19 @@
     "react-router-dom": "^5.1.2",
     "react-teleporter": "^2.0.1"
   },
+  "browserslist": {
+    "production": [
+      ">2%",
+      "not dead",
+      "not ie > 0",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "prettier": {
     "semi": false,
     "singleQuote": true,
