@@ -42,7 +42,6 @@ export const FormField = (props: FormFieldProps) => {
 
   const handleChange = (e: React.ChangeEvent<any>) => {
     onChange && onChange(e, form)
-    console.log(e.target.value)
     field.onChange(e)
   }
 

@@ -5,9 +5,9 @@ import {
   FormControlLabel,
   RadioGroup,
   Radio,
-  FormHelperText,
 } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
+import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
 
 export const RadioField = (props: MuiFieldProps) => {
@@ -51,7 +51,7 @@ export const RadioField = (props: MuiFieldProps) => {
           )
         })}
       </RadioGroup>
-      {helperText && <FormHelperText>{helperText}</FormHelperText>}
+      {helperText && <HelperText>{helperText}</HelperText>}
     </FormControl>
   )
 }

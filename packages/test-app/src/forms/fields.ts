@@ -43,6 +43,7 @@ export const fieldsConfig = {
     label: 'Check',
     type: 'check',
     size: 4,
+    helperText: 'checkbox helper text',
   },
 }
 

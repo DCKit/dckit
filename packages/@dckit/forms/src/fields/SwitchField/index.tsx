@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, FormControlLabel } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
+import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
 
 export const SwitchField = (props: MuiFieldProps) => {
@@ -16,20 +17,23 @@ export const SwitchField = (props: MuiFieldProps) => {
   } = props
 
   return (
-    <FormControlLabel
-      classes={{
-        root: classes.noselect,
-      }}
-      label={label}
-      control={
-        <Switch
-          color="primary"
-          {...restProps}
-          checked={value ?? false}
-          disabled={disabled}
-        />
-      }
-      disabled={disabled}
-    />
+    <>
+      <FormControlLabel
+        classes={{
+          root: classes.noselect,
+        }}
+        label={label}
+        control={
+          <Switch
+            color="primary"
+            {...restProps}
+            checked={value ?? false}
+            disabled={disabled}
+          />
+        }
+        disabled={disabled}
+      />
+      <HelperText>{helperText}</HelperText>
+    </>
   )
 }

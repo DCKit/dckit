@@ -1,6 +1,7 @@
 import React from 'react'
 import { Checkbox, FormControlLabel } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
+import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
 
 export const CheckField = (props: MuiFieldProps) => {
@@ -16,21 +17,24 @@ export const CheckField = (props: MuiFieldProps) => {
   } = props
 
   return (
-    <FormControlLabel
-      classes={{
-        root: classes.noselect,
-      }}
-      label={label}
-      control={
-        <Checkbox
-          color="primary"
-          {...restProps}
-          checked={value ?? false}
-          value={value ?? false}
-          disabled={disabled}
-        />
-      }
-      disabled={disabled}
-    />
+    <>
+      <FormControlLabel
+        classes={{
+          root: classes.noselect,
+        }}
+        label={label}
+        control={
+          <Checkbox
+            color="primary"
+            {...restProps}
+            checked={value ?? false}
+            value={value ?? false}
+            disabled={disabled}
+          />
+        }
+        disabled={disabled}
+      />
+      {helperText && <HelperText>{helperText}</HelperText>}
+    </>
   )
 }

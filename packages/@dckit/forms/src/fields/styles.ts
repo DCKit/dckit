@@ -11,4 +11,7 @@ export const useStyles = makeStyles(() => ({
   directionRow: {
     flexDirection: 'row',
   },
+  helperText: {
+    marginTop: 0,
+  },
 }))
