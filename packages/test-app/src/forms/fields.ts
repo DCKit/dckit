@@ -1,7 +1,13 @@
 import * as V from 'yup'
 import { FormContext } from '@dckit/forms'
 
-export const fields = ['login', 'password', 'nested.notes', 'nested.check']
+export const fields = [
+  'login',
+  'password',
+  'radio',
+  'nested.notes',
+  'nested.check',
+]
 
 export const fieldsConfig = {
   login: {
@@ -17,6 +23,18 @@ export const fieldsConfig = {
     size: 6,
     helperText: 'use at least 6 symbols',
   },
+  radio: {
+    //label: 'Radio',
+    type: 'radio',
+    initialValue: '1',
+    //direction: 'column',
+    options: [
+      { label: 'opt1', value: '1' },
+      { label: 'opt2', value: '2', disabled: true },
+      { label: 'opt3', value: '3' },
+    ],
+    helperText: 'select options',
+  },
   'nested.notes': {
     label: 'Notes',
     size: 8,
@@ -25,6 +43,7 @@ export const fieldsConfig = {
     label: 'Check',
     type: 'check',
     size: 4,
+    helperText: 'checkbox helper text',
   },
 }
 

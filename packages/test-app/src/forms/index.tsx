@@ -14,8 +14,9 @@ export const DemoForm = () => {
     const timeout = setTimeout(() => {
       setInitialValues({
         login: '@@@',
+        radio: '2',
         nested: { notes: '###' },
-        useDefaults: true,
+        useDefaults: false,
         defaultValues: {
           login: 'default login',
           password: 'default password',
@@ -25,7 +26,7 @@ export const DemoForm = () => {
           },
         },
       })
-    }, 5000)
+    }, 3000)
     return () => clearTimeout(timeout)
   }, [setInitialValues])
 

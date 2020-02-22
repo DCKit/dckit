@@ -5,6 +5,7 @@ export const enum FormFieldTypes {
   text = 'text',
   check = 'check',
   switch = 'switch',
+  radio = 'radio',
   component = 'component',
 }
 
@@ -28,6 +29,8 @@ export type FormFieldConfig = {
   required?: DynamicProp
   disabled?: DynamicProp
   variant?: 'standard' | 'outlined' | 'filled'
+  direction?: 'column' | 'row'
+  options?: any
   helperText?: string
   initialValue?: any
   startAdornment?: any
