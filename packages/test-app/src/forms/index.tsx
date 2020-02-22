@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Paper, Button } from '@material-ui/core'
+import { Paper, Button } from '@material-ui/core'
 import { fields, fieldsConfig, validationSchema } from './fields'
 import { FormWithDefaults } from '@dckit/forms'
 
@@ -38,28 +38,25 @@ export const DemoForm = () => {
     }
 
     return (
-      <Grid item container justify="flex-end">
-        <Grid item>
-          <Button
-            color="secondary"
-            variant="contained"
-            disabled={form.isSubmitting}
-            onClick={onSubmit1}
-          >
-            submit1
-          </Button>
-        </Grid>
-        <Grid item>
-          <Button
-            color="primary"
-            variant="contained"
-            disabled={form.isSubmitting}
-            onClick={onSubmit2}
-          >
-            submit2
-          </Button>
-        </Grid>
-      </Grid>
+      <>
+        <Button
+          color="secondary"
+          variant="contained"
+          disabled={form.isSubmitting}
+          onClick={onSubmit1}
+          style={{ marginRight: 16 }}
+        >
+          submit1
+        </Button>
+        <Button
+          color="primary"
+          variant="contained"
+          disabled={form.isSubmitting}
+          onClick={onSubmit2}
+        >
+          submit2
+        </Button>
+      </>
     )
   }
 

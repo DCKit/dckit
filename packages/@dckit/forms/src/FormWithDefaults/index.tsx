@@ -3,6 +3,7 @@ import { Grid } from '@material-ui/core'
 import { Form } from '../Form'
 import { FormField } from '../fields/FormField'
 import { FormFieldTypes, FormProps, FormContext } from '../types'
+import { EmptyContainer } from '../containers'
 
 export const FormWithDefaults = (props: FormProps) => {
   const {
@@ -31,7 +32,7 @@ export const FormWithDefaults = (props: FormProps) => {
   }
 
   const renderUseDefaults = (form: FormContext, props: FormProps) => (
-    <Grid container>
+    <Grid container style={{ paddingTop: 32 }}>
       <Grid item>
         <FormField
           type={FormFieldTypes.switch}
@@ -41,7 +42,12 @@ export const FormWithDefaults = (props: FormProps) => {
           onChange={handleUseDefaultsChange}
         />
       </Grid>
-      <Grid item>{renderActions(form, props)}</Grid>
+      <Grid
+        item
+        style={{ display: 'flex', flexGrow: 1, justifyContent: 'flex-end' }}
+      >
+        {renderActions(form, props)}
+      </Grid>
     </Grid>
   )
 
@@ -50,6 +56,7 @@ export const FormWithDefaults = (props: FormProps) => {
       {...formConfigProps}
       initialValues={defaultValues}
       renderActions={renderUseDefaults}
+      ActionsContainer={EmptyContainer}
       fieldsDisabled={fieldsDisabled || useDefaults}
     />
   )

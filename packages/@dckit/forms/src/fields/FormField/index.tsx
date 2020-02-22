@@ -32,7 +32,7 @@ export const FormField = (props: FormFieldProps) => {
   const form = useFormikContext()
   const [field, meta] = useField(name)
   const fieldError = meta.error
-  const error = meta.touched && !!fieldError
+  const error = meta.touched && Boolean(fieldError)
 
   const checkProp = (prop: DynamicProp) => {
     return typeof prop === 'function' ? prop(form) : prop
