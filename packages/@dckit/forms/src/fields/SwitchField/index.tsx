@@ -33,7 +33,7 @@ export const SwitchField = (props: MuiFieldProps) => {
         }
         disabled={disabled}
       />
-      <HelperText>{helperText}</HelperText>
+      <HelperText disabled={disabled}>{helperText}</HelperText>
     </>
   )
 }

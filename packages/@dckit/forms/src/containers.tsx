@@ -11,12 +11,14 @@ export const DefaultFormContainer = ({ children }: { children: any }) => (
 
 export const DefaultFieldContainer = ({
   size = 12,
+  style,
   children,
 }: {
   size?: GridSize
+  style?: any
   children: any
 }) => (
-  <Grid container item xs={12} sm={size}>
+  <Grid container item xs={12} sm={size} style={style}>
     {children}
   </Grid>
 )

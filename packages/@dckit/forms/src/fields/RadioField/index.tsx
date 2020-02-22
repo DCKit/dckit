@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  Grid,
   FormControl,
   FormLabel,
   FormControlLabel,
@@ -12,10 +13,10 @@ import { useStyles } from '../styles'
 
 export const RadioField = (props: MuiFieldProps) => {
   const classes = useStyles()
-  const { noselect, directionColumn, directionRow } = classes
+  const { fullWidth, directionColumn, directionRow, noselect } = classes
   const {
     label,
-    disabled: fieldDisabled,
+    disabled,
     type,
     error,
     helperText,
@@ -25,8 +26,14 @@ export const RadioField = (props: MuiFieldProps) => {
   } = props
 
   return (
-    <FormControl component="fieldset">
-      <FormLabel component="legend">{label}</FormLabel>
+    <FormControl component="fieldset" classes={{ root: fullWidth }}>
+      <FormLabel
+        component="legend"
+        classes={{ root: noselect }}
+        disabled={disabled}
+      >
+        {label}
+      </FormLabel>
       <RadioGroup
         {...restProps}
         classes={{
@@ -34,20 +41,21 @@ export const RadioField = (props: MuiFieldProps) => {
         }}
       >
         {options.map((option: any, index: number) => {
-          const { label, value, disabled } = option
+          const { label, value, size = 'auto' } = option
           return (
-            <FormControlLabel
-              key={`${index}-${label}`}
-              control={<Radio color="primary" />}
-              label={label}
-              value={value}
-              disabled={disabled ?? fieldDisabled}
-              classes={{ root: noselect }}
-            />
+            <Grid key={`${index}-${label}`} item xs={size}>
+              <FormControlLabel
+                control={<Radio color="primary" />}
+                label={label}
+                value={value}
+                disabled={disabled}
+                classes={{ root: noselect }}
+              />
+            </Grid>
           )
         })}
       </RadioGroup>
-      {helperText && <HelperText>{helperText}</HelperText>}
+      {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
     </FormControl>
   )
 }

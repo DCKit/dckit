@@ -2,10 +2,16 @@ import React from 'react'
 import { FormHelperText } from '@material-ui/core'
 import { useStyles } from '../styles'
 
-export const HelperText = ({ children }: { children: any }) => {
+export const HelperText = ({
+  disabled,
+  children,
+}: {
+  disabled?: boolean
+  children?: any
+}) => {
   const classes = useStyles()
   return (
-    <FormHelperText classes={{ root: classes.helperText }}>
+    <FormHelperText disabled={disabled} classes={{ root: classes.helperText }}>
       {children}
     </FormHelperText>
   )

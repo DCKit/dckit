@@ -55,6 +55,7 @@ export const Form = (props: FormProps) => {
       name = field,
       type = FormFieldTypes.text,
       size = 12,
+      style,
       component: Component,
       ...restProps
     } = config
@@ -69,7 +70,7 @@ export const Form = (props: FormProps) => {
     const FieldComponent = Component || FormField
 
     return (
-      <FieldContainer key={field} size={size}>
+      <FieldContainer key={field} size={size} style={style}>
         <FieldComponent {...formFieldProps} />
       </FieldContainer>
     )

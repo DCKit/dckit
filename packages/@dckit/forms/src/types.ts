@@ -26,6 +26,7 @@ export type FormFieldConfig = {
   label?: string
   type?: FormFieldType
   size?: GridSize
+  style?: any
   required?: DynamicProp
   disabled?: DynamicProp
   variant?: 'standard' | 'outlined' | 'filled'

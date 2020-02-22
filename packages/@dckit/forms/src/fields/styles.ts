@@ -5,14 +5,18 @@ export const useStyles = makeStyles(() => ({
     userSelect: 'none',
     marginRight: 24,
   },
+  fullWidth: {
+    width: '100%',
+  },
   directionColumn: {
     flexDirection: 'column',
   },
   directionRow: {
     flexDirection: 'row',
+    width: '100%',
   },
   helperText: {
     userSelect: 'none',
-    marginTop: -4,
+    marginTop: 0,
   },
 }))

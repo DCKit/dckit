@@ -24,13 +24,16 @@ export const fieldsConfig = {
     helperText: 'use at least 6 symbols',
   },
   radio: {
-    //label: 'Radio',
+    label: 'Radio',
     type: 'radio',
     initialValue: '1',
     //direction: 'column',
+    style: {
+      marginTop: 24,
+    },
     options: [
-      { label: 'opt1', value: '1' },
-      { label: 'opt2', value: '2', disabled: true },
+      { label: 'opt1', value: '1', size: 6 },
+      { label: 'opt2', value: '2' },
       { label: 'opt3', value: '3' },
     ],
     helperText: 'select options',
