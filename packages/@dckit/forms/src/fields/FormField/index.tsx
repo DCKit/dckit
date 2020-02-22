@@ -3,6 +3,7 @@ import { useField, useFormikContext } from 'formik'
 import { TextField } from '../TextField'
 import { CheckField } from '../CheckField'
 import { SwitchField } from '../SwitchField'
+import { RadioField } from '../RadioField'
 import {
   FormFieldProps,
   FormFieldTypes,
@@ -14,6 +15,7 @@ const components: FieldTypeDict = {
   [FormFieldTypes.text]: TextField,
   [FormFieldTypes.check]: CheckField,
   [FormFieldTypes.switch]: SwitchField,
+  [FormFieldTypes.radio]: RadioField,
 }
 
 export const FormField = (props: FormFieldProps) => {
@@ -40,6 +42,7 @@ export const FormField = (props: FormFieldProps) => {
 
   const handleChange = (e: React.ChangeEvent<any>) => {
     onChange && onChange(e, form)
+    console.log(e.target.value)
     field.onChange(e)
   }
 

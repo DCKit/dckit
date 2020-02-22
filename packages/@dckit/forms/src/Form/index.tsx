@@ -16,6 +16,7 @@ import {
 
 const defaultValues: FieldTypeDict = {
   [FormFieldTypes.text]: '',
+  [FormFieldTypes.radio]: '',
   [FormFieldTypes.check]: false,
   [FormFieldTypes.switch]: false,
 }

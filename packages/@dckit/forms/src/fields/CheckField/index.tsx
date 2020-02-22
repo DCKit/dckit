@@ -1,7 +1,7 @@
 import React from 'react'
 import { Checkbox, FormControlLabel } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
-import { useStyles } from './styles'
+import { useStyles } from '../styles'
 
 export const CheckField = (props: MuiFieldProps) => {
   const classes = useStyles()
