@@ -12,6 +12,7 @@ import { useStyles } from '../styles'
 
 export const RadioField = (props: MuiFieldProps) => {
   const classes = useStyles()
+  const { noselect, directionColumn, directionRow } = classes
   const {
     label,
     disabled: fieldDisabled,
@@ -29,10 +30,7 @@ export const RadioField = (props: MuiFieldProps) => {
       <RadioGroup
         {...restProps}
         classes={{
-          root:
-            direction === 'column'
-              ? classes.directionColumn
-              : classes.directionRow,
+          root: direction === 'column' ? directionColumn : directionRow,
         }}
       >
         {options.map((option: any, index: number) => {
@@ -44,9 +42,7 @@ export const RadioField = (props: MuiFieldProps) => {
               label={label}
               value={value}
               disabled={disabled ?? fieldDisabled}
-              classes={{
-                root: classes.noselect,
-              }}
+              classes={{ root: noselect }}
             />
           )
         })}
