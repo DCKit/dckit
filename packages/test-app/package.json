@@ -13,31 +13,32 @@
     "format:check": "prettier -l 'src/**/*.ts*'"
   },
   "dependencies": {
+    "@dckit/forms": "*",
     "@dckit/store": "*",
     "@dckit/ui": "*",
     "@reduxjs/toolkit": "^1.2.5",
-    "@types/jest": "^25.1.2",
-    "@types/node": "^13.7.1",
-    "@types/react": "16.9.19",
+    "@types/jest": "^25.1.3",
+    "@types/node": "^13.7.4",
+    "@types/react": "16.9.22",
     "@types/react-dom": "16.9.5",
     "@types/react-redux": "^7.1.7",
     "@types/react-router": "^5.1.4",
     "@types/react-router-dom": "^5.1.3",
     "@types/redux-logger": "^3.0.7",
-    "@types/yup": "^0.26.31",
+    "@types/yup": "^0.26.32",
     "formik": "^2.1.4",
     "prettier": "1.19.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "react-redux": "^7.1.3",
+    "react-redux": "^7.2.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",
-    "ts-jest": "^25.2.0",
-    "typescript": "3.7.5",
+    "ts-jest": "^25.2.1",
+    "typescript": "3.8.2",
     "yup": "0.28.1"
   },
   "eslintConfig": {
@@ -62,8 +63,9 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
+      ">2%",
       "not dead",
+      "not ie > 0",
       "not op_mini all"
     ],
     "development": [

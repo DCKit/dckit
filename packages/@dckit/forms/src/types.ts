@@ -22,14 +22,17 @@ export type DynamicProp = boolean | typeof checkProps | undefined
 
 export type FormFieldConfig = {
   name?: string
-  label: string
+  label?: string
   type?: FormFieldType
   size?: GridSize
   required?: DynamicProp
   disabled?: DynamicProp
-  hint?: string
+  variant?: 'standard' | 'outlined' | 'filled'
+  helperText?: string
   initialValue?: any
-  suffix?: any
+  startAdornment?: any
+  endAdornment?: any
+  component?: any
 }
 
 export type FormFieldProps = Omit<FormFieldConfig, 'size' | 'type'> & {
@@ -39,7 +42,6 @@ export type FormFieldProps = Omit<FormFieldConfig, 'size' | 'type'> & {
   value?: any
   onChange?: any
   error?: any
-  helperText?: any
 }
 
 export type MuiFieldProps = Omit<FormFieldProps, 'disabled' | 'required'> & {

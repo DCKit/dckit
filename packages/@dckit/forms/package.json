@@ -1,5 +1,5 @@
 {
-  "name": "@dckit/ui",
+  "name": "@dckit/forms",
   "version": "0.1.0",
   "description": "Components library based on material-ui",
   "repository": "https://github.com/ambroseus/dckit",
@@ -19,17 +19,17 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/ui.esm.js",
-  "module": "dist/ui.esm.js",
+  "main": "dist/forms.esm.js",
+  "module": "dist/forms.esm.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "author": "Eugene Samonenko <esamonenko@agilevision.io>",
   "license": "MIT",
   "scripts": {
     "build": "tsdx build --format esm",
-    "start": "pm2 --name @dckit/ui start tsdx -- watch --format esm",
-    "dev": "pm2 --name @dckit/ui start tsdx -- watch --format esm --onFirstSuccess 'npm run dev:next'",
-    "dev:next": "cd ../forms && npm run dev",
+    "start": "pm2 --name @dckit/forms start tsdx -- watch --format esm",
+    "dev": "pm2 --name @dckit/forms start tsdx -- watch --format esm --onFirstSuccess 'npm run dev:next'",
+    "dev:next": "cd ../../test-app && npm run dev",
     "lint": "tsdx lint src && tsc --noEmit",
     "prepare": "npm run test:coverage && npm run build",
     "test": "CI=true tsdx test --color",
@@ -41,8 +41,7 @@
     "@types/jest": "^25.1.3",
     "@types/node": "^13.7.4",
     "@types/material-ui": "^0.21.7",
-    "@types/react-router": "^5.1.4",
-    "@types/react-router-dom": "^5.1.3",
+    "@types/yup": "^0.26.32",
     "@testing-library/react": "^9.4.0",
     "eslint-config-react-app": "5.2.0",
     "eslint-config-unobtrusive": "^1.2.5",
@@ -56,21 +55,19 @@
     "@material-ui/core": "^4.9.3",
     "@material-ui/icons": "^4.9.1",
     "clsx": "^1.1.0",
+    "formik": "^2.1.4",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "react-router": "^5.1.2",
-    "react-router-dom": "^5.1.2",
-    "react-teleporter": "^2.0.1"
+    "yup": "0.28.1"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.9.3",
     "@material-ui/icons": "^4.9.1",
     "clsx": "^1.1.0",
+    "formik": "^2.1.4",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "react-router": "^5.1.2",
-    "react-router-dom": "^5.1.2",
-    "react-teleporter": "^2.0.1"
+    "yup": "0.28.1"
   },
   "browserslist": {
     "production": [

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { Formik, Form as FormWrapper, getIn, setIn } from 'formik'
-import { FormField } from '../FormField'
+import { FormField } from '../fields/FormField'
 import {
   FormProps,
   FormContext,
@@ -54,6 +54,7 @@ export const Form = (props: FormProps) => {
       name = field,
       type = FormFieldTypes.text,
       size = 12,
+      component: Component,
       ...restProps
     } = config
 
@@ -64,9 +65,11 @@ export const Form = (props: FormProps) => {
       type,
     }
 
+    const FieldComponent = Component || FormField
+
     return (
       <FieldContainer key={field} size={size}>
-        <FormField {...formFieldProps} />
+        <FieldComponent {...formFieldProps} />
       </FieldContainer>
     )
   }

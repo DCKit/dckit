@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, FormControlLabel } from '@material-ui/core'
-import { MuiFieldProps } from '../types'
+import { MuiFieldProps } from '../../types'
 import { useStyles } from './styles'
 
 export const SwitchField = (props: MuiFieldProps) => {

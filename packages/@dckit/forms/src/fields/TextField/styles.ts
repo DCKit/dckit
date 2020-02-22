@@ -5,7 +5,13 @@ export const useStyles = makeStyles((theme: Theme) => {
   return {
     helperText: {
       position: 'absolute',
-      bottom: -18,
+      top: 48,
+      lineHeight: '1.2em',
+    },
+    helperTextOutlined: {
+      position: 'absolute',
+      top: 40,
+      lineHeight: '1.2em',
     },
   }
 })
