@@ -19,13 +19,22 @@ export const RadioField = (props: MuiFieldProps) => {
     error,
     helperText,
     options = [],
+    direction,
     ...restProps
   } = props
 
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">{label}</FormLabel>
-      <RadioGroup {...restProps}>
+      <RadioGroup
+        {...restProps}
+        classes={{
+          root:
+            direction === 'column'
+              ? classes.directionColumn
+              : classes.directionRow,
+        }}
+      >
         {options.map((option: any, index: number) => {
           const { label, value, disabled } = option
           return (

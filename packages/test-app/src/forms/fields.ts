@@ -24,9 +24,10 @@ export const fieldsConfig = {
     helperText: 'use at least 6 symbols',
   },
   radio: {
-    label: 'Radio',
+    //label: 'Radio',
     type: 'radio',
     initialValue: '1',
+    //direction: 'column',
     options: [
       { label: 'opt1', value: '1' },
       { label: 'opt2', value: '2', disabled: true },

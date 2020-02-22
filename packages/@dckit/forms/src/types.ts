@@ -29,6 +29,7 @@ export type FormFieldConfig = {
   required?: DynamicProp
   disabled?: DynamicProp
   variant?: 'standard' | 'outlined' | 'filled'
+  direction?: 'column' | 'row'
   options?: any
   helperText?: string
   initialValue?: any
