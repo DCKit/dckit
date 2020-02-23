@@ -1,5 +1,5 @@
 import * as V from 'yup'
-import { FormContext } from '@dckit/forms'
+import { FieldsConfig, FormContext } from '@dckit/forms'
 
 export const fields = [
   'login',
@@ -9,7 +9,7 @@ export const fields = [
   'nested.check',
 ]
 
-export const fieldsConfig = {
+export const fieldsConfig: FieldsConfig = {
   login: {
     label: 'Login',
     required: true,
@@ -26,16 +26,19 @@ export const fieldsConfig = {
   radio: {
     label: 'Radio',
     type: 'radio',
-    initialValue: '1',
-    //direction: 'column',
+    required: true,
     style: {
       marginTop: 24,
     },
     options: [
-      { label: 'opt1', value: '1', size: 6 },
+      { label: 'opt1', value: '1' },
       { label: 'opt2', value: '2' },
       { label: 'opt3', value: '3' },
     ],
+    optionsConfig: {
+      //direction: 'column',
+      size: 6,
+    },
     helperText: 'select options',
   },
   'nested.notes': {
@@ -50,12 +53,17 @@ export const fieldsConfig = {
   },
 }
 
+const label = (name: string): string => fieldsConfig[name]?.label || ''
+
 export const validationSchema = V.object({
   login: V.string()
-    .label(fieldsConfig.login.label)
+    .label(label('login'))
+    .required(),
+  radio: V.string()
+    .label(label('radio'))
     .required(),
   password: V.string()
-    .label(fieldsConfig.password.label)
+    .label(label('password'))
     .when('login', (value: string, schema: any) =>
       value ? schema.required() : schema
     ),

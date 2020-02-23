@@ -14,12 +14,12 @@ export const DemoForm = () => {
     const timeout = setTimeout(() => {
       setInitialValues({
         login: '@@@',
-        radio: '2',
         nested: { notes: '###' },
         useDefaults: false,
         defaultValues: {
           login: 'default login',
           password: 'default password',
+          radio: '2',
           nested: {
             notes: 'default notes',
             check: true,

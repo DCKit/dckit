@@ -17,20 +17,24 @@ export const RadioField = (props: MuiFieldProps) => {
   const {
     label,
     disabled,
+    required,
     type,
     error,
     helperText,
     options = [],
-    direction,
+    optionsConfig = {},
     ...restProps
   } = props
+
+  const labelProps = { disabled, required, error }
+  const { direction, size = 'auto' } = optionsConfig
 
   return (
     <FormControl component="fieldset" classes={{ root: fullWidth }}>
       <FormLabel
+        {...labelProps}
         component="legend"
         classes={{ root: noselect }}
-        disabled={disabled}
       >
         {label}
       </FormLabel>
@@ -41,7 +45,7 @@ export const RadioField = (props: MuiFieldProps) => {
         }}
       >
         {options.map((option: any, index: number) => {
-          const { label, value, size = 'auto' } = option
+          const { label, value } = option
           return (
             <Grid key={`${index}-${label}`} item xs={size}>
               <FormControlLabel
@@ -55,7 +59,11 @@ export const RadioField = (props: MuiFieldProps) => {
           )
         })}
       </RadioGroup>
-      {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+      {helperText && (
+        <HelperText disabled={disabled} error={error}>
+          {helperText}
+        </HelperText>
+      )}
     </FormControl>
   )
 }

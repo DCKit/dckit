@@ -34,7 +34,11 @@ export const CheckField = (props: MuiFieldProps) => {
         }
         disabled={disabled}
       />
-      {helperText && <HelperText disabled={disabled}>{helperText}</HelperText>}
+      {helperText && (
+        <HelperText disabled={disabled} error={error}>
+          {helperText}
+        </HelperText>
+      )}
     </>
   )
 }
