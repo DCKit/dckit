@@ -23,6 +23,7 @@ export const RadioField = (props: MuiFieldProps) => {
     helperText,
     options = [],
     optionsConfig = {},
+    name,
     ...restProps
   } = props
 
@@ -47,7 +48,7 @@ export const RadioField = (props: MuiFieldProps) => {
         {options.map((option: any, index: number) => {
           const { label, value } = option
           return (
-            <Grid key={`${index}-${label}`} item xs={size}>
+            <Grid key={`${name}${index}`} item xs={size}>
               <FormControlLabel
                 control={<Radio color="primary" />}
                 label={label}
@@ -59,11 +60,9 @@ export const RadioField = (props: MuiFieldProps) => {
           )
         })}
       </RadioGroup>
-      {helperText && (
-        <HelperText disabled={disabled} error={error}>
-          {helperText}
-        </HelperText>
-      )}
+      <HelperText disabled={disabled} error={error}>
+        {helperText}
+      </HelperText>
     </FormControl>
   )
 }

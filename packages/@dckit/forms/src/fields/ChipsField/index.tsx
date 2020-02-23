@@ -80,7 +80,7 @@ export const ChipsField = (props: MuiFieldProps) => {
           const { label, value } = option
           return (
             <RadioChip
-              key={`${index}-${label}`}
+              key={`${name}${index}`}
               name={name}
               label={label}
               value={value}
@@ -89,11 +89,9 @@ export const ChipsField = (props: MuiFieldProps) => {
           )
         })}
       </RadioGroup>
-      {helperText && (
-        <HelperText disabled={disabled} error={error}>
-          {helperText}
-        </HelperText>
-      )}
+      <HelperText disabled={disabled} error={error}>
+        {helperText}
+      </HelperText>
     </FormControl>
   )
 }
