@@ -6,6 +6,7 @@ export const enum FormFieldTypes {
   check = 'check',
   switch = 'switch',
   radio = 'radio',
+  chips = 'chips',
   component = 'component',
 }
 
@@ -21,16 +22,21 @@ declare function checkProps(form: FormContext): boolean
 
 export type DynamicProp = boolean | typeof checkProps | undefined
 
+export type OptionsConfig = {
+  direction?: 'column' | 'row'
+  size?: GridSize
+}
+
 export type FormFieldConfig = {
   name?: string
   label?: string
   type?: FormFieldType
   size?: GridSize
+  style?: any
   required?: DynamicProp
   disabled?: DynamicProp
-  variant?: 'standard' | 'outlined' | 'filled'
-  direction?: 'column' | 'row'
   options?: any
+  optionsConfig?: OptionsConfig
   helperText?: string
   initialValue?: any
   startAdornment?: any
@@ -38,12 +44,15 @@ export type FormFieldConfig = {
   component?: any
 }
 
+export type FieldsConfig = { [name: string]: FormFieldConfig }
+
 export type FormFieldProps = Omit<FormFieldConfig, 'size' | 'type'> & {
   fieldsDisabled?: boolean
   name: string
   type: FormFieldType
   value?: any
   onChange?: any
+  onBlur?: any
   error?: any
 }
 

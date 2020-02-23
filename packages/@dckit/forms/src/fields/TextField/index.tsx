@@ -17,24 +17,16 @@ const Adornment = React.memo(
 export const TextField = (props: MuiFieldProps) => {
   const classes = useStyles()
 
-  const { startAdornment, endAdornment, variant, ...restProps } = props
+  const { startAdornment, endAdornment, ...restProps } = props
 
   const fieldProps: TextFieldProps = {
     ...restProps,
-    variant,
     fullWidth: true,
     FormHelperTextProps: {
       classes: {
-        root:
-          variant === 'outlined'
-            ? classes.helperTextOutlined
-            : classes.helperText,
+        root: classes.helperText,
       },
     },
-  }
-
-  if (variant === 'outlined' || variant === 'filled') {
-    fieldProps.size = 'small'
   }
 
   const inputProps: Partial<InputProps> = { ...fieldProps.InputProps }

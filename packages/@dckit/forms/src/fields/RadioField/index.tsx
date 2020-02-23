@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  Grid,
   FormControl,
   FormLabel,
   FormControlLabel,
@@ -12,21 +13,32 @@ import { useStyles } from '../styles'
 
 export const RadioField = (props: MuiFieldProps) => {
   const classes = useStyles()
-  const { noselect, directionColumn, directionRow } = classes
+  const { fullWidth, directionColumn, directionRow, noselect } = classes
   const {
     label,
-    disabled: fieldDisabled,
+    disabled,
+    required,
     type,
     error,
     helperText,
     options = [],
-    direction,
+    optionsConfig = {},
     ...restProps
   } = props
 
+  const labelProps = { disabled, required, error }
+  const { direction, size = 'auto' } = optionsConfig
+
   return (
-    <FormControl component="fieldset">
-      <FormLabel component="legend">{label}</FormLabel>
+    <FormControl component="fieldset" classes={{ root: fullWidth }}>
+      <FormLabel
+        {...labelProps}
+        component="legend"
+        focused={false}
+        classes={{ root: noselect }}
+      >
+        {label}
+      </FormLabel>
       <RadioGroup
         {...restProps}
         classes={{
@@ -34,20 +46,25 @@ export const RadioField = (props: MuiFieldProps) => {
         }}
       >
         {options.map((option: any, index: number) => {
-          const { label, value, disabled } = option
+          const { label, value } = option
           return (
-            <FormControlLabel
-              key={`${index}-${label}`}
-              control={<Radio color="primary" />}
-              label={label}
-              value={value}
-              disabled={disabled ?? fieldDisabled}
-              classes={{ root: noselect }}
-            />
+            <Grid key={`${index}-${label}`} item xs={size}>
+              <FormControlLabel
+                control={<Radio color="primary" />}
+                label={label}
+                value={value}
+                disabled={disabled}
+                classes={{ root: noselect }}
+              />
+            </Grid>
           )
         })}
       </RadioGroup>
-      {helperText && <HelperText>{helperText}</HelperText>}
+      {helperText && (
+        <HelperText disabled={disabled} error={error}>
+          {helperText}
+        </HelperText>
+      )}
     </FormControl>
   )
 }
