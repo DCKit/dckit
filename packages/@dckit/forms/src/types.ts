@@ -6,6 +6,7 @@ export const enum FormFieldTypes {
   check = 'check',
   switch = 'switch',
   radio = 'radio',
+  chips = 'chips',
   component = 'component',
 }
 
@@ -51,6 +52,7 @@ export type FormFieldProps = Omit<FormFieldConfig, 'size' | 'type'> & {
   type: FormFieldType
   value?: any
   onChange?: any
+  onBlur?: any
   error?: any
 }
 

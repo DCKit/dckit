@@ -4,6 +4,7 @@ import { TextField } from '../TextField'
 import { CheckField } from '../CheckField'
 import { SwitchField } from '../SwitchField'
 import { RadioField } from '../RadioField'
+import { ChipsField } from '../ChipsField'
 import {
   FormFieldProps,
   FormFieldTypes,
@@ -16,6 +17,7 @@ const components: FieldTypeDict = {
   [FormFieldTypes.check]: CheckField,
   [FormFieldTypes.switch]: SwitchField,
   [FormFieldTypes.radio]: RadioField,
+  [FormFieldTypes.chips]: ChipsField,
 }
 
 export const FormField = (props: FormFieldProps) => {

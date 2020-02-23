@@ -52,7 +52,7 @@ export const DemoForm = () => {
         <Button
           color="primary"
           variant="contained"
-          disabled={form.isSubmitting}
+          disabled={form.isSubmitting || !form.dirty}
           onClick={onSubmit2}
         >
           submit2

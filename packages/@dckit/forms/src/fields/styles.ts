@@ -19,4 +19,7 @@ export const useStyles = makeStyles(() => ({
     userSelect: 'none',
     marginTop: 0,
   },
+  chipMargin: {
+    margin: '8px 8px 8px 0',
+  },
 }))
