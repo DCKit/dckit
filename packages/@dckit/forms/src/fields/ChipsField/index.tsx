@@ -23,13 +23,11 @@ const RadioChip = React.memo((props: RadioChipProps) => {
   const [field, , helpers] = useField(name)
   const selected = field.value === value
 
-  const handleClick = () => helpers.setValue(value)
+  const handleClick = () => !selected && helpers.setValue(value)
 
   return (
     <MuiChip
       label={label}
-      role="input"
-      //component="input"
       color={selected ? 'primary' : 'default'}
       clickable={true}
       disabled={disabled}
