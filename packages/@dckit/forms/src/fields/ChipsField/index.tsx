@@ -3,12 +3,18 @@ import {
   FormControl,
   FormLabel,
   RadioGroup,
+  useFormControl,
   Chip as MuiChip,
 } from '@material-ui/core'
 import { useField } from 'formik'
 import { MuiFieldProps } from '../../types'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
+
+const FocusDiv = React.forwardRef((props: any, ref: any) => {
+  const formControl = useFormControl()
+  return <div {...props} tabIndex={0} onBlur={formControl.onBlur} ref={ref} />
+})
 
 type RadioChipProps = {
   name: string
@@ -20,13 +26,18 @@ type RadioChipProps = {
 const RadioChip = React.memo((props: RadioChipProps) => {
   const { name, label, disabled, value } = props
   const classes = useStyles()
+  const formControl = useFormControl()
   const [field, , helpers] = useField(name)
   const selected = field.value === value
 
-  const handleClick = () => !selected && helpers.setValue(value)
+  const handleClick = () => {
+    formControl.onFocus()
+    !selected && helpers.setValue(value)
+  }
 
   return (
     <MuiChip
+      component={FocusDiv}
       label={label}
       color={selected ? 'primary' : 'default'}
       clickable={true}

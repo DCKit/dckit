@@ -34,7 +34,6 @@ export const RadioField = (props: MuiFieldProps) => {
       <FormLabel
         {...labelProps}
         component="legend"
-        focused={false}
         classes={{ root: noselect }}
       >
         {label}
