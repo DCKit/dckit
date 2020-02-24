@@ -21,7 +21,7 @@ export const CheckField = (props: MuiFieldProps) => {
     <>
       <FormControlLabel
         classes={{
-          root: cn(classes.noselect, classes.fullWidth),
+          root: cn(classes.noselect, classes.container),
         }}
         label={label}
         control={
