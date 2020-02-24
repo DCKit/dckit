@@ -25,6 +25,8 @@ export type DynamicProp = boolean | typeof checkProps | undefined
 export type OptionsConfig = {
   direction?: 'column' | 'row'
   size?: GridSize
+  fullWidth?: boolean
+  small?: boolean
 }
 
 export type FormFieldConfig = {

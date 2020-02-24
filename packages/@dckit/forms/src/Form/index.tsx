@@ -29,7 +29,6 @@ export const Form = (props: FormProps) => {
     renderActions,
     initialValues,
     fieldsDisabled = false,
-    validateOnChange = false,
     FormContainer = DefaultFormContainer,
     FieldContainer = DefaultFieldContainer,
     ActionsContainer = DefaultActionsContainer,
@@ -80,7 +79,6 @@ export const Form = (props: FormProps) => {
   return (
     <Formik
       {...formConfigProps}
-      validateOnChange={validateOnChange}
       initialValues={normalizedInitialValues}
       enableReinitialize={true}
     >

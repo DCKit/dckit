@@ -38,6 +38,7 @@ export const fieldsConfig: FieldsConfig = {
     ],
     optionsConfig: {
       //direction: 'column',
+      small: true,
       size: 6,
     },
     helperText: 'select options',
@@ -46,11 +47,21 @@ export const fieldsConfig: FieldsConfig = {
     label: 'Chips',
     type: 'chips',
     required: true,
+    size: 8,
     options: [
       { label: 'opt1', value: '1' },
       { label: 'opt2', value: '2' },
       { label: 'opt3', value: '3' },
+      { label: 'opt4', value: '4' },
+      { label: 'opt5', value: '5' },
+      { label: 'opt6', value: '6' },
     ],
+    optionsConfig: {
+      //direction: 'column',
+      fullWidth: true,
+      //small: true,
+      size: 4,
+    },
     helperText: 'chips options',
   },
   'nested.notes': {

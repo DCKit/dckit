@@ -1,5 +1,7 @@
 import React from 'react'
+import cn from 'clsx'
 import {
+  Grid,
   FormControl,
   FormLabel,
   RadioGroup,
@@ -20,11 +22,20 @@ type RadioChipProps = {
   name: string
   label?: string
   disabled?: boolean
+  small?: boolean
+  fullWidth?: boolean
   value?: any
 }
 
 const RadioChip = React.memo((props: RadioChipProps) => {
-  const { name, label, disabled, value } = props
+  const {
+    name,
+    label,
+    disabled,
+    small = false,
+    fullWidth = false,
+    value,
+  } = props
   const classes = useStyles()
   const formControl = useFormControl()
   const [field, , helpers] = useField(name)
@@ -40,17 +51,26 @@ const RadioChip = React.memo((props: RadioChipProps) => {
       component={FocusDiv}
       label={label}
       color={selected ? 'primary' : 'default'}
+      size={small ? 'small' : 'medium'}
       clickable={true}
       disabled={disabled}
       onClick={handleClick}
-      className={classes.chipMargin}
+      classes={{ root: fullWidth ? classes.fullWidth : '' }}
     />
   )
 })
 
 export const ChipsField = (props: MuiFieldProps) => {
   const classes = useStyles()
-  const { fullWidth, directionRow, noselect } = classes
+  const {
+    container,
+    directionColumn,
+    directionRow,
+    noselect,
+    chipsMargin,
+    chipPadding,
+  } = classes
+
   const {
     label,
     disabled,
@@ -59,15 +79,29 @@ export const ChipsField = (props: MuiFieldProps) => {
     error,
     helperText,
     options = [],
+    optionsConfig = {},
     onBlur,
     name,
     ...restProps
   } = props
 
+  const {
+    direction,
+    small = false,
+    size = 'auto',
+    fullWidth = false,
+  } = optionsConfig
+
   const labelProps = { disabled, required, error }
+  const chipProps = {
+    name,
+    disabled,
+    small,
+    fullWidth,
+  }
 
   return (
-    <FormControl component="fieldset" classes={{ root: fullWidth }}>
+    <FormControl component="fieldset" classes={{ root: container }}>
       <FormLabel
         {...labelProps}
         component="legend"
@@ -75,17 +109,27 @@ export const ChipsField = (props: MuiFieldProps) => {
       >
         {label}
       </FormLabel>
-      <RadioGroup {...restProps} classes={{ root: directionRow }}>
+      <RadioGroup
+        {...restProps}
+        name={name}
+        classes={{
+          root: cn(
+            chipsMargin,
+            direction === 'column' ? directionColumn : directionRow
+          ),
+        }}
+      >
         {options.map((option: any, index: number) => {
           const { label, value } = option
           return (
-            <RadioChip
+            <Grid
               key={`${name}${index}`}
-              name={name}
-              label={label}
-              value={value}
-              disabled={disabled}
-            />
+              item
+              xs={size}
+              className={chipPadding}
+            >
+              <RadioChip {...chipProps} label={label} value={value} />
+            </Grid>
           )
         })}
       </RadioGroup>

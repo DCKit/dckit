@@ -13,7 +13,13 @@ import { useStyles } from '../styles'
 
 export const RadioField = (props: MuiFieldProps) => {
   const classes = useStyles()
-  const { fullWidth, directionColumn, directionRow, noselect } = classes
+  const {
+    container,
+    directionColumn,
+    directionRow,
+    noselect,
+    smallLabel,
+  } = classes
   const {
     label,
     disabled,
@@ -27,11 +33,11 @@ export const RadioField = (props: MuiFieldProps) => {
     ...restProps
   } = props
 
+  const { direction, size = 'auto', small } = optionsConfig
   const labelProps = { disabled, required, error }
-  const { direction, size = 'auto' } = optionsConfig
 
   return (
-    <FormControl component="fieldset" classes={{ root: fullWidth }}>
+    <FormControl component="fieldset" classes={{ root: container }}>
       <FormLabel
         {...labelProps}
         component="legend"
@@ -41,6 +47,7 @@ export const RadioField = (props: MuiFieldProps) => {
       </FormLabel>
       <RadioGroup
         {...restProps}
+        name={name}
         classes={{
           root: direction === 'column' ? directionColumn : directionRow,
         }}
@@ -50,11 +57,13 @@ export const RadioField = (props: MuiFieldProps) => {
           return (
             <Grid key={`${name}${index}`} item xs={size}>
               <FormControlLabel
-                control={<Radio color="primary" />}
+                control={
+                  <Radio color="primary" size={small ? 'small' : 'medium'} />
+                }
                 label={label}
                 value={value}
                 disabled={disabled}
-                classes={{ root: noselect }}
+                classes={{ root: noselect, label: small ? smallLabel : '' }}
               />
             </Grid>
           )
