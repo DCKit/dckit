@@ -37,6 +37,7 @@ const RadioChip = React.memo((props: RadioChipProps) => {
     value,
   } = props
   const classes = useStyles()
+  const { container, raised } = classes
   const formControl = useFormControl()
   const [field, , helpers] = useField(name)
   const selected = field.value === value
@@ -55,7 +56,7 @@ const RadioChip = React.memo((props: RadioChipProps) => {
       clickable={true}
       disabled={disabled}
       onClick={handleClick}
-      classes={{ root: fullWidth ? classes.fullWidth : '' }}
+      classes={{ root: cn(fullWidth && container, !selected && raised) }}
     />
   )
 })
