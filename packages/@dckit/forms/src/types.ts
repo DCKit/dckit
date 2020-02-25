@@ -7,7 +7,7 @@ export const enum FormFieldTypes {
   multicheck = 'multicheck',
   switch = 'switch',
   radio = 'radio',
-  chips = 'chips',
+  toggle = 'toggle',
   component = 'component',
 }
 

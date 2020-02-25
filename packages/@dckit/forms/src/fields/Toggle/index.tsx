@@ -9,7 +9,7 @@ const FocusDiv = React.forwardRef((props: any, ref: any) => {
   return <div {...props} tabIndex={0} onBlur={formControl.onBlur} ref={ref} />
 })
 
-type ChipToggleProps = {
+type ToggleProps = {
   radio?: boolean
   name: string
   label?: string
@@ -19,7 +19,7 @@ type ChipToggleProps = {
   value?: any
 }
 
-export const ChipToggle = React.memo((props: ChipToggleProps) => {
+export const Toggle = React.memo((props: ToggleProps) => {
   const {
     name,
     label,

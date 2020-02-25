@@ -10,7 +10,8 @@
     "test:coverage": "CI=true react-scripts test --color --coverage",
     "prepare": "npm run test:coverage && npm run build",
     "format": "prettier --write 'src/**/*.ts*'",
-    "format:check": "prettier -l 'src/**/*.ts*'"
+    "format:check": "prettier -l 'src/**/*.ts*'",
+    "update": "ncu -u"
   },
   "dependencies": {
     "@dckit/forms": "*",

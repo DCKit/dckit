@@ -5,7 +5,7 @@ export const fields = [
   'login',
   'password',
   'radio',
-  'chips',
+  'toggle',
   'nested.notes',
   'nested.check',
 ]
@@ -43,9 +43,9 @@ export const fieldsConfig: FieldsConfig = {
     },
     helperText: 'select options',
   },
-  chips: {
-    label: 'Chips',
-    type: 'chips',
+  toggle: {
+    label: 'Toggle',
+    type: 'toggle',
     required: true,
     size: 8,
     options: [
@@ -62,7 +62,7 @@ export const fieldsConfig: FieldsConfig = {
       //small: true,
       size: 4,
     },
-    helperText: 'chips options',
+    helperText: 'toggle options',
   },
   'nested.notes': {
     label: 'Notes',
@@ -85,8 +85,8 @@ export const validationSchema = V.object({
   radio: V.string()
     .label(label('radio'))
     .required(),
-  chips: V.string()
-    .label(label('chips'))
+  toggle: V.string()
+    .label(label('toggle'))
     .required(),
   password: V.string()
     .label(label('password'))

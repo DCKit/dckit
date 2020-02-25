@@ -6,6 +6,7 @@
     "test": "FORCE_COLOR=true lerna run test --stream",
     "build": "FORCE_COLOR=true lerna run build --stream",
     "bootstrap": "lerna bootstrap --hoist --ci",
+    "update": "ncu -u && FORCE_COLOR=true lerna run update --stream --concurrency 1",
     "docs": "FORCE_COLOR=true lerna run docs --stream"
   },
   "devDependencies": {

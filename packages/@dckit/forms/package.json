@@ -35,7 +35,8 @@
     "test": "CI=true tsdx test --color",
     "test:coverage": "CI=true tsdx test --color --coverage",
     "format": "prettier --write 'src/**/*.ts*'",
-    "format:check": "prettier -l 'src/**/*.ts*'"
+    "format:check": "prettier -l 'src/**/*.ts*'",
+    "update": "ncu -u"
   },
   "devDependencies": {
     "@types/jest": "^25.1.3",
