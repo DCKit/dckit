@@ -2,6 +2,7 @@ import React from 'react'
 import { useField, useFormikContext } from 'formik'
 import { TextField } from '../TextField'
 import { CheckField } from '../CheckField'
+import { MultiCheckField } from '../MultiCheckField'
 import { SwitchField } from '../SwitchField'
 import { RadioField } from '../RadioField'
 import { ChipsField } from '../ChipsField'
@@ -18,6 +19,7 @@ const components: FieldTypeDict = {
   [FormFieldTypes.switch]: SwitchField,
   [FormFieldTypes.radio]: RadioField,
   [FormFieldTypes.chips]: ChipsField,
+  [FormFieldTypes.multicheck]: MultiCheckField,
 }
 
 export const FormField = (props: FormFieldProps) => {

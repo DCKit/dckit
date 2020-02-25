@@ -4,6 +4,7 @@ import { FormikConfig, FormikValues, FormikProps } from 'formik'
 export const enum FormFieldTypes {
   text = 'text',
   check = 'check',
+  multicheck = 'multicheck',
   switch = 'switch',
   radio = 'radio',
   chips = 'chips',

@@ -20,6 +20,7 @@ const defaultValues: FieldTypeDict = {
   [FormFieldTypes.chips]: '',
   [FormFieldTypes.check]: false,
   [FormFieldTypes.switch]: false,
+  [FormFieldTypes.multicheck]: [],
 }
 
 export const Form = (props: FormProps) => {
