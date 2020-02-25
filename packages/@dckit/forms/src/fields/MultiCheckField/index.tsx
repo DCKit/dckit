@@ -34,6 +34,8 @@ export const MultiCheckField = (props: MuiFieldProps) => {
     ...restProps
   } = props
 
+  console.log(restProps)
+
   const { direction, size = 'auto', small } = optionsConfig
   const labelProps = { disabled, required, error }
 
