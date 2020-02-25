@@ -6,22 +6,13 @@ import {
   FormContext,
   FormFieldTypes,
   FormFieldConfig,
-  FieldTypeDict,
 } from '../types'
 import {
   DefaultFormContainer,
   DefaultFieldContainer,
   DefaultActionsContainer,
 } from '../containers'
-
-const defaultValues: FieldTypeDict = {
-  [FormFieldTypes.text]: '',
-  [FormFieldTypes.radio]: '',
-  [FormFieldTypes.chips]: '',
-  [FormFieldTypes.check]: false,
-  [FormFieldTypes.switch]: false,
-  [FormFieldTypes.multicheck]: [],
-}
+import { defaultValues } from '../fields'
 
 export const Form = (props: FormProps) => {
   const {
