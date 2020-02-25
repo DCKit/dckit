@@ -36,7 +36,8 @@
     "prepare": "npm run test:coverage && npm run build",
     "docs": "typedoc --exclude '**/*+(index|.test).ts' --theme ../../../docs/.theme --out ../../../docs/dckit-store src",
     "format": "prettier --write 'src/**/*.ts*'",
-    "format:check": "prettier -l 'src/**/*.ts*'"
+    "format:check": "prettier -l 'src/**/*.ts*'",
+    "update": "ncu -u"
   },
   "devDependencies": {
     "@types/jest": "^25.1.3",
@@ -50,7 +51,7 @@
     "prettier": "1.19.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "redux-saga-tester": "^1.0.697",
+    "redux-saga-tester": "^1.0.699",
     "tsdx": "^0.12.3",
     "tslib": "^1.11.0",
     "typedoc": "^0.16.10",

@@ -1,24 +1,7 @@
 import React from 'react'
 import { useField, useFormikContext } from 'formik'
-import { TextField } from '../TextField'
-import { CheckField } from '../CheckField'
-import { SwitchField } from '../SwitchField'
-import { RadioField } from '../RadioField'
-import { ChipsField } from '../ChipsField'
-import {
-  FormFieldProps,
-  FormFieldTypes,
-  FieldTypeDict,
-  DynamicProp,
-} from '../../types'
-
-const components: FieldTypeDict = {
-  [FormFieldTypes.text]: TextField,
-  [FormFieldTypes.check]: CheckField,
-  [FormFieldTypes.switch]: SwitchField,
-  [FormFieldTypes.radio]: RadioField,
-  [FormFieldTypes.chips]: ChipsField,
-}
+import { FormFieldProps, DynamicProp } from '../../types'
+import { components } from '..'
 
 export const FormField = (props: FormFieldProps) => {
   const {

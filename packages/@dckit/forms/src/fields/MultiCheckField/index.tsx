@@ -4,14 +4,13 @@ import {
   FormControl,
   FormLabel,
   FormControlLabel,
-  RadioGroup,
-  Radio,
+  Checkbox,
 } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
 
-export const RadioField = (props: MuiFieldProps) => {
+export const MultiCheckField = (props: MuiFieldProps) => {
   const classes = useStyles()
   const {
     container,
@@ -24,14 +23,18 @@ export const RadioField = (props: MuiFieldProps) => {
     label,
     disabled,
     required,
-    type,
     error,
     helperText,
     options = [],
     optionsConfig = {},
     name,
+    value: valuesArray = [],
+    onChange,
+    onBlur,
     ...restProps
   } = props
+
+  console.log(restProps)
 
   const { direction, size = 'auto', small } = optionsConfig
   const labelProps = { disabled, required, error }
@@ -45,12 +48,9 @@ export const RadioField = (props: MuiFieldProps) => {
       >
         {label}
       </FormLabel>
-      <RadioGroup
-        {...restProps}
-        name={name}
-        classes={{
-          root: direction === 'column' ? directionColumn : directionRow,
-        }}
+      <Grid
+        container
+        className={direction === 'column' ? directionColumn : directionRow}
       >
         {options.map((option: any, index: number) => {
           const { label, value } = option
@@ -58,17 +58,23 @@ export const RadioField = (props: MuiFieldProps) => {
             <Grid key={`${name}${index}`} item xs={size}>
               <FormControlLabel
                 control={
-                  <Radio color="primary" size={small ? 'small' : 'medium'} />
+                  <Checkbox
+                    name={name}
+                    color="primary"
+                    size={small ? 'small' : 'medium'}
+                    checked={valuesArray.includes(value)}
+                    value={value}
+                    disabled={disabled}
+                  />
                 }
                 label={label}
-                value={value}
                 disabled={disabled}
                 classes={{ root: noselect, label: small ? smallLabel : '' }}
               />
             </Grid>
           )
         })}
-      </RadioGroup>
+      </Grid>
       <HelperText disabled={disabled} error={error}>
         {helperText}
       </HelperText>

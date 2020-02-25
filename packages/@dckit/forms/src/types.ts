@@ -4,9 +4,10 @@ import { FormikConfig, FormikValues, FormikProps } from 'formik'
 export const enum FormFieldTypes {
   text = 'text',
   check = 'check',
+  multicheck = 'multicheck',
   switch = 'switch',
   radio = 'radio',
-  chips = 'chips',
+  toggle = 'toggle',
   component = 'component',
 }
 
@@ -25,6 +26,8 @@ export type DynamicProp = boolean | typeof checkProps | undefined
 export type OptionsConfig = {
   direction?: 'column' | 'row'
   size?: GridSize
+  fullWidth?: boolean
+  small?: boolean
 }
 
 export type FormFieldConfig = {

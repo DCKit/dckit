@@ -1,4 +1,5 @@
 import React from 'react'
+import cn from 'clsx'
 import { Switch, FormControlLabel } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
 import { HelperText } from '../HelperText'
@@ -20,7 +21,7 @@ export const SwitchField = (props: MuiFieldProps) => {
     <>
       <FormControlLabel
         classes={{
-          root: classes.noselect,
+          root: cn(classes.noselect, classes.container),
         }}
         label={label}
         control={
@@ -33,11 +34,9 @@ export const SwitchField = (props: MuiFieldProps) => {
         }
         disabled={disabled}
       />
-      {helperText && (
-        <HelperText disabled={disabled} error={error}>
-          {helperText}
-        </HelperText>
-      )}
+      <HelperText disabled={disabled} error={error}>
+        {helperText}
+      </HelperText>
     </>
   )
 }

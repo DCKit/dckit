@@ -6,21 +6,13 @@ import {
   FormContext,
   FormFieldTypes,
   FormFieldConfig,
-  FieldTypeDict,
 } from '../types'
 import {
   DefaultFormContainer,
   DefaultFieldContainer,
   DefaultActionsContainer,
 } from '../containers'
-
-const defaultValues: FieldTypeDict = {
-  [FormFieldTypes.text]: '',
-  [FormFieldTypes.radio]: '',
-  [FormFieldTypes.chips]: '',
-  [FormFieldTypes.check]: false,
-  [FormFieldTypes.switch]: false,
-}
+import { defaultValues } from '../fields'
 
 export const Form = (props: FormProps) => {
   const {
@@ -29,7 +21,6 @@ export const Form = (props: FormProps) => {
     renderActions,
     initialValues,
     fieldsDisabled = false,
-    validateOnChange = false,
     FormContainer = DefaultFormContainer,
     FieldContainer = DefaultFieldContainer,
     ActionsContainer = DefaultActionsContainer,
@@ -80,7 +71,6 @@ export const Form = (props: FormProps) => {
   return (
     <Formik
       {...formConfigProps}
-      validateOnChange={validateOnChange}
       initialValues={normalizedInitialValues}
       enableReinitialize={true}
     >

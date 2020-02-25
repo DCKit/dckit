@@ -1,25 +1,22 @@
 import React from 'react'
-import {
-  Grid,
-  FormControl,
-  FormLabel,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
-} from '@material-ui/core'
+import cn from 'clsx'
+import { Grid, FormControl, FormLabel, RadioGroup } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
+import { Toggle } from '../Toggle'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
 
-export const RadioField = (props: MuiFieldProps) => {
+export const ToggleField = (props: MuiFieldProps) => {
   const classes = useStyles()
   const {
     container,
     directionColumn,
     directionRow,
     noselect,
-    smallLabel,
+    chipsMargin,
+    chipPadding,
   } = classes
+
   const {
     label,
     disabled,
@@ -29,12 +26,25 @@ export const RadioField = (props: MuiFieldProps) => {
     helperText,
     options = [],
     optionsConfig = {},
+    onBlur,
     name,
     ...restProps
   } = props
 
-  const { direction, size = 'auto', small } = optionsConfig
+  const {
+    direction,
+    small = false,
+    size = 'auto',
+    fullWidth = false,
+  } = optionsConfig
+
   const labelProps = { disabled, required, error }
+  const chipProps = {
+    name,
+    disabled,
+    small,
+    fullWidth,
+  }
 
   return (
     <FormControl component="fieldset" classes={{ root: container }}>
@@ -49,22 +59,22 @@ export const RadioField = (props: MuiFieldProps) => {
         {...restProps}
         name={name}
         classes={{
-          root: direction === 'column' ? directionColumn : directionRow,
+          root: cn(
+            chipsMargin,
+            direction === 'column' ? directionColumn : directionRow
+          ),
         }}
       >
         {options.map((option: any, index: number) => {
           const { label, value } = option
           return (
-            <Grid key={`${name}${index}`} item xs={size}>
-              <FormControlLabel
-                control={
-                  <Radio color="primary" size={small ? 'small' : 'medium'} />
-                }
-                label={label}
-                value={value}
-                disabled={disabled}
-                classes={{ root: noselect, label: small ? smallLabel : '' }}
-              />
+            <Grid
+              key={`${name}${index}`}
+              item
+              xs={size}
+              className={chipPadding}
+            >
+              <Toggle radio {...chipProps} label={label} value={value} />
             </Grid>
           )
         })}
