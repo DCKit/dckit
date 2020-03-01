@@ -4,11 +4,12 @@ import {
   FormControl,
   FormLabel,
   FormControlLabel,
-  Checkbox,
 } from '@material-ui/core'
+
 import { MuiFieldProps } from '../../types'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
+import { MultiCheck } from './MultiCheck'
 
 export function MultiCheckField(props: MuiFieldProps) {
   const classes = useStyles()
@@ -19,6 +20,7 @@ export function MultiCheckField(props: MuiFieldProps) {
     noselect,
     smallLabel,
   } = classes
+
   const {
     label,
     disabled,
@@ -29,13 +31,11 @@ export function MultiCheckField(props: MuiFieldProps) {
     optionsConfig = {},
     name,
     value: valuesArray = [],
-    //onChange,
-    //onBlur,
-    //...restProps
   } = props
 
   const { direction, size = 'auto', small } = optionsConfig
   const labelProps = { disabled, required, error }
+  const optionValues = options.map((el: any) => el.value)
 
   return (
     <FormControl component="fieldset" classes={{ root: container }}>
@@ -56,12 +56,12 @@ export function MultiCheckField(props: MuiFieldProps) {
             <Grid key={`${name}${index}`} item xs={size}>
               <FormControlLabel
                 control={
-                  <Checkbox
+                  <MultiCheck
                     name={name}
-                    color="primary"
-                    size={small ? 'small' : 'medium'}
-                    checked={valuesArray.includes(value)}
+                    small={small}
                     value={value}
+                    valuesArray={valuesArray}
+                    options={optionValues}
                     disabled={disabled}
                   />
                 }

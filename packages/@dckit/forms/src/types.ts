@@ -38,7 +38,7 @@ export type FormFieldConfig = {
   style?: any
   required?: DynamicProp
   disabled?: DynamicProp
-  options?: any
+  options?: any[]
   optionsConfig?: OptionsConfig
   helperText?: string
   initialValue?: any

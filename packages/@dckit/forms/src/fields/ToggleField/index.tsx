@@ -2,9 +2,9 @@ import React from 'react'
 import cn from 'clsx'
 import { Grid, FormControl, FormLabel, RadioGroup } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
-import { Toggle } from '../Toggle'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
+import { Toggle } from './Toggle'
 
 export function ToggleField(props: MuiFieldProps) {
   const classes = useStyles()
