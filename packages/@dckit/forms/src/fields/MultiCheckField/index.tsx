@@ -29,12 +29,10 @@ export const MultiCheckField = (props: MuiFieldProps) => {
     optionsConfig = {},
     name,
     value: valuesArray = [],
-    onChange,
-    onBlur,
-    ...restProps
+    //onChange,
+    //onBlur,
+    //...restProps
   } = props
-
-  console.log(restProps)
 
   const { direction, size = 'auto', small } = optionsConfig
   const labelProps = { disabled, required, error }

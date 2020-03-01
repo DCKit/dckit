@@ -27,12 +27,11 @@ export const useStyles = makeStyles(() => ({
     userSelect: 'none',
     marginTop: 0,
   },
-  chipsMargin: {
-    marginTop: 8,
-    marginLeft: -8,
+  togglesMargin: {
+    margin: '12px 0 4px -8px',
     width: 'calc(100% + 8px)',
   },
-  chipPadding: {
+  togglesPadding: {
     padding: '0 0px 8px 8px',
   },
 }))
