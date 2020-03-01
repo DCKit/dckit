@@ -37,13 +37,8 @@ export const FocusDiv = React.forwardRef(function FocusDiv(
   return <div {...props} tabIndex={0} onBlur={formControl.onBlur} ref={ref} />
 })
 
-export const toggleValues = (
-  optionValues: any[] = [],
-  values: any[] = [],
-  value: any
-) => {
-  const valuesSet = new Set(values)
-  const checked = valuesSet.has(value)
-  valuesSet[checked ? 'delete' : 'add'](value)
-  return optionValues.filter((el: any) => valuesSet.has(el))
+export function toggle(options: any[], selected: any[], value: any) {
+  const set = new Set(selected)
+  set.has(value) ? set.delete(value) : set.add(value)
+  return options.filter((el: any) => set.has(el))
 }

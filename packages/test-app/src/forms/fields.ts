@@ -104,7 +104,7 @@ export const fieldsConfig: FieldsConfig = {
     optionsConfig: {
       //direction: 'column',
       fullWidth: true,
-      //small: true,
+      small: true,
       size: 4,
     },
     helperText: 'multitoggle options',

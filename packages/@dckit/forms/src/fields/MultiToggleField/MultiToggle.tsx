@@ -3,7 +3,7 @@ import cn from 'clsx'
 import { useFormControl, Chip as MuiChip } from '@material-ui/core'
 import { useField } from 'formik'
 import { useStyles } from '../styles'
-import { toggleValues, FocusDiv } from '../index'
+import { toggle, FocusDiv } from '../index'
 
 type MultiToggleProps = {
   name: string
@@ -38,7 +38,7 @@ export const MultiToggle = React.memo(function MultiToggle(
 
   const handleClick = () => {
     formControl.onFocus()
-    helpers.setValue(toggleValues(optionValues, values, value))
+    helpers.setValue(toggle(optionValues, values, value))
   }
 
   return (

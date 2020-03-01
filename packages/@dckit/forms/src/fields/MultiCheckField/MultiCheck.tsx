@@ -1,7 +1,7 @@
 import React from 'react'
 import { Checkbox, useFormControl } from '@material-ui/core'
 import { useField } from 'formik'
-import { toggleValues } from '../index'
+import { toggle } from '../index'
 
 type MultiCheckProps = {
   name: string
@@ -19,7 +19,7 @@ export function MultiCheck(props: MultiCheckProps) {
 
   const handleChange = (value: any) => {
     formControl.onFocus()
-    helpers.setValue(toggleValues(optionValues, values, value))
+    helpers.setValue(toggle(optionValues, values, value))
   }
 
   return (
