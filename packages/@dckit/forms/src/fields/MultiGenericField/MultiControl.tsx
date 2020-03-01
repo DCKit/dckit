@@ -27,7 +27,7 @@ export type MultiControlProps = {
 
 export function MultiControl(props: MultiControlProps) {
   const classes = useStyles()
-  const { noselect, marginRight, flexGrow1, smallLabel } = classes
+  const { noselect, marginRight, marginZero, flexGrow1, smallLabel } = classes
 
   const {
     name,
@@ -73,6 +73,7 @@ export function MultiControl(props: MultiControlProps) {
             fullWidth && flexGrow1
           ),
           label: cn(small ? smallLabel : '', fullWidth && flexGrow1),
+          labelPlacementStart: cn(fullWidth ? marginZero : ''),
         }}
       />
     </Grid>
