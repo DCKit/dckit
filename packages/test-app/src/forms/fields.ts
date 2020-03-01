@@ -6,6 +6,7 @@ export const fields = [
   'password',
   'radio',
   'toggle',
+  'multicheck',
   'nested.notes',
   'nested.check',
 ]
@@ -39,7 +40,7 @@ export const fieldsConfig: FieldsConfig = {
     optionsConfig: {
       //direction: 'column',
       small: true,
-      size: 6,
+      //size: 6,
     },
     helperText: 'select options',
   },
@@ -64,6 +65,27 @@ export const fieldsConfig: FieldsConfig = {
     },
     helperText: 'toggle options',
   },
+  multicheck: {
+    label: 'Multi check',
+    type: 'multicheck',
+    required: true,
+    size: 8,
+    options: [
+      { label: 'opt1', value: '1' },
+      { label: 'opt2', value: '2' },
+      { label: 'opt3', value: '3' },
+      { label: 'opt4', value: '4' },
+      { label: 'opt5', value: '5' },
+      { label: 'opt6', value: '6' },
+    ],
+    optionsConfig: {
+      //direction: 'column',
+      //fullWidth: true,
+      //small: true,
+      size: 4,
+    },
+    helperText: 'multicheck options',
+  },
   'nested.notes': {
     label: 'Notes',
     size: 8,
@@ -87,6 +109,9 @@ export const validationSchema = V.object({
     .required(),
   toggle: V.string()
     .label(label('toggle'))
+    .required(),
+  multicheck: V.array()
+    .label(label('multicheck'))
     .required(),
   password: V.string()
     .label(label('password'))
