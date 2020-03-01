@@ -1,4 +1,5 @@
 import React from 'react'
+import cn from 'clsx'
 import { Grid, FormControl, FormLabel } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
 import { HelperText } from '../HelperText'
@@ -12,6 +13,7 @@ export function MultiToggleField(props: MuiFieldProps) {
     directionColumn,
     directionRow,
     noselect,
+    togglesContainer,
     togglesPadding,
   } = classes
 
@@ -57,7 +59,10 @@ export function MultiToggleField(props: MuiFieldProps) {
       </FormLabel>
       <Grid
         container
-        className={direction === 'column' ? directionColumn : directionRow}
+        className={cn(
+          togglesContainer,
+          direction === 'column' ? directionColumn : directionRow
+        )}
       >
         {options.map((option: any, index: number) => {
           const { label, value } = option

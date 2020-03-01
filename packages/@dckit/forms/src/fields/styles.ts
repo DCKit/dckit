@@ -4,7 +4,6 @@ export const useStyles = makeStyles(() => ({
   container: {
     width: '100%',
   },
-
   smallLabel: {
     fontSize: 'small',
   },
@@ -27,7 +26,7 @@ export const useStyles = makeStyles(() => ({
     userSelect: 'none',
     marginTop: 0,
   },
-  togglesMargin: {
+  togglesContainer: {
     margin: '12px 0 4px -8px',
     width: 'calc(100% + 8px)',
   },

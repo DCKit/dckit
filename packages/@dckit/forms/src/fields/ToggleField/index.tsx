@@ -13,7 +13,7 @@ export function ToggleField(props: MuiFieldProps) {
     directionColumn,
     directionRow,
     noselect,
-    togglesMargin,
+    togglesContainer,
     togglesPadding,
   } = classes
 
@@ -60,7 +60,7 @@ export function ToggleField(props: MuiFieldProps) {
         name={name}
         classes={{
           root: cn(
-            togglesMargin,
+            togglesContainer,
             direction === 'column' ? directionColumn : directionRow
           ),
         }}
