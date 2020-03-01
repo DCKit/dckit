@@ -10,6 +10,11 @@ export const useStyles = makeStyles((theme: Theme) => {
   const barsHeight = appBarHeight + pageBarHeight
   const { palette, zIndex, transitions } = theme
   const { common, background, primary } = palette
+  const appBarZIndex = zIndex.drawer - 1
+  const pageBarZIndex = appBarZIndex - 1
+
+  const barWidth = `calc(100% - ${drawerWidth}px)`
+  const barMinWidth = `calc(100% - ${drawerMinWidth}px)`
 
   const transition = {
     easing: transitions.easing.sharp,
@@ -22,19 +27,21 @@ export const useStyles = makeStyles((theme: Theme) => {
     appBar: {
       position: 'fixed',
       height: appBarHeight,
-      zIndex: zIndex.drawer + 1,
+      width: barMinWidth,
+      marginLeft: drawerMinWidth,
+      zIndex: appBarZIndex,
       backgroundColor: primary.dark,
       transition: transitionBar,
     },
     appBarMobile: {
       position: 'fixed',
       height: appBarHeight,
-      zIndex: zIndex.drawer - 1,
+      zIndex: appBarZIndex,
     },
     appBarShift: {
-      zIndex: zIndex.drawer - 1,
+      zIndex: appBarZIndex,
       marginLeft: drawerWidth,
-      width: `calc(100% - ${drawerWidth}px)`,
+      width: barWidth,
       transition: transitionBar,
     },
     toolBar: {
@@ -52,14 +59,14 @@ export const useStyles = makeStyles((theme: Theme) => {
       left: 0,
       top: appBarHeight,
       height: pageBarHeight,
-      zIndex: zIndex.drawer - 2,
+      zIndex: pageBarZIndex,
       background: common.white,
       boxShadow: '0px 0px 15px 0px rgba(0,0,0,0.15)',
       display: 'flex',
       alignItems: 'center',
     },
     pageBarDesktop: {
-      width: `calc(100% - ${drawerMinWidth}px)`,
+      width: barMinWidth,
       marginLeft: drawerMinWidth,
       transition: transitionBar,
     },
@@ -69,7 +76,7 @@ export const useStyles = makeStyles((theme: Theme) => {
     },
     pageBarShift: {
       marginLeft: drawerWidth,
-      width: `calc(100% - ${drawerWidth}px)`,
+      width: barWidth,
       transition: transitionBar,
     },
     content: {
@@ -80,7 +87,7 @@ export const useStyles = makeStyles((theme: Theme) => {
     },
     contentDesktop: {
       left: drawerMinWidth,
-      width: `calc(100% - ${drawerMinWidth}px)`,
+      width: barMinWidth,
       transition: transitionContent,
     },
     contentMobile: {
@@ -96,8 +103,8 @@ export const useStyles = makeStyles((theme: Theme) => {
       height: `calc(100% - ${barsHeight}px)`,
     },
     contentShift: {
-      left: `calc(${drawerWidth}px)`,
-      width: `calc(100% - ${drawerWidth}px)`,
+      left: drawerWidth,
+      width: barWidth,
       transition: transitionContent,
     },
   }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import cn from 'clsx'
 import { CssBaseline, AppBar, Toolbar, IconButton } from '@material-ui/core'
-import ExpandIcon from '@material-ui/icons/Menu'
-import CollapseIcon from '@material-ui/icons/ChevronLeft'
+import MenuIcon from '@material-ui/icons/Menu'
+import MenuOpenIcon from '@material-ui/icons/MenuOpen'
 import {
   AppBarHead,
   AppBarNav,
@@ -16,29 +16,35 @@ import { SideBarContext } from '../SideBar/context'
 import { useMediaMobile } from '../utils'
 import { useStyles } from './styles'
 
-interface IContainerProps {
+type ContainerProps = {
   className?: any
   sideBarOpen?: boolean
   children?: any
 }
-type TContainer = (props: IContainerProps) => JSX.Element
+type TContainer = (props: ContainerProps) => JSX.Element
 
 const DefaultContainer: TContainer = ({
   className,
   children,
-}: IContainerProps) => <div className={className}>{children}</div>
+}: ContainerProps) => <div className={className}>{children}</div>
 
-interface IAppLayoutProps {
+type AppLayoutProps = {
   PageBarContainer?: TContainer
   ContentContainer?: TContainer
+  CollapseIcon?: any
+  ExpandIcon?: any
   children?: any
 }
 
-export const AppLayout = ({
-  PageBarContainer = DefaultContainer,
-  ContentContainer = DefaultContainer,
-  children,
-}: IAppLayoutProps) => {
+export function AppLayout(props: AppLayoutProps) {
+  const {
+    PageBarContainer = DefaultContainer,
+    ContentContainer = DefaultContainer,
+    CollapseIcon = MenuOpenIcon,
+    ExpandIcon = MenuIcon,
+    children,
+  } = props
+
   const classes = useStyles()
   const isMobile = useMediaMobile()
   const [sideBarOpen, showSideBar] = useState(!isMobile)
