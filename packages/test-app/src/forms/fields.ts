@@ -93,7 +93,7 @@ export const fieldsConfig: FieldsConfig = {
     label: 'Multi switch',
     type: 'multiSwitch',
     required: true,
-    size: 8,
+    //size: 8,
     options: [
       { label: 'opt1', value: '1' },
       { label: 'opt2', value: '2' },
@@ -104,9 +104,9 @@ export const fieldsConfig: FieldsConfig = {
     ],
     optionsConfig: {
       //direction: 'column',
-      //fullWidth: true,
+      fullWidth: true,
       //small: true,
-      size: 4,
+      size: 6,
     },
     helperText: 'multiswitch options',
   },
