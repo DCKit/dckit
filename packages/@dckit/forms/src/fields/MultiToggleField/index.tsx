@@ -1,86 +1,33 @@
 import React from 'react'
 import cn from 'clsx'
-import { Grid, FormControl, FormLabel } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
-import { HelperText } from '../HelperText'
+import { MultiGenericField, MultiContainerProps } from '../MultiGenericField'
 import { useStyles } from '../styles'
 import { MultiToggle } from './MultiToggle'
 
-export function MultiToggleField(props: MuiFieldProps) {
+function MultiContainer(props: MultiContainerProps) {
   const classes = useStyles()
-  const {
-    container,
-    directionColumn,
-    directionRow,
-    noselect,
-    togglesContainer,
-    togglesPadding,
-  } = classes
-
-  const {
-    label,
-    disabled,
-    required,
-    error,
-    helperText,
-    options = [],
-    optionsConfig = {},
-    name,
-    value: values = [],
-  } = props
-
-  const {
-    direction,
-    small = false,
-    size = 'auto',
-    fullWidth = false,
-  } = optionsConfig
-
-  const labelProps = { disabled, required, error }
-  const optionValues = options.map((el: any) => el.value)
-
-  const toggleProps = {
-    name,
-    disabled,
-    small,
-    fullWidth,
-    values,
-    optionValues,
-  }
+  const { togglesContainer, directionColumn, directionRow } = classes
+  const { direction, children } = props
 
   return (
-    <FormControl component="fieldset" classes={{ root: container }}>
-      <FormLabel
-        {...labelProps}
-        component="legend"
-        classes={{ root: noselect }}
-      >
-        {label}
-      </FormLabel>
-      <Grid
-        container
-        className={cn(
-          togglesContainer,
-          direction === 'column' ? directionColumn : directionRow
-        )}
-      >
-        {options.map((option: any, index: number) => {
-          const { label, value } = option
-          return (
-            <Grid
-              key={`${name}${index}`}
-              item
-              xs={size}
-              className={togglesPadding}
-            >
-              <MultiToggle {...toggleProps} label={label} value={value} />
-            </Grid>
-          )
-        })}
-      </Grid>
-      <HelperText disabled={disabled} error={error}>
-        {helperText}
-      </HelperText>
-    </FormControl>
+    <Grid
+      container
+      className={cn(
+        togglesContainer,
+        direction === 'column' ? directionColumn : directionRow
+      )}
+    >
+      {children}
+    </Grid>
   )
 }
+
+export const MultiToggleField = (props: MuiFieldProps) => (
+  <MultiGenericField
+    {...props}
+    Control={MultiToggle}
+    ControlContainer={MultiContainer}
+  />
+)

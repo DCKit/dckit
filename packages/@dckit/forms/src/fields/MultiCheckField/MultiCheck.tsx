@@ -1,10 +1,20 @@
 import React from 'react'
-import { Checkbox, useFormControl } from '@material-ui/core'
+import {
+  Grid,
+  Checkbox,
+  useFormControl,
+  FormControlLabel,
+  GridSize,
+} from '@material-ui/core'
+
 import { useField } from 'formik'
+import { useStyles } from '../styles'
 import { toggle } from '../index'
 
 type MultiCheckProps = {
   name: string
+  label?: string
+  size?: GridSize
   disabled?: boolean
   small?: boolean
   value?: any
@@ -13,7 +23,20 @@ type MultiCheckProps = {
 }
 
 export function MultiCheck(props: MultiCheckProps) {
-  const { name, disabled, small, values = [], optionValues = [], value } = props
+  const classes = useStyles()
+  const { noselect, smallLabel } = classes
+
+  const {
+    name,
+    label,
+    size = 'auto',
+    disabled,
+    small,
+    values = [],
+    optionValues = [],
+    value,
+  } = props
+
   const formControl = useFormControl()
   const [, , helpers] = useField(name)
 
@@ -23,13 +46,22 @@ export function MultiCheck(props: MultiCheckProps) {
   }
 
   return (
-    <Checkbox
-      color="primary"
-      size={small ? 'small' : 'medium'}
-      checked={values.includes(value)}
-      value={value}
-      disabled={disabled}
-      onChange={() => handleChange(value)}
-    />
+    <Grid item xs={size}>
+      <FormControlLabel
+        control={
+          <Checkbox
+            color="primary"
+            size={small ? 'small' : 'medium'}
+            checked={values.includes(value)}
+            value={value}
+            disabled={disabled}
+            onChange={() => handleChange(value)}
+          />
+        }
+        label={label}
+        disabled={disabled}
+        classes={{ root: noselect, label: small ? smallLabel : '' }}
+      />
+    </Grid>
   )
 }

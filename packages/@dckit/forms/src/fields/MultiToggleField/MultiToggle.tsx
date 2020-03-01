@@ -1,6 +1,13 @@
 import React from 'react'
 import cn from 'clsx'
-import { useFormControl, Chip as MuiChip } from '@material-ui/core'
+
+import {
+  Grid,
+  Chip as MuiChip,
+  useFormControl,
+  GridSize,
+} from '@material-ui/core'
+
 import { useField } from 'formik'
 import { useStyles } from '../styles'
 import { toggle, FocusDiv } from '../index'
@@ -9,6 +16,7 @@ type MultiToggleProps = {
   name: string
   label?: string
   disabled?: boolean
+  size?: GridSize
   small?: boolean
   fullWidth?: boolean
   value?: any
@@ -23,6 +31,7 @@ export const MultiToggle = React.memo(function MultiToggle(
     name,
     label,
     disabled,
+    size = 'auto',
     small = false,
     fullWidth = false,
     value,
@@ -31,7 +40,7 @@ export const MultiToggle = React.memo(function MultiToggle(
   } = props
 
   const classes = useStyles()
-  const { container, raised } = classes
+  const { togglesPadding, container, raised } = classes
   const formControl = useFormControl()
   const [, , helpers] = useField(name)
   const selected = values.includes(value)
@@ -42,15 +51,17 @@ export const MultiToggle = React.memo(function MultiToggle(
   }
 
   return (
-    <MuiChip
-      component={FocusDiv}
-      label={label}
-      color={selected ? 'primary' : 'default'}
-      size={small ? 'small' : 'medium'}
-      clickable={true}
-      disabled={disabled}
-      onClick={handleClick}
-      classes={{ root: cn(fullWidth && container, !selected && raised) }}
-    />
+    <Grid item xs={size} className={togglesPadding}>
+      <MuiChip
+        component={FocusDiv}
+        label={label}
+        color={selected ? 'primary' : 'default'}
+        size={small ? 'small' : 'medium'}
+        clickable={true}
+        disabled={disabled}
+        onClick={handleClick}
+        classes={{ root: cn(fullWidth && container, !selected && raised) }}
+      />
+    </Grid>
   )
 })
