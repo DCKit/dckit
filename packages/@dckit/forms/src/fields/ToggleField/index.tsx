@@ -2,9 +2,9 @@ import React from 'react'
 import cn from 'clsx'
 import { Grid, FormControl, FormLabel, RadioGroup } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
-import { Toggle } from '../Toggle'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
+import { Toggle } from './Toggle'
 
 export function ToggleField(props: MuiFieldProps) {
   const classes = useStyles()
@@ -13,7 +13,7 @@ export function ToggleField(props: MuiFieldProps) {
     directionColumn,
     directionRow,
     noselect,
-    togglesMargin,
+    togglesContainer,
     togglesPadding,
   } = classes
 
@@ -39,7 +39,7 @@ export function ToggleField(props: MuiFieldProps) {
   } = optionsConfig
 
   const labelProps = { disabled, required, error }
-  const chipProps = {
+  const toggleProps = {
     name,
     disabled,
     small,
@@ -60,7 +60,7 @@ export function ToggleField(props: MuiFieldProps) {
         name={name}
         classes={{
           root: cn(
-            togglesMargin,
+            togglesContainer,
             direction === 'column' ? directionColumn : directionRow
           ),
         }}
@@ -74,7 +74,7 @@ export function ToggleField(props: MuiFieldProps) {
               xs={size}
               className={togglesPadding}
             >
-              <Toggle radio {...chipProps} label={label} value={value} />
+              <Toggle {...toggleProps} label={label} value={value} />
             </Grid>
           )
         })}

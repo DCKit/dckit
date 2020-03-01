@@ -4,10 +4,12 @@ import { FormikConfig, FormikValues, FormikProps } from 'formik'
 export const enum FormFieldTypes {
   text = 'text',
   check = 'check',
-  multicheck = 'multicheck',
+  multiCheck = 'multiCheck',
   switch = 'switch',
+  multiSwitch = 'multiSwitch',
   radio = 'radio',
   toggle = 'toggle',
+  multiToggle = 'multiToggle',
   component = 'component',
 }
 
@@ -38,7 +40,7 @@ export type FormFieldConfig = {
   style?: any
   required?: DynamicProp
   disabled?: DynamicProp
-  options?: any
+  options?: any[]
   optionsConfig?: OptionsConfig
   helperText?: string
   initialValue?: any

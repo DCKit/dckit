@@ -3,14 +3,9 @@ import cn from 'clsx'
 import { useFormControl, Chip as MuiChip } from '@material-ui/core'
 import { useField } from 'formik'
 import { useStyles } from '../styles'
-
-const FocusDiv = React.forwardRef(function FocusDiv(props: any, ref: any) {
-  const formControl = useFormControl()
-  return <div {...props} tabIndex={0} onBlur={formControl.onBlur} ref={ref} />
-})
+import { FocusDiv } from '../index'
 
 type ToggleProps = {
-  radio?: boolean
   name: string
   label?: string
   disabled?: boolean
