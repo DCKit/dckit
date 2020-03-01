@@ -41,7 +41,7 @@ export function Form(props: FormProps) {
     return values
   }, [initialValues, fields, fieldsConfig])
 
-  const renderField = (field: string) => {
+  const renderField = (field: string, index: number) => {
     const config: FormFieldConfig = fieldsConfig[field]
     const {
       name = field,
@@ -62,7 +62,7 @@ export function Form(props: FormProps) {
     const FieldComponent = Component || FormField
 
     return (
-      <FieldContainer key={field} size={size} style={style}>
+      <FieldContainer key={`${field}${index}`} size={size} style={style}>
         <FieldComponent {...formFieldProps} />
       </FieldContainer>
     )
