@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
 import cn from 'clsx'
-import { CssBaseline, AppBar, Toolbar, IconButton } from '@material-ui/core'
-import ExpandIcon from '@material-ui/icons/Menu'
-import CollapseIcon from '@material-ui/icons/ChevronLeft'
+import { Menu, MenuOpen } from '@material-ui/icons'
+
+import {
+  NoSsr,
+  CssBaseline,
+  AppBar,
+  Toolbar,
+  IconButton,
+} from '@material-ui/core'
+
 import {
   AppBarHead,
   AppBarNav,
@@ -11,34 +18,41 @@ import {
   PageBarNav,
   PageBarTail,
 } from '../ports'
+
 import { SideBar } from '../SideBar'
 import { SideBarContext } from '../SideBar/context'
 import { useMediaMobile } from '../utils'
 import { useStyles } from './styles'
 
-interface IContainerProps {
+type ContainerProps = {
   className?: any
   sideBarOpen?: boolean
   children?: any
 }
-type TContainer = (props: IContainerProps) => JSX.Element
+type TContainer = (props: ContainerProps) => JSX.Element
 
 const DefaultContainer: TContainer = ({
   className,
   children,
-}: IContainerProps) => <div className={className}>{children}</div>
+}: ContainerProps) => <div className={className}>{children}</div>
 
-interface IAppLayoutProps {
+type AppLayoutProps = {
   PageBarContainer?: TContainer
   ContentContainer?: TContainer
+  CollapseIcon?: any
+  ExpandIcon?: any
   children?: any
 }
 
-export const AppLayout = ({
-  PageBarContainer = DefaultContainer,
-  ContentContainer = DefaultContainer,
-  children,
-}: IAppLayoutProps) => {
+export function AppLayout(props: AppLayoutProps) {
+  const {
+    PageBarContainer = DefaultContainer,
+    ContentContainer = DefaultContainer,
+    CollapseIcon = MenuOpen,
+    ExpandIcon = Menu,
+    children,
+  } = props
+
   const classes = useStyles()
   const isMobile = useMediaMobile()
   const [sideBarOpen, showSideBar] = useState(!isMobile)
@@ -69,52 +83,54 @@ export const AppLayout = ({
         showSideBar,
       }}
     >
-      <CssBaseline />
-      <AppBar
-        className={cn(
-          isMobile ? appBarMobile : appBar,
-          isShifted && appBarShift
+      <NoSsr>
+        <CssBaseline />
+        <AppBar
+          className={cn(
+            isMobile ? appBarMobile : appBar,
+            isShifted && appBarShift
+          )}
+        >
+          <Toolbar className={toolBar}>
+            <IconButton
+              color="inherit"
+              onClick={toggleSideBar}
+              className={menuButton}
+              id="toggle-sidebar-button"
+            >
+              {sideBarOpen ? <CollapseIcon /> : <ExpandIcon />}
+            </IconButton>
+            <AppBarHead.Consumer />
+            <AppBarNav.Consumer />
+            <AppBarTail.Consumer />
+          </Toolbar>
+        </AppBar>
+        <PageBarContainer
+          className={cn(
+            pageBar,
+            isMobile ? pageBarMobile : pageBarDesktop,
+            isShifted && pageBarShift
+          )}
+          sideBarOpen={sideBarOpen}
+        >
+          <PageBarHead.Consumer />
+          <PageBarNav.Consumer />
+          <PageBarTail.Consumer />
+        </PageBarContainer>
         )}
-      >
-        <Toolbar className={toolBar}>
-          <IconButton
-            color="inherit"
-            onClick={toggleSideBar}
-            className={menuButton}
-            id="toggle-sidebar-button"
-          >
-            {sideBarOpen ? <CollapseIcon /> : <ExpandIcon />}
-          </IconButton>
-          <AppBarHead.Consumer />
-          <AppBarNav.Consumer />
-          <AppBarTail.Consumer />
-        </Toolbar>
-      </AppBar>
-      <PageBarContainer
-        className={cn(
-          pageBar,
-          isMobile ? pageBarMobile : pageBarDesktop,
-          isShifted && pageBarShift
-        )}
-        sideBarOpen={sideBarOpen}
-      >
-        <PageBarHead.Consumer />
-        <PageBarNav.Consumer />
-        <PageBarTail.Consumer />
-      </PageBarContainer>
-      )}
-      <SideBar />
-      <ContentContainer
-        className={cn(
-          content,
-          contentTwoBars,
-          isMobile ? contentMobile : contentDesktop,
-          isShifted && contentShift
-        )}
-        sideBarOpen={sideBarOpen}
-      >
-        {children}
-      </ContentContainer>
+        <SideBar />
+        <ContentContainer
+          className={cn(
+            content,
+            contentTwoBars,
+            isMobile ? contentMobile : contentDesktop,
+            isShifted && contentShift
+          )}
+          sideBarOpen={sideBarOpen}
+        >
+          {children}
+        </ContentContainer>
+      </NoSsr>
     </SideBarContext.Provider>
   )
 }
