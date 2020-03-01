@@ -10,7 +10,7 @@ import {
 
 import { useField } from 'formik'
 import { useStyles } from '../styles'
-import { toggle } from '../index'
+import { toggle } from '../util'
 
 export type MultiControlProps = {
   name: string
