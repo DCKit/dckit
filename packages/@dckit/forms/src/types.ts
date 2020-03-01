@@ -4,10 +4,11 @@ import { FormikConfig, FormikValues, FormikProps } from 'formik'
 export const enum FormFieldTypes {
   text = 'text',
   check = 'check',
-  multicheck = 'multicheck',
+  multiCheck = 'multiCheck',
   switch = 'switch',
   radio = 'radio',
   toggle = 'toggle',
+  multiToggle = 'multiToggle',
   component = 'component',
 }
 

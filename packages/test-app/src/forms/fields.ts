@@ -7,6 +7,7 @@ export const fields = [
   'radio',
   'toggle',
   'multicheck',
+  'multitoggle',
   'nested.notes',
   'nested.check',
 ]
@@ -29,6 +30,7 @@ export const fieldsConfig: FieldsConfig = {
     label: 'Radio',
     type: 'radio',
     required: true,
+    size: 6,
     style: {
       marginTop: 24,
     },
@@ -48,7 +50,7 @@ export const fieldsConfig: FieldsConfig = {
     label: 'Toggle',
     type: 'toggle',
     required: true,
-    size: 8,
+    size: 6,
     options: [
       { label: 'opt1', value: '1' },
       { label: 'opt2', value: '2' },
@@ -67,9 +69,9 @@ export const fieldsConfig: FieldsConfig = {
   },
   multicheck: {
     label: 'Multi check',
-    type: 'multicheck',
+    type: 'multiCheck',
     required: true,
-    size: 8,
+    size: 6,
     options: [
       { label: 'opt1', value: '1' },
       { label: 'opt2', value: '2' },
@@ -85,6 +87,27 @@ export const fieldsConfig: FieldsConfig = {
       size: 4,
     },
     helperText: 'multicheck options',
+  },
+  multitoggle: {
+    label: 'Multi toggle',
+    type: 'multiToggle',
+    required: true,
+    size: 6,
+    options: [
+      { label: 'opt1', value: '1' },
+      { label: 'opt2', value: '2' },
+      { label: 'opt3', value: '3' },
+      { label: 'opt4', value: '4' },
+      { label: 'opt5', value: '5' },
+      { label: 'opt6', value: '6' },
+    ],
+    optionsConfig: {
+      //direction: 'column',
+      fullWidth: true,
+      //small: true,
+      size: 4,
+    },
+    helperText: 'multitoggle options',
   },
   'nested.notes': {
     label: 'Notes',
@@ -112,6 +135,9 @@ export const validationSchema = V.object({
     .required(),
   multicheck: V.array()
     .label(label('multicheck'))
+    .required(),
+  multitoggle: V.array()
+    .label(label('multitoggle'))
     .required(),
   password: V.string()
     .label(label('password'))

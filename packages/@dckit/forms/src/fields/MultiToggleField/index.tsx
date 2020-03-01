@@ -1,19 +1,17 @@
 import React from 'react'
-import cn from 'clsx'
-import { Grid, FormControl, FormLabel, RadioGroup } from '@material-ui/core'
+import { Grid, FormControl, FormLabel } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
-import { Toggle } from './Toggle'
+import { MultiToggle } from './MultiToggle'
 
-export function ToggleField(props: MuiFieldProps) {
+export function MultiToggleField(props: MuiFieldProps) {
   const classes = useStyles()
   const {
     container,
     directionColumn,
     directionRow,
     noselect,
-    togglesMargin,
     togglesPadding,
   } = classes
 
@@ -21,14 +19,12 @@ export function ToggleField(props: MuiFieldProps) {
     label,
     disabled,
     required,
-    type,
     error,
     helperText,
     options = [],
     optionsConfig = {},
-    onBlur,
     name,
-    ...restProps
+    value: values = [],
   } = props
 
   const {
@@ -39,11 +35,15 @@ export function ToggleField(props: MuiFieldProps) {
   } = optionsConfig
 
   const labelProps = { disabled, required, error }
+  const optionValues = options.map((el: any) => el.value)
+
   const toggleProps = {
     name,
     disabled,
     small,
     fullWidth,
+    values,
+    optionValues,
   }
 
   return (
@@ -55,15 +55,9 @@ export function ToggleField(props: MuiFieldProps) {
       >
         {label}
       </FormLabel>
-      <RadioGroup
-        {...restProps}
-        name={name}
-        classes={{
-          root: cn(
-            togglesMargin,
-            direction === 'column' ? directionColumn : directionRow
-          ),
-        }}
+      <Grid
+        container
+        className={direction === 'column' ? directionColumn : directionRow}
       >
         {options.map((option: any, index: number) => {
           const { label, value } = option
@@ -74,11 +68,11 @@ export function ToggleField(props: MuiFieldProps) {
               xs={size}
               className={togglesPadding}
             >
-              <Toggle {...toggleProps} label={label} value={value} />
+              <MultiToggle {...toggleProps} label={label} value={value} />
             </Grid>
           )
         })}
-      </RadioGroup>
+      </Grid>
       <HelperText disabled={disabled} error={error}>
         {helperText}
       </HelperText>

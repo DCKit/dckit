@@ -3,18 +3,22 @@ import cn from 'clsx'
 import { useFormControl, Chip as MuiChip } from '@material-ui/core'
 import { useField } from 'formik'
 import { useStyles } from '../styles'
-import { FocusDiv } from '../index'
+import { toggleValues, FocusDiv } from '../index'
 
-type ToggleProps = {
+type MultiToggleProps = {
   name: string
   label?: string
   disabled?: boolean
   small?: boolean
   fullWidth?: boolean
   value?: any
+  values?: any[]
+  optionValues?: any[]
 }
 
-export const Toggle = React.memo(function Toggle(props: ToggleProps) {
+export const MultiToggle = React.memo(function MultiToggle(
+  props: MultiToggleProps
+) {
   const {
     name,
     label,
@@ -22,17 +26,19 @@ export const Toggle = React.memo(function Toggle(props: ToggleProps) {
     small = false,
     fullWidth = false,
     value,
+    values = [],
+    optionValues = [],
   } = props
 
   const classes = useStyles()
   const { container, raised } = classes
   const formControl = useFormControl()
-  const [field, , helpers] = useField(name)
-  const selected = field.value === value
+  const [, , helpers] = useField(name)
+  const selected = values.includes(value)
 
   const handleClick = () => {
     formControl.onFocus()
-    !selected && helpers.setValue(value)
+    helpers.setValue(toggleValues(optionValues, values, value))
   }
 
   return (

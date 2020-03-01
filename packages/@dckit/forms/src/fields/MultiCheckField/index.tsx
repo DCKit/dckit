@@ -30,7 +30,7 @@ export function MultiCheckField(props: MuiFieldProps) {
     options = [],
     optionsConfig = {},
     name,
-    value: valuesArray = [],
+    value: values = [],
   } = props
 
   const { direction, size = 'auto', small } = optionsConfig
@@ -60,8 +60,8 @@ export function MultiCheckField(props: MuiFieldProps) {
                     name={name}
                     small={small}
                     value={value}
-                    valuesArray={valuesArray}
-                    options={optionValues}
+                    values={values}
+                    optionValues={optionValues}
                     disabled={disabled}
                   />
                 }
