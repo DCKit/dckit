@@ -3,7 +3,7 @@ import cn from 'clsx'
 import { useFormControl, Chip as MuiChip } from '@material-ui/core'
 import { useField } from 'formik'
 import { useStyles } from '../styles'
-import { FocusDiv } from '../index'
+import { FocusDiv } from '../util'
 
 type ToggleProps = {
   name: string
