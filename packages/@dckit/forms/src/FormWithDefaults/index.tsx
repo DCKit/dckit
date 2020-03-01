@@ -5,7 +5,7 @@ import { FormField } from '../fields/FormField'
 import { FormFieldTypes, FormProps, FormContext } from '../types'
 import { EmptyContainer } from '../containers'
 
-export const FormWithDefaults = (props: FormProps) => {
+export function FormWithDefaults(props: FormProps) {
   const {
     renderActions,
     initialValues,

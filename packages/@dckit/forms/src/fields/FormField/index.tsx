@@ -3,7 +3,7 @@ import { useField, useFormikContext } from 'formik'
 import { FormFieldProps, DynamicProp } from '../../types'
 import { components } from '..'
 
-export const FormField = (props: FormFieldProps) => {
+export function FormField(props: FormFieldProps) {
   const {
     name,
     required,

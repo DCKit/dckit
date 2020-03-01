@@ -6,15 +6,15 @@ import { Toggle } from '../Toggle'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
 
-export const ToggleField = (props: MuiFieldProps) => {
+export function ToggleField(props: MuiFieldProps) {
   const classes = useStyles()
   const {
     container,
     directionColumn,
     directionRow,
     noselect,
-    chipsMargin,
-    chipPadding,
+    togglesMargin,
+    togglesPadding,
   } = classes
 
   const {
@@ -60,7 +60,7 @@ export const ToggleField = (props: MuiFieldProps) => {
         name={name}
         classes={{
           root: cn(
-            chipsMargin,
+            togglesMargin,
             direction === 'column' ? directionColumn : directionRow
           ),
         }}
@@ -72,7 +72,7 @@ export const ToggleField = (props: MuiFieldProps) => {
               key={`${name}${index}`}
               item
               xs={size}
-              className={chipPadding}
+              className={togglesPadding}
             >
               <Toggle radio {...chipProps} label={label} value={value} />
             </Grid>

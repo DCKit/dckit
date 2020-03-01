@@ -10,7 +10,7 @@ import { MuiFieldProps } from '../../types'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
 
-export const MultiCheckField = (props: MuiFieldProps) => {
+export function MultiCheckField(props: MuiFieldProps) {
   const classes = useStyles()
   const {
     container,
@@ -29,12 +29,10 @@ export const MultiCheckField = (props: MuiFieldProps) => {
     optionsConfig = {},
     name,
     value: valuesArray = [],
-    onChange,
-    onBlur,
-    ...restProps
+    //onChange,
+    //onBlur,
+    //...restProps
   } = props
-
-  console.log(restProps)
 
   const { direction, size = 'auto', small } = optionsConfig
   const labelProps = { disabled, required, error }

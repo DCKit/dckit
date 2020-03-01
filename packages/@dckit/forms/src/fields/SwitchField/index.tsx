@@ -5,7 +5,7 @@ import { MuiFieldProps } from '../../types'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
 
-export const SwitchField = (props: MuiFieldProps) => {
+export function SwitchField(props: MuiFieldProps) {
   const classes = useStyles()
   const {
     label,
