@@ -8,6 +8,7 @@ export const fields = [
   'toggle',
   'multicheck',
   'multitoggle',
+  'multiswitch',
   'nested.notes',
   'nested.check',
 ]
@@ -88,6 +89,27 @@ export const fieldsConfig: FieldsConfig = {
     },
     helperText: 'multicheck options',
   },
+  multiswitch: {
+    label: 'Multi switch',
+    type: 'multiSwitch',
+    required: true,
+    size: 8,
+    options: [
+      { label: 'opt1', value: '1' },
+      { label: 'opt2', value: '2' },
+      { label: 'opt3', value: '3' },
+      { label: 'opt4', value: '4' },
+      { label: 'opt5', value: '5' },
+      { label: 'opt6', value: '6' },
+    ],
+    optionsConfig: {
+      //direction: 'column',
+      //fullWidth: true,
+      //small: true,
+      size: 4,
+    },
+    helperText: 'multiswitch options',
+  },
   multitoggle: {
     label: 'Multi toggle',
     type: 'multiToggle',
@@ -135,6 +157,9 @@ export const validationSchema = V.object({
     .required(),
   multicheck: V.array()
     .label(label('multicheck'))
+    .required(),
+  multiswitch: V.array()
+    .label(label('multiswitch'))
     .required(),
   multitoggle: V.array()
     .label(label('multitoggle'))

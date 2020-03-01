@@ -5,27 +5,30 @@ import { TextField } from './TextField'
 import { CheckField } from './CheckField'
 import { MultiCheckField } from './MultiCheckField'
 import { SwitchField } from './SwitchField'
+import { MultiSwitchField } from './MultiSwitchField'
 import { RadioField } from './RadioField'
 import { ToggleField } from './ToggleField'
 import { MultiToggleField } from './MultiToggleField'
 
 export const components: FieldTypeDict = {
   [FormFieldTypes.text]: TextField,
-  [FormFieldTypes.check]: CheckField,
-  [FormFieldTypes.switch]: SwitchField,
   [FormFieldTypes.radio]: RadioField,
-  [FormFieldTypes.toggle]: ToggleField,
+  [FormFieldTypes.check]: CheckField,
   [FormFieldTypes.multiCheck]: MultiCheckField,
+  [FormFieldTypes.switch]: SwitchField,
+  [FormFieldTypes.multiSwitch]: MultiSwitchField,
+  [FormFieldTypes.toggle]: ToggleField,
   [FormFieldTypes.multiToggle]: MultiToggleField,
 }
 
 export const defaultValues: FieldTypeDict = {
   [FormFieldTypes.text]: '',
   [FormFieldTypes.radio]: '',
-  [FormFieldTypes.toggle]: '',
   [FormFieldTypes.check]: false,
-  [FormFieldTypes.switch]: false,
   [FormFieldTypes.multiCheck]: [],
+  [FormFieldTypes.switch]: false,
+  [FormFieldTypes.multiSwitch]: [],
+  [FormFieldTypes.toggle]: '',
   [FormFieldTypes.multiToggle]: [],
 }
 

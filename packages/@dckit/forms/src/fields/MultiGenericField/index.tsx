@@ -1,28 +1,10 @@
 import React from 'react'
-import { Grid, FormControl, FormLabel } from '@material-ui/core'
+import { FormControl, FormLabel } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
-
-export type MultiContainerProps = {
-  direction?: 'column' | 'row'
-  children?: any
-}
-
-function MultiContainer(props: MultiContainerProps) {
-  const classes = useStyles()
-  const { directionColumn, directionRow } = classes
-  const { direction, children } = props
-
-  return (
-    <Grid
-      container
-      className={direction === 'column' ? directionColumn : directionRow}
-    >
-      {children}
-    </Grid>
-  )
-}
+import { MultiContainer } from './MultiContainer'
+import { MultiControl } from './MultiControl'
 
 type GenericMultiFieldProps = {
   ControlContainer?: any
@@ -45,7 +27,7 @@ export function MultiGenericField(
     optionsConfig = {},
     name,
     value: values = [],
-    Control,
+    Control = MultiControl,
     ControlContainer = MultiContainer,
   } = props
 
