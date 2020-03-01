@@ -1,4 +1,6 @@
 import React from 'react'
+import cn from 'clsx'
+
 import {
   Grid,
   FormControl,
@@ -7,6 +9,7 @@ import {
   RadioGroup,
   Radio,
 } from '@material-ui/core'
+
 import { MuiFieldProps } from '../../types'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
@@ -18,6 +21,7 @@ export function RadioField(props: MuiFieldProps) {
     directionColumn,
     directionRow,
     noselect,
+    marginRight,
     smallLabel,
   } = classes
   const {
@@ -63,7 +67,10 @@ export function RadioField(props: MuiFieldProps) {
                 label={label}
                 value={value}
                 disabled={disabled}
-                classes={{ root: noselect, label: small ? smallLabel : '' }}
+                classes={{
+                  root: cn(noselect, size === 'auto' ? marginRight : ''),
+                  label: small ? smallLabel : '',
+                }}
               />
             </Grid>
           )

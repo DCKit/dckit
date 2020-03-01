@@ -4,12 +4,21 @@ export const useStyles = makeStyles(() => ({
   container: {
     width: '100%',
   },
+  flexGrow1: {
+    display: 'flex',
+    flexGrow: 1,
+  },
   smallLabel: {
     fontSize: 'small',
   },
   noselect: {
     userSelect: 'none',
+  },
+  marginRight: {
     marginRight: 24,
+  },
+  marginZero: {
+    margin: 0,
   },
   raised: {
     boxShadow:

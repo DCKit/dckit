@@ -31,7 +31,7 @@ export const fieldsConfig: FieldsConfig = {
     label: 'Radio',
     type: 'radio',
     required: true,
-    size: 6,
+    //size: 6,
     style: {
       marginTop: 24,
     },
@@ -39,6 +39,9 @@ export const fieldsConfig: FieldsConfig = {
       { label: 'opt1', value: '1' },
       { label: 'opt2', value: '2' },
       { label: 'opt3', value: '3' },
+      { label: 'opt4', value: '4' },
+      { label: 'opt5', value: '5' },
+      { label: 'opt6', value: '6' },
     ],
     optionsConfig: {
       //direction: 'column',
@@ -93,7 +96,7 @@ export const fieldsConfig: FieldsConfig = {
     label: 'Multi switch',
     type: 'multiSwitch',
     required: true,
-    size: 8,
+    size: 6,
     options: [
       { label: 'opt1', value: '1' },
       { label: 'opt2', value: '2' },
@@ -104,9 +107,9 @@ export const fieldsConfig: FieldsConfig = {
     ],
     optionsConfig: {
       //direction: 'column',
-      //fullWidth: true,
+      fullWidth: true,
       //small: true,
-      size: 4,
+      size: 12,
     },
     helperText: 'multiswitch options',
   },
@@ -127,7 +130,7 @@ export const fieldsConfig: FieldsConfig = {
       //direction: 'column',
       fullWidth: true,
       small: true,
-      size: 4,
+      size: 6,
     },
     helperText: 'multitoggle options',
   },

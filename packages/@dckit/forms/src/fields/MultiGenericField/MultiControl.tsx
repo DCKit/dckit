@@ -1,4 +1,6 @@
 import React from 'react'
+import cn from 'clsx'
+
 import {
   Grid,
   useFormControl,
@@ -16,6 +18,7 @@ export type MultiControlProps = {
   size?: GridSize
   disabled?: boolean
   small?: boolean
+  fullWidth?: boolean
   value?: any
   values?: any[]
   optionValues?: any[]
@@ -24,7 +27,7 @@ export type MultiControlProps = {
 
 export function MultiControl(props: MultiControlProps) {
   const classes = useStyles()
-  const { noselect, smallLabel } = classes
+  const { noselect, marginRight, marginZero, flexGrow1, smallLabel } = classes
 
   const {
     name,
@@ -32,6 +35,7 @@ export function MultiControl(props: MultiControlProps) {
     size = 'auto',
     disabled,
     small,
+    fullWidth = false,
     values = [],
     optionValues = [],
     value,
@@ -61,7 +65,16 @@ export function MultiControl(props: MultiControlProps) {
         }
         label={label}
         disabled={disabled}
-        classes={{ root: noselect, label: small ? smallLabel : '' }}
+        labelPlacement={fullWidth ? 'start' : 'end'}
+        classes={{
+          root: cn(
+            noselect,
+            size === 'auto' && marginRight,
+            fullWidth && flexGrow1
+          ),
+          label: cn(small ? smallLabel : '', fullWidth && flexGrow1),
+          labelPlacementStart: cn(fullWidth ? marginZero : ''),
+        }}
       />
     </Grid>
   )
