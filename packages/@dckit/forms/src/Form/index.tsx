@@ -14,7 +14,7 @@ import {
 } from '../containers'
 import { defaultValues } from '../fields'
 
-export const Form = (props: FormProps) => {
+export function Form(props: FormProps) {
   const {
     fields,
     fieldsConfig,

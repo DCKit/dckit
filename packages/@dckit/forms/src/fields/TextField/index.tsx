@@ -14,7 +14,7 @@ const Adornment = React.memo(
   )
 )
 
-export const TextField = (props: MuiFieldProps) => {
+export function TextField(props: MuiFieldProps) {
   const classes = useStyles()
 
   const { startAdornment, endAdornment, ...restProps } = props

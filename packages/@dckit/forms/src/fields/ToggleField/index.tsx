@@ -6,7 +6,7 @@ import { Toggle } from '../Toggle'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
 
-export const ToggleField = (props: MuiFieldProps) => {
+export function ToggleField(props: MuiFieldProps) {
   const classes = useStyles()
   const {
     container,

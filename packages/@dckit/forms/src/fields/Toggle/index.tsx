@@ -4,7 +4,7 @@ import { useFormControl, Chip as MuiChip } from '@material-ui/core'
 import { useField } from 'formik'
 import { useStyles } from '../styles'
 
-const FocusDiv = React.forwardRef((props: any, ref: any) => {
+const FocusDiv = React.forwardRef(function FocusDiv(props: any, ref: any) {
   const formControl = useFormControl()
   return <div {...props} tabIndex={0} onBlur={formControl.onBlur} ref={ref} />
 })
@@ -19,7 +19,7 @@ type ToggleProps = {
   value?: any
 }
 
-export const Toggle = React.memo((props: ToggleProps) => {
+export const Toggle = React.memo(function Toggle(props: ToggleProps) {
   const {
     name,
     label,
@@ -28,6 +28,7 @@ export const Toggle = React.memo((props: ToggleProps) => {
     fullWidth = false,
     value,
   } = props
+
   const classes = useStyles()
   const { container, raised } = classes
   const formControl = useFormControl()

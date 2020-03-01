@@ -11,7 +11,7 @@ import { MuiFieldProps } from '../../types'
 import { HelperText } from '../HelperText'
 import { useStyles } from '../styles'
 
-export const RadioField = (props: MuiFieldProps) => {
+export function RadioField(props: MuiFieldProps) {
   const classes = useStyles()
   const {
     container,
