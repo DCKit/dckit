@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
 import cn from 'clsx'
-import { CssBaseline, AppBar, Toolbar, IconButton } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
-import MenuOpenIcon from '@material-ui/icons/MenuOpen'
+import { Menu, MenuOpen } from '@material-ui/icons'
+
+import {
+  NoSsr,
+  CssBaseline,
+  AppBar,
+  Toolbar,
+  IconButton,
+} from '@material-ui/core'
+
 import {
   AppBarHead,
   AppBarNav,
@@ -11,6 +18,7 @@ import {
   PageBarNav,
   PageBarTail,
 } from '../ports'
+
 import { SideBar } from '../SideBar'
 import { SideBarContext } from '../SideBar/context'
 import { useMediaMobile } from '../utils'
@@ -40,8 +48,8 @@ export function AppLayout(props: AppLayoutProps) {
   const {
     PageBarContainer = DefaultContainer,
     ContentContainer = DefaultContainer,
-    CollapseIcon = MenuOpenIcon,
-    ExpandIcon = MenuIcon,
+    CollapseIcon = MenuOpen,
+    ExpandIcon = Menu,
     children,
   } = props
 
@@ -75,52 +83,54 @@ export function AppLayout(props: AppLayoutProps) {
         showSideBar,
       }}
     >
-      <CssBaseline />
-      <AppBar
-        className={cn(
-          isMobile ? appBarMobile : appBar,
-          isShifted && appBarShift
+      <NoSsr>
+        <CssBaseline />
+        <AppBar
+          className={cn(
+            isMobile ? appBarMobile : appBar,
+            isShifted && appBarShift
+          )}
+        >
+          <Toolbar className={toolBar}>
+            <IconButton
+              color="inherit"
+              onClick={toggleSideBar}
+              className={menuButton}
+              id="toggle-sidebar-button"
+            >
+              {sideBarOpen ? <CollapseIcon /> : <ExpandIcon />}
+            </IconButton>
+            <AppBarHead.Consumer />
+            <AppBarNav.Consumer />
+            <AppBarTail.Consumer />
+          </Toolbar>
+        </AppBar>
+        <PageBarContainer
+          className={cn(
+            pageBar,
+            isMobile ? pageBarMobile : pageBarDesktop,
+            isShifted && pageBarShift
+          )}
+          sideBarOpen={sideBarOpen}
+        >
+          <PageBarHead.Consumer />
+          <PageBarNav.Consumer />
+          <PageBarTail.Consumer />
+        </PageBarContainer>
         )}
-      >
-        <Toolbar className={toolBar}>
-          <IconButton
-            color="inherit"
-            onClick={toggleSideBar}
-            className={menuButton}
-            id="toggle-sidebar-button"
-          >
-            {sideBarOpen ? <CollapseIcon /> : <ExpandIcon />}
-          </IconButton>
-          <AppBarHead.Consumer />
-          <AppBarNav.Consumer />
-          <AppBarTail.Consumer />
-        </Toolbar>
-      </AppBar>
-      <PageBarContainer
-        className={cn(
-          pageBar,
-          isMobile ? pageBarMobile : pageBarDesktop,
-          isShifted && pageBarShift
-        )}
-        sideBarOpen={sideBarOpen}
-      >
-        <PageBarHead.Consumer />
-        <PageBarNav.Consumer />
-        <PageBarTail.Consumer />
-      </PageBarContainer>
-      )}
-      <SideBar />
-      <ContentContainer
-        className={cn(
-          content,
-          contentTwoBars,
-          isMobile ? contentMobile : contentDesktop,
-          isShifted && contentShift
-        )}
-        sideBarOpen={sideBarOpen}
-      >
-        {children}
-      </ContentContainer>
+        <SideBar />
+        <ContentContainer
+          className={cn(
+            content,
+            contentTwoBars,
+            isMobile ? contentMobile : contentDesktop,
+            isShifted && contentShift
+          )}
+          sideBarOpen={sideBarOpen}
+        >
+          {children}
+        </ContentContainer>
+      </NoSsr>
     </SideBarContext.Provider>
   )
 }
