@@ -31,7 +31,7 @@ export const fieldsConfig: FieldsConfig = {
     label: 'Radio',
     type: 'radio',
     required: true,
-    //size: 6,
+    size: 8,
     style: {
       marginTop: 24,
     },
@@ -152,28 +152,30 @@ export const fieldsConfig: FieldsConfig = {
 
 const label = (name: string): string => fieldsConfig[name]?.label || ''
 
+const msg = `REQUIRED. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`
+
 export const validationSchema = V.object({
   login: V.string()
     .label(label('login'))
-    .required(),
+    .required(msg),
   radio: V.string()
     .label(label('radio'))
-    .required(),
+    .required(msg),
   toggle: V.string()
     .label(label('toggle'))
-    .required(),
+    .required(msg),
   multicheck: V.array()
     .label(label('multicheck'))
-    .required(),
+    .required(msg),
   multiswitch: V.array()
     .label(label('multiswitch'))
-    .required(),
+    .required(msg),
   multitoggle: V.array()
     .label(label('multitoggle'))
-    .required(),
+    .required(msg),
   password: V.string()
     .label(label('password'))
     .when('login', (value: string, schema: any) =>
-      value ? schema.required() : schema
+      value ? schema.required(msg) : schema
     ),
 })

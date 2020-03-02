@@ -19,6 +19,7 @@ export function CheckControl(props: CheckControlProps) {
     flexGrow,
     smallLabel,
     marginZero,
+    helperTextCheck,
   } = classes
 
   const {
@@ -62,7 +63,7 @@ export function CheckControl(props: CheckControlProps) {
           labelPlacementStart: cn(fullWidth ? marginZero : ''),
         }}
       />
-      <HelperText disabled={disabled} error={error}>
+      <HelperText className={helperTextCheck} disabled={disabled} error={error}>
         {helperText}
       </HelperText>
     </>

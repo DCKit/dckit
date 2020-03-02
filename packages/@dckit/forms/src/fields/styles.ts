@@ -33,7 +33,21 @@ export const useStyles = makeStyles(() => ({
   },
   helperText: {
     userSelect: 'none',
-    marginTop: 0,
+    marginTop: -2,
+    position: 'absolute',
+    lineHeight: '0.8rem',
+  },
+  helperTextBottom: {
+    bottom: -18,
+    userSelect: 'none',
+    position: 'absolute',
+    lineHeight: '0.8rem',
+  },
+  helperTextCheck: {
+    marginTop: 40,
+    userSelect: 'none',
+    position: 'absolute',
+    lineHeight: '0.8rem',
   },
   togglesContainer: {
     margin: '12px 0 4px -8px',

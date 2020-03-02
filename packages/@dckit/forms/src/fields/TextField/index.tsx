@@ -6,7 +6,7 @@ import {
   TextFieldProps,
 } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
-import { useStyles } from './styles'
+import { useStyles } from '../styles'
 
 const Adornment = React.memo(
   ({ position, adornment }: { position: 'start' | 'end'; adornment: any }) => (
@@ -23,8 +23,9 @@ export function TextField(props: MuiFieldProps) {
     ...restProps,
     fullWidth: true,
     FormHelperTextProps: {
+      component: 'div',
       classes: {
-        root: classes.helperText,
+        root: classes.helperTextBottom,
       },
     },
   }
