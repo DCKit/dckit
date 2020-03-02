@@ -25,7 +25,7 @@ export function TextField(props: MuiFieldProps) {
     FormHelperTextProps: {
       component: 'div',
       classes: {
-        root: classes.helperTextBottom,
+        root: classes.helperTextInput,
       },
     },
   }

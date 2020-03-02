@@ -37,8 +37,8 @@ export const useStyles = makeStyles(() => ({
     position: 'absolute',
     lineHeight: '0.8rem',
   },
-  helperTextBottom: {
-    bottom: -18,
+  helperTextInput: {
+    marginTop: 52,
     userSelect: 'none',
     position: 'absolute',
     lineHeight: '0.8rem',
