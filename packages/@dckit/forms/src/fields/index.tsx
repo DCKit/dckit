@@ -7,6 +7,7 @@ import { MultiSwitchField } from './MultiSwitchField'
 import { RadioField } from './RadioField'
 import { ToggleField } from './ToggleField'
 import { MultiToggleField } from './MultiToggleField'
+import { SelectField } from './SelectField'
 
 export const components: FieldTypeDict = {
   [FormFieldTypes.text]: TextField,
@@ -17,6 +18,7 @@ export const components: FieldTypeDict = {
   [FormFieldTypes.multiSwitch]: MultiSwitchField,
   [FormFieldTypes.toggle]: ToggleField,
   [FormFieldTypes.multiToggle]: MultiToggleField,
+  [FormFieldTypes.select]: SelectField,
 }
 
 export const defaultValues: FieldTypeDict = {
@@ -28,4 +30,5 @@ export const defaultValues: FieldTypeDict = {
   [FormFieldTypes.multiSwitch]: [],
   [FormFieldTypes.toggle]: '',
   [FormFieldTypes.multiToggle]: [],
+  [FormFieldTypes.select]: null,
 }

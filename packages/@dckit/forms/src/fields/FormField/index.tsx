@@ -13,6 +13,7 @@ export function FormField(props: FormFieldProps) {
     type,
     initialValue,
     onChange,
+    controlProps,
     ...restProps
   } = props
 
@@ -41,5 +42,5 @@ export function FormField(props: FormFieldProps) {
   }
   const Field = components[type]
 
-  return Field ? <Field {...fieldProps} /> : null
+  return Field ? <Field {...controlProps} {...fieldProps} /> : null
 }
