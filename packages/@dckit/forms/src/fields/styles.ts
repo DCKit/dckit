@@ -4,7 +4,7 @@ export const useStyles = makeStyles(() => ({
   container: {
     width: '100%',
   },
-  flexGrow1: {
+  flexGrow: {
     display: 'flex',
     flexGrow: 1,
   },

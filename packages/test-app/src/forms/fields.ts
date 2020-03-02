@@ -142,6 +142,10 @@ export const fieldsConfig: FieldsConfig = {
     label: 'Check',
     type: 'check',
     size: 4,
+    optionsConfig: {
+      //fullWidth: true,
+      small: true,
+    },
     helperText: 'checkbox helper text',
   },
 }
