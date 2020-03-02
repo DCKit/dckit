@@ -4,7 +4,7 @@ export const useStyles = makeStyles(() => ({
   container: {
     width: '100%',
   },
-  flexGrow1: {
+  flexGrow: {
     display: 'flex',
     flexGrow: 1,
   },
@@ -33,7 +33,21 @@ export const useStyles = makeStyles(() => ({
   },
   helperText: {
     userSelect: 'none',
-    marginTop: 0,
+    marginTop: -2,
+    position: 'absolute',
+    lineHeight: '0.8rem',
+  },
+  helperTextInput: {
+    marginTop: 52,
+    userSelect: 'none',
+    position: 'absolute',
+    lineHeight: '0.8rem',
+  },
+  helperTextCheck: {
+    marginTop: 40,
+    userSelect: 'none',
+    position: 'absolute',
+    lineHeight: '0.8rem',
   },
   togglesContainer: {
     margin: '12px 0 4px -8px',
