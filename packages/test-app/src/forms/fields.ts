@@ -5,6 +5,7 @@ export const fields = [
   'login',
   'password',
   'radio',
+  'select',
   'toggle',
   'multicheck',
   'multitoggle',
@@ -48,6 +49,22 @@ export const fieldsConfig: FieldsConfig = {
       small: true,
       //size: 6,
     },
+    helperText: 'radio options',
+  },
+  select: {
+    label: 'Select',
+    type: 'select',
+    required: true,
+    size: 4,
+    initialValue: { label: 'opt5', value: '5' },
+    options: [
+      { label: 'opt1', value: '1' },
+      { label: 'opt2', value: '2' },
+      { label: 'opt3', value: '3' },
+      { label: 'opt4', value: '4' },
+      { label: 'opt5', value: '5' },
+      { label: 'opt6', value: '6' },
+    ],
     helperText: 'select options',
   },
   toggle: {
@@ -161,6 +178,10 @@ export const validationSchema = V.object({
   radio: V.string()
     .label(label('radio'))
     .required(msg),
+  select: V.string()
+    .label(label('select'))
+    .required(msg)
+    .nullable(),
   toggle: V.string()
     .label(label('toggle'))
     .required(msg),
