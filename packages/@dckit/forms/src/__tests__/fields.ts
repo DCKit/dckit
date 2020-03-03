@@ -66,7 +66,7 @@ export const fieldsConfig: FieldsConfig = {
       { label: 'opt6', value: '6' },
     ],
     helperText: 'select options',
-    onChange: (form: FormContext, value: any) =>
+    onChange: (e: any, value: any, form: FormContext) =>
       form.setFieldValue('toggle', value?.value || ''),
   },
   toggle: {

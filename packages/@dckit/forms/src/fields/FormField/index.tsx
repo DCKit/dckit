@@ -27,7 +27,7 @@ export function FormField(props: FormFieldProps) {
   }
 
   const handleChange = (e: React.ChangeEvent<any>, value: any) => {
-    onChange && onChange(form, value)
+    onChange && onChange(e, value, form)
     field.onChange(e)
   }
 
