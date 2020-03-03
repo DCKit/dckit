@@ -35,6 +35,7 @@ export function FormWithDefaults(props: FormProps) {
     <Grid container style={{ paddingTop: 32 }}>
       <Grid item>
         <FormField
+          data-testid="use-defaults"
           type={FormFieldTypes.switch}
           label="Use defaults"
           name="useDefaults"
