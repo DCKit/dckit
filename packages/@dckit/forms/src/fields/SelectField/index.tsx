@@ -30,7 +30,11 @@ export function SelectField(props: MuiFieldProps) {
     controlProps.getOptionSelected ||
     ((opt: any) => props.value?.value === opt?.value)
 
-  const handleChange = (e: any, value: any) => helpers.setValue(value)
+  const handleChange = (e: any, value: any) => {
+    e.target.name = name
+    onChange && onChange(e, value)
+    helpers.setValue(value)
+  }
 
   const fieldProps = {
     ...restProps,
@@ -42,6 +46,7 @@ export function SelectField(props: MuiFieldProps) {
   }
 
   const textProps: TextFieldProps = {
+    name,
     error,
     helperText,
     required,

@@ -41,6 +41,7 @@ export type FormFieldConfig = {
   style?: any
   required?: DynamicProp
   disabled?: DynamicProp
+  onChange?: any
   controlProps?: any
   options?: any[]
   optionsConfig?: OptionsConfig
@@ -58,7 +59,6 @@ export type FormFieldProps = Omit<FormFieldConfig, 'size' | 'type'> & {
   name: string
   type: FormFieldType
   value?: any
-  onChange?: any
   onBlur?: any
   error?: any
 }
