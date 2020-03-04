@@ -56,7 +56,7 @@ export const fieldsConfig: FieldsConfig = {
     type: 'select',
     required: true,
     size: 4,
-    initialValue: { label: 'opt5', value: '5' },
+    initialValue: '5',
     options: [
       { label: 'opt1', value: '1' },
       { label: 'opt2', value: '2' },

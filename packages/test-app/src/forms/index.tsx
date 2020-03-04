@@ -20,7 +20,7 @@ export const DemoForm = () => {
           login: 'default login',
           password: 'default password',
           radio: '2',
-          select: { label: 'opt3', value: '3' },
+          select: '3',
           nested: {
             notes: 'default notes',
             check: true,
