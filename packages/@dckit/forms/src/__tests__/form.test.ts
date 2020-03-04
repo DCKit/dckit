@@ -3,12 +3,16 @@ import { app } from './App'
 
 afterEach(cleanup)
 
-describe('test app', () => {
-  it('should render form', async () => {
+describe('form with defaults', () => {
+  it('should render and use defaults', async () => {
     const { getByText, getByLabelText, findAllByDisplayValue } = render(app)
+
     expect(getByText('submit')).toBeDefined()
+    const initial = await findAllByDisplayValue(/initial\s\S+/)
+    expect(initial).toHaveLength(2)
+
     fireEvent.click(getByLabelText('Use defaults'))
-    const fields = await findAllByDisplayValue(/default\s\S+/)
-    expect(fields).toHaveLength(3)
+    const defaults = await findAllByDisplayValue(/default\s\S+/)
+    expect(defaults).toHaveLength(3)
   })
 })

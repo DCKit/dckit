@@ -1,25 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Paper, Button } from '@material-ui/core'
 import { fields, fieldsConfig, validationSchema } from './fields'
 import { FormWithDefaults } from '../FormWithDefaults'
 
-const initialValues = {
-  login: '@@@',
-  nested: { notes: '###' },
-  useDefaults: false,
-  defaultValues: {
-    login: 'default login',
-    password: 'default password',
-    radio: '2',
-    select: { label: 'opt3', value: '3' },
-    nested: {
-      notes: 'default notes',
-      check: true,
-    },
-  },
+type InitialValues = {
+  [key: string]: any
 }
 
 export const Form = () => {
+  const [initialValues, setInitialValues] = useState({} as InitialValues)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setInitialValues({
+        login: 'initial login',
+        nested: { notes: 'initial notes' },
+        useDefaults: false,
+        defaultValues: {
+          login: 'default login',
+          password: 'default password',
+          radio: '2',
+          select: { label: 'opt3', value: '3' },
+          nested: {
+            notes: 'default notes',
+            check: true,
+          },
+        },
+      })
+    }, 100)
+    return () => clearTimeout(timeout)
+  }, [setInitialValues])
+
   const renderActions = (form: any) => (
     <Button
       color="primary"
