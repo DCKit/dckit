@@ -1,5 +1,6 @@
+import React from 'react'
 import * as V from 'yup'
-import { FieldsConfig, FormContext } from '../types'
+import { FieldsConfig, FormContext } from '@dckit/forms'
 
 export const fields = [
   'login',
@@ -24,9 +25,16 @@ export const fieldsConfig: FieldsConfig = {
   },
   password: {
     label: 'Password',
-    required: (form: FormContext) => Boolean(form.values.login),
+    required: (value?: any, form?: FormContext) => Boolean(form?.values?.login),
     size: 6,
-    helperText: 'use at least 6 symbols',
+    helperText: (value?: any) => {
+      const length = value?.length || 0
+      return length < 5 ? (
+        <span style={{ color: 'green' }}>use at least 5 symbols</span>
+      ) : (
+        ''
+      )
+    },
   },
   radio: {
     label: 'Radio',
@@ -67,7 +75,7 @@ export const fieldsConfig: FieldsConfig = {
     ],
     helperText: 'select options',
     onChange: (e: any, value: any, form: FormContext) =>
-      form.setFieldValue('toggle', value?.value || ''),
+      form.setFieldValue('toggle', value || ''),
   },
   toggle: {
     label: 'Toggle',

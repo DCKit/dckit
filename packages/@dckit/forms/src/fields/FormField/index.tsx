@@ -23,7 +23,7 @@ export function FormField(props: FormFieldProps) {
   const error = meta.touched && Boolean(fieldError)
 
   const checkProp = (prop: DynamicProp) => {
-    return typeof prop === 'function' ? prop(form) : prop
+    return typeof prop === 'function' ? prop(field.value, form) : prop
   }
 
   const handleChange = (e: React.ChangeEvent<any>, value: any) => {
@@ -36,7 +36,7 @@ export function FormField(props: FormFieldProps) {
     ...field,
     onChange: handleChange,
     error,
-    helperText: error ? fieldError : helperText,
+    helperText: error ? fieldError : checkProp(helperText),
     required: checkProp(required),
     disabled: (form.isSubmitting || checkProp(disabled)) ?? fieldsDisabled,
   }
