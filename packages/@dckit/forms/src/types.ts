@@ -22,9 +22,14 @@ export type FieldTypeDict = {
 
 export type FormContext = FormikProps<any>
 
-declare function checkProps(form: FormContext): boolean
+declare function checkProps(value?: any, form?: FormContext): any
 
-export type DynamicProp = boolean | typeof checkProps | undefined
+export type DynamicProp =
+  | typeof checkProps
+  | string
+  | number
+  | boolean
+  | undefined
 
 export type OptionsConfig = {
   direction?: 'column' | 'row'
@@ -45,7 +50,7 @@ export type FormFieldConfig = {
   controlProps?: any
   options?: any[]
   optionsConfig?: OptionsConfig
-  helperText?: string
+  helperText?: DynamicProp
   initialValue?: any
   startAdornment?: any
   endAdornment?: any
