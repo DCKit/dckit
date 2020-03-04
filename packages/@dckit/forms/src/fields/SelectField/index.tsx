@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useField } from 'formik'
 import { TextField, TextFieldProps } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 
 import { MuiFieldProps } from '../../types'
+import { splitOptions } from '../util'
 import { useStyles } from '../styles'
 
 export function SelectField(props: MuiFieldProps) {
@@ -19,16 +20,20 @@ export function SelectField(props: MuiFieldProps) {
     required,
     helperText,
     onChange,
+    value,
     ...restProps
   } = props
 
   const [, , helpers] = useField(name)
+  const [optionValues, optionLabels] = useMemo(() => splitOptions(options), [
+    options,
+  ])
 
-  const getLabel = controlProps.getOptionLabel || ((opt: any) => opt?.label)
+  const getOptionLabel =
+    controlProps.getOptionLabel || ((optValue: any) => optionLabels[optValue])
 
-  const getValue =
-    controlProps.getOptionSelected ||
-    ((opt: any) => props.value?.value === opt?.value)
+  const getOptionSelected =
+    controlProps.getOptionSelected || ((optValue: any) => value === optValue)
 
   const handleChange = (e: any, value: any) => {
     e.target.name = name
@@ -38,11 +43,12 @@ export function SelectField(props: MuiFieldProps) {
 
   const fieldProps = {
     ...restProps,
+    value,
     className: container,
-    options: controlProps.options || options,
+    options: controlProps.options || optionValues,
     onChange: handleChange,
-    getOptionLabel: getLabel,
-    getOptionSelected: getValue,
+    getOptionLabel,
+    getOptionSelected,
   }
 
   const textProps: TextFieldProps = {

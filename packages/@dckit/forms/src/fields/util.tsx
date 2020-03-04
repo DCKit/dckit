@@ -14,3 +14,15 @@ export function toggle(options: any[], selected: any[], value: any) {
   set.has(value) ? set.delete(value) : set.add(value)
   return options.filter((el: any) => set.has(el))
 }
+
+export function splitOptions(options: any[]) {
+  const values: any[] = []
+  const labels: any = {}
+
+  options.forEach((opt: any) => {
+    values.push(opt.value)
+    labels[opt.value] = opt.label
+  })
+
+  return [values, labels]
+}

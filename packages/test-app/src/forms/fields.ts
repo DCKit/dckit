@@ -56,7 +56,7 @@ export const fieldsConfig: FieldsConfig = {
     type: 'select',
     required: true,
     size: 4,
-    initialValue: { label: 'opt5', value: '5' },
+    initialValue: '5',
     options: [
       { label: 'opt1', value: '1' },
       { label: 'opt2', value: '2' },
@@ -67,7 +67,7 @@ export const fieldsConfig: FieldsConfig = {
     ],
     helperText: 'select options',
     onChange: (e: any, value: any, form: FormContext) =>
-      form.setFieldValue('toggle', value?.value || ''),
+      form.setFieldValue('toggle', value || ''),
   },
   toggle: {
     label: 'Toggle',
