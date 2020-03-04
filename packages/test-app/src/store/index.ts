@@ -11,7 +11,7 @@ const loggerMiddleware = createLogger({
 })
 
 const middleware = [...getDefaultMiddleware({ thunk: false }), sagaMiddleware]
-if (process.env.NODE_ENV !== 'production') middleware.unshift(loggerMiddleware)
+if (process.env.NODE_ENV === 'development') middleware.unshift(loggerMiddleware)
 
 const reducer = combineReducers({ dck: dckReducer })
 
