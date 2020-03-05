@@ -1,16 +1,18 @@
 import { FormFieldTypes, FieldTypeDict } from '../types'
 import { TextField } from './TextField'
+import { PasswordField } from './PasswordField'
+import { RadioField } from './RadioField'
 import { CheckField } from './CheckField'
 import { MultiCheckField } from './MultiCheckField'
 import { SwitchField } from './SwitchField'
 import { MultiSwitchField } from './MultiSwitchField'
-import { RadioField } from './RadioField'
 import { ToggleField } from './ToggleField'
 import { MultiToggleField } from './MultiToggleField'
 import { SelectField } from './SelectField'
 
 export const components: FieldTypeDict = {
   [FormFieldTypes.text]: TextField,
+  [FormFieldTypes.password]: PasswordField,
   [FormFieldTypes.radio]: RadioField,
   [FormFieldTypes.check]: CheckField,
   [FormFieldTypes.multiCheck]: MultiCheckField,
@@ -23,6 +25,7 @@ export const components: FieldTypeDict = {
 
 export const defaultValues: FieldTypeDict = {
   [FormFieldTypes.text]: '',
+  [FormFieldTypes.password]: '',
   [FormFieldTypes.radio]: '',
   [FormFieldTypes.check]: false,
   [FormFieldTypes.multiCheck]: [],

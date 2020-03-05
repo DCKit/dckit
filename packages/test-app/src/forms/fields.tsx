@@ -20,21 +20,23 @@ export const fieldsConfig: FieldsConfig = {
     label: 'Login',
     required: true,
     size: 6,
-    endAdornment: 'abc',
+    controlProps: {
+      endAdornment: 'abc',
+    },
     helperText: 'Login helper text',
   },
   password: {
     label: 'Password',
+    type: 'password',
     required: (value?: any, form?: FormContext) => Boolean(form?.values?.login),
     size: 6,
-    helperText: (value?: any) => {
-      const length = value?.length || 0
-      return length < 5 ? (
-        <span style={{ color: 'green' }}>use at least 5 symbols</span>
-      ) : (
-        ''
-      )
+    controlProps: {
+      visibility: true,
     },
+    helperText: (value?: any) =>
+      value?.length < 6 && (
+        <span style={{ color: 'green' }}>use at least 6 symbols</span>
+      ),
   },
   radio: {
     label: 'Radio',
@@ -74,7 +76,7 @@ export const fieldsConfig: FieldsConfig = {
       { label: 'opt6', value: '6' },
     ],
     helperText: 'select options',
-    onChange: (e: any, value: any, form: FormContext) =>
+    onChange: (value: any, form: FormContext) =>
       form.setFieldValue('toggle', value || ''),
   },
   toggle: {

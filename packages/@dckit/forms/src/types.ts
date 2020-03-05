@@ -3,6 +3,7 @@ import { FormikConfig, FormikValues, FormikProps } from 'formik'
 
 export const enum FormFieldTypes {
   text = 'text',
+  password = 'password',
   radio = 'radio',
   check = 'check',
   multiCheck = 'multiCheck',
@@ -52,8 +53,6 @@ export type FormFieldConfig = {
   optionsConfig?: OptionsConfig
   helperText?: DynamicProp
   initialValue?: any
-  startAdornment?: any
-  endAdornment?: any
   component?: any
 }
 

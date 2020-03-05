@@ -9,18 +9,25 @@ import { MuiFieldProps } from '../../types'
 import { useStyles } from '../styles'
 
 const Adornment = React.memo(
-  ({ position, adornment }: { position: 'start' | 'end'; adornment: any }) => (
-    <InputAdornment position={position}>{adornment}</InputAdornment>
-  )
+  ({ position, adornment }: { position: 'start' | 'end'; adornment: any }) => {
+    const classes = useStyles()
+    return (
+      <InputAdornment position={position} classes={{ root: classes.noselect }}>
+        {adornment}
+      </InputAdornment>
+    )
+  }
 )
 
 export function TextField(props: MuiFieldProps) {
   const classes = useStyles()
 
-  const { startAdornment, endAdornment, ...restProps } = props
+  const { controlProps = {}, ...restProps } = props
+  const { startAdornment, endAdornment, ...restControlProps } = controlProps
 
   const fieldProps: TextFieldProps = {
     ...restProps,
+    ...restControlProps,
     fullWidth: true,
     FormHelperTextProps: {
       component: 'div',
@@ -30,7 +37,7 @@ export function TextField(props: MuiFieldProps) {
     },
   }
 
-  const inputProps: Partial<InputProps> = { ...fieldProps.InputProps }
+  const inputProps: Partial<InputProps> = { ...controlProps?.InputProps }
 
   if (startAdornment) {
     inputProps.startAdornment = (

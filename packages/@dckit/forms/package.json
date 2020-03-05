@@ -43,7 +43,7 @@
     "@types/node": "^13.7.7",
     "@types/material-ui": "^0.21.7",
     "@types/yup": "^0.26.32",
-    "@testing-library/react": "^9.4.1",
+    "@testing-library/react": "^9.5.0",
     "eslint-config-react-app": "5.2.0",
     "eslint-config-unobtrusive": "^1.2.5",
     "eslint-plugin-react": "^7.18.3",

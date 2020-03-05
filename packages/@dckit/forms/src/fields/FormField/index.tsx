@@ -13,7 +13,6 @@ export function FormField(props: FormFieldProps) {
     type,
     initialValue,
     onChange,
-    controlProps,
     ...restProps
   } = props
 
@@ -27,7 +26,7 @@ export function FormField(props: FormFieldProps) {
   }
 
   const handleChange = (e: React.ChangeEvent<any>, value: any) => {
-    onChange && onChange(e, value, form)
+    onChange && onChange(value, form)
     field.onChange(e)
   }
 
@@ -42,5 +41,5 @@ export function FormField(props: FormFieldProps) {
   }
   const Field = components[type]
 
-  return Field ? <Field {...controlProps} {...fieldProps} /> : null
+  return Field ? <Field {...fieldProps} /> : null
 }
