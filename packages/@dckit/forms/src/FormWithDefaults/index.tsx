@@ -27,10 +27,10 @@ export function FormWithDefaults(props: FormProps) {
     }
   }, [useDefaults, initialValues])
 
-  const handleUseDefaultsChange = (e: React.ChangeEvent<any>) => {
-    setUseDefaults(e.target.checked)
+  /*   const handleUseDefaultsChange = (value: boolean) => {
+    setUseDefaults(value)
   }
-
+ */
   const renderUseDefaults = (form: FormContext, props: FormProps) => (
     <Grid container style={{ paddingTop: 32 }}>
       <Grid item>
@@ -40,7 +40,7 @@ export function FormWithDefaults(props: FormProps) {
           label="Use defaults"
           name="useDefaults"
           disabled={fieldsDisabled}
-          onChange={handleUseDefaultsChange}
+          onChange={setUseDefaults}
         />
       </Grid>
       <Grid

@@ -9,9 +9,14 @@ import { MuiFieldProps } from '../../types'
 import { useStyles } from '../styles'
 
 const Adornment = React.memo(
-  ({ position, adornment }: { position: 'start' | 'end'; adornment: any }) => (
-    <InputAdornment position={position}>{adornment}</InputAdornment>
-  )
+  ({ position, adornment }: { position: 'start' | 'end'; adornment: any }) => {
+    const classes = useStyles()
+    return (
+      <InputAdornment position={position} classes={{ root: classes.noselect }}>
+        {adornment}
+      </InputAdornment>
+    )
+  }
 )
 
 export function TextField(props: MuiFieldProps) {
@@ -45,7 +50,6 @@ export function TextField(props: MuiFieldProps) {
     )
   }
   fieldProps.InputProps = inputProps
-  console.log('TextField -> fieldProps', fieldProps)
 
   return <MuiTextField {...fieldProps} />
 }

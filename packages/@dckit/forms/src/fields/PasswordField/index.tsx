@@ -1,19 +1,19 @@
 import React from 'react'
 import {
   TextField as MuiTextField,
-  InputAdornment,
-  InputProps,
+  //InputAdornment,
+  //InputProps,
   TextFieldProps,
 } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
 import { useStyles } from '../styles'
 
-const Adornment = React.memo(
+/* const Adornment = React.memo(
   ({ position, adornment }: { position: 'start' | 'end'; adornment: any }) => (
     <InputAdornment position={position}>{adornment}</InputAdornment>
   )
 )
-
+ */
 export function PasswordField(props: MuiFieldProps) {
   const classes = useStyles()
 
@@ -32,7 +32,7 @@ export function PasswordField(props: MuiFieldProps) {
     },
   }
 
-  const inputProps: Partial<InputProps> = { ...controlProps?.InputProps }
+  /*   const inputProps: Partial<InputProps> = { ...controlProps?.InputProps }
 
   if (startAdornment) {
     inputProps.startAdornment = (
@@ -44,7 +44,7 @@ export function PasswordField(props: MuiFieldProps) {
       <Adornment position="end" adornment={endAdornment} />
     )
   }
-  fieldProps.InputProps = inputProps
+  fieldProps.InputProps = inputProps */
 
-  return <MuiTextField {...fieldProps} />
+  return <MuiTextField {...fieldProps} type="password" />
 }
