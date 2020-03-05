@@ -44,7 +44,7 @@
     "@types/node": "^13.7.7",
     "@types/react-redux": "^7.1.7",
     "@types/redux-saga-tester": "1.0.1",
-    "@testing-library/react": "^9.4.1",
+    "@testing-library/react": "^9.5.0",
     "eslint-config-react-app": "5.2.0",
     "eslint-config-unobtrusive": "^1.2.5",
     "eslint-plugin-react": "^7.18.3",
