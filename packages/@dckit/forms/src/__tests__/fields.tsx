@@ -5,6 +5,7 @@ import { FieldsConfig, FormContext } from '../types'
 export const fields = [
   'login',
   'password',
+  'date',
   'radio',
   'select',
   'toggle',
@@ -37,6 +38,12 @@ export const fieldsConfig: FieldsConfig = {
       value?.length < 6 && (
         <span style={{ color: 'green' }}>use at least 6 symbols</span>
       ),
+  },
+  date: {
+    label: 'Date picker',
+    type: 'date',
+    required: true,
+    size: 6,
   },
   radio: {
     label: 'Radio',
@@ -189,6 +196,9 @@ export const validationSchema = V.object({
     .required(msg),
   radio: V.string()
     .label(label('radio'))
+    .required(msg),
+  date: V.string()
+    .label(label('date'))
     .required(msg),
   select: V.string()
     .label(label('select'))
