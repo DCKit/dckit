@@ -59,6 +59,7 @@
     "@material-ui/lab": "^4.0.0-alpha.45",
     "@material-ui/pickers": "^3.2.10",
     "clsx": "^1.1.0",
+    "date-fns": "^2.10.0",
     "formik": "^2.1.4",
     "react": "16.13.0",
     "react-dom": "16.13.0",

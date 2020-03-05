@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import cn from 'clsx'
 import { Menu, MenuOpen } from '@material-ui/icons'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
+import DateFnsUtils from '@date-io/date-fns'
 
 import {
   NoSsr,
@@ -77,60 +79,62 @@ export function AppLayout(props: AppLayoutProps) {
   } = classes
 
   return (
-    <SideBarContext.Provider
-      value={{
-        sideBarOpen,
-        showSideBar,
-      }}
-    >
-      <NoSsr>
-        <CssBaseline />
-        <AppBar
-          className={cn(
-            isMobile ? appBarMobile : appBar,
-            isShifted && appBarShift
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <SideBarContext.Provider
+        value={{
+          sideBarOpen,
+          showSideBar,
+        }}
+      >
+        <NoSsr>
+          <CssBaseline />
+          <AppBar
+            className={cn(
+              isMobile ? appBarMobile : appBar,
+              isShifted && appBarShift
+            )}
+          >
+            <Toolbar className={toolBar}>
+              <IconButton
+                color="inherit"
+                onClick={toggleSideBar}
+                className={menuButton}
+                id="toggle-sidebar-button"
+              >
+                {sideBarOpen ? <CollapseIcon /> : <ExpandIcon />}
+              </IconButton>
+              <AppBarHead.Consumer />
+              <AppBarNav.Consumer />
+              <AppBarTail.Consumer />
+            </Toolbar>
+          </AppBar>
+          <PageBarContainer
+            className={cn(
+              pageBar,
+              isMobile ? pageBarMobile : pageBarDesktop,
+              isShifted && pageBarShift
+            )}
+            sideBarOpen={sideBarOpen}
+          >
+            <PageBarHead.Consumer />
+            <PageBarNav.Consumer />
+            <PageBarTail.Consumer />
+          </PageBarContainer>
           )}
-        >
-          <Toolbar className={toolBar}>
-            <IconButton
-              color="inherit"
-              onClick={toggleSideBar}
-              className={menuButton}
-              id="toggle-sidebar-button"
-            >
-              {sideBarOpen ? <CollapseIcon /> : <ExpandIcon />}
-            </IconButton>
-            <AppBarHead.Consumer />
-            <AppBarNav.Consumer />
-            <AppBarTail.Consumer />
-          </Toolbar>
-        </AppBar>
-        <PageBarContainer
-          className={cn(
-            pageBar,
-            isMobile ? pageBarMobile : pageBarDesktop,
-            isShifted && pageBarShift
-          )}
-          sideBarOpen={sideBarOpen}
-        >
-          <PageBarHead.Consumer />
-          <PageBarNav.Consumer />
-          <PageBarTail.Consumer />
-        </PageBarContainer>
-        )}
-        <SideBar />
-        <ContentContainer
-          className={cn(
-            content,
-            contentTwoBars,
-            isMobile ? contentMobile : contentDesktop,
-            isShifted && contentShift
-          )}
-          sideBarOpen={sideBarOpen}
-        >
-          {children}
-        </ContentContainer>
-      </NoSsr>
-    </SideBarContext.Provider>
+          <SideBar />
+          <ContentContainer
+            className={cn(
+              content,
+              contentTwoBars,
+              isMobile ? contentMobile : contentDesktop,
+              isShifted && contentShift
+            )}
+            sideBarOpen={sideBarOpen}
+          >
+            {children}
+          </ContentContainer>
+        </NoSsr>
+      </SideBarContext.Provider>
+    </MuiPickersUtilsProvider>
   )
 }

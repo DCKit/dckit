@@ -60,6 +60,7 @@
     "@material-ui/lab": "^4.0.0-alpha.45",
     "@material-ui/pickers": "^3.2.10",
     "clsx": "^1.1.0",
+    "date-fns": "^2.10.0",
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "react-router": "^5.1.2",
