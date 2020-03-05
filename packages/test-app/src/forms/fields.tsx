@@ -20,7 +20,9 @@ export const fieldsConfig: FieldsConfig = {
     label: 'Login',
     required: true,
     size: 6,
-    endAdornment: 'abc',
+    controlProps: {
+      endAdornment: 'abc',
+    },
     helperText: 'Login helper text',
   },
   password: {

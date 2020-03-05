@@ -14,7 +14,7 @@ const Adornment = React.memo(
   )
 )
 
-export function TextField(props: MuiFieldProps) {
+export function PasswordField(props: MuiFieldProps) {
   const classes = useStyles()
 
   const { controlProps = {}, ...restProps } = props
@@ -45,7 +45,6 @@ export function TextField(props: MuiFieldProps) {
     )
   }
   fieldProps.InputProps = inputProps
-  console.log('TextField -> fieldProps', fieldProps)
 
   return <MuiTextField {...fieldProps} />
 }
