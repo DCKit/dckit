@@ -199,7 +199,8 @@ export const validationSchema = V.object({
     .required(msg),
   date: V.string()
     .label(label('date'))
-    .required(msg),
+    .required(msg)
+    .nullable(),
   select: V.string()
     .label(label('select'))
     .required(msg)

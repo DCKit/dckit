@@ -36,5 +36,5 @@ export const defaultValues: FieldTypeDict = {
   [FormFieldTypes.toggle]: '',
   [FormFieldTypes.multiToggle]: [],
   [FormFieldTypes.select]: null,
-  [FormFieldTypes.date]: '',
+  [FormFieldTypes.date]: null,
 }

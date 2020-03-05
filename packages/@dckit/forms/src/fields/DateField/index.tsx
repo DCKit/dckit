@@ -18,12 +18,11 @@ export function DateField(props: MuiFieldProps) {
   }
 
   const fieldProps: KeyboardDatePickerProps = {
-    placeholder: '',
-    //    format: 'MM/dd/yyyy',
-    clearable: true,
+    placeholder: 'yyyy-mm-dd',
+    format: 'yyyy-MM-dd',
+    variant: 'inline',
     ...restProps,
     ...controlProps,
-    name,
     onChange: handleChange,
     fullWidth: true,
   }
