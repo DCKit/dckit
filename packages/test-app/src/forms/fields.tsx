@@ -30,6 +30,9 @@ export const fieldsConfig: FieldsConfig = {
     type: 'password',
     required: (value?: any, form?: FormContext) => Boolean(form?.values?.login),
     size: 6,
+    controlProps: {
+      visibility: true,
+    },
     helperText: (value?: any) =>
       value?.length < 6 && (
         <span style={{ color: 'green' }}>use at least 6 symbols</span>
