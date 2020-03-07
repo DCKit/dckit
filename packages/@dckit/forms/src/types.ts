@@ -12,6 +12,7 @@ export const enum FormFieldTypes {
   toggle = 'toggle',
   multiToggle = 'multiToggle',
   select = 'select',
+  date = 'date',
   component = 'component',
 }
 

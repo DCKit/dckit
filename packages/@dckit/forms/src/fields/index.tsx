@@ -9,6 +9,7 @@ import { MultiSwitchField } from './MultiSwitchField'
 import { ToggleField } from './ToggleField'
 import { MultiToggleField } from './MultiToggleField'
 import { SelectField } from './SelectField'
+import { DateField } from './DateField'
 
 export const components: FieldTypeDict = {
   [FormFieldTypes.text]: TextField,
@@ -21,6 +22,7 @@ export const components: FieldTypeDict = {
   [FormFieldTypes.toggle]: ToggleField,
   [FormFieldTypes.multiToggle]: MultiToggleField,
   [FormFieldTypes.select]: SelectField,
+  [FormFieldTypes.date]: DateField,
 }
 
 export const defaultValues: FieldTypeDict = {
@@ -34,4 +36,5 @@ export const defaultValues: FieldTypeDict = {
   [FormFieldTypes.toggle]: '',
   [FormFieldTypes.multiToggle]: [],
   [FormFieldTypes.select]: null,
+  [FormFieldTypes.date]: null,
 }

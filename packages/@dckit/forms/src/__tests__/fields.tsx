@@ -1,10 +1,11 @@
 import React from 'react'
 import * as V from 'yup'
-import { FieldsConfig, FormContext } from '../types'
+import { FieldsConfig, FormContext } from '..'
 
 export const fields = [
   'login',
   'password',
+  'date',
   'radio',
   'select',
   'toggle',
@@ -37,6 +38,12 @@ export const fieldsConfig: FieldsConfig = {
       value?.length < 6 && (
         <span style={{ color: 'green' }}>use at least 6 symbols</span>
       ),
+  },
+  date: {
+    label: 'Date picker',
+    type: 'date',
+    required: true,
+    size: 6,
   },
   radio: {
     label: 'Radio',
@@ -77,7 +84,7 @@ export const fieldsConfig: FieldsConfig = {
     ],
     helperText: 'select options',
     onChange: (value: any, form: FormContext) =>
-      form.setFieldValue('toggle', value?.value || ''),
+      form.setFieldValue('toggle', value || ''),
   },
   toggle: {
     label: 'Toggle',
@@ -98,7 +105,7 @@ export const fieldsConfig: FieldsConfig = {
       //small: true,
       size: 4,
     },
-    helperText: 'toggle options',
+    helperText: (value?: any) => `toggle options: ${value}`,
   },
   multicheck: {
     label: 'Multi check',
@@ -161,7 +168,7 @@ export const fieldsConfig: FieldsConfig = {
       small: true,
       size: 6,
     },
-    helperText: 'multitoggle options',
+    helperText: (value?: any) => `multitoggle options: ${value}`,
   },
   'nested.notes': {
     label: 'Notes',
@@ -190,6 +197,10 @@ export const validationSchema = V.object({
   radio: V.string()
     .label(label('radio'))
     .required(msg),
+  date: V.string()
+    .label(label('date'))
+    .required(msg)
+    .nullable(),
   select: V.string()
     .label(label('select'))
     .required(msg)

@@ -5,6 +5,7 @@ import { FieldsConfig, FormContext } from '@dckit/forms'
 export const fields = [
   'login',
   'password',
+  'date',
   'radio',
   'select',
   'toggle',
@@ -37,6 +38,12 @@ export const fieldsConfig: FieldsConfig = {
       value?.length < 6 && (
         <span style={{ color: 'green' }}>use at least 6 symbols</span>
       ),
+  },
+  date: {
+    label: 'Date picker',
+    type: 'date',
+    required: true,
+    size: 6,
   },
   radio: {
     label: 'Radio',
@@ -98,28 +105,7 @@ export const fieldsConfig: FieldsConfig = {
       //small: true,
       size: 4,
     },
-    helperText: (value?: any) => `toggled: ${value}`,
-  },
-  multitoggle: {
-    label: 'Multi toggle',
-    type: 'multiToggle',
-    required: true,
-    size: 6,
-    options: [
-      { label: 'opt1', value: '1' },
-      { label: 'opt2', value: '2' },
-      { label: 'opt3', value: '3' },
-      { label: 'opt4', value: '4' },
-      { label: 'opt5', value: '5' },
-      { label: 'opt6', value: '6' },
-    ],
-    optionsConfig: {
-      //direction: 'column',
-      fullWidth: true,
-      small: true,
-      size: 6,
-    },
-    helperText: (value?: any) => `toggled: ${value}`,
+    helperText: (value?: any) => `toggle options: ${value}`,
   },
   multicheck: {
     label: 'Multi check',
@@ -163,6 +149,27 @@ export const fieldsConfig: FieldsConfig = {
     },
     helperText: 'multiswitch options',
   },
+  multitoggle: {
+    label: 'Multi toggle',
+    type: 'multiToggle',
+    required: true,
+    size: 6,
+    options: [
+      { label: 'opt1', value: '1' },
+      { label: 'opt2', value: '2' },
+      { label: 'opt3', value: '3' },
+      { label: 'opt4', value: '4' },
+      { label: 'opt5', value: '5' },
+      { label: 'opt6', value: '6' },
+    ],
+    optionsConfig: {
+      //direction: 'column',
+      fullWidth: true,
+      small: true,
+      size: 6,
+    },
+    helperText: (value?: any) => `multitoggle options: ${value}`,
+  },
   'nested.notes': {
     label: 'Notes',
     size: 8,
@@ -190,6 +197,10 @@ export const validationSchema = V.object({
   radio: V.string()
     .label(label('radio'))
     .required(msg),
+  date: V.string()
+    .label(label('date'))
+    .required(msg)
+    .nullable(),
   select: V.string()
     .label(label('select'))
     .required(msg)
