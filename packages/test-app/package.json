@@ -8,7 +8,7 @@
     "build": "react-scripts build",
     "test": "CI=true react-scripts test --color",
     "test:coverage": "CI=true react-scripts test --color --coverage",
-    "prepare": "npm run test:coverage && npm run build",
+    "prepare": "yarn test:coverage && yarn build",
     "lint": "tsc --noEmit",
     "format": "prettier --write 'src/**/*.ts*'",
     "format:check": "prettier -l 'src/**/*.ts*'",

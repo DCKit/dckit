@@ -10,14 +10,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm install
-      - run: npm run bootstrap
+      - run: yarn
+      # - run: yarn bootstrap
       #      - name: deploy test-app
       #        run: now -t ${{ secrets.zeit_token }} -C -f --prod -n dckit-test-app packages/test-app/build
       - name: upload coverage
