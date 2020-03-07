@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { Formik, Form as FormWrapper, getIn, setIn } from 'formik'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
-import dateUtils from '@date-io/dayjs'
+import dateUtils from '@date-io/date-fns'
 
 import { FormField } from '../fields/FormField'
 import {

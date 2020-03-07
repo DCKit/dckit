@@ -14,7 +14,8 @@ export function DateField(props: MuiFieldProps) {
   const [, , helpers] = useField(name)
 
   const handleChange = (value: string) => {
-    helpers.setValue(value)
+    //console.log(typeof value)
+    helpers.setValue(value.toString()) //TODO: set formatted date value
   }
 
   const fieldProps: KeyboardDatePickerProps = {

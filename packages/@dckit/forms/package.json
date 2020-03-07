@@ -53,13 +53,13 @@
     "typescript": "3.8.3"
   },
   "dependencies": {
-    "@date-io/dayjs": "^2.4.0",
+    "@date-io/date-fns": "^1.1.13",
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.45",
     "@material-ui/pickers": "^3.2.10",
     "clsx": "^1.1.0",
-    "dayjs": "^1.8.21",
+    "date-fns": "^2.10.0",
     "formik": "^2.1.4",
     "react": "16.13.0",
     "react-dom": "16.13.0",

@@ -1,6 +1,6 @@
 import React from 'react'
 import * as V from 'yup'
-import { FieldsConfig, FormContext } from '../types'
+import { FieldsConfig, FormContext } from '..'
 
 export const fields = [
   'login',
@@ -84,7 +84,7 @@ export const fieldsConfig: FieldsConfig = {
     ],
     helperText: 'select options',
     onChange: (value: any, form: FormContext) =>
-      form.setFieldValue('toggle', value?.value || ''),
+      form.setFieldValue('toggle', value || ''),
   },
   toggle: {
     label: 'Toggle',
@@ -105,7 +105,7 @@ export const fieldsConfig: FieldsConfig = {
       //small: true,
       size: 4,
     },
-    helperText: 'toggle options',
+    helperText: (value?: any) => `toggle options: ${value}`,
   },
   multicheck: {
     label: 'Multi check',
@@ -168,7 +168,7 @@ export const fieldsConfig: FieldsConfig = {
       small: true,
       size: 6,
     },
-    helperText: 'multitoggle options',
+    helperText: (value?: any) => `multitoggle options: ${value}`,
   },
   'nested.notes': {
     label: 'Notes',
@@ -199,7 +199,8 @@ export const validationSchema = V.object({
     .required(msg),
   date: V.string()
     .label(label('date'))
-    .required(msg),
+    .required(msg)
+    .nullable(),
   select: V.string()
     .label(label('select'))
     .required(msg)
