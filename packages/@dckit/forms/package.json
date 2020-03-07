@@ -28,10 +28,10 @@
   "scripts": {
     "build": "tsdx build --format esm",
     "start": "pm2 --name @dckit/forms start tsdx -- watch --format esm",
-    "dev": "pm2 --name @dckit/forms start tsdx -- watch --format esm --onFirstSuccess 'npm run dev:next'",
-    "dev:next": "cd ../../test-app && npm run dev",
+    "dev": "pm2 --name @dckit/forms start tsdx -- watch --format esm --onFirstSuccess 'yarn dev:next'",
+    "dev:next": "cd ../../test-app && yarn dev",
     "lint": "tsdx lint src && tsc --noEmit",
-    "prepare": "npm run test:coverage && npm run build",
+    "prepare": "yarn test:coverage && yarn build",
     "test": "CI=true tsdx test --color",
     "test:coverage": "CI=true tsdx test --color --coverage",
     "format": "prettier --write 'src/**/*.ts*'",
