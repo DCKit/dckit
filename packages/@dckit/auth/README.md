@@ -1,1 +1,1 @@
-# dck-auth
+# @dckit/auth
