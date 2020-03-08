@@ -19,16 +19,16 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/tables.esm.js",
+  "main": "dist/index.js",
   "module": "dist/tables.esm.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "author": "Eugene Samonenko <esamonenko@agilevision.io>",
   "license": "MIT",
   "scripts": {
-    "build": "tsdx build --format esm",
-    "start": "pm2 --name @dckit/tables start tsdx -- watch --format esm",
-    "dev": "pm2 --name @dckit/tables start tsdx -- watch --format esm --onFirstSuccess 'yarn dev:next'",
+    "build": "tsdx build",
+    "start": "pm2 --name @dckit/tables start tsdx -- watch",
+    "dev": "pm2 --name @dckit/tables start tsdx -- watch --onFirstSuccess 'yarn dev:next'",
     "dev:next": "cd ../../test-app && yarn dev",
     "lint": "tsdx lint src && tsc --noEmit",
     "prepare": "yarn test:coverage && yarn build",
