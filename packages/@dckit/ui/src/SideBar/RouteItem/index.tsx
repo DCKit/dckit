@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { SideBarItem, ISideBarItem } from '../Item'
 import { SideBarContext } from '../context'
 import { useMediaMobile } from '../../utils'
-import { IRoute } from '../../routes'
+import { IRoute } from '@dckit/routes'
 
 export interface ISideBarRouteItem extends ISideBarItem {
   route: IRoute

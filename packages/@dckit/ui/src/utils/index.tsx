@@ -2,9 +2,6 @@ import { useMediaQuery } from '@material-ui/core'
 
 export const stub = () => null
 
-export const normalizePath = (path?: string) =>
-  !path || path === '/' ? '' : path
-
 const query = (max: number): string => `@media (max-width: ${max}px)`
 
 export const useMediaMobile = (): boolean =>

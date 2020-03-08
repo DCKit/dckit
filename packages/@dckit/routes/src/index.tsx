@@ -1,11 +1,12 @@
 import React from 'react'
 import { Route, Switch, useLocation } from 'react-router-dom'
-import { normalizePath } from '../utils'
+
+export const normalizePath = (path?: string) =>
+  !path || path === '/' ? '' : path
 
 export interface IRoute {
   path: string
   component: any
-  exact?: boolean
   routes?: Partial<IRoute>[]
 }
 
@@ -21,13 +22,12 @@ export function renderRoutes(rootRoutes: Partial<IRoute>[], rootPath?: string) {
   return (
     <Switch>
       {rootRoutes.map(route => {
-        const { path, exact, component: Component, routes } = route
+        const { path, component: Component, routes } = route
         const routePath = `${basePath}${normalizePath(path)}`
         return (
           <Route
             key={`route-to-${routePath}`}
             path={routePath}
-            exact={exact}
             render={routeProps => (
               <Component {...routeProps}>
                 {routes && renderRoutes(routes, routePath)}
