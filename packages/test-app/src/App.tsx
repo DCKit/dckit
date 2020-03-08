@@ -1,7 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { renderRoutes } from '@dckit/ui'
+import { renderRoutes } from '@dckit/routes'
 import { store } from './store'
 import { routes } from './pages'
 

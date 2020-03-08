@@ -1,9 +1,9 @@
 import { screen, render } from '@testing-library/react'
 import { app } from './App'
 
-describe('tables', () => {
+describe('routes', () => {
   it('should render', async () => {
     render(app)
-    expect(screen.getByText('table')).toBeDefined()
+    expect(screen.getByText('routes')).toBeDefined()
   })
 })

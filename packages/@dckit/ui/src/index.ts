@@ -5,7 +5,6 @@ export * from './SideBar/Item'
 export * from './SideBar/RouteItem'
 export * from './SideBar/Navigation'
 
-export * from './routes'
 export * from './ports'
 export * from './utils'
 export * from './types'

@@ -19,16 +19,16 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/forms.esm.js",
+  "main": "dist/index.js",
   "module": "dist/forms.esm.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "author": "Eugene Samonenko <esamonenko@agilevision.io>",
   "license": "MIT",
   "scripts": {
-    "build": "tsdx build --format esm",
-    "start": "pm2 --name @dckit/forms start tsdx -- watch --format esm",
-    "dev": "pm2 --name @dckit/forms start tsdx -- watch --format esm --onFirstSuccess 'yarn dev:next'",
+    "build": "tsdx build",
+    "start": "pm2 --name @dckit/forms start tsdx -- watch",
+    "dev": "pm2 --name @dckit/forms start tsdx -- watch --onFirstSuccess 'yarn dev:next'",
     "dev:next": "cd ../../test-app && yarn dev",
     "lint": "tsdx lint src && tsc --noEmit",
     "prepare": "yarn test:coverage && yarn build",
@@ -39,21 +39,21 @@
     "update": "ncu -u"
   },
   "devDependencies": {
-    "@types/jest": "^25.1.3",
-    "@types/node": "^13.7.7",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.0",
     "@types/material-ui": "^0.21.7",
     "@types/yup": "^0.26.32",
     "@testing-library/react": "^9.5.0",
     "eslint-config-react-app": "5.2.0",
     "eslint-config-unobtrusive": "^1.2.5",
-    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react": "^7.19.0",
     "prettier": "1.19.1",
     "tsdx": "^0.12.3",
     "tslib": "^1.11.1",
     "typescript": "3.8.3"
   },
   "dependencies": {
-    "@date-io/date-fns": "^1.1.13",
+    "@date-io/date-fns": "^2.4.0",
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.45",
@@ -63,10 +63,10 @@
     "formik": "^2.1.4",
     "react": "16.13.0",
     "react-dom": "16.13.0",
-    "yup": "0.28.1"
+    "yup": "0.28.3"
   },
   "peerDependencies": {
-    "@date-io/date-fns": "^1.1.13",
+    "@date-io/date-fns": "1.1.13",
     "@material-ui/core": "^4.9.5",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.45",
@@ -76,7 +76,7 @@
     "formik": "^2.1.4",
     "react": "16.13.0",
     "react-dom": "16.13.0",
-    "yup": "0.28.1"
+    "yup": "0.28.3"
   },
   "browserslist": {
     "production": [

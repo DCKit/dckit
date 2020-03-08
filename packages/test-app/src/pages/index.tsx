@@ -1,5 +1,5 @@
 import React from 'react'
-import { mapRoutes } from '@dckit/ui'
+import { mapRoutes } from '@dckit/routes'
 import { TestItem } from '../items'
 import { Layout } from '../components/Layout'
 import { Page1 } from '../components/Page1'

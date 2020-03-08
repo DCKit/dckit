@@ -1,8 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { Tabs, Tab } from '@material-ui/core'
-import { useLocationTail, IRoute } from '../routes'
-import { normalizePath } from '../utils'
+import { useLocationTail, normalizePath, IRoute } from '@dckit/routes'
 import { useTabsStyles, useTabItemStyles } from './styles'
 
 export interface IAppTabItem {

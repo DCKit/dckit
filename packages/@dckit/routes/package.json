@@ -1,5 +1,5 @@
 {
-  "name": "@dckit/tables",
+  "name": "@dckit/routes",
   "version": "0.1.0",
   "description": "Components library based on material-ui",
   "repository": "https://github.com/ambroseus/dckit",
@@ -20,15 +20,15 @@
     "access": "public"
   },
   "main": "dist/index.js",
-  "module": "dist/tables.esm.js",
+  "module": "dist/routes.esm.js",
   "types": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "author": "Eugene Samonenko <esamonenko@agilevision.io>",
   "license": "MIT",
   "scripts": {
     "build": "tsdx build",
-    "start": "pm2 --name @dckit/tables start tsdx -- watch",
-    "dev": "pm2 --name @dckit/tables start tsdx -- watch --onFirstSuccess 'yarn dev:next'",
+    "start": "pm2 --name @dckit/routes start tsdx -- watch",
+    "dev": "pm2 --name @dckit/routes start tsdx -- watch --onFirstSuccess 'yarn dev:next'",
     "dev:next": "cd ../../test-app && yarn dev",
     "lint": "tsdx lint src && tsc --noEmit",
     "prepare": "yarn test:coverage && yarn build",
@@ -39,10 +39,11 @@
     "update": "ncu -u"
   },
   "devDependencies": {
+    "@testing-library/react": "^9.5.0",
     "@types/jest": "^25.1.4",
     "@types/node": "^13.9.0",
-    "@types/material-ui": "^0.21.7",
-    "@testing-library/react": "^9.5.0",
+    "@types/react-router": "^5.1.4",
+    "@types/react-router-dom": "^5.1.3",
     "eslint-config-react-app": "5.2.0",
     "eslint-config-unobtrusive": "^1.2.5",
     "eslint-plugin-react": "^7.19.0",
@@ -52,20 +53,18 @@
     "typescript": "3.8.3"
   },
   "dependencies": {
-    "@material-ui/core": "^4.9.5",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.45",
-    "clsx": "^1.1.0",
     "react": "16.13.0",
-    "react-dom": "16.13.0"
+    "react-dom": "16.13.0",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "redux-first-history": "^4.6.0-beta.1"
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.9.5",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.45",
-    "clsx": "^1.1.0",
     "react": "16.13.0",
-    "react-dom": "16.13.0"
+    "react-dom": "16.13.0",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "redux-first-history": "^4.6.0-beta.1"
   },
   "browserslist": {
     "production": [
