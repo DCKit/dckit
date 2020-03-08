@@ -1,7 +1,5 @@
-import { cleanup, screen, render, fireEvent } from '@testing-library/react'
+import { screen, render, fireEvent } from '@testing-library/react'
 import { app } from './App'
-
-afterEach(cleanup)
 
 describe('form with defaults', () => {
   it('should render and use defaults', async () => {

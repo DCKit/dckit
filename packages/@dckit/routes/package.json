@@ -1,0 +1,92 @@
+{
+  "name": "@dckit/routes",
+  "version": "0.1.0",
+  "description": "Components library based on material-ui",
+  "repository": "https://github.com/ambroseus/dckit",
+  "keywords": [
+    "typescript",
+    "redux",
+    "tsdx",
+    "redux-saga",
+    "immer",
+    "crud",
+    "toolkit",
+    "ducks-pattern",
+    "dck",
+    "react-redux",
+    "react-hooks-redux"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/routes.esm.js",
+  "module": "dist/routes.esm.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "author": "Eugene Samonenko <esamonenko@agilevision.io>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsdx build --format esm",
+    "start": "pm2 --name @dckit/routes start tsdx -- watch --format esm",
+    "dev": "pm2 --name @dckit/routes start tsdx -- watch --format esm --onFirstSuccess 'yarn dev:next'",
+    "dev:next": "cd ../../test-app && yarn dev",
+    "lint": "tsdx lint src && tsc --noEmit",
+    "prepare": "yarn test:coverage && yarn build",
+    "test": "CI=true tsdx test --color",
+    "test:coverage": "CI=true tsdx test --color --coverage",
+    "format": "prettier --write 'src/**/*.ts*'",
+    "format:check": "prettier -l 'src/**/*.ts*'",
+    "update": "ncu -u"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^9.5.0",
+    "@types/jest": "^25.1.3",
+    "@types/node": "^13.7.7",
+    "@types/react-router": "^5.1.4",
+    "@types/react-router-dom": "^5.1.3",
+    "eslint-config-react-app": "5.2.0",
+    "eslint-config-unobtrusive": "^1.2.5",
+    "eslint-plugin-react": "^7.18.3",
+    "prettier": "1.19.1",
+    "tsdx": "^0.12.3",
+    "tslib": "^1.11.1",
+    "typescript": "3.8.3"
+  },
+  "dependencies": {
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "react-router": "^6.0.0-alpha.2",
+    "react-router-dom": "^6.0.0-alpha.2",
+    "redux-first-history": "^4.6.0-beta.1"
+  },
+  "peerDependencies": {
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "react-router": "^6.0.0-alpha.2",
+    "react-router-dom": "^6.0.0-alpha.2",
+    "redux-first-history": "^4.6.0-beta.1"
+  },
+  "browserslist": {
+    "production": [
+      ">2%",
+      "not dead",
+      "not ie > 0",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false
+}
