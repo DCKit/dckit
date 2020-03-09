@@ -2,10 +2,11 @@ import React from 'react'
 import {
   TextField as MuiTextField,
   InputAdornment,
-  InputProps,
+  InputProps as InputPropsType,
   TextFieldProps,
 } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
+import { defaultTextFieldProps } from '../utils'
 import { useStyles } from '../styles'
 
 const Adornment = React.memo(
@@ -28,28 +29,22 @@ export function TextField(props: MuiFieldProps) {
   const fieldProps: TextFieldProps = {
     ...restProps,
     ...restControlProps,
-    fullWidth: true,
-    FormHelperTextProps: {
-      component: 'div',
-      classes: {
-        root: classes.helperTextInput,
-      },
-    },
+    ...defaultTextFieldProps(classes),
   }
 
-  const inputProps: Partial<InputProps> = { ...controlProps?.InputProps }
+  const InputProps: Partial<InputPropsType> = { ...controlProps?.InputProps }
 
   if (startAdornment) {
-    inputProps.startAdornment = (
+    InputProps.startAdornment = (
       <Adornment position="start" adornment={startAdornment} />
     )
   }
   if (endAdornment) {
-    inputProps.endAdornment = (
+    InputProps.endAdornment = (
       <Adornment position="end" adornment={endAdornment} />
     )
   }
-  fieldProps.InputProps = inputProps
+  fieldProps.InputProps = InputProps
 
   return <MuiTextField {...fieldProps} />
 }

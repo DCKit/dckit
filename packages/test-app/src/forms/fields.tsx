@@ -60,9 +60,9 @@ export const fieldsConfig: FieldsConfig = {
     label: 'Radio',
     type: 'radio',
     required: true,
-    style: {
-      marginTop: 24,
-    },
+    /*     style: {
+      marginBottom: 16,
+    }, */
     options: [
       { label: 'opt1', value: '1' },
       { label: 'opt2', value: '2' },

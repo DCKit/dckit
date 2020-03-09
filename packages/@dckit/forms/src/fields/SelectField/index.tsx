@@ -2,15 +2,12 @@ import React, { useMemo } from 'react'
 import { useField } from 'formik'
 import { TextField, TextFieldProps } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
-
 import { MuiFieldProps } from '../../types'
-import { splitOptions } from '../util'
+import { splitOptions } from '../utils'
+import { defaultTextFieldProps } from '../utils'
 import { useStyles } from '../styles'
 
 export function SelectField(props: MuiFieldProps) {
-  const classes = useStyles()
-  const { container, helperTextInput } = classes
-
   const {
     options = [],
     controlProps = {},
@@ -24,6 +21,7 @@ export function SelectField(props: MuiFieldProps) {
     ...restProps
   } = props
 
+  const classes = useStyles()
   const [, , helpers] = useField(name)
   const [optionValues, optionLabels] = useMemo(() => splitOptions(options), [
     options,
@@ -44,7 +42,7 @@ export function SelectField(props: MuiFieldProps) {
   const fieldProps = {
     ...restProps,
     value,
-    className: container,
+    className: classes.container,
     options: controlProps.options || optionValues,
     onChange: handleChange,
     getOptionLabel,
@@ -57,11 +55,7 @@ export function SelectField(props: MuiFieldProps) {
     helperText,
     required,
     label: props.label,
-    fullWidth: true,
-    FormHelperTextProps: {
-      component: 'div',
-      classes: { root: helperTextInput },
-    },
+    ...defaultTextFieldProps(classes),
   }
 
   return (

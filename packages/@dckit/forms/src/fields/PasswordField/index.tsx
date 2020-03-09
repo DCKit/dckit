@@ -7,8 +7,8 @@ import {
   TextFieldProps,
 } from '@material-ui/core'
 import { Visibility, VisibilityOff } from '@material-ui/icons'
-
 import { MuiFieldProps } from '../../types'
+import { defaultTextFieldProps } from '../utils'
 import { useStyles } from '../styles'
 
 export function PasswordField(props: MuiFieldProps) {
@@ -29,13 +29,8 @@ export function PasswordField(props: MuiFieldProps) {
   const fieldProps: TextFieldProps = {
     ...restProps,
     ...restControlProps,
-    fullWidth: true,
-    FormHelperTextProps: {
-      component: 'div',
-      classes: {
-        root: classes.helperTextInput,
-      },
-    },
+    ...defaultTextFieldProps(classes),
+    type: showPassword ? 'text' : 'password',
   }
 
   const inputProps: Partial<InputProps> = { ...controlProps?.InputProps }
@@ -46,6 +41,7 @@ export function PasswordField(props: MuiFieldProps) {
         <IconButton
           size="small"
           aria-label="toggle password visibility"
+          style={{ marginRight: -4 }}
           onClick={handleClickShowPassword}
           onMouseDown={handleMouseDownPassword}
         >
@@ -56,7 +52,5 @@ export function PasswordField(props: MuiFieldProps) {
   }
   fieldProps.InputProps = inputProps
 
-  return (
-    <MuiTextField {...fieldProps} type={showPassword ? 'text' : 'password'} />
-  )
+  return <MuiTextField {...fieldProps} />
 }

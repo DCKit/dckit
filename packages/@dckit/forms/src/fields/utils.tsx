@@ -1,5 +1,21 @@
 import React from 'react'
-import { useFormControl } from '@material-ui/core'
+import { useFormControl, TextFieldProps } from '@material-ui/core'
+
+export const defaultTextFieldProps = (classes: any): TextFieldProps => ({
+  variant: 'outlined',
+  size: 'small',
+  fullWidth: true,
+  classes: {
+    root: classes.minHeight,
+  },
+  FormHelperTextProps: {
+    component: 'div',
+    classes: {
+      root: classes.helperTextInput,
+      contained: classes.marginZero,
+    },
+  },
+})
 
 export const FocusDiv = React.forwardRef(function FocusDiv(
   props: any,
