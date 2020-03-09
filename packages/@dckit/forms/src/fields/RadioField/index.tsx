@@ -22,6 +22,7 @@ export function RadioField(props: MuiFieldProps) {
     directionRow,
     noselect,
     marginRight,
+    minHeight,
     smallLabel,
   } = classes
   const {
@@ -41,7 +42,10 @@ export function RadioField(props: MuiFieldProps) {
   const labelProps = { disabled, required, error }
 
   return (
-    <FormControl component="fieldset" classes={{ root: container }}>
+    <FormControl
+      component="fieldset"
+      classes={{ root: cn(container, minHeight) }}
+    >
       <FormLabel
         {...labelProps}
         component="legend"

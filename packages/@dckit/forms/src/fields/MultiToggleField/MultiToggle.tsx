@@ -10,7 +10,7 @@ import {
 
 import { useField } from 'formik'
 import { useStyles } from '../styles'
-import { toggle, FocusDiv } from '../util'
+import { toggle, FocusDiv } from '../utils'
 
 type MultiToggleProps = {
   name: string

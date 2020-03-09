@@ -1,13 +1,13 @@
 import React from 'react'
+import { setIn } from 'formik'
 import { TextField } from '../TextField'
 import { MuiFieldProps } from '../../types'
 
 export function NumberField(props: MuiFieldProps) {
-  const numericProps = {
-    inputProps: {
-      inputMode: 'numeric',
-      pattern: '[0-9]*',
-    },
-  }
-  return <TextField {...props} {...numericProps} />
+  const numberProps = setIn(
+    props,
+    'controlProps.inputProps.inputMode',
+    'numeric'
+  )
+  return <TextField {...numberProps} />
 }
