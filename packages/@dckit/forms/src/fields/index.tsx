@@ -1,5 +1,6 @@
 import { FormFieldTypes, FieldTypeDict } from '../types'
 import { TextField } from './TextField'
+import { NumberField } from './NumberField'
 import { PasswordField } from './PasswordField'
 import { RadioField } from './RadioField'
 import { CheckField } from './CheckField'
@@ -13,6 +14,7 @@ import { DateField } from './DateField'
 
 export const components: FieldTypeDict = {
   [FormFieldTypes.text]: TextField,
+  [FormFieldTypes.number]: NumberField,
   [FormFieldTypes.password]: PasswordField,
   [FormFieldTypes.radio]: RadioField,
   [FormFieldTypes.check]: CheckField,
@@ -27,6 +29,7 @@ export const components: FieldTypeDict = {
 
 export const defaultValues: FieldTypeDict = {
   [FormFieldTypes.text]: '',
+  [FormFieldTypes.number]: '',
   [FormFieldTypes.password]: '',
   [FormFieldTypes.radio]: '',
   [FormFieldTypes.check]: false,

@@ -1,13 +1,14 @@
 import React from 'react'
 import * as V from 'yup'
-import { FieldsConfig, FormContext } from '..'
+import { FieldsConfig, FormContext } from '@dckit/forms'
 
 export const fields = [
   'login',
   'password',
+  'number',
   'date',
-  'radio',
   'select',
+  'radio',
   'toggle',
   'multicheck',
   'multitoggle',
@@ -39,17 +40,26 @@ export const fieldsConfig: FieldsConfig = {
         <span style={{ color: 'green' }}>use at least 6 symbols</span>
       ),
   },
+  number: {
+    label: 'Number',
+    type: 'number',
+    required: true,
+    size: 4,
+    controlProps: {
+      endAdornment: '123',
+    },
+    helperText: 'Number helper text',
+  },
   date: {
     label: 'Date picker',
     type: 'date',
     required: true,
-    size: 6,
+    size: 4,
   },
   radio: {
     label: 'Radio',
     type: 'radio',
     required: true,
-    size: 8,
     style: {
       marginTop: 24,
     },
@@ -193,6 +203,10 @@ const msg = `REQUIRED. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
 export const validationSchema = V.object({
   login: V.string()
     .label(label('login'))
+    .required(msg),
+  number: V.number()
+    .label(label('number'))
+    .typeError('Must be a number')
     .required(msg),
   radio: V.string()
     .label(label('radio'))
