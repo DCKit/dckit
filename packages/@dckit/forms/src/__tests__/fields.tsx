@@ -61,7 +61,7 @@ export const fieldsConfig: FieldsConfig = {
     type: 'radio',
     required: true,
     style: {
-      marginTop: 24,
+      //background: 'gray',
     },
     options: [
       { label: 'opt1', value: '1' },
