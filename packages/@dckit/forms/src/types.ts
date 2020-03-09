@@ -3,6 +3,7 @@ import { FormikConfig, FormikValues, FormikProps } from 'formik'
 
 export const enum FormFieldTypes {
   text = 'text',
+  number = 'number',
   password = 'password',
   radio = 'radio',
   check = 'check',

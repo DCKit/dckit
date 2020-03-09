@@ -65,7 +65,7 @@ export const DemoForm = () => {
   const handleSubmit = (data: any) => console.log(data)
 
   return (
-    <Paper style={{ margin: 50, padding: 32, width: '70%' }}>
+    <Paper style={{ margin: 50, padding: 32, maxWidth: 800 }}>
       <FormWithDefaults
         fields={fields}
         fieldsConfig={fieldsConfig}
