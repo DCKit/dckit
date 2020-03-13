@@ -1,7 +1,5 @@
-import { cleanup, render, fireEvent } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import { app } from './App'
-
-afterEach(cleanup)
 
 describe('test app', () => {
   it('should render', () => {

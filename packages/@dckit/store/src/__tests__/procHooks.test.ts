@@ -1,10 +1,7 @@
 import { testSelectorHook } from './testHooks'
 import * as procHooks from '../processes/hooks'
-import { cleanup } from '@testing-library/react'
 import { Acts } from '../types'
 import { TestItem } from './testData'
-
-afterEach(cleanup)
 
 describe('processes selectors hooks', () => {
   describe('useProcess', () => {
