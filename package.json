@@ -1,13 +1,8 @@
 {
   "name": "dckit",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/**/*"
-    ]
-  },
-  "nohoist": [
-    "react-scripts"
+  "workspaces": [
+    "packages/**/*"
   ],
   "scripts": {
     "lint": "FORCE_COLOR=true lerna run lint --stream",

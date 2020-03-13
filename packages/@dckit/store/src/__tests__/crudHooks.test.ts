@@ -1,9 +1,7 @@
 import { testDispatcherHook } from './testHooks'
 import * as crudHooks from '../crud/hooks'
-import { cleanup, waitForElement, fireEvent } from '@testing-library/react'
+import { fireEvent } from '@testing-library/react'
 import { TestItem } from './testData'
-
-afterEach(cleanup)
 
 describe('crud dispatchers hooks', () => {
   describe('useLoadItems', () => {
@@ -12,7 +10,7 @@ describe('crud dispatchers hooks', () => {
         crudHooks.useLoadItems(TestItem)
       )
       fireEvent.click(getByTestId('testid'))
-      const el = await waitForElement(() => getByTestId('clicked'))
+      const el = await await getByTestId('clicked')
       expect(el).toBeDefined()
     })
   })
@@ -23,7 +21,7 @@ describe('crud dispatchers hooks', () => {
         crudHooks.useAddItem(TestItem)
       )
       fireEvent.click(getByTestId('testid'))
-      const el = await waitForElement(() => getByTestId('clicked'))
+      const el = await await getByTestId('clicked')
       expect(el).toBeDefined()
     })
   })
@@ -34,7 +32,7 @@ describe('crud dispatchers hooks', () => {
         crudHooks.useUpdateItem(TestItem)
       )
       fireEvent.click(getByTestId('testid'))
-      const el = await waitForElement(() => getByTestId('clicked'))
+      const el = await await getByTestId('clicked')
       expect(el).toBeDefined()
     })
   })
@@ -45,7 +43,7 @@ describe('crud dispatchers hooks', () => {
         crudHooks.useDeleteItem(TestItem)
       )
       fireEvent.click(getByTestId('testid'))
-      const el = await waitForElement(() => getByTestId('clicked'))
+      const el = await await getByTestId('clicked')
       expect(el).toBeDefined()
     })
   })
@@ -56,7 +54,7 @@ describe('crud dispatchers hooks', () => {
         crudHooks.useImportItems(TestItem)
       )
       fireEvent.click(getByTestId('testid'))
-      const el = await waitForElement(() => getByTestId('clicked'))
+      const el = await await getByTestId('clicked')
       expect(el).toBeDefined()
     })
   })
@@ -67,7 +65,7 @@ describe('crud dispatchers hooks', () => {
         crudHooks.useExportItems(TestItem)
       )
       fireEvent.click(getByTestId('testid'))
-      const el = await waitForElement(() => getByTestId('clicked'))
+      const el = await await getByTestId('clicked')
       expect(el).toBeDefined()
     })
   })

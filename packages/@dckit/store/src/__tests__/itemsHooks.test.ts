@@ -1,9 +1,7 @@
 import { testSelectorHook, testDispatcherHook } from './testHooks'
 import * as itemsHooks from '../items/hooks'
-import { cleanup, waitForElement, fireEvent } from '@testing-library/react'
+import { fireEvent } from '@testing-library/react'
 import { TestItem } from './testData'
-
-afterEach(cleanup)
 
 // selectors hooks
 
@@ -56,7 +54,7 @@ describe('items dispatchers hooks', () => {
         itemsHooks.useSetItems(TestItem)
       )
       fireEvent.click(getByTestId('testid'))
-      const el = await waitForElement(() => getByTestId('clicked'))
+      const el = await getByTestId('clicked')
       expect(el).toBeDefined()
     })
   })
@@ -67,7 +65,7 @@ describe('items dispatchers hooks', () => {
         itemsHooks.useSetItem(TestItem)
       )
       fireEvent.click(getByTestId('testid'))
-      const el = await waitForElement(() => getByTestId('clicked'))
+      const el = await getByTestId('clicked')
       expect(el).toBeDefined()
     })
   })
@@ -78,7 +76,7 @@ describe('items dispatchers hooks', () => {
         itemsHooks.useRemoveItem(TestItem)
       )
       fireEvent.click(getByTestId('testid'))
-      const el = await waitForElement(() => getByTestId('clicked'))
+      const el = await getByTestId('clicked')
       expect(el).toBeDefined()
     })
   })
@@ -89,7 +87,7 @@ describe('items dispatchers hooks', () => {
         itemsHooks.useOptItem(TestItem)
       )
       fireEvent.click(getByTestId('testid'))
-      const el = await waitForElement(() => getByTestId('clicked'))
+      const el = await getByTestId('clicked')
       expect(el).toBeDefined()
     })
   })
@@ -100,7 +98,7 @@ describe('items dispatchers hooks', () => {
         itemsHooks.useSelectItem(TestItem)
       )
       fireEvent.click(getByTestId('testid'))
-      const el = await waitForElement(() => getByTestId('clicked'))
+      const el = await getByTestId('clicked')
       expect(el).toBeDefined()
     })
   })
