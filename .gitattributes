@@ -1,2 +1,3 @@
 docs/**/* linguist-documentation
 packages/**/public/**/* linguist-generated=true
+packages/**/config-overrides.js linguist-generated=true
