@@ -22,7 +22,7 @@ jobs:
           chmod +x ./reporter
           for f in `find packages -maxdepth 2 -mindepth 1`
           do
-            if [ -e $f/coverage/lcov.info ]; then
+            if [ -e $f/coverage/lcov.info ] && [ ! -s $f/coverage/lcov.info]; then
               echo $f;
               ./reporter format-coverage -t lcov -o cov/${f//\//-}.json $f/coverage/lcov.info;
             fi
