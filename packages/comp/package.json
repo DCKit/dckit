@@ -9,9 +9,6 @@
     "test:coverage": "CI=true react-scripts test --color --coverage",
     "lint": "eslint ./src/**/*.tsx --max-warnings=0 --format=codeframe"
   },
-  "resolutions": {
-    "react-dev-utils": "10.0.0"
-  },
   "dependencies": {
     "@react-workspaces/react-scripts": "3.3.0-alpha-08",
     "@testing-library/react": "^9.5.0",
