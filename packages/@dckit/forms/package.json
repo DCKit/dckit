@@ -91,6 +91,15 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.{ts,tsx}",
+      "!<rootDir>/src/index.{ts,tsx}",
+      "!<rootDir>/src/**/*.(spec|test|stories).{ts,tsx}",
+      "!<rootDir>/src/__tests__/*",
+      "!<rootDir>/src/**/*.d.{ts,tsx}"
+    ]
+  },
   "prettier": {
     "semi": false,
     "singleQuote": true,

@@ -14,10 +14,15 @@
     "format:check": "prettier -l 'src/**/*.ts*'",
     "update": "ncu -u"
   },
+  "resolutions": {
+    "react-dev-utils": "10.0.0"
+  },
   "dependencies": {
     "@dckit/forms": "*",
     "@dckit/store": "*",
     "@dckit/ui": "*",
+    "comp": "*",
+    "@react-workspaces/react-scripts": "3.3.0-alpha-08",
     "@reduxjs/toolkit": "^1.2.5",
     "@types/jest": "^25.1.4",
     "@types/node": "^13.9.0",
@@ -35,7 +40,6 @@
     "react-redux": "^7.2.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0",
     "react-table": "7.0.0-rc.16",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
@@ -66,11 +70,12 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "<rootDir>/src/**/*.{ts,tsx}"
-    ],
-    "coverageReporters": [
-      "lcov",
-      "text-summary"
+      "<rootDir>/src/**/*.{ts,tsx}",
+      "!<rootDir>/src/index.{ts,tsx}",
+      "!<rootDir>/src/**/*.(spec|test|stories).{ts,tsx}",
+      "!<rootDir>/src/__tests__/*",
+      "!<rootDir>/src/serviceWorker.ts",
+      "!<rootDir>/src/**/*.d.{ts,tsx}"
     ]
   }
 }
