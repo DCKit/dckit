@@ -14,15 +14,14 @@
     "format:check": "prettier -l 'src/**/*.ts*'",
     "update": "ncu -u"
   },
-  "resolutions": {
-    "react-dev-utils": "10.0.0"
-  },
   "dependencies": {
+    "@react-workspaces/react-scripts": "3.3.0-alpha-08",
+    "react-app-rewired": "^2.1.5",
+    "customize-cra": "^0.9.1",
     "@dckit/forms": "*",
     "@dckit/store": "*",
     "@dckit/ui": "*",
     "comp": "*",
-    "@react-workspaces/react-scripts": "3.3.0-alpha-08",
     "@reduxjs/toolkit": "^1.2.5",
     "@types/jest": "^25.1.4",
     "@types/node": "^13.9.0",
