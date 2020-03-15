@@ -1,0 +1,55 @@
+{
+  "name": "comp",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "src/index.tsx",
+  "main:src": "src/index.tsx",
+  "scripts": {
+    "test": "react-scripts test",
+    "test:coverage": "CI=true react-scripts test --color --coverage",
+    "lint": "eslint ./src/**/*.tsx --max-warnings=0 --format=codeframe"
+  },
+  "resolutions": {
+    "react-dev-utils": "10.0.0"
+  },
+  "dependencies": {
+    "@react-workspaces/react-scripts": "3.3.0-alpha-08",
+    "@testing-library/react": "^9.5.0",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.1",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.4",
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "typescript": "3.8.3"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "browserslist": {
+    "production": [
+      ">2%",
+      "not dead",
+      "not ie > 0",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.{ts,tsx}",
+      "!<rootDir>/src/index.{ts,tsx}",
+      "!<rootDir>/src/**/*.(spec|test|stories).{ts,tsx}",
+      "!<rootDir>/src/__tests__/*",
+      "!<rootDir>/src/**/*.d.{ts,tsx}"
+    ]
+  }
+}
