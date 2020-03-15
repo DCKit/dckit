@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "pm2 --name test-app start react-scripts -- start",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-app-rewired build --scripts-version @react-workspaces/react-scripts",
+    "analyze": "ANALYZE=1 react-app-rewired build --scripts-version @react-workspaces/react-scripts",
     "test": "CI=true react-scripts test --color",
     "test:coverage": "CI=true react-scripts test --color --coverage",
     "prepare": "yarn test:coverage && yarn build",
@@ -18,6 +19,7 @@
     "@react-workspaces/react-scripts": "3.3.0-alpha-08",
     "react-app-rewired": "^2.1.5",
     "customize-cra": "^0.9.1",
+    "webpack-bundle-analyzer": "^3.6.1",
     "@dckit/forms": "*",
     "@dckit/store": "*",
     "@dckit/ui": "*",
