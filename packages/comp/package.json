@@ -5,7 +5,7 @@
   "main": "src/index.tsx",
   "main:src": "src/index.tsx",
   "scripts": {
-    "test": "react-scripts test",
+    "test": "CI=true react-scripts test --color",
     "test:coverage": "CI=true react-scripts test --color --coverage",
     "lint": "eslint ./src/**/*.tsx --max-warnings=0 --format=codeframe"
   },
@@ -20,6 +20,7 @@
     "@typescript-eslint/parser": "^2.15.0",
     "react": "16.13.0",
     "react-dom": "16.13.0",
+    "react-scripts": "3.4.0",
     "typescript": "3.8.3"
   },
   "prettier": {

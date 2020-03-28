@@ -95,6 +95,47 @@ export const stateAfterLoadSaga = {
   },
 }
 
+export const stateAfterLoadAllSaga = {
+  dck: {
+    items: {
+      testItem: {
+        items: [
+          {
+            id: '1',
+            data: 'data1',
+          },
+          {
+            id: '2',
+            data: 'data2',
+          },
+        ],
+        itemIndex: {
+          '1': 0,
+          '2': 1,
+        },
+        selectedItems: {},
+      },
+    },
+    itemProps: {
+      testItem: {
+        totalItems: 5,
+        totalPages: 1,
+      },
+    },
+    filters: {},
+    sorting: {},
+    processes: {
+      testItem: {
+        Load: {
+          running: false,
+          error: false,
+          finished: true,
+        },
+      },
+    },
+  },
+}
+
 export const stateAfterAddSaga = {
   dck: {
     items: {

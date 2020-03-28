@@ -11,14 +11,11 @@
     "test": "FORCE_COLOR=true lerna run test --stream",
     "test:coverage": "FORCE_COLOR=true lerna run test:coverage --stream",
     "build": "FORCE_COLOR=true lerna run build --stream",
-    "prepare": "yarn build && yarn test:coverage",
+    "_prepare": "yarn build && yarn test:coverage",
     "update": "ncu -u && FORCE_COLOR=true lerna run update --stream --concurrency 1",
     "docs": "FORCE_COLOR=true lerna run docs --stream"
   },
   "devDependencies": {
     "lerna": "^3.20.2"
-  },
-  "resolutions": {
-    "react-dev-utils": "10.0.0"
   }
 }

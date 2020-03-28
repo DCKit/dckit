@@ -1,5 +1,6 @@
 import { all, takeLatest, put } from 'redux-saga/effects'
 import { Process } from '../helpers/processes'
+import { Flow } from '../helpers/flows'
 import { isAction } from '../helpers/actions'
 import {
   testLoadFetcher,
@@ -10,6 +11,10 @@ import {
 import { TestItem, testItems } from './testData'
 import { IAction } from '../types'
 import { dckActions } from '..'
+
+export function* testFlowSaga() {
+  yield all([Flow.LoadAll(TestItem)])
+}
 
 export function* testSaga() {
   yield all([
