@@ -22,7 +22,7 @@ export const FocusDiv = React.forwardRef(function FocusDiv(
   ref: any
 ) {
   const formControl = useFormControl()
-  return <div {...props} tabIndex={0} onBlur={formControl.onBlur} ref={ref} />
+  return <div {...props} tabIndex={0} onBlur={formControl?.onBlur} ref={ref} />
 })
 
 export function toggle(options: any[], selected: any[], value: any) {

@@ -31,7 +31,7 @@ export const Toggle = React.memo(function Toggle(props: ToggleProps) {
   const selected = field.value === value
 
   const handleClick = () => {
-    formControl.onFocus()
+    formControl?.onFocus()
     !selected && helpers.setValue(value)
   }
 
