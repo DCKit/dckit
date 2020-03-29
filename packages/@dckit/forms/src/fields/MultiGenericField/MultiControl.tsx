@@ -46,7 +46,7 @@ export function MultiControl(props: MultiControlProps) {
   const [, , helpers] = useField(name)
 
   const handleChange = (value: any) => {
-    formControl.onFocus()
+    formControl?.onFocus()
     helpers.setValue(toggle(optionValues, values, value))
   }
 

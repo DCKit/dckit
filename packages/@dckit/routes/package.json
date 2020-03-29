@@ -31,7 +31,7 @@
     "dev": "pm2 --name @dckit/routes start tsdx -- watch --onFirstSuccess 'yarn dev:next'",
     "dev:next": "cd ../../test-app && yarn dev",
     "lint": "tsdx lint src && tsc --noEmit",
-    "prepare": "yarn test:coverage && yarn build",
+    "prepare": "yarn build && yarn test:coverage",
     "test": "CI=true tsdx test --color",
     "test:coverage": "CI=true tsdx test --color --coverage",
     "format": "prettier --write 'src/**/*.ts*'",
@@ -39,29 +39,29 @@
     "update": "ncu -u"
   },
   "devDependencies": {
-    "@testing-library/react": "^9.5.0",
+    "@testing-library/react": "^10.0.1",
     "@types/jest": "^25.1.4",
-    "@types/node": "^13.9.0",
+    "@types/node": "^13.9.5",
     "@types/react-router": "^5.1.4",
     "@types/react-router-dom": "^5.1.3",
-    "eslint-config-react-app": "5.2.0",
+    "eslint-config-react-app": "5.2.1",
     "eslint-config-unobtrusive": "^1.2.5",
     "eslint-plugin-react": "^7.19.0",
     "prettier": "1.19.1",
-    "tsdx": "0.13.0",
+    "tsdx": "0.13.1",
     "tslib": "^1.11.1",
     "typescript": "3.8.3"
   },
   "dependencies": {
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "redux-first-history": "^4.6.0-beta.1"
   },
   "peerDependencies": {
-    "react": "16.13.0",
-    "react-dom": "16.13.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "redux-first-history": "^4.6.0-beta.1"

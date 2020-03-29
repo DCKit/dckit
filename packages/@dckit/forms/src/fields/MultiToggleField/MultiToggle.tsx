@@ -46,7 +46,7 @@ export const MultiToggle = React.memo(function MultiToggle(
   const selected = values.includes(value)
 
   const handleClick = () => {
-    formControl.onFocus()
+    formControl?.onFocus()
     helpers.setValue(toggle(optionValues, values, value))
   }
 
