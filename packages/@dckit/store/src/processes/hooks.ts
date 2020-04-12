@@ -1,15 +1,14 @@
 import { useSelector, shallowEqual as shallow } from 'react-redux'
-import { select } from '../helpers/hooks'
+import { select, useDidUpdate } from '../helpers/hooks'
 import { TAct, Acts, IProcess } from '../types'
 
 import {
   getProcess,
   getProcessResponse,
   isProcessRunning,
+  isProcessSucceed,
   isProcessFailed,
 } from './selectors'
-
-// selectors hooks
 
 export const useProcess = (itemType: string, act: TAct): IProcess =>
   useSelector(select(getProcess, itemType, act), shallow)
@@ -17,38 +16,84 @@ export const useProcess = (itemType: string, act: TAct): IProcess =>
 export const useResponse = (itemType: string, act: TAct): any =>
   useSelector(select(getProcessResponse, itemType, act), shallow)
 
-export const useLoading = (itemType: string): boolean =>
-  useSelector(select(isProcessRunning, itemType, Acts.Load), shallow)
+// isRunning hooks
+export const useProcessRunning = (itemType: string, act: TAct): boolean =>
+  useSelector(select(isProcessRunning, itemType, act), shallow)
 
-export const useAdding = (itemType: string): boolean =>
-  useSelector(select(isProcessRunning, itemType, Acts.Add), shallow)
+const isRunning = (act: TAct) => (itemType: string) =>
+  useProcessRunning(itemType, act)
 
-export const useUpdating = (itemType: string): boolean =>
-  useSelector(select(isProcessRunning, itemType, Acts.Update), shallow)
+export const useLoading = isRunning(Acts.Load)
+export const useAdding = isRunning(Acts.Add)
+export const useUpdating = isRunning(Acts.Update)
+export const useDeleting = isRunning(Acts.Delete)
+export const useImporting = isRunning(Acts.Import)
+export const useExporting = isRunning(Acts.Export)
 
-export const useDeleting = (itemType: string): boolean =>
-  useSelector(select(isProcessRunning, itemType, Acts.Delete), shallow)
+// isSucceed hooks
+export const useProcessSucceed = (itemType: string, act: TAct): boolean =>
+  useSelector(select(isProcessSucceed, itemType, act), shallow)
 
-export const useImporting = (itemType: string): boolean =>
-  useSelector(select(isProcessRunning, itemType, Acts.Import), shallow)
+const isSucceed = (act: TAct) => (itemType: string) =>
+  useProcessSucceed(itemType, act)
 
-export const useExporting = (itemType: string): boolean =>
-  useSelector(select(isProcessRunning, itemType, Acts.Export), shallow)
+export const useLoadSucceed = isSucceed(Acts.Load)
+export const useAddSucceed = isSucceed(Acts.Add)
+export const useUpdateSucceed = isSucceed(Acts.Update)
+export const useDeleteSucceed = isSucceed(Acts.Delete)
+export const useImportSucceed = isSucceed(Acts.Import)
+export const useExportSucceed = isSucceed(Acts.Export)
 
-export const useLoadFailed = (itemType: string): boolean =>
-  useSelector(select(isProcessFailed, itemType, Acts.Load), shallow)
+// isFailed hooks
+export const useProcessFailed = (itemType: string, act: TAct): boolean =>
+  useSelector(select(isProcessFailed, itemType, act), shallow)
 
-export const useAddFailed = (itemType: string): boolean =>
-  useSelector(select(isProcessFailed, itemType, Acts.Add), shallow)
+const isFailed = (act: TAct) => (itemType: string) =>
+  useProcessFailed(itemType, act)
 
-export const useUpdateFailed = (itemType: string): boolean =>
-  useSelector(select(isProcessFailed, itemType, Acts.Update), shallow)
+export const useLoadFailed = isFailed(Acts.Load)
+export const useAddFailed = isFailed(Acts.Add)
+export const useUpdateFailed = isFailed(Acts.Update)
+export const useDeleteFailed = isFailed(Acts.Delete)
+export const useImportFailed = isFailed(Acts.Import)
+export const useExportFailed = isFailed(Acts.Export)
 
-export const useDeleteFailed = (itemType: string): boolean =>
-  useSelector(select(isProcessFailed, itemType, Acts.Delete), shallow)
+// onSuccess callback hooks
+export const useOnProcessSuccess = (
+  itemType: string,
+  act: TAct,
+  callback: any
+) => {
+  const success = useProcessSucceed(itemType, act)
+  useDidUpdate(callback, [success], success)
+}
 
-export const useImportFailed = (itemType: string): boolean =>
-  useSelector(select(isProcessFailed, itemType, Acts.Import), shallow)
+const onSuccess = (act: TAct) => (itemType: string, callback: any) =>
+  useOnProcessSuccess(itemType, act, callback)
 
-export const useExportFailed = (itemType: string): boolean =>
-  useSelector(select(isProcessFailed, itemType, Acts.Export), shallow)
+export const useOnLoadSuccess = onSuccess(Acts.Load)
+export const useOnAddSuccess = onSuccess(Acts.Add)
+export const useOnUpdateSuccess = onSuccess(Acts.Update)
+export const useOnDeleteSuccess = onSuccess(Acts.Delete)
+export const useOnImportSuccess = onSuccess(Acts.Import)
+export const useOnExportSuccess = onSuccess(Acts.Export)
+
+// onFail callback hooks
+export const useOnProcessFail = (
+  itemType: string,
+  act: TAct,
+  callback: any
+) => {
+  const failed = useProcessFailed(itemType, act)
+  useDidUpdate(callback, [failed], failed)
+}
+
+const onFail = (act: TAct) => (itemType: string, callback: any) =>
+  useOnProcessFail(itemType, act, callback)
+
+export const useOnLoadFail = onFail(Acts.Load)
+export const useOnAddFail = onFail(Acts.Add)
+export const useOnUpdateFail = onFail(Acts.Update)
+export const useOnDeleteFail = onFail(Acts.Delete)
+export const useOnImportFail = onFail(Acts.Import)
+export const useOnExportFail = onFail(Acts.Export)
