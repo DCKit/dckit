@@ -5,8 +5,8 @@
   "main": "src/index.tsx",
   "main:src": "src/index.tsx",
   "scripts": {
-    "test": "CI=true react-scripts test --color --env=jest-environment-jsdom-sixteen",
-    "test:coverage": "CI=true react-scripts test --color --env=jest-environment-jsdom-sixteen --coverage",
+    "test": "SKIP_PREFLIGHT_CHECK=true CI=true react-scripts test --color --env=jest-environment-jsdom-sixteen",
+    "test:coverage": "SKIP_PREFLIGHT_CHECK=true CI=true react-scripts test --color --env=jest-environment-jsdom-sixteen --coverage",
     "lint": "eslint ./src/**/*.tsx --max-warnings=0 --format=codeframe && tsc --noEmit",
     "format": "prettier --write 'src/**/*.ts*'",
     "format:check": "prettier -l 'src/**/*.ts*'",
@@ -24,8 +24,7 @@
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "prettier": "1.19.1",
     "react-scripts": "3.4.1",
-    "typescript": "3.8.3",
-    "webpack": "4.42.1"
+    "typescript": "3.8.3"
   },
   "dependencies": {
     "react": "16.13.1",
