@@ -46,8 +46,9 @@ export const isProcessSucceed: getProcessStatus = createSelector(
 )
 
 export const isProcessFailed: getProcessStatus = createSelector(
-  isProcessSucceed,
-  success => !success
+  [getProcess, isProcessRunning, isProcessFinished],
+  (process: IProcess, running, finished) =>
+    finished && !running && process?.error
 )
 
 export const getProcessResponse: getProcessResponse = createSelector(

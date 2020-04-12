@@ -135,8 +135,8 @@ describe('process helpers', () => {
 
     const state = sagaTester.getState()
     expect(state).toEqual(stateAfterSelectSaga)
-    expect(dckSelectors.isProcessFailed(state, TestItem, Acts.Add)).toEqual(
-      true
-    )
+    expect(
+      dckSelectors.isProcessFailed(state, '__internal__', '__select__')
+    ).toEqual(true)
   })
 })
