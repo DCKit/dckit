@@ -1,7 +1,7 @@
 import { useSelector, useDispatch, shallowEqual as shallow } from 'react-redux'
 import { select, dispatcher, useDidUpdate } from '../helpers/hooks'
 import { TAct, Acts, IProcess } from '../types'
-import { processStop } from './actions'
+import { processStop, processReset } from './actions'
 
 import {
   getProcess,
@@ -13,6 +13,7 @@ import {
 
 // dispatchers hooks
 
+// stop process hooks
 export const useProcessStop = (itemType: string, act: TAct) =>
   dispatcher(
     useDispatch(),
@@ -28,6 +29,24 @@ export const useUpdateStop = stop(Acts.Update)
 export const useDeleteStop = stop(Acts.Delete)
 export const useImportStop = stop(Acts.Import)
 export const useExportStop = stop(Acts.Export)
+
+// reset process hooks
+export const useProcessReset = (itemType: string, act: TAct) =>
+  dispatcher(
+    useDispatch(),
+    (itemType: string) => processReset(itemType, act),
+    itemType
+  )
+
+const reset = (act: TAct) => (itemType: string) =>
+  useProcessReset(itemType, act)
+
+export const useLoadReset = reset(Acts.Load)
+export const useAddReset = reset(Acts.Add)
+export const useUpdateReset = reset(Acts.Update)
+export const useDeleteReset = reset(Acts.Delete)
+export const useImportReset = reset(Acts.Import)
+export const useExportReset = reset(Acts.Export)
 
 // selector hooks
 

@@ -1,5 +1,5 @@
 import { fireEvent } from '@testing-library/react'
-import { testSelectorHook, testOnProcessStateHook } from './testHooks'
+import { testSelectorHook, testOnProcessStopHook } from './testHooks'
 import * as procHooks from '../processes/hooks'
 import { Acts } from '../types'
 import { TestItem } from './testData'
@@ -65,36 +65,51 @@ describe('processes selectors hooks', () => {
 
   describe('useOn<process>Success', () => {
     const forTest = [
-      [procHooks.useOnLoadSuccess, procHooks.useLoadStop, 'useOnLoadSuccess'],
-      [procHooks.useOnAddSuccess, procHooks.useAddStop, 'useOnAddSuccess'],
+      [
+        procHooks.useOnLoadSuccess,
+        procHooks.useLoadStop,
+        procHooks.useLoadReset,
+        'useOnLoadSuccess',
+      ],
+      [
+        procHooks.useOnAddSuccess,
+        procHooks.useAddStop,
+        procHooks.useAddReset,
+        'useOnAddSuccess',
+      ],
       [
         procHooks.useOnUpdateSuccess,
         procHooks.useUpdateStop,
+        procHooks.useUpdateReset,
         'useOnUpdateSuccess',
       ],
       [
         procHooks.useOnDeleteSuccess,
         procHooks.useDeleteStop,
+        procHooks.useDeleteReset,
         'useOnDeleteSuccess',
       ],
       [
         procHooks.useOnImportSuccess,
         procHooks.useImportStop,
+        procHooks.useImportReset,
         'useOnImportSuccess',
       ],
       [
         procHooks.useOnExportSuccess,
         procHooks.useExportStop,
+        procHooks.useExportReset,
         'useOnExportSuccess',
       ],
     ]
     forTest.forEach((hooks: any[]) => {
-      const [hook, dispatcher, name] = hooks
+      const [hook, dispatcher, resetter, name] = hooks
       it(`should successfully execute ${name}`, async () => {
-        const { getByTestId, queryByText } = testOnProcessStateHook(
+        const { getByTestId, queryByText } = testOnProcessStopHook(
           name,
           (callback: any) => hook(TestItem, callback),
-          () => dispatcher(TestItem)
+          () => dispatcher(TestItem),
+          () => resetter(TestItem)
         )
         const elBefore = queryByText(name)
         expect(elBefore).toBeNull()
