@@ -11,7 +11,7 @@
     "test": "FORCE_COLOR=true lerna run test --stream",
     "test:coverage": "FORCE_COLOR=true lerna run test:coverage --stream",
     "build": "FORCE_COLOR=true lerna run build --stream",
-    "prepare": "yarn build && yarn test:coverage",
+    "_prepare": "yarn build && yarn test:coverage",
     "update": "ncu -u && FORCE_COLOR=true lerna run update --stream --concurrency 1",
     "clean": "lerna clean -y && rm -f ./yarn.lock && rm -rf ./node_modules",
     "docs": "FORCE_COLOR=true lerna run docs --stream"

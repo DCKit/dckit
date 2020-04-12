@@ -1,6 +1,7 @@
-import { useSelector, shallowEqual as shallow } from 'react-redux'
-import { select, useDidUpdate } from '../helpers/hooks'
+import { useSelector, useDispatch, shallowEqual as shallow } from 'react-redux'
+import { select, dispatcher, useDidUpdate } from '../helpers/hooks'
 import { TAct, Acts, IProcess } from '../types'
+import { processStop } from './actions'
 
 import {
   getProcess,
@@ -9,6 +10,26 @@ import {
   isProcessSucceed,
   isProcessFailed,
 } from './selectors'
+
+// dispatchers hooks
+
+export const useProcessStop = (itemType: string, act: TAct) =>
+  dispatcher(
+    useDispatch(),
+    (itemType: string) => processStop(itemType, act),
+    itemType
+  )
+
+const stop = (act: TAct) => (itemType: string) => useProcessStop(itemType, act)
+
+export const useLoadStop = stop(Acts.Load)
+export const useAddStop = stop(Acts.Add)
+export const useUpdateStop = stop(Acts.Update)
+export const useDeleteStop = stop(Acts.Delete)
+export const useImportStop = stop(Acts.Import)
+export const useExportStop = stop(Acts.Export)
+
+// selector hooks
 
 export const useProcess = (itemType: string, act: TAct): IProcess =>
   useSelector(select(getProcess, itemType, act), shallow)

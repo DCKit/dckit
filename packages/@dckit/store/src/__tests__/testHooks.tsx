@@ -6,36 +6,37 @@ import { combineReducers } from 'redux'
 import { dckReducer } from '../dck/reducer'
 import { stateForHooks as preloadedState } from './testData'
 
-const store = configureStore({
-  reducer: combineReducers({
-    dck: dckReducer,
-  }),
-  preloadedState,
-})
+const store = () =>
+  configureStore({
+    reducer: combineReducers({
+      dck: dckReducer,
+    }),
+    preloadedState,
+  })
 
-export function testSelectorHook(runHook: any) {
+export function testSelectorHook(hook: any) {
   const HookWrapper: React.FC = () => {
-    const output = runHook()
-    return <pre data-testid="testid">{JSON.stringify(output)}</pre>
+    const state = hook()
+    return <pre data-testid="testid">{JSON.stringify(state)}</pre>
   }
 
   return render(
-    <Provider store={store}>
+    <Provider store={store()}>
       <HookWrapper />
     </Provider>
   )
 }
 
-export function testDispatcherHook(runHook: any) {
+export function testDispatcherHook(hook: any) {
   const HookWrapper: React.FC = () => {
     const [clicked, setClicked] = useState(false)
-    const dispatcher = runHook()
+    const dispatch = hook()
     return (
       <>
         <button
           data-testid="testid"
           onClick={() => {
-            dispatcher()
+            dispatch()
             setClicked(true)
           }}
         />
@@ -45,7 +46,32 @@ export function testDispatcherHook(runHook: any) {
   }
 
   return render(
-    <Provider store={store}>
+    <Provider store={store()}>
+      <HookWrapper />
+    </Provider>
+  )
+}
+
+export function testOnProcessStateHook(
+  text: string,
+  hook: any,
+  dispatcher: any
+) {
+  const HookWrapper: React.FC = () => {
+    const [clicked, setClicked] = useState(false)
+    const dispatch = dispatcher()
+    hook(() => setClicked(true))
+
+    return (
+      <>
+        <button data-testid="testid" onClick={() => dispatch()} />
+        {clicked && <pre>{text}</pre>}
+      </>
+    )
+  }
+
+  return render(
+    <Provider store={store()}>
       <HookWrapper />
     </Provider>
   )

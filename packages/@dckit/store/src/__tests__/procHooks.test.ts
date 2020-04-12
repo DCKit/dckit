@@ -1,4 +1,5 @@
-import { testSelectorHook } from './testHooks'
+import { fireEvent } from '@testing-library/react'
+import { testSelectorHook, testOnProcessStateHook } from './testHooks'
 import * as procHooks from '../processes/hooks'
 import { Acts } from '../types'
 import { TestItem } from './testData'
@@ -58,6 +59,49 @@ describe('processes selectors hooks', () => {
       it(`should successfully execute ${name}`, () => {
         const { getByText } = testSelectorHook(() => hook(TestItem))
         expect(getByText('true')).toBeDefined()
+      })
+    })
+  })
+
+  describe('useOn<process>Success', () => {
+    const forTest = [
+      [procHooks.useOnLoadSuccess, procHooks.useLoadStop, 'useOnLoadSuccess'],
+      [procHooks.useOnAddSuccess, procHooks.useAddStop, 'useOnAddSuccess'],
+      [
+        procHooks.useOnUpdateSuccess,
+        procHooks.useUpdateStop,
+        'useOnUpdateSuccess',
+      ],
+      [
+        procHooks.useOnDeleteSuccess,
+        procHooks.useDeleteStop,
+        'useOnDeleteSuccess',
+      ],
+      [
+        procHooks.useOnImportSuccess,
+        procHooks.useImportStop,
+        'useOnImportSuccess',
+      ],
+      [
+        procHooks.useOnExportSuccess,
+        procHooks.useExportStop,
+        'useOnExportSuccess',
+      ],
+    ]
+    forTest.forEach((hooks: any[]) => {
+      const [hook, dispatcher, name] = hooks
+      it(`should successfully execute ${name}`, async () => {
+        const { getByTestId, queryByText } = testOnProcessStateHook(
+          name,
+          (callback: any) => hook(TestItem, callback),
+          () => dispatcher(TestItem)
+        )
+        const elBefore = queryByText(name)
+        expect(elBefore).toBeNull()
+
+        fireEvent.click(getByTestId('testid'))
+        const el = await queryByText(name)
+        expect(el).not.toBeNull()
       })
     })
   })
