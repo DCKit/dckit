@@ -1,8 +1,12 @@
 const {
   override,
+  addBabelPlugin,
+  babelInclude,
   addBundleVisualizer,
   setWebpackOptimizationSplitChunks,
 } = require('customize-cra')
+
+const path = require('path')
 
 const vendors = [
   'react',
@@ -76,6 +80,16 @@ const chunks = {
 }
 
 module.exports = override(
+  babelInclude([path.resolve('src'), path.resolve('../comp')]),
+  addBabelPlugin([
+    'module-resolver',
+    {
+      root: ['./'],
+      alias: {
+        '@': './src',
+      },
+    },
+  ]),
   process.env.ANALYZE && addBundleVisualizer(),
   setWebpackOptimizationSplitChunks(chunks)
 )
