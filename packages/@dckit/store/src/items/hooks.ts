@@ -40,22 +40,27 @@ export const useSelectedItemsIds = (itemType: string): any[] =>
 
 // dispatchers hooks
 
-export type TSetItems = (items: any[]) => any
-export const useSetItems = (itemType: string): TSetItems =>
+export type TSetDispatcher = (items: any[]) => any
+export const useSetDispatcher = (itemType: string): TSetDispatcher =>
   dispatcher(useDispatch(), setItems, itemType)
 
-export type TSetItem = (id: string | number, item: any) => any
-export const useSetItem = (itemType: string): TSetItem =>
+export type TSetOneDispatcher = (id: string | number, item: any) => any
+export const useSetOneDispatcher = (itemType: string): TSetOneDispatcher =>
   dispatcher(useDispatch(), setItem, itemType)
 
-export type TRemoveItem = (id: string | number) => any
-export const useRemoveItem = (itemType: string): TRemoveItem =>
-  dispatcher(useDispatch(), removeItem, itemType)
+export type TRemoveOneDispatcher = (id: string | number) => any
+export const useRemoveOneDispatcher = (
+  itemType: string
+): TRemoveOneDispatcher => dispatcher(useDispatch(), removeItem, itemType)
 
-export type TOptItem = (id: string | number | undefined) => any
-export const useOptItem = (itemType: string): TOptItem =>
+export type TOptDispatcher = (id: string | number | undefined) => any
+export const useOptDispatcher = (itemType: string): TOptDispatcher =>
   dispatcher(useDispatch(), optItem, itemType)
 
-export type TSelectItem = (id: string | number, selected: boolean) => any
-export const useSelectItem = (itemType: string): TSelectItem =>
+export type TOptOutDispatcher = () => any
+export const useOptOutDispatcher = (itemType: string): TOptOutDispatcher =>
+  dispatcher(useDispatch(), optItem, itemType)
+
+export type TSelectDispatcher = (id: string | number, selected: boolean) => any
+export const useSelectDispatcher = (itemType: string): TSelectDispatcher =>
   dispatcher(useDispatch(), selectItem, itemType)

@@ -32,8 +32,8 @@
     "dev:next": "cd ../forms && yarn dev",
     "lint": "tsdx lint src && tsc --noEmit",
     "prepare": "yarn build && yarn test:coverage",
-    "test": "CI=true tsdx test --color --env=jest-environment-jsdom-sixteen",
-    "test:coverage": "CI=true tsdx test --color  --env=jest-environment-jsdom-sixteen --coverage",
+    "test": "CI=true tsdx test --env=jest-environment-jsdom-sixteen --colors",
+    "test:coverage": "CI=true tsdx test  --coverage --env=jest-environment-jsdom-sixteen --colors ",
     "format": "prettier --write 'src/**/*.ts*'",
     "format:check": "prettier -l 'src/**/*.ts*'",
     "update": "ncu -u"

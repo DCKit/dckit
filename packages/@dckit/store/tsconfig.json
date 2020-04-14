@@ -6,7 +6,7 @@
     "jsx": "react",
     "module": "esnext",
     "moduleResolution": "node",
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": false,
     "outDir": "dist",
     "strict": true,

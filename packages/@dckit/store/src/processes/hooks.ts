@@ -1,6 +1,7 @@
-import { useSelector, shallowEqual as shallow } from 'react-redux'
-import { select, useDidUpdate } from '../helpers/hooks'
+import { useSelector, useDispatch, shallowEqual as shallow } from 'react-redux'
+import { select, dispatcher, useDidUpdate } from '../helpers/hooks'
 import { TAct, Acts, IProcess } from '../types'
+import { processStop, processReset } from './actions'
 
 import {
   getProcess,
@@ -10,6 +11,45 @@ import {
   isProcessFailed,
 } from './selectors'
 
+// dispatchers hooks
+
+// stop process hooks
+export const useProcessStop = (itemType: string, act: TAct) =>
+  dispatcher(
+    useDispatch(),
+    (itemType: string) => processStop(itemType, act),
+    itemType
+  )
+
+const stop = (act: TAct) => (itemType: string) => useProcessStop(itemType, act)
+
+export const useLoadStop = stop(Acts.Load)
+export const useAddStop = stop(Acts.Add)
+export const useUpdateStop = stop(Acts.Update)
+export const useDeleteStop = stop(Acts.Delete)
+export const useImportStop = stop(Acts.Import)
+export const useExportStop = stop(Acts.Export)
+
+// reset process hooks
+export const useProcessReset = (itemType: string, act: TAct) =>
+  dispatcher(
+    useDispatch(),
+    (itemType: string) => processReset(itemType, act),
+    itemType
+  )
+
+const reset = (act: TAct) => (itemType: string) =>
+  useProcessReset(itemType, act)
+
+export const useLoadReset = reset(Acts.Load)
+export const useAddReset = reset(Acts.Add)
+export const useUpdateReset = reset(Acts.Update)
+export const useDeleteReset = reset(Acts.Delete)
+export const useImportReset = reset(Acts.Import)
+export const useExportReset = reset(Acts.Export)
+
+// selector hooks
+
 export const useProcess = (itemType: string, act: TAct): IProcess =>
   useSelector(select(getProcess, itemType, act), shallow)
 
@@ -17,18 +57,18 @@ export const useResponse = (itemType: string, act: TAct): any =>
   useSelector(select(getProcessResponse, itemType, act), shallow)
 
 // isRunning hooks
-export const useProcessRunning = (itemType: string, act: TAct): boolean =>
+export const useProcessRunningStatus = (itemType: string, act: TAct): boolean =>
   useSelector(select(isProcessRunning, itemType, act), shallow)
 
 const isRunning = (act: TAct) => (itemType: string) =>
-  useProcessRunning(itemType, act)
+  useProcessRunningStatus(itemType, act)
 
-export const useLoading = isRunning(Acts.Load)
-export const useAdding = isRunning(Acts.Add)
-export const useUpdating = isRunning(Acts.Update)
-export const useDeleting = isRunning(Acts.Delete)
-export const useImporting = isRunning(Acts.Import)
-export const useExporting = isRunning(Acts.Export)
+export const useLoadingStatus = isRunning(Acts.Load)
+export const useAddingStatus = isRunning(Acts.Add)
+export const useUpdatingStatus = isRunning(Acts.Update)
+export const useDeletingStatus = isRunning(Acts.Delete)
+export const useImportingStatus = isRunning(Acts.Import)
+export const useExportingStatus = isRunning(Acts.Export)
 
 // isSucceed hooks
 export const useProcessSucceed = (itemType: string, act: TAct): boolean =>

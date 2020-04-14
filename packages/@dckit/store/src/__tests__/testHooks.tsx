@@ -4,20 +4,23 @@ import { render } from '@testing-library/react'
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import { dckReducer } from '../dck/reducer'
-import { stateForHooks as preloadedState } from './testData'
+import { stateForHooks } from './testData'
 
-const store = configureStore({
-  reducer: combineReducers({
-    dck: dckReducer,
-  }),
-  preloadedState,
-})
+const preloadedStore = () =>
+  configureStore({
+    reducer: combineReducers({
+      dck: dckReducer,
+    }),
+    preloadedState: stateForHooks,
+  })
 
-export function testSelectorHook(runHook: any) {
+export function testSelectorHook(hook: any) {
   const HookWrapper: React.FC = () => {
-    const output = runHook()
-    return <pre data-testid="testid">{JSON.stringify(output)}</pre>
+    const state = hook()
+    return <pre data-testid="testid">{JSON.stringify(state)}</pre>
   }
+
+  const store = preloadedStore()
 
   return render(
     <Provider store={store}>
@@ -26,16 +29,16 @@ export function testSelectorHook(runHook: any) {
   )
 }
 
-export function testDispatcherHook(runHook: any) {
+export function testDispatcherHook(hook: any, ...args: any[]) {
   const HookWrapper: React.FC = () => {
     const [clicked, setClicked] = useState(false)
-    const dispatcher = runHook()
+    const dispatch = hook()
     return (
       <>
         <button
           data-testid="testid"
           onClick={() => {
-            dispatcher()
+            dispatch(...args)
             setClicked(true)
           }}
         />
@@ -43,6 +46,41 @@ export function testDispatcherHook(runHook: any) {
       </>
     )
   }
+
+  const store = preloadedStore()
+
+  return render(
+    <Provider store={store}>
+      <HookWrapper />
+    </Provider>
+  )
+}
+
+export function testOnProcessStopHook(
+  marker: string,
+  testHook: any,
+  stopHook: any,
+  resetHook: any
+) {
+  const HookWrapper: React.FC = () => {
+    const [clicked, setClicked] = useState(false)
+    const stop = stopHook()
+    const reset = resetHook()
+
+    testHook(() => {
+      setClicked(true)
+      reset()
+    })
+
+    return (
+      <>
+        <button data-testid="testid" onClick={() => stop()} />
+        {clicked && <pre>{marker}</pre>}
+      </>
+    )
+  }
+
+  const store = preloadedStore()
 
   return render(
     <Provider store={store}>

@@ -32,8 +32,8 @@
     "dev:next": "cd ../ui && yarn dev",
     "lint": "tsdx lint src && tsc --noEmit",
     "prepare": "yarn build && yarn test:coverage",
-    "test": "CI=true tsdx test --color",
-    "test:coverage": "CI=true tsdx test --color --coverage",
+    "test": "CI=true tsdx test --colors",
+    "test:coverage": "CI=true tsdx test --colors --coverage",
     "format": "prettier --write 'src/**/*.ts*'",
     "format:check": "prettier -l 'src/**/*.ts*'",
     "update": "ncu -u"

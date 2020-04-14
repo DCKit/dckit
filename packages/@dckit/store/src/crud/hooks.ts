@@ -12,26 +12,26 @@ import {
 
 // dispatchers hooks
 
-export type TLoadItems = (options?: any) => any
-export const useLoadItems = (itemType: string): TLoadItems =>
+export type TLoadDispatcher = (options?: any) => any
+export const useLoadDispatcher = (itemType: string): TLoadDispatcher =>
   dispatcher(useDispatch(), loadItems, itemType)
 
-export type TAddItem = (options?: any) => any
-export const useAddItem = (itemType: string): TAddItem =>
+export type TAddDispatcher = (options?: any) => any
+export const useAddDispatcher = (itemType: string): TAddDispatcher =>
   dispatcher(useDispatch(), addItem, itemType)
 
-export type TUpdateItem = (options?: any) => any
-export const useUpdateItem = (itemType: string): TUpdateItem =>
+export type TUpdateDispatcher = (options?: any) => any
+export const useUpdateDispatcher = (itemType: string): TUpdateDispatcher =>
   dispatcher(useDispatch(), updateItem, itemType)
 
-export type TDeleteItem = (options?: any) => any
-export const useDeleteItem = (itemType: string): TDeleteItem =>
+export type TDeleteDispatcher = (options?: any) => any
+export const useDeleteDispatcher = (itemType: string): TDeleteDispatcher =>
   dispatcher(useDispatch(), deleteItem, itemType)
 
-export type TImportItems = (options?: any) => any
-export const useImportItems = (itemType: string): TImportItems =>
+export type TImportDispatcher = (options?: any) => any
+export const useImportDispatcher = (itemType: string): TImportDispatcher =>
   dispatcher(useDispatch(), importItems, itemType)
 
-export type TExportItems = (options?: any) => any
-export const useExportItems = (itemType: string): TExportItems =>
+export type TExportDispatcher = (options?: any) => any
+export const useExportDispatcher = (itemType: string): TExportDispatcher =>
   dispatcher(useDispatch(), exportItems, itemType)

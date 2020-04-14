@@ -6,6 +6,7 @@ import { IAction, ActionTypes } from '../types'
 export function loadItems(itemType: string, options?: any): IAction {
   return composeAction(ActionTypes.loadItems)({ itemType, options })
 }
+
 export function addItem(itemType: string, item: any, options?: any): IAction {
   return composeAction(ActionTypes.addItem)({
     itemType,
@@ -13,6 +14,7 @@ export function addItem(itemType: string, item: any, options?: any): IAction {
     payload: item,
   })
 }
+
 export function updateItem(
   itemType: string,
   id: string | number,
@@ -26,6 +28,7 @@ export function updateItem(
     payload: item,
   })
 }
+
 export function deleteItem(
   itemType: string,
   id: string | number,
@@ -33,9 +36,11 @@ export function deleteItem(
 ): IAction {
   return composeAction(ActionTypes.deleteItem)({ itemType, id, options })
 }
+
 export function importItems(itemType: string, options?: any): IAction {
   return composeAction(ActionTypes.importItems)({ itemType, options })
 }
+
 export function exportItems(itemType: string, options?: any): IAction {
   return composeAction(ActionTypes.exportItems)({ itemType, options })
 }
