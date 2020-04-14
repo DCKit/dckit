@@ -7,10 +7,10 @@
     "start": "SKIP_PREFLIGHT_CHECK=true react-app-rewired start",
     "build": "SKIP_PREFLIGHT_CHECK=true react-app-rewired build",
     "analyze": "SKIP_PREFLIGHT_CHECK=true ANALYZE=true react-app-rewired build",
-    "test": "SKIP_PREFLIGHT_CHECK=true CI=true react-app-rewired test --color --env=jest-environment-jsdom-sixteen",
-    "test:coverage": "SKIP_PREFLIGHT_CHECK=true CI=true react-app-rewired test --color --env=jest-environment-jsdom-sixteen --coverage",
+    "test": "SKIP_PREFLIGHT_CHECK=true CI=true react-app-rewired test --env=jest-environment-jsdom-sixteen --colors",
+    "test:coverage": "SKIP_PREFLIGHT_CHECK=true CI=true react-app-rewired test --env=jest-environment-jsdom-sixteen --colors --coverage",
     "prepare": "yarn build && yarn test:coverage",
-    "lint": "eslint ./src/**/*.tsx --max-warnings=0 --format=codeframe && tsc --noEmit",
+    "lint": "eslint ./src/**/*.tsx && tsc --noEmit",
     "format": "prettier --write 'src/**/*.ts*'",
     "format:check": "prettier -l 'src/**/*.ts*'",
     "update": "ncu -u"

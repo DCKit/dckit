@@ -5,8 +5,8 @@
   "main": "src/index.tsx",
   "main:src": "src/index.tsx",
   "scripts": {
-    "test": "SKIP_PREFLIGHT_CHECK=true CI=true react-scripts test --color --env=jest-environment-jsdom-sixteen",
-    "test:coverage": "SKIP_PREFLIGHT_CHECK=true CI=true react-scripts test --color --env=jest-environment-jsdom-sixteen --coverage",
+    "test": "SKIP_PREFLIGHT_CHECK=true CI=true react-scripts test --env=jest-environment-jsdom-sixteen --colors",
+    "test:coverage": "SKIP_PREFLIGHT_CHECK=true CI=true react-scripts test --env=jest-environment-jsdom-sixteen --colors --coverage",
     "lint": "eslint ./src/**/*.tsx --max-warnings=0 --format=codeframe && tsc --noEmit",
     "format": "prettier --write 'src/**/*.ts*'",
     "format:check": "prettier -l 'src/**/*.ts*'",

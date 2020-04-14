@@ -57,18 +57,18 @@ export const useResponse = (itemType: string, act: TAct): any =>
   useSelector(select(getProcessResponse, itemType, act), shallow)
 
 // isRunning hooks
-export const useProcessRunning = (itemType: string, act: TAct): boolean =>
+export const useProcessRunningStatus = (itemType: string, act: TAct): boolean =>
   useSelector(select(isProcessRunning, itemType, act), shallow)
 
 const isRunning = (act: TAct) => (itemType: string) =>
-  useProcessRunning(itemType, act)
+  useProcessRunningStatus(itemType, act)
 
-export const useLoading = isRunning(Acts.Load)
-export const useAdding = isRunning(Acts.Add)
-export const useUpdating = isRunning(Acts.Update)
-export const useDeleting = isRunning(Acts.Delete)
-export const useImporting = isRunning(Acts.Import)
-export const useExporting = isRunning(Acts.Export)
+export const useLoadingStatus = isRunning(Acts.Load)
+export const useAddingStatus = isRunning(Acts.Add)
+export const useUpdatingStatus = isRunning(Acts.Update)
+export const useDeletingStatus = isRunning(Acts.Delete)
+export const useImportingStatus = isRunning(Acts.Import)
+export const useExportingStatus = isRunning(Acts.Export)
 
 // isSucceed hooks
 export const useProcessSucceed = (itemType: string, act: TAct): boolean =>

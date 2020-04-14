@@ -29,7 +29,7 @@ export function testSelectorHook(hook: any) {
   )
 }
 
-export function testDispatcherHook(hook: any) {
+export function testDispatcherHook(hook: any, ...args: any[]) {
   const HookWrapper: React.FC = () => {
     const [clicked, setClicked] = useState(false)
     const dispatch = hook()
@@ -38,7 +38,7 @@ export function testDispatcherHook(hook: any) {
         <button
           data-testid="testid"
           onClick={() => {
-            dispatch()
+            dispatch(...args)
             setClicked(true)
           }}
         />

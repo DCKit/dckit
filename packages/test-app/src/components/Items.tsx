@@ -2,11 +2,11 @@ import React from 'react'
 import {
   useItems,
   useOptedItem,
-  useOptItem,
-  useLoading,
+  useOptDispatcher,
+  useLoadingStatus,
   useOnLoadSuccess,
-  useLoadItems,
-  useSetItems,
+  useLoadDispatcher,
+  useSetDispatcher,
 } from '@dckit/store'
 import { AppBarHead, PageBarHead } from '@dckit/ui'
 
@@ -19,13 +19,13 @@ export function Items(props: ItemsProps) {
   const { itemType, optedItemId } = props
 
   const items: any[] = useItems(itemType)
-  const loading = useLoading(itemType)
-  const load = useLoadItems(itemType)
-  const setItems = useSetItems(itemType)
-  const optItem = useOptItem(itemType)
   const optedItem = useOptedItem(itemType)
+  const loading = useLoadingStatus(itemType)
+  const load = useLoadDispatcher(itemType)
+  const setItems = useSetDispatcher(itemType)
+  const opt = useOptDispatcher(itemType)
 
-  useOnLoadSuccess(itemType, () => optItem(optedItemId))
+  useOnLoadSuccess(itemType, () => opt(optedItemId))
 
   return (
     <>

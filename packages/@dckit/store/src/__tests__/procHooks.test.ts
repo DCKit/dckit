@@ -4,37 +4,33 @@ import * as procHooks from '../processes/hooks'
 import { Acts } from '../types'
 import { TestItem } from './testData'
 
-describe('processes selectors hooks', () => {
-  describe('useProcess', () => {
-    it('should successfully execute', () => {
-      const { getByText } = testSelectorHook(() =>
-        procHooks.useProcess(TestItem, Acts.Load)
+describe('process hooks', () => {
+  it('should successfully execute useProcess', () => {
+    const { getByText } = testSelectorHook(() =>
+      procHooks.useProcess(TestItem, Acts.Load)
+    )
+    expect(
+      getByText(
+        '{"running":false,"error":true,"finished":true,"response":{"message":"error"}}'
       )
-      expect(
-        getByText(
-          '{"running":false,"error":true,"finished":true,"response":{"message":"error"}}'
-        )
-      ).toBeDefined()
-    })
+    ).toBeDefined()
   })
 
-  describe('useResponse', () => {
-    it('should successfully execute', () => {
-      const { getByText } = testSelectorHook(() =>
-        procHooks.useResponse(TestItem, Acts.Load)
-      )
-      expect(getByText('{"message":"error"}')).toBeDefined()
-    })
+  it('should successfully execute useResponse', () => {
+    const { getByText } = testSelectorHook(() =>
+      procHooks.useResponse(TestItem, Acts.Load)
+    )
+    expect(getByText('{"message":"error"}')).toBeDefined()
   })
 
   describe('use<running>', () => {
     const forTest = [
-      [procHooks.useLoading, 'useLoading'],
-      [procHooks.useAdding, 'useAdding'],
-      [procHooks.useUpdating, 'useUpdating'],
-      [procHooks.useDeleting, 'useDeleting'],
-      [procHooks.useImporting, 'useImporting'],
-      [procHooks.useExporting, 'useExporting'],
+      [procHooks.useLoadingStatus, 'useLoadingStatus'],
+      [procHooks.useAddingStatus, 'useAddingStatus'],
+      [procHooks.useUpdatingStatus, 'useUpdatingStatus'],
+      [procHooks.useDeletingStatus, 'useDeletingStatus'],
+      [procHooks.useImportingStatus, 'useImportingStatus'],
+      [procHooks.useExportingStatus, 'useExportingStatus'],
     ]
     forTest.forEach((hooks: any[]) => {
       const [hook, name] = hooks
