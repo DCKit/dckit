@@ -1,14 +1,14 @@
 import { createSelector } from '@reduxjs/toolkit'
-import { IState } from '../types'
+import { TState } from '../types'
 
 export const get3rdParam = (...args: any[]) => args[2]
 
 type getDckState = (section: string) => any
 
-const emptyState: IState = {}
+const emptyState: TState = {}
 
 function _getDckState(section: string): any {
-  return function(state: IState, itemType: string): any {
+  return function(state: TState, itemType: string): any {
     return state?.dck?.[section]?.[itemType] || emptyState
   }
 }

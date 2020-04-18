@@ -13,7 +13,7 @@ import {
   stateAfterDeleteSaga,
   stateAfterSelectSaga,
 } from './testData'
-import { Process } from '../helpers/processes'
+import { Process } from '../processes'
 
 const reducers: Reducer = combineReducers({
   dck: dckReducer,
@@ -26,7 +26,7 @@ function* getSession(request: any) {
   }
 }
 
-describe('process helpers', () => {
+describe('sagas & processes', () => {
   it('should successfully execute batch of sagas with defaults', async () => {
     const sagaTester = new SagaTester({
       initialState,
@@ -43,6 +43,9 @@ describe('process helpers', () => {
     sagaTester.dispatch(dckActions.updateItem(TestItem, '1', {}))
     sagaTester.dispatch(dckActions.importItems(TestItem))
     sagaTester.dispatch(dckActions.exportItems(TestItem))
+    sagaTester.dispatch(dckActions.generateItems(TestItem))
+    sagaTester.dispatch(dckActions.submitItems(TestItem))
+    sagaTester.dispatch(dckActions.validateItems(TestItem))
 
     await sagaTester.waitFor(ActionTypes.processReset)
     const state = sagaTester.getState()

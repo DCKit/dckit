@@ -1,13 +1,13 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { getDckState, get3rdParam } from '../helpers/selectors'
-import { IState, ItemProps } from '../types'
+import { TState, PaginationProps } from '../types'
 
-type getItemPropsState = (state: IState, itemType: string) => any
-type getItemProp = (state: IState, itemType: string, field: string) => any
-type getTotalItems = (state: IState, itemType: string) => any
-type getTotalPages = (state: IState, itemType: string) => any
-type getCurrentPage = (state: IState, itemType: string) => any
-type getPageSize = (state: IState, itemType: string) => any
+type getItemPropsState = (state: TState, itemType: string) => any
+type getItemProp = (state: TState, itemType: string, field: string) => any
+type getTotalItems = (state: TState, itemType: string) => any
+type getTotalPages = (state: TState, itemType: string) => any
+type getCurrentPage = (state: TState, itemType: string) => any
+type getPageSize = (state: TState, itemType: string) => any
 
 const _getItemPropsState = getDckState('itemProps')
 
@@ -23,20 +23,20 @@ export const getItemProp: getItemProp = createSelector(
 
 export const getTotalItems: getTotalItems = createSelector(
   getItemPropsState,
-  itemPropsState => itemPropsState[ItemProps.totalItems]
+  itemPropsState => itemPropsState[PaginationProps.totalItems]
 )
 
 export const getTotalPages: getTotalPages = createSelector(
   getItemPropsState,
-  itemPropsState => itemPropsState[ItemProps.totalPages]
+  itemPropsState => itemPropsState[PaginationProps.totalPages]
 )
 
 export const getCurrentPage: getCurrentPage = createSelector(
   getItemPropsState,
-  itemPropsState => itemPropsState[ItemProps.currentPage]
+  itemPropsState => itemPropsState[PaginationProps.currentPage]
 )
 
 export const getPageSize: getPageSize = createSelector(
   getItemPropsState,
-  itemPropsState => itemPropsState[ItemProps.pageSize]
+  itemPropsState => itemPropsState[PaginationProps.pageSize]
 )

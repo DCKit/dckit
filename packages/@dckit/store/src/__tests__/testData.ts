@@ -43,6 +43,24 @@ export const stateAfterBatchSagas = {
           finished: false,
           response: void 0,
         },
+        Generate: {
+          running: true,
+          error: false,
+          finished: false,
+          response: void 0,
+        },
+        Submit: {
+          running: true,
+          error: false,
+          finished: false,
+          response: void 0,
+        },
+        Validate: {
+          running: true,
+          error: false,
+          finished: false,
+          response: void 0,
+        },
       },
     },
   },
@@ -287,6 +305,21 @@ export const stateForHooks = {
           finished: true,
         },
         [Acts.Export]: {
+          running: false,
+          error: true,
+          finished: true,
+        },
+        [Acts.Generate]: {
+          running: false,
+          error: true,
+          finished: true,
+        },
+        [Acts.Submit]: {
+          running: false,
+          error: true,
+          finished: true,
+        },
+        [Acts.Validate]: {
           running: false,
           error: true,
           finished: true,

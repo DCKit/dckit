@@ -10,7 +10,7 @@ import {
   stateAfterLoadAllSaga,
 } from './testData'
 import { testLoadFetcher } from './fetchers'
-import { Process } from '../helpers/processes'
+import { Process } from '../processes'
 
 const reducers: Reducer = combineReducers({
   dck: dckReducer,

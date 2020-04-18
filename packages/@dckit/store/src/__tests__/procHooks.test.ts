@@ -25,12 +25,15 @@ describe('process hooks', () => {
 
   describe('use<running>', () => {
     const forTest = [
-      [procHooks.useLoadingStatus, 'useLoadingStatus'],
-      [procHooks.useAddingStatus, 'useAddingStatus'],
-      [procHooks.useUpdatingStatus, 'useUpdatingStatus'],
-      [procHooks.useDeletingStatus, 'useDeletingStatus'],
-      [procHooks.useImportingStatus, 'useImportingStatus'],
-      [procHooks.useExportingStatus, 'useExportingStatus'],
+      [procHooks.useLoading, 'useLoading'],
+      [procHooks.useAdding, 'useAdding'],
+      [procHooks.useUpdating, 'useUpdating'],
+      [procHooks.useDeleting, 'useDeleting'],
+      [procHooks.useImporting, 'useImporting'],
+      [procHooks.useExporting, 'useExporting'],
+      [procHooks.useGenerating, 'useGenerating'],
+      [procHooks.useSubmitting, 'useSubmitting'],
+      [procHooks.useValidating, 'useValidating'],
     ]
     forTest.forEach((hooks: any[]) => {
       const [hook, name] = hooks
@@ -49,6 +52,9 @@ describe('process hooks', () => {
       [procHooks.useDeleteFailed, 'useDeleteFailed'],
       [procHooks.useImportFailed, 'useImportFailed'],
       [procHooks.useExportFailed, 'useExportFailed'],
+      [procHooks.useGenerateFailed, 'useGenerateFailed'],
+      [procHooks.useSubmitFailed, 'useSubmitFailed'],
+      [procHooks.useValidateFailed, 'useValidateFailed'],
     ]
     forTest.forEach((hooks: any[]) => {
       const [hook, name] = hooks
@@ -96,6 +102,24 @@ describe('process hooks', () => {
         procHooks.useExportStop,
         procHooks.useExportReset,
         'useOnExportSuccess',
+      ],
+      [
+        procHooks.useOnGenerateSuccess,
+        procHooks.useGenerateStop,
+        procHooks.useGenerateReset,
+        'useOnGenerateSuccess',
+      ],
+      [
+        procHooks.useOnSubmitSuccess,
+        procHooks.useSubmitStop,
+        procHooks.useSubmitReset,
+        'useOnSubmitSuccess',
+      ],
+      [
+        procHooks.useOnValidateSuccess,
+        procHooks.useValidateStop,
+        procHooks.useValidateReset,
+        'useOnValidateSuccess',
       ],
     ]
     forTest.forEach((hooks: any[]) => {

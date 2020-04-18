@@ -1,6 +1,6 @@
 import { useSelector, useDispatch, shallowEqual as shallow } from 'react-redux'
 import { select, dispatcher, useDidUpdate } from '../helpers/hooks'
-import { TAct, Acts, IProcess } from '../types'
+import { TAct, Acts, ProcessState } from '../types'
 import { processStop, processReset } from './actions'
 
 import {
@@ -29,6 +29,9 @@ export const useUpdateStop = stop(Acts.Update)
 export const useDeleteStop = stop(Acts.Delete)
 export const useImportStop = stop(Acts.Import)
 export const useExportStop = stop(Acts.Export)
+export const useGenerateStop = stop(Acts.Generate)
+export const useSubmitStop = stop(Acts.Submit)
+export const useValidateStop = stop(Acts.Validate)
 
 // reset process hooks
 export const useProcessReset = (itemType: string, act: TAct) =>
@@ -47,28 +50,34 @@ export const useUpdateReset = reset(Acts.Update)
 export const useDeleteReset = reset(Acts.Delete)
 export const useImportReset = reset(Acts.Import)
 export const useExportReset = reset(Acts.Export)
+export const useGenerateReset = reset(Acts.Generate)
+export const useSubmitReset = reset(Acts.Submit)
+export const useValidateReset = reset(Acts.Validate)
 
 // selector hooks
 
-export const useProcess = (itemType: string, act: TAct): IProcess =>
+export const useProcess = (itemType: string, act: TAct): ProcessState =>
   useSelector(select(getProcess, itemType, act), shallow)
 
 export const useResponse = (itemType: string, act: TAct): any =>
   useSelector(select(getProcessResponse, itemType, act), shallow)
 
 // isRunning hooks
-export const useProcessRunningStatus = (itemType: string, act: TAct): boolean =>
+export const useProcessRunning = (itemType: string, act: TAct): boolean =>
   useSelector(select(isProcessRunning, itemType, act), shallow)
 
 const isRunning = (act: TAct) => (itemType: string) =>
-  useProcessRunningStatus(itemType, act)
+  useProcessRunning(itemType, act)
 
-export const useLoadingStatus = isRunning(Acts.Load)
-export const useAddingStatus = isRunning(Acts.Add)
-export const useUpdatingStatus = isRunning(Acts.Update)
-export const useDeletingStatus = isRunning(Acts.Delete)
-export const useImportingStatus = isRunning(Acts.Import)
-export const useExportingStatus = isRunning(Acts.Export)
+export const useLoading = isRunning(Acts.Load)
+export const useAdding = isRunning(Acts.Add)
+export const useUpdating = isRunning(Acts.Update)
+export const useDeleting = isRunning(Acts.Delete)
+export const useImporting = isRunning(Acts.Import)
+export const useExporting = isRunning(Acts.Export)
+export const useGenerating = isRunning(Acts.Generate)
+export const useSubmitting = isRunning(Acts.Submit)
+export const useValidating = isRunning(Acts.Validate)
 
 // isSucceed hooks
 export const useProcessSucceed = (itemType: string, act: TAct): boolean =>
@@ -83,6 +92,9 @@ export const useUpdateSucceed = isSucceed(Acts.Update)
 export const useDeleteSucceed = isSucceed(Acts.Delete)
 export const useImportSucceed = isSucceed(Acts.Import)
 export const useExportSucceed = isSucceed(Acts.Export)
+export const useGenerateSucceed = isSucceed(Acts.Generate)
+export const useSubmitSucceed = isSucceed(Acts.Submit)
+export const useValidateSucceed = isSucceed(Acts.Validate)
 
 // isFailed hooks
 export const useProcessFailed = (itemType: string, act: TAct): boolean =>
@@ -97,7 +109,9 @@ export const useUpdateFailed = isFailed(Acts.Update)
 export const useDeleteFailed = isFailed(Acts.Delete)
 export const useImportFailed = isFailed(Acts.Import)
 export const useExportFailed = isFailed(Acts.Export)
-
+export const useGenerateFailed = isFailed(Acts.Generate)
+export const useSubmitFailed = isFailed(Acts.Submit)
+export const useValidateFailed = isFailed(Acts.Validate)
 // onSuccess callback hooks
 export const useOnProcessSuccess = (
   itemType: string,
@@ -117,6 +131,9 @@ export const useOnUpdateSuccess = onSuccess(Acts.Update)
 export const useOnDeleteSuccess = onSuccess(Acts.Delete)
 export const useOnImportSuccess = onSuccess(Acts.Import)
 export const useOnExportSuccess = onSuccess(Acts.Export)
+export const useOnGenerateSuccess = onSuccess(Acts.Generate)
+export const useOnSubmitSuccess = onSuccess(Acts.Submit)
+export const useOnValidateSuccess = onSuccess(Acts.Validate)
 
 // onFail callback hooks
 export const useOnProcessFail = (
@@ -137,3 +154,6 @@ export const useOnUpdateFail = onFail(Acts.Update)
 export const useOnDeleteFail = onFail(Acts.Delete)
 export const useOnImportFail = onFail(Acts.Import)
 export const useOnExportFail = onFail(Acts.Export)
+export const useOnGenerateFail = onFail(Acts.Generate)
+export const useOnSubmitFail = onFail(Acts.Submit)
+export const useOnValidateFail = onFail(Acts.Validate)
