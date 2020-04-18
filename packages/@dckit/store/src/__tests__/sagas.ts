@@ -1,6 +1,6 @@
 import { all, takeLatest, put } from 'redux-saga/effects'
-import { Process } from '../helpers/processes'
-import { Flow } from '../helpers/flows'
+import { Process } from '../processes'
+import { Flow } from '../flows'
 import { isAction } from '../helpers/actions'
 import {
   testLoadFetcher,
@@ -9,7 +9,7 @@ import {
   failFetcher,
 } from './fetchers'
 import { TestItem, testItems } from './testData'
-import { IAction } from '../types'
+import { TAction } from '../types'
 import { dckActions } from '..'
 
 export function* testFlowSaga() {
@@ -24,11 +24,14 @@ export function* testSaga() {
     takeLatest(isAction.Update(TestItem), batchSaga),
     takeLatest(isAction.Import(TestItem), batchSaga),
     takeLatest(isAction.Export(TestItem), batchSaga),
+    takeLatest(isAction.Generate(TestItem), batchSaga),
+    takeLatest(isAction.Submit(TestItem), batchSaga),
+    takeLatest(isAction.Validate(TestItem), batchSaga),
     takeLatest(isAction.Select(TestItem), failSelectSaga),
   ])
 }
 
-function* loadItemsSaga(action: IAction) {
+function* loadItemsSaga(action: TAction) {
   const proc = Process.Load(TestItem, {
     fetcher: testLoadFetcher,
     pageble: true,
@@ -45,7 +48,7 @@ function* loadItemsSaga(action: IAction) {
   yield proc.stop({ message: 'done' })
 }
 
-function* addItemSaga(action: IAction) {
+function* addItemSaga(action: TAction) {
   const proc = Process.Add(TestItem, {
     fetcher: testAddFetcher,
   })
@@ -55,7 +58,7 @@ function* addItemSaga(action: IAction) {
   yield proc.stop()
 }
 
-function* deleteItemSaga(action: IAction) {
+function* deleteItemSaga(action: TAction) {
   const proc = Process.Delete(TestItem, {
     fetcher: testDeleteFetcher,
   })
@@ -72,22 +75,28 @@ function* batchSaga() {
   })
   const procImport = Process.Import(TestItem)
   const procExport = Process.Export(TestItem)
+  const procGenerate = Process.Generate(TestItem)
+  const procSubmit = Process.Submit(TestItem)
+  const procValidate = Process.Validate(TestItem)
 
   yield procUpdate.setItems()
   const totalItems = (yield procUpdate.totalItems()) || 1
   const totalPages = (yield procImport.totalPages()) || 2
   const dummy = (yield procExport.itemProp('dummy')) || 3
 
-  yield procImport.start()
-  yield procExport.start()
-
   yield procUpdate.start()
   yield procImport.start()
   yield procExport.start()
+  yield procGenerate.start()
+  yield procSubmit.start()
+  yield procValidate.start()
 
   yield procUpdate.fetch()
   yield procImport.fetch()
   yield procExport.fetch()
+  yield procGenerate.fetch()
+  yield procSubmit.fetch()
+  yield procValidate.fetch()
 
   yield procExport.setItemProp('status', `${totalItems}${totalPages}${dummy}`)
   yield procExport.fail()

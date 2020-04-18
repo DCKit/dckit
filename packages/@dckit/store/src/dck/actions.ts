@@ -13,7 +13,10 @@ import {
   deleteItem,
   importItems,
   exportItems,
-} from '../crud/actions'
+  generateItems,
+  submitItems,
+  validateItems,
+} from '../acts/actions'
 
 import {
   setItemProp,
@@ -50,6 +53,9 @@ export const dckActions = {
   deleteItem,
   importItems,
   exportItems,
+  generateItems,
+  submitItems,
+  validateItems,
   setItemProp,
   setTotalItems,
   setTotalPages,

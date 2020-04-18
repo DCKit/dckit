@@ -3,7 +3,7 @@ import {
   useItems,
   useOptedItem,
   useOptDispatcher,
-  useLoadingStatus,
+  useLoading,
   useOnLoadSuccess,
   useLoadDispatcher,
   useSetDispatcher,
@@ -20,7 +20,7 @@ export function Items(props: ItemsProps) {
 
   const items: any[] = useItems(itemType)
   const optedItem = useOptedItem(itemType)
-  const loading = useLoadingStatus(itemType)
+  const loading = useLoading(itemType)
   const load = useLoadDispatcher(itemType)
   const setItems = useSetDispatcher(itemType)
   const opt = useOptDispatcher(itemType)

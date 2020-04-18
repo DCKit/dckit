@@ -1,9 +1,9 @@
 import { call, put, select, PutEffect, SelectEffect } from 'redux-saga/effects'
-import { Acts, TAct, TFetcher, IAction, ItemProps } from '../types'
+import { Acts, TAct, TFetcher, TAction, PaginationProps } from '../types'
 import { dckActions } from '../dck/actions'
 import { dckSelectors } from '../dck/selectors'
 
-export interface TProcess {
+export type TProcess = {
   fetch(params?: any): any
   data(): any
   response(): any
@@ -14,21 +14,21 @@ export interface TProcess {
   totalItems(): SelectEffect
   totalPages(): SelectEffect
   itemProp(prop: any): SelectEffect
-  start(): PutEffect<IAction>
-  reset(): PutEffect<IAction>
-  stop(response?: any): PutEffect<IAction>
-  fail(response?: any): PutEffect<IAction>
-  optItem(id: string | number): PutEffect<IAction>
-  setItemProp(prop: string, data: any): PutEffect<IAction>
-  setCurrentPage(currentPage: number): PutEffect<IAction>
-  setPageSize(pageSize: number): PutEffect<IAction>
-  setItems(data?: any[]): PutEffect<IAction>
-  setItem(id: string | number, data: any): PutEffect<IAction>
-  setTotalItems(totalItems: number): PutEffect<IAction>
+  start(): PutEffect<TAction>
+  reset(): PutEffect<TAction>
+  stop(response?: any): PutEffect<TAction>
+  fail(response?: any): PutEffect<TAction>
+  optItem(id: string | number): PutEffect<TAction>
+  setItemProp(prop: string, data: any): PutEffect<TAction>
+  setCurrentPage(currentPage: number): PutEffect<TAction>
+  setPageSize(pageSize: number): PutEffect<TAction>
+  setItems(data?: any[]): PutEffect<TAction>
+  setItem(id: string | number, data: any): PutEffect<TAction>
+  setTotalItems(totalItems: number): PutEffect<TAction>
   setTotalPages(totalPages: number): any
 }
 
-export interface TProcessFacade {
+export type TProcessFacade = {
   create: typeof createProcess
   setExtendRequest: typeof setExtendRequest
   setFetcher: typeof setFetcher
@@ -38,6 +38,9 @@ export interface TProcessFacade {
   [Acts.Delete]: TProcessCreator
   [Acts.Import]: TProcessCreator
   [Acts.Export]: TProcessCreator
+  [Acts.Generate]: TProcessCreator
+  [Acts.Submit]: TProcessCreator
+  [Acts.Validate]: TProcessCreator
 }
 
 export const Process: TProcessFacade = Object.freeze({
@@ -50,6 +53,9 @@ export const Process: TProcessFacade = Object.freeze({
   [Acts.Delete]: createProcess(Acts.Delete),
   [Acts.Import]: createProcess(Acts.Import),
   [Acts.Export]: createProcess(Acts.Export),
+  [Acts.Generate]: createProcess(Acts.Generate),
+  [Acts.Submit]: createProcess(Acts.Submit),
+  [Acts.Validate]: createProcess(Acts.Validate),
 })
 
 // static hook to extend request params before fetch, for ex. session token
@@ -115,8 +121,8 @@ export function createProcess(act: TAct): TProcessCreator {
 
       if (_options.pageble) {
         const pageble: any = {}
-        pageble[ItemProps.currentPage] = yield currentPage()
-        pageble[ItemProps.pageSize] = yield pageSize()
+        pageble[PaginationProps.currentPage] = yield currentPage()
+        pageble[PaginationProps.pageSize] = yield pageSize()
         pageble.filters = yield filters()
         pageble.sorting = yield sorting()
         request.pageble = pageble
@@ -184,49 +190,49 @@ export function createProcess(act: TAct): TProcessCreator {
 
     // actions helpers
 
-    function start(): PutEffect<IAction> {
+    function start(): PutEffect<TAction> {
       return put(dckActions.processStart(_itemType, _act))
     }
 
-    function reset(): PutEffect<IAction> {
+    function reset(): PutEffect<TAction> {
       return put(dckActions.processReset(_itemType, _act))
     }
 
-    function stop(response?: any): PutEffect<IAction> {
+    function stop(response?: any): PutEffect<TAction> {
       return put(dckActions.processStop(_itemType, _act, response))
     }
 
-    function fail(response?: any): PutEffect<IAction> {
+    function fail(response?: any): PutEffect<TAction> {
       if (response instanceof Error) response = { message: response.message }
       return put(dckActions.processFail(_itemType, _act, response))
     }
 
-    function optItem(id: string | number): PutEffect<IAction> {
+    function optItem(id: string | number): PutEffect<TAction> {
       return put(dckActions.optItem(_itemType, id))
     }
 
-    function setItemProp(prop: string, data: any): PutEffect<IAction> {
+    function setItemProp(prop: string, data: any): PutEffect<TAction> {
       return put(dckActions.setItemProp(_itemType, prop, data))
     }
 
-    function setCurrentPage(currentPage: number): PutEffect<IAction> {
+    function setCurrentPage(currentPage: number): PutEffect<TAction> {
       return put(dckActions.setCurrentPage(_itemType, currentPage))
     }
 
-    function setPageSize(pageSize: number): PutEffect<IAction> {
+    function setPageSize(pageSize: number): PutEffect<TAction> {
       return put(dckActions.setPageSize(_itemType, pageSize))
     }
 
-    function setItems(data?: any[]): PutEffect<IAction> {
+    function setItems(data?: any[]): PutEffect<TAction> {
       if (!data) data = []
       return put(dckActions.setItems(_itemType, data))
     }
 
-    function setItem(id: string | number, data: any): PutEffect<IAction> {
+    function setItem(id: string | number, data: any): PutEffect<TAction> {
       return put(dckActions.setItem(_itemType, id, data))
     }
 
-    function setTotalItems(totalItems: number): PutEffect<IAction> {
+    function setTotalItems(totalItems: number): PutEffect<TAction> {
       return put(dckActions.setTotalItems(_itemType, totalItems))
     }
 

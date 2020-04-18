@@ -1,11 +1,11 @@
 export type TFetcher = (request: any) => any
 
-export interface IState {
+export type TState = {
   [propName: string]: any
 }
 
-export interface IAction {
-  type: string
+export type TAction = {
+  type: ActionTypes
   meta: {
     itemType: string
     id: string | number
@@ -15,7 +15,7 @@ export interface IAction {
   payload: any
 }
 
-export interface IProcess {
+export type ProcessState = {
   running: boolean
   error: boolean
   finished: boolean
@@ -23,19 +23,24 @@ export interface IProcess {
 }
 
 export enum ActionTypes {
-  // items
+  // for items with reducers
   setItems = 'dck/setItems',
   setItem = 'dck/setItem',
   removeItem = 'dck/removeItem',
+  // for items with reducers and acts
   optItem = 'dck/optItem',
   selectItem = 'dck/selectItem',
-  // crud items
+  // for items with acts
   loadItems = 'dck/loadItems',
   addItem = 'dck/addItem',
   updateItem = 'dck/updateItem',
   deleteItem = 'dck/deleteItem',
   importItems = 'dck/importItems',
   exportItems = 'dck/exportItems',
+  validateItems = 'dck/validateItems',
+  generateItems = 'dck/generateItems',
+  submitItems = 'dck/submitItems',
+  transformItems = 'dck/transformItems',
   // itemProps
   setItemProp = 'dck/setItemProp',
   // filters
@@ -50,10 +55,10 @@ export enum ActionTypes {
   processStart = 'dck/processStart',
   processStop = 'dck/processStop',
   processFail = 'dck/processFail',
-  processReset = 'dck/processRestart',
+  processReset = 'dck/processReset',
 }
 
-export enum ItemProps {
+export enum PaginationProps {
   totalItems = 'totalItems',
   totalPages = 'totalPages',
   currentPage = 'currentPage',
@@ -61,14 +66,17 @@ export enum ItemProps {
 }
 
 export enum Acts {
+  Opt = 'Opt',
+  Select = 'Select',
   Load = 'Load',
   Add = 'Add',
   Update = 'Update',
   Delete = 'Delete',
   Import = 'Import',
   Export = 'Export',
-  Opt = 'Opt',
-  Select = 'Select',
+  Generate = 'Generate',
+  Submit = 'Submit',
+  Validate = 'Validate',
 }
 
 export type TAct = Acts | string
