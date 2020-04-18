@@ -99,7 +99,12 @@
       "!<rootDir>/src/**/*.(spec|test|stories).{ts,tsx}",
       "!<rootDir>/src/__tests__/*",
       "!<rootDir>/src/**/*.d.{ts,tsx}"
-    ]
+    ],
+    "globals": {
+      "ts-jest": {
+        "isolatedModules": true
+      }
+    }
   },
   "prettier": {
     "semi": false,

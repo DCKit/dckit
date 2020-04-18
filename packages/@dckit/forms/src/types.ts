@@ -1,7 +1,7 @@
 import { GridSize } from '@material-ui/core'
 import { FormikConfig, FormikValues, FormikProps } from 'formik'
 
-export const enum FormFieldTypes {
+export enum FormFieldTypes {
   text = 'text',
   number = 'number',
   password = 'password',
@@ -47,15 +47,15 @@ export type FormFieldConfig = {
   type?: FormFieldType
   size?: GridSize
   style?: any
+  initialValue?: any
+  component?: any
   required?: DynamicProp
   disabled?: DynamicProp
+  helperText?: DynamicProp
   onChange?: any
   controlProps?: any
   options?: any[]
   optionsConfig?: OptionsConfig
-  helperText?: DynamicProp
-  initialValue?: any
-  component?: any
 }
 
 export type FieldsConfig = { [name: string]: FormFieldConfig }
