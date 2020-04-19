@@ -46,6 +46,12 @@ export const useStyles = makeStyles(() => ({
     position: 'absolute',
     lineHeight: '0.8rem',
   },
+  helperTextDatePicker: {
+    margin: '46px 0 0 0',
+    userSelect: 'none',
+    position: 'absolute',
+    lineHeight: '0.8rem',
+  },
   helperTextCheck: {
     marginTop: 40,
     userSelect: 'none',
