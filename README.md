@@ -6,4 +6,4 @@
 
 [`@dckit/store`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/store) [`@dckit/auth`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/auth) [`@dckit/routes`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/routes) [`@dckit/ui`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/ui) [`@dckit/forms`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/forms) [`@dckit/tables`](https://github.com/DCKit/dckit/tree/master/packages/%40dckit/tables) [`test-app`](https://github.com/DCKit/dckit/tree/master/packages/test-app)
 
-**similar projects:** [`<ReactAdmin />`](https://marmelab.com/react-admin) [`Hammer`](https://github.com/hammerframework/hammer)
+**similar project:** [`<ReactAdmin />`](https://marmelab.com/react-admin)
