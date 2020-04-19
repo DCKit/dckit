@@ -1,17 +1,4 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "declaration": true,
-    "isolatedModules": true,
-    "jsx": "react",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "outDir": "dist",
-    "strict": true,
-    "target": "es2018"
-  },
+  "extends": "../tsconfig.dckit.json",
   "include": ["src"]
 }
