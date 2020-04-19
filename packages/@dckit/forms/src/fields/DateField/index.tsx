@@ -1,32 +1,40 @@
 import React from 'react'
-import {
-  KeyboardDatePicker,
-  KeyboardDatePickerProps,
-} from '@material-ui/pickers'
+import { DesktopDatePicker } from '@material-ui/pickers'
 import { useField } from 'formik'
 import { MuiFieldProps } from '../../types'
-//import { useStyles } from '../styles'
+import { useStyles } from '../styles'
 
 export function DateField(props: MuiFieldProps) {
-  //const classes = useStyles()
+  const classes = useStyles()
 
-  const { name, onBlur, controlProps = {}, ...restProps } = props
-  const [, , helpers] = useField(name)
+  const { name, error, onBlur, controlProps = {}, ...restProps } = props
+  const [, meta, helpers] = useField(name)
 
   const handleChange = (value: string) => {
-    //console.log(typeof value)
-    helpers.setValue(value.toString()) //TODO: set formatted date value
+    helpers.setValue(value?.toString()) //TODO: set formatted date value
   }
 
-  const fieldProps: KeyboardDatePickerProps = {
-    placeholder: 'yyyy-mm-dd',
-    format: 'yyyy-MM-dd',
-    variant: 'inline',
+  const handleError = (error: any) => {
+    if (error !== meta.error) {
+      helpers.setError(error)
+    }
+  }
+
+  const fieldProps = {
+    variant: 'outlined',
+    size: 'small',
     ...restProps,
     ...controlProps,
     onChange: handleChange,
+    onError: handleError,
     fullWidth: true,
+    FormHelperTextProps: {
+      component: 'div',
+      classes: {
+        root: classes.helperTextDatePicker,
+      },
+    },
   }
 
-  return <KeyboardDatePicker {...fieldProps} />
+  return <DesktopDatePicker {...fieldProps} />
 }

@@ -10,27 +10,16 @@ const path = require('path')
 
 const vendors = [
   'react',
-  'react-is',
-  'react-dom',
-  'react-prop-types',
   'recompose',
   'regenerator-runtime',
   'prop-types',
-  'prop-types-extra',
-  'react-router',
-  'react-router-redux',
   'redux',
-  'react-redux',
-  'redux-saga',
   'lodash',
-  'lodash-es',
-  'immutable',
+  'immer',
   'object-assign',
   'warning',
   'pluralize',
   '@babel',
-  '@babel/runtime',
-  '@babel/runtime-corejs2',
   'deepmerge',
   'dom-helpers',
   'hoist-non-react-statics',
@@ -40,9 +29,9 @@ const vendors = [
   'json-stringify-safe',
 ]
 
-const utils = ['@material-ui', 'formik', 'yup']
+const ui = ['@material-ui', 'formik', 'yup']
 
-const dckit = ['(@dckit/.+)']
+const dckit = ['@dckit']
 
 const makeRegExp = deps => new RegExp(deps.join('|'))
 
@@ -51,7 +40,7 @@ const chunks = {
   minSize: 30000,
   minChunks: 2,
   maxAsyncRequests: 5,
-  maxInitialRequests: 3,
+  maxInitialRequests: 5,
   name: false,
   cacheGroups: {
     vendors: {
@@ -61,10 +50,10 @@ const chunks = {
       enforce: true,
       priority: -10,
     },
-    utils: {
-      test: makeRegExp(utils),
+    ui: {
+      test: makeRegExp(ui),
       chunks: 'initial',
-      name: 'utils',
+      name: 'ui',
       enforce: true,
       priority: -15,
     },
@@ -80,7 +69,10 @@ const chunks = {
 }
 
 module.exports = override(
-  babelInclude([path.resolve('src'), path.resolve('../comp')]),
+  babelInclude([
+    path.resolve('src'), // main source
+    path.resolve('../comp'), // shared package source
+  ]),
   addBabelPlugin([
     'module-resolver',
     {
