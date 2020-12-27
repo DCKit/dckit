@@ -1,21 +1,27 @@
+import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
-export const useStyles = makeStyles(() => ({
+export const useStyles = makeStyles((theme: Theme) => ({
   divider: {
     margin: '6px 0 !important',
     backgroundColor: 'rgba(0, 0, 0, 0.08)',
   },
   root: {
     height: 44,
-    paddingLeft: 24,
+    paddingLeft: 14,
+    color: theme.palette.primary.main,
+    borderLeft: '3px solid transparent',
     '&.-selected': {
-      fontWeight: 'bold',
+      color: '#555',
+      borderLeft: `2px solid ${theme.palette.primary.main}`,
+      //fontWeight: 'bold',
+      backgroundColor: 'rgba(0, 180, 250, 0.1)',
     },
     '&:hover': {
-      backgroundColor: '#fcfcfc',
+      backgroundColor: 'rgba(0, 0, 0, 0.04)',
     },
   },
   icon: {
-    marginRight: 24,
+    marginRight: -16,
   },
 }))

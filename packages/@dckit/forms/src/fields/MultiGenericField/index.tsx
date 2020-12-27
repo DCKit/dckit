@@ -1,4 +1,3 @@
-import React from 'react'
 import { FormControl, FormLabel } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'
 import { HelperText } from '../HelperText'

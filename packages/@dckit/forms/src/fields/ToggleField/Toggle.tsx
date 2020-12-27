@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import cn from 'clsx'
 import { useFormControl, Chip as MuiChip } from '@material-ui/core'
 import { useField } from 'formik'

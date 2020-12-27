@@ -1,7 +1,6 @@
-import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { Tabs, Tab } from '@material-ui/core'
-import { useLocationTail, normalizePath, IRoute } from '@dckit/routes'
+import { useLocationTail, normalizePath, IRoute } from '../routes'
 import { useTabsStyles, useTabItemStyles } from './styles'
 
 export interface IAppTabItem {
@@ -18,7 +17,7 @@ interface IAppTabsProps {
 
 export const useLocationTab = (tabs: IAppTabItem[]) => {
   const locationTail = useLocationTail()
-  const tabIndex = tabs.findIndex(tab => tab.route.path === locationTail)
+  const tabIndex = tabs.findIndex((tab) => tab.route.path === locationTail)
   const locationTab = tabIndex === -1 ? false : tabIndex
   return locationTab
 }

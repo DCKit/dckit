@@ -1,10 +1,9 @@
 import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
-export const useStyles = makeStyles((theme: Theme) => {
-  const drawerWidth = 240
-  const drawerMinWidth = 56
+import { drawerWidth, drawerMinWidth } from '../theme'
 
+export const useStyles = makeStyles((theme: Theme) => {
   const transition = {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,

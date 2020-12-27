@@ -1,4 +1,3 @@
-import React from 'react'
 import { useField, useFormikContext } from 'formik'
 import { FormFieldProps, DynamicProp } from '../../types'
 import { components } from '..'
@@ -6,13 +5,15 @@ import { components } from '..'
 export function FormField(props: FormFieldProps) {
   const {
     name,
+    initialValue,
     required,
     disabled,
     fieldsDisabled,
     helperText,
+    hideErrorText = false,
     type,
-    initialValue,
     onChange,
+    formatValue,
     ...restProps
   } = props
 
@@ -30,12 +31,21 @@ export function FormField(props: FormFieldProps) {
     field.onChange(e)
   }
 
+  const handleBlur = (e: React.ChangeEvent<any>) => {
+    if (formatValue) {
+      e.target.value = formatValue(e.target.value)
+      field.onChange(e)
+    }
+    field.onBlur(e)
+  }
+
   const fieldProps = {
     ...restProps,
     ...field,
     onChange: handleChange,
+    onBlur: handleBlur,
     error,
-    helperText: error ? fieldError : checkProp(helperText),
+    helperText: error && !hideErrorText ? fieldError : checkProp(helperText),
     required: checkProp(required),
     disabled: (form.isSubmitting || checkProp(disabled)) ?? fieldsDisabled,
   }

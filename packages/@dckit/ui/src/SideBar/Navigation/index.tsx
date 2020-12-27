@@ -1,4 +1,4 @@
-import React, { ComponentType, ComponentProps } from 'react'
+import * as React from 'react'
 import { List, Divider } from '@material-ui/core'
 import {
   SideBarItem,
@@ -16,12 +16,14 @@ export type INavigationItem =
 
 interface ISideBarNavigation {
   items: INavigationItem[]
-  ListComponent?: ComponentType
-  listProps?: ComponentProps<any>
+  ListComponent?: React.ComponentType
+  listProps?: React.ComponentProps<any>
+  closeOnClick?: boolean
 }
 
 export const SideBarNavigation = ({
   items,
+  closeOnClick = false,
   ListComponent = List,
   listProps = {},
 }: ISideBarNavigation) => (
@@ -39,6 +41,7 @@ export const SideBarNavigation = ({
         return (
           <SideBarRouteItem
             key={itemId}
+            closeOnClick={closeOnClick}
             {...item}
             route={item.route}
             id={itemId}

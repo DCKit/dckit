@@ -1,10 +1,12 @@
-import React from 'react'
+import * as React from 'react'
+
 import {
   TextField as MuiTextField,
   InputAdornment,
   InputProps as InputPropsType,
   TextFieldProps,
 } from '@material-ui/core'
+
 import { MuiFieldProps } from '../../types'
 import { defaultTextFieldProps } from '../utils'
 import { useStyles } from '../styles'
@@ -23,14 +25,27 @@ const Adornment = React.memo(
 export function TextField(props: MuiFieldProps) {
   const classes = useStyles()
 
-  const { controlProps = {}, ...restProps } = props
+  const { controlProps = {}, onChange, onBlur, ...restProps } = props
   const { startAdornment, endAdornment, ...restControlProps } = controlProps
 
   const fieldProps: TextFieldProps = {
+    onChange,
     ...restProps,
     ...restControlProps,
     ...defaultTextFieldProps(classes),
   }
+
+  const handleBlur = (e: React.ChangeEvent<any>) => {
+    const value = String(e.target.value || '')
+    const trimValue = value.trim()
+
+    if (value !== trimValue) {
+      e.target.value = trimValue
+      onChange && onChange(e, trimValue)
+    }
+    onBlur && onBlur(e)
+  }
+  fieldProps.onBlur = handleBlur
 
   const InputProps: Partial<InputPropsType> = { ...controlProps?.InputProps }
 

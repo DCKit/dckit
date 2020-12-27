@@ -1,7 +1,7 @@
-import React from 'react'
+import * as React from 'react'
 import { useFormControl } from '@material-ui/core'
 
-export const defaultTextFieldProps = (classes: any): any => ({
+export const defaultTextFieldProps = (classes: any = {}): any => ({
   variant: 'outlined',
   size: 'small',
   fullWidth: true,

@@ -1,4 +1,3 @@
-import React from 'react'
 import cn from 'clsx'
 import { FormControlLabel } from '@material-ui/core'
 import { MuiFieldProps } from '../../types'

@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { stub } from '../utils'
 import { TCallback } from '../types'
 
@@ -8,7 +8,7 @@ interface ISideBarContext {
 }
 
 const defaultSideBarContext: ISideBarContext = {
-  sideBarOpen: false,
+  sideBarOpen: true,
   showSideBar: stub,
 }
 

@@ -13,7 +13,6 @@ export enum FormFieldTypes {
   toggle = 'toggle',
   multiToggle = 'multiToggle',
   select = 'select',
-  date = 'date',
   component = 'component',
 }
 
@@ -52,7 +51,9 @@ export type FormFieldConfig = {
   required?: DynamicProp
   disabled?: DynamicProp
   helperText?: DynamicProp
+  hideErrorText?: boolean
   onChange?: any
+  formatValue?: any
   controlProps?: any
   options?: any[]
   optionsConfig?: OptionsConfig
@@ -74,12 +75,25 @@ export type MuiFieldProps = Omit<FormFieldProps, 'disabled' | 'required'> & {
   required?: boolean
 }
 
-export type FormProps = FormikConfig<FormikValues> & {
+export type FormGroup = {
+  id: string
+  size?: number
+  container?: any
+  label?: any
+  style?: any
+  spacing?: any
   fields: string[]
+}
+
+export type FormProps = FormikConfig<FormikValues> & {
+  fields?: string[]
+  groups?: FormGroup[]
   fieldsConfig: any
-  renderActions: any
+  renderActions?: any
   fieldsDisabled?: boolean
+  FormWrapper?: any
   FormContainer?: any
   FieldContainer?: any
+  GroupContainer?: any
   ActionsContainer?: any
 }

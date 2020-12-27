@@ -1,11 +1,22 @@
-import React, { useMemo } from 'react'
+import * as React from 'react'
 import { useField } from 'formik'
-import { TextField, TextFieldProps } from '@material-ui/core'
+import { Paper, TextField, TextFieldProps } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { MuiFieldProps } from '../../types'
 import { splitOptions } from '../utils'
 import { defaultTextFieldProps } from '../utils'
 import { useStyles } from '../styles'
+
+function PaperComponent(props: any) {
+  const { style = {}, ...other } = props
+  return (
+    <Paper
+      {...other}
+      elevation={6}
+      style={{ ...style, borderTop: '1px solid #ccc' }}
+    />
+  )
+}
 
 export function SelectField(props: MuiFieldProps) {
   const {
@@ -23,9 +34,10 @@ export function SelectField(props: MuiFieldProps) {
 
   const classes = useStyles()
   const [, , helpers] = useField(name)
-  const [optionValues, optionLabels] = useMemo(() => splitOptions(options), [
-    options,
-  ])
+  const [optionValues, optionLabels] = React.useMemo(
+    () => splitOptions(options),
+    [options]
+  )
 
   const getOptionLabel =
     controlProps.getOptionLabel || ((optValue: any) => optionLabels[optValue])
@@ -41,6 +53,7 @@ export function SelectField(props: MuiFieldProps) {
 
   const fieldProps = {
     ...restProps,
+    ...controlProps,
     value,
     className: classes.container,
     options: controlProps.options || optionValues,
@@ -61,7 +74,8 @@ export function SelectField(props: MuiFieldProps) {
   return (
     <Autocomplete
       {...fieldProps}
-      renderInput={props => <TextField {...props} {...textProps} />}
+      PaperComponent={PaperComponent}
+      renderInput={(props) => <TextField {...props} {...textProps} />}
     />
   )
 }

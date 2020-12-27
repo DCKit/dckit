@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import * as React from 'react'
 import {
   TextField as MuiTextField,
   InputAdornment,
@@ -13,7 +13,7 @@ import { useStyles } from '../styles'
 
 export function PasswordField(props: MuiFieldProps) {
   const classes = useStyles()
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = React.useState(false)
 
   const handleClickShowPassword = () => setShowPassword(!showPassword)
 
@@ -34,6 +34,7 @@ export function PasswordField(props: MuiFieldProps) {
   }
 
   const inputProps: Partial<InputProps> = { ...controlProps?.InputProps }
+  const iconsStyle = restProps.error ? { color: '#D62B57' } : {}
 
   if (visibility) {
     inputProps.endAdornment = (
@@ -45,7 +46,11 @@ export function PasswordField(props: MuiFieldProps) {
           onClick={handleClickShowPassword}
           onMouseDown={handleMouseDownPassword}
         >
-          {showPassword ? <Visibility /> : <VisibilityOff />}
+          {showPassword ? (
+            <Visibility style={iconsStyle} />
+          ) : (
+            <VisibilityOff style={iconsStyle} />
+          )}
         </IconButton>
       </InputAdornment>
     )

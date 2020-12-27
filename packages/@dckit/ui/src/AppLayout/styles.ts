@@ -1,15 +1,18 @@
 import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
+import {
+  contentPadding,
+  drawerWidth,
+  drawerMinWidth,
+  appBarHeight,
+  pageBarHeight,
+} from '../theme'
+
 export const useStyles = makeStyles((theme: Theme) => {
-  const contentPadding = 0
-  const drawerWidth = 240
-  const drawerMinWidth = 56
-  const appBarHeight = 48
-  const pageBarHeight = 32
   const barsHeight = appBarHeight + pageBarHeight
   const { palette, zIndex, transitions } = theme
-  const { common, background, primary } = palette
+  const { common } = palette
   const appBarZIndex = zIndex.drawer - 1
   const pageBarZIndex = appBarZIndex - 1
 
@@ -29,9 +32,11 @@ export const useStyles = makeStyles((theme: Theme) => {
       height: appBarHeight,
       width: barMinWidth,
       marginLeft: drawerMinWidth,
+      backgroundColor: common.white,
       zIndex: appBarZIndex,
-      backgroundColor: primary.dark,
       transition: transitionBar,
+      //borderBottom: '1px solid #eee',
+      boxShadow: '0px 5px 8px -8px rgba(0,0,0,0.4)',
     },
     appBarMobile: {
       position: 'fixed',
@@ -80,10 +85,11 @@ export const useStyles = makeStyles((theme: Theme) => {
       transition: transitionBar,
     },
     content: {
-      background: background.default,
+      background: common.white,
       position: 'fixed',
       padding: contentPadding,
-      overflow: 'auto',
+      overflowX: 'auto',
+      overflowY: 'scroll',
     },
     contentDesktop: {
       left: drawerMinWidth,
@@ -101,6 +107,13 @@ export const useStyles = makeStyles((theme: Theme) => {
     contentTwoBars: {
       top: barsHeight,
       height: `calc(100% - ${barsHeight}px)`,
+    },
+    contentFullPage: {
+      top: 0,
+      height: '100%',
+      left: drawerMinWidth,
+      width: barMinWidth,
+      transition: transitionContent,
     },
     contentShift: {
       left: drawerWidth,

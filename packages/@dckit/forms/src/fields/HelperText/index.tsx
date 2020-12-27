@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { FormHelperText } from '@material-ui/core'
 import { useStyles } from '../styles'
 

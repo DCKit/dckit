@@ -20,7 +20,7 @@ export const useTabItemStyles = makeStyles((theme: Theme) => {
   const { breakpoints, spacing } = theme
   return {
     root: {
-      textTransform: 'initial',
+      textTransform: 'uppercase',
       margin: spacing(0, 2),
       minWidth: 0,
       [breakpoints.up('md')]: {
@@ -28,7 +28,7 @@ export const useTabItemStyles = makeStyles((theme: Theme) => {
       },
     },
     wrapper: {
-      fontWeight: 'normal',
+      fontWeight: 500,
       letterSpacing: 0.5,
     },
   }

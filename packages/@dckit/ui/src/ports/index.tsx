@@ -1,4 +1,3 @@
-import React from 'react'
 import { createTeleporter } from 'react-teleporter'
 
 export const createPort = () => {
